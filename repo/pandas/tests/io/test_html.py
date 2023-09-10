@@ -135,8 +135,8 @@ class TestReadHtml:
     @network
     def test_spam_url(self):
         url = (
-            "https://raw.githubusercontent.com/pandas-dev/pandas/master/"
-            "pandas/tests/io/data/spam.html"
+            "http://ndb.nal.usda.gov/ndb/foods/show/300772?fg=&man=&"
+            "lfacet=&format=&count=&max=25&offset=&sort=&qlookup=spam"
         )
         df1 = self.read_html(url, ".*Water.*")
         df2 = self.read_html(url, "Unit")

@@ -592,7 +592,13 @@ class TestAsOfMerge:
 
     @pytest.mark.parametrize(
         "tolerance",
-        [Timedelta("1day"), datetime.timedelta(days=1)],
+        [
+            Timedelta("1day"),
+            pytest.param(
+                datetime.timedelta(days=1),
+                marks=pytest.mark.xfail(reason="not implemented", strict=True),
+            ),
+        ],
         ids=["pd.Timedelta", "datetime.timedelta"],
     )
     def test_tolerance(self, tolerance):

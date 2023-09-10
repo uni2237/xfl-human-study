@@ -137,20 +137,21 @@ def to_numeric(arg, errors="raise", downcast=None):
     else:
         values = arg
 
-    if is_numeric_dtype(values):
-        pass
-    elif is_datetime_or_timedelta_dtype(values):
-        values = values.astype(np.int64)
-    else:
-        values = ensure_object(values)
-        coerce_numeric = errors not in ("ignore", "raise")
-        try:
+    try:
+        if is_numeric_dtype(values):
+            pass
+        elif is_datetime_or_timedelta_dtype(values):
+            values = values.astype(np.int64)
+        else:
+            values = ensure_object(values)
+            coerce_numeric = errors not in ("ignore", "raise")
             values = lib.maybe_convert_numeric(
                 values, set(), coerce_numeric=coerce_numeric
             )
-        except (ValueError, TypeError):
-            if errors == "raise":
-                raise
+
+    except Exception:
+        if errors == "raise":
+            raise
 
     # attempt downcast only if the data has been successfully converted
     # to a numerical dtype and if a downcast method has been specified

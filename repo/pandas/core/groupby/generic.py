@@ -11,7 +11,7 @@ import functools
 from functools import partial
 from textwrap import dedent
 import typing
-from typing import Any, Callable, FrozenSet, Sequence, Type, Union
+from typing import Any, Callable, FrozenSet, Iterator, Sequence, Type, Union
 import warnings
 
 import numpy as np
@@ -58,6 +58,7 @@ from pandas.core.index import Index, MultiIndex, _all_indexes_same
 import pandas.core.indexes.base as ibase
 from pandas.core.internals import BlockManager, make_block
 from pandas.core.series import Series
+from pandas.core.sparse.frame import SparseDataFrame
 
 from pandas.plotting import boxplot_frame_groupby
 
@@ -70,63 +71,47 @@ AggScalar = Union[str, Callable[..., Any]]
 ScalarResult = typing.TypeVar("ScalarResult")
 
 
-def generate_property(name: str, klass: Type[FrameOrSeries]):
+def whitelist_method_generator(
+    base_class: Type[GroupBy], klass: Type[FrameOrSeries], whitelist: FrozenSet[str]
+) -> Iterator[str]:
     """
-    Create a property for a GroupBy subclass to dispatch to DataFrame/Series.
+    Yields all GroupBy member defs for DataFrame/Series names in whitelist.
 
     Parameters
     ----------
-    name : str
-    klass : {DataFrame, Series}
-
-    Returns
-    -------
-    property
-    """
-
-    def prop(self):
-        return self._make_wrapper(name)
-
-    parent_method = getattr(klass, name)
-    prop.__doc__ = parent_method.__doc__ or ""
-    prop.__name__ = name
-    return property(prop)
-
-
-def pin_whitelisted_properties(klass: Type[FrameOrSeries], whitelist: FrozenSet[str]):
-    """
-    Create GroupBy member defs for DataFrame/Series names in a whitelist.
-
-    Parameters
-    ----------
+    base_class : Groupby class
+        base class
     klass : DataFrame or Series class
         class where members are defined.
-    whitelist : frozenset[str]
+    whitelist : frozenset
         Set of names of klass methods to be constructed
 
     Returns
     -------
-    class decorator
+    The generator yields a sequence of strings, each suitable for exec'ing,
+    that define implementations of the named methods for DataFrameGroupBy
+    or SeriesGroupBy.
 
-    Notes
-    -----
     Since we don't want to override methods explicitly defined in the
     base class, any such name is skipped.
     """
+    property_wrapper_template = """@property
+def %(name)s(self) :
+    \"""%(doc)s\"""
+    return self.__getattr__('%(name)s')"""
 
-    def pinner(cls):
-        for name in whitelist:
-            if hasattr(cls, name):
-                # don't override anything that was explicitly defined
-                #  in the base class
-                continue
-
-            prop = generate_property(name, klass)
-            setattr(cls, name, prop)
-
-        return cls
-
-    return pinner
+    for name in whitelist:
+        # don't override anything that was explicitly defined
+        # in the base class
+        if hasattr(base_class, name):
+            continue
+        # ugly, but we need the name string itself in the method.
+        f = getattr(klass, name)
+        doc = f.__doc__
+        doc = doc if type(doc) == str else ""
+        wrapper_template = property_wrapper_template
+        params = {"name": name, "doc": doc}
+        yield wrapper_template % params
 
 
 class NDFrameGroupBy(GroupBy):
@@ -272,6 +257,12 @@ class NDFrameGroupBy(GroupBy):
                     result.columns = Index(
                         result.columns.levels[0], name=self._selected_obj.columns.name
                     )
+
+                    if isinstance(self.obj, SparseDataFrame):
+                        # Backwards compat for groupby.agg() with sparse
+                        # values. concat no longer converts DataFrame[Sparse]
+                        # to SparseDataFrame, so we do it here.
+                        result = SparseDataFrame(result._data)
 
         if not self.as_index:
             self._insert_inaxis_grouper_inplace(result)
@@ -709,7 +700,7 @@ class NDFrameGroupBy(GroupBy):
         f : function
             Function to apply to each subframe. Should return True or False.
         dropna : Drop groups that do not pass the filter. True by default;
-            If False, groups that evaluate False are filled with NaNs.
+            if False, groups that evaluate False are filled with NaNs.
 
         Returns
         -------
@@ -763,9 +754,13 @@ class NDFrameGroupBy(GroupBy):
         return self._apply_filter(indices, dropna)
 
 
-@pin_whitelisted_properties(Series, base.series_apply_whitelist)
 class SeriesGroupBy(GroupBy):
+    #
+    # Make class defs of attributes on SeriesGroupBy whitelist
+
     _apply_whitelist = base.series_apply_whitelist
+    for _def_str in whitelist_method_generator(GroupBy, Series, _apply_whitelist):
+        exec(_def_str)
 
     @property
     def _selection_name(self):
@@ -1380,10 +1375,14 @@ class SeriesGroupBy(GroupBy):
         return (filled / shifted) - 1
 
 
-@pin_whitelisted_properties(DataFrame, base.dataframe_apply_whitelist)
 class DataFrameGroupBy(NDFrameGroupBy):
 
     _apply_whitelist = base.dataframe_apply_whitelist
+
+    #
+    # Make class defs of attributes on DataFrameGroupBy whitelist.
+    for _def_str in whitelist_method_generator(GroupBy, DataFrame, _apply_whitelist):
+        exec(_def_str)
 
     _block_agg_axis = 1
 

@@ -138,7 +138,7 @@ def to_offset(freq):
                         delta = offset
                     else:
                         delta = delta + offset
-        except ValueError:
+        except Exception:
             raise ValueError(libfreqs.INVALID_FREQ_ERR_MSG.format(freq))
 
     else:
@@ -170,7 +170,7 @@ def to_offset(freq):
                     delta = offset
                 else:
                     delta = delta + offset
-        except (ValueError, TypeError):
+        except Exception:
             raise ValueError(libfreqs.INVALID_FREQ_ERR_MSG.format(freq))
 
     if delta is None:

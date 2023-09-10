@@ -339,7 +339,7 @@ def maybe_promote(dtype, fill_value=np.nan):
     # if we passed an array here, determine the fill value by dtype
     if isinstance(fill_value, np.ndarray):
         if issubclass(fill_value.dtype.type, (np.datetime64, np.timedelta64)):
-            fill_value = fill_value.dtype.type("NaT", "ns")
+            fill_value = iNaT
         else:
 
             # we need to change to object type as our
@@ -350,20 +350,14 @@ def maybe_promote(dtype, fill_value=np.nan):
 
     # returns tuple of (dtype, fill_value)
     if issubclass(dtype.type, np.datetime64):
-        fill_value = tslibs.Timestamp(fill_value).to_datetime64()
+        fill_value = tslibs.Timestamp(fill_value).value
     elif issubclass(dtype.type, np.timedelta64):
-        fv = tslibs.Timedelta(fill_value)
-        if fv is NaT:
-            # NaT has no `to_timedelta6` method
-            fill_value = np.timedelta64("NaT", "ns")
-        else:
-            fill_value = fv.to_timedelta64()
+        fill_value = tslibs.Timedelta(fill_value).value
     elif is_datetime64tz_dtype(dtype):
         if isna(fill_value):
             fill_value = NaT
     elif is_extension_array_dtype(dtype) and isna(fill_value):
         fill_value = dtype.na_value
-
     elif is_float(fill_value):
         if issubclass(dtype.type, np.bool_):
             dtype = np.object_
@@ -372,8 +366,6 @@ def maybe_promote(dtype, fill_value=np.nan):
     elif is_bool(fill_value):
         if not issubclass(dtype.type, np.bool_):
             dtype = np.object_
-        else:
-            fill_value = np.bool_(fill_value)
     elif is_integer(fill_value):
         if issubclass(dtype.type, np.bool_):
             dtype = np.object_
@@ -382,10 +374,6 @@ def maybe_promote(dtype, fill_value=np.nan):
             arr = np.asarray(fill_value)
             if arr != arr.astype(dtype):
                 dtype = arr.dtype
-        elif issubclass(dtype.type, np.floating):
-            # check if we can cast
-            if _check_lossless_cast(fill_value, dtype):
-                fill_value = dtype.type(fill_value)
     elif is_complex(fill_value):
         if issubclass(dtype.type, np.bool_):
             dtype = np.object_
@@ -398,7 +386,7 @@ def maybe_promote(dtype, fill_value=np.nan):
             dtype = np.float64
             fill_value = np.nan
         elif is_datetime_or_timedelta_dtype(dtype):
-            fill_value = dtype.type("NaT", "ns")
+            fill_value = iNaT
         else:
             dtype = np.object_
             fill_value = np.nan
@@ -410,29 +398,10 @@ def maybe_promote(dtype, fill_value=np.nan):
         pass
     elif is_datetime64tz_dtype(dtype):
         pass
-    elif issubclass(np.dtype(dtype).type, (bytes, str)):
+    elif issubclass(np.dtype(dtype).type, str):
         dtype = np.object_
 
     return dtype, fill_value
-
-
-def _check_lossless_cast(value, dtype: np.dtype) -> bool:
-    """
-    Check if we can cast the given value to the given dtype _losslesly_.
-
-    Parameters
-    ----------
-    value : object
-    dtype : np.dtype
-
-    Returns
-    -------
-    bool
-    """
-    casted = dtype.type(value)
-    if casted == value:
-        return True
-    return False
 
 
 def infer_dtype_from(val, pandas_dtype=False):
@@ -827,7 +796,7 @@ def maybe_convert_objects(values: np.ndarray, convert_numeric: bool = True):
                 new_values = lib.maybe_convert_numeric(
                     values, set(), coerce_numeric=True
                 )
-            except (ValueError, TypeError):
+            except Exception:
                 pass
             else:
                 # if we are all nans then leave me alone
@@ -906,7 +875,7 @@ def soft_convert_objects(
     if numeric and is_object_dtype(values.dtype):
         try:
             converted = lib.maybe_convert_numeric(values, set(), coerce_numeric=True)
-        except (ValueError, TypeError):
+        except Exception:
             pass
         else:
             # If all NaNs, then do not-alter
@@ -984,10 +953,9 @@ def maybe_infer_to_datetimelike(value, convert_dates=False):
             # we might have a sequence of the same-datetimes with tz's
             # if so coerce to a DatetimeIndex; if they are not the same,
             # then these stay as object dtype, xref GH19671
-            from pandas._libs.tslibs import conversion
-            from pandas import DatetimeIndex
-
             try:
+                from pandas._libs.tslibs import conversion
+                from pandas import DatetimeIndex
 
                 values, tz = conversion.datetime_to_datetime64(v)
                 return DatetimeIndex(values).tz_localize("UTC").tz_convert(tz=tz)
@@ -1061,10 +1029,7 @@ def maybe_cast_to_datetime(value, dtype, errors="raise"):
             )
 
             if is_datetime64 and not is_dtype_equal(dtype, _NS_DTYPE):
-
-                # pandas supports dtype whose granularity is less than [ns]
-                # e.g., [ps], [fs], [as]
-                if dtype <= np.dtype("M8[ns]"):
+                if dtype.name in ("datetime64", "datetime64[ns]"):
                     if dtype.name == "datetime64":
                         raise ValueError(msg.format(dtype=dtype.name))
                     dtype = _NS_DTYPE
@@ -1082,10 +1047,7 @@ def maybe_cast_to_datetime(value, dtype, errors="raise"):
                     value = [value]
 
             elif is_timedelta64 and not is_dtype_equal(dtype, _TD_DTYPE):
-
-                # pandas supports dtype whose granularity is less than [ns]
-                # e.g., [ps], [fs], [as]
-                if dtype <= np.dtype("m8[ns]"):
+                if dtype.name in ("timedelta64", "timedelta64[ns]"):
                     if dtype.name == "timedelta64":
                         raise ValueError(msg.format(dtype=dtype.name))
                     dtype = _TD_DTYPE
@@ -1342,8 +1304,9 @@ def construct_1d_ndarray_preserving_na(values, dtype=None, copy=False):
     >>> np.array([1.0, 2.0, None], dtype='str')
     array(['1.0', '2.0', 'None'], dtype='<U4')
 
-    >>> construct_1d_ndarray_preserving_na([1.0, 2.0, None], dtype=np.dtype('str'))
-    array(['1.0', '2.0', None], dtype=object)
+    >>> construct_1d_ndarray_preserving_na([1.0, 2.0, None], dtype='str')
+
+
     """
     subarr = np.array(values, dtype=dtype, copy=copy)
 

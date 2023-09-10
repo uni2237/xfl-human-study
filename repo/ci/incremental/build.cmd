@@ -1,9 +1,9 @@
 @rem https://github.com/numba/numba/blob/master/buildscripts/incremental/build.cmd
 
-@rem Build extensions
-python setup.py build_ext -q -i
+@rem Build numba extensions without silencing compile errors
+python setup.py build_ext -q --inplace
 
-@rem Install pandas
-python -m pip install --no-build-isolation -e .
+@rem Install pandas locally
+python -m pip install -e .
 
 if %errorlevel% neq 0 exit /b %errorlevel%

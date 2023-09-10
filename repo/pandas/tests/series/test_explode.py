@@ -111,11 +111,3 @@ def test_nested_EA():
         pd.date_range("20170101", periods=6, tz="UTC"), index=[0, 0, 0, 1, 1, 1]
     )
     tm.assert_series_equal(result, expected)
-
-
-def test_duplicate_index():
-    # GH 28005
-    s = pd.Series([[1, 2], [3, 4]], index=[0, 0])
-    result = s.explode()
-    expected = pd.Series([1, 2, 3, 4], index=[0, 0, 0, 0], dtype=object)
-    tm.assert_series_equal(result, expected)

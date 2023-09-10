@@ -54,18 +54,14 @@ class Styler:
     Parameters
     ----------
     data : Series or DataFrame
-        Data to be styled - either a Series or DataFrame.
     precision : int
-        Precision to round floats to, defaults to pd.options.display.precision.
+        precision to round floats to, defaults to pd.options.display.precision
     table_styles : list-like, default None
-        List of {selector: (attr, value)} dicts; see Notes.
+        list of {selector: (attr, value)} dicts; see Notes
     uuid : str, default None
-        A unique identifier to avoid CSS collisions; generated automatically.
+        a unique identifier to avoid CSS collisions; generated automatically
     caption : str, default None
-        Caption to attach to the table.
-    table_attributes : str, default None
-        Items that show up in the opening ``<table>`` tag
-        in addition to automatic (by default) id.
+        caption to attach to the table
     cell_ids : bool, default True
         If True, each cell will have an ``id`` attribute in their HTML tag.
         The ``id`` takes the form ``T_<uuid>_row<num_row>_col<num_col>``
@@ -80,8 +76,7 @@ class Styler:
 
     See Also
     --------
-    DataFrame.style : Return a Styler object containing methods for building
-        a styled HTML representation for the DataFrame.
+    DataFrame.style
 
     Notes
     -----
@@ -650,7 +645,7 @@ class Styler:
         subset : IndexSlice
             a valid indexer to limit ``data`` to *before* applying the
             function. Consider using a pandas.IndexSlice
-        **kwargs : dict
+        kwargs : dict
             pass along to ``func``
 
         Returns
@@ -702,7 +697,7 @@ class Styler:
         subset : IndexSlice
             a valid indexer to limit ``data`` to *before* applying the
             function. Consider using a pandas.IndexSlice
-        **kwargs : dict
+        kwargs : dict
             pass along to ``func``
 
         Returns
@@ -737,7 +732,7 @@ class Styler:
         subset : IndexSlice
             a valid indexer to limit ``data`` to *before* applying the
             function. Consider using a pandas.IndexSlice
-        **kwargs : dict
+        kwargs : dict
             pass along to ``cond``
 
         Returns
@@ -970,10 +965,8 @@ class Styler:
         ----------
         cmap : str or colormap
             matplotlib colormap
-        low : float
-            compress the range by the low.
-        high : float
-            compress the range by the high.
+        low, high : float
+            compress the range by these values.
         axis : {0 or 'index', 1 or 'columns', None}, default 0
             apply to each column (``axis=0`` or ``'index'``), to each row
             (``axis=1`` or ``'columns'``), or to the entire DataFrame at once
@@ -1085,7 +1078,7 @@ class Styler:
         ----------
         subset : IndexSlice
             a valid slice for ``data`` to limit the style application to
-        **kwargs : dict
+        kwargs : dict
             property: value pairs to be set for each cell
 
         Returns
@@ -1357,10 +1350,8 @@ class Styler:
             Function to apply to the Styler.  Alternatively, a
             ``(callable, keyword)`` tuple where ``keyword`` is a string
             indicating the keyword of ``callable`` that expects the Styler.
-        *args : optional
+        *args, **kwargs :
             Arguments passed to `func`.
-        **kwargs : optional
-            A dictionary of keyword arguments passed into ``func``.
 
         Returns
         -------

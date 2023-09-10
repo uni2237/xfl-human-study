@@ -3,7 +3,6 @@ SQL-style merge routines
 """
 
 import copy
-import datetime
 from functools import partial
 import string
 import warnings
@@ -1620,7 +1619,7 @@ class _AsOfMerge(_OrderedMerge):
                     )
                 raise MergeError(msg)
 
-        # validate tolerance; datetime.timedelta or Timedelta if we have a DTI
+        # validate tolerance; must be a Timedelta if we have a DTI
         if self.tolerance is not None:
 
             if self.left_index:
@@ -1636,7 +1635,7 @@ class _AsOfMerge(_OrderedMerge):
             )
 
             if is_datetimelike(lt):
-                if not isinstance(self.tolerance, datetime.timedelta):
+                if not isinstance(self.tolerance, Timedelta):
                     raise MergeError(msg)
                 if self.tolerance < Timedelta(0):
                     raise MergeError("tolerance must be positive")
@@ -1706,7 +1705,6 @@ class _AsOfMerge(_OrderedMerge):
             left_values = left_values.view("i8")
             right_values = right_values.view("i8")
             if tolerance is not None:
-                tolerance = Timedelta(tolerance)
                 tolerance = tolerance.value
 
         # a "by" parameter requires special handling

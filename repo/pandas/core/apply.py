@@ -204,20 +204,17 @@ class FrameApply:
         from pandas import Series
 
         if not should_reduce:
+
+            EMPTY_SERIES = Series([])
             try:
-                r = self.f(Series([]))
+                r = self.f(EMPTY_SERIES, *self.args, **self.kwds)
             except Exception:
                 pass
             else:
                 should_reduce = not isinstance(r, Series)
 
         if should_reduce:
-            if len(self.agg_axis):
-                r = self.f(Series([]))
-            else:
-                r = np.nan
-
-            return self.obj._constructor_sliced(r, index=self.agg_axis)
+            return self.obj._constructor_sliced(np.nan, index=self.agg_axis)
         else:
             return self.obj.copy()
 
@@ -342,7 +339,7 @@ class FrameApply:
         results = self.results
 
         # see if we can infer the results
-        if len(results) > 0 and 0 in results and is_sequence(results[0]):
+        if len(results) > 0 and is_sequence(results[0]):
 
             return self.wrap_results_for_axis()
 
