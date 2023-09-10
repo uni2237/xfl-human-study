@@ -13,11 +13,9 @@ experiment.
 
 ### Set up the Docker image
 
-First, check that you are on the `main` branch of this repository. Then
-`cd` into the `defects4j` directory, then run
 
 ```bash
-docker build -t smkang96/xflhs:test .
+docker pull stuatlittle/fl-human-study:latest
 ```
 
 ## Performing the Task

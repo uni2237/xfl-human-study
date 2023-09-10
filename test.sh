@@ -1,4 +1,11 @@
-test_file="repo/bugsinpy_run_test.sh"
-test_cmd=$(cat ${test_file})
+bug_name="repo"
+test_file="${bug_name}/bugsinpy_run_test.sh"
 
-docker run -it -v $(pwd)/repo:/root/repo -w /root/repo smkang96/xflhs:test /opt/conda/envs/exprenv/bin/${test_cmd}
+nondefault=$1
+if [ -z "$1" ]; then
+    test_cmd=$(cat ${test_file})
+else
+    test_cmd=$(cat ${test_file} | sed 's/::.*//g')
+fi 
+
+docker run -it -v $(pwd)/${bug_name}:/root/repo -w /root/repo stuatlittle/fl-human-study:latest /opt/conda/envs/exprenv/bin/${test_cmd}
