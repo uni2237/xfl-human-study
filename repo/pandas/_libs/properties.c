@@ -10,8 +10,11 @@
             ]
         ],
         "depends": [],
+        "extra_compile_args": [
+            "-Wno-unused-function"
+        ],
         "include_dirs": [
-            "/opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/numpy/core/include"
+            "/opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/numpy/core/include"
         ],
         "language": "c",
         "name": "pandas._libs.properties",

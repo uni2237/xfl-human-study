@@ -21,7 +21,6 @@ from typing import (
     Iterable,
     List,
     Optional,
-    Sequence,
     Tuple,
     Type,
     Union,
@@ -91,7 +90,7 @@ common_docstring = """
             The subset of columns to write. Writes all columns by default.
         col_space : %(col_space_type)s, optional
             %(col_space)s.
-        header : %(header_type)s, optional
+        header : bool, optional
             %(header)s.
         index : bool, optional, default True
             Whether to print index (row) labels.
@@ -531,9 +530,9 @@ class DataFrameFormatter(TableFormatter):
     def __init__(
         self,
         frame: "DataFrame",
-        columns: Optional[Sequence[str]] = None,
+        columns: Optional[List[str]] = None,
         col_space: Optional[Union[str, int]] = None,
-        header: Union[bool, Sequence[str]] = True,
+        header: Union[bool, List[str]] = True,
         index: bool = True,
         na_rep: str = "NaN",
         formatters: Optional[formatters_type] = None,

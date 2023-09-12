@@ -574,6 +574,18 @@ class Block(PandasObject):
         # may need to convert to categorical
         if self.is_categorical_astype(dtype):
 
+            # deprecated 17636
+            for deprecated_arg in ("categories", "ordered"):
+                if deprecated_arg in kwargs:
+                    raise ValueError(
+                        "Got an unexpected argument: {}".format(deprecated_arg)
+                    )
+
+            categories = kwargs.get("categories", None)
+            ordered = kwargs.get("ordered", None)
+            if com.any_not_none(categories, ordered):
+                dtype = CategoricalDtype(categories, ordered)
+
             if is_categorical_dtype(self.values):
                 # GH 10696/18593: update an existing categorical efficiently
                 return self.make_block(self.values.astype(dtype, copy=copy))
@@ -609,7 +621,7 @@ class Block(PandasObject):
             # _astype_nansafe works fine with 1-d only
             vals1d = values.ravel()
             try:
-                values = astype_nansafe(vals1d, dtype, copy=True)
+                values = astype_nansafe(vals1d, dtype, copy=True, **kwargs)
             except (ValueError, TypeError):
                 # e.g. astype_nansafe can fail on object-dtype of strings
                 #  trying to convert to float
@@ -2116,8 +2128,7 @@ class DatetimeBlock(DatetimeLikeBlockMixin, Block):
         return True
 
     def _maybe_coerce_values(self, values):
-        """
-        Input validation for values passed to __init__. Ensure that
+        """Input validation for values passed to __init__. Ensure that
         we have datetime64ns, coercing if necessary.
 
         Parameters

@@ -107,12 +107,15 @@ def _evaluate_numexpr(op, op_str, a, b, reversed=False):
 
         a_value = getattr(a, "values", a)
         b_value = getattr(b, "values", b)
-
-        result = ne.evaluate(
-            "a_value {op} b_value".format(op=op_str),
-            local_dict={"a_value": a_value, "b_value": b_value},
-            casting="safe",
-        )
+        try:
+            result = ne.evaluate(
+                "a_value {op} b_value".format(op=op_str),
+                local_dict={"a_value": a_value, "b_value": b_value},
+                casting="safe",
+            )
+        except ValueError as detail:
+            if "unknown type object" in str(detail):
+                pass
 
     if _TEST_MODE:
         _store_test_result(result is not None)
@@ -137,15 +140,21 @@ def _where_numexpr(cond, a, b):
         a_value = getattr(a, "values", a)
         b_value = getattr(b, "values", b)
 
-        result = ne.evaluate(
-            "where(cond_value, a_value, b_value)",
-            local_dict={
-                "cond_value": cond_value,
-                "a_value": a_value,
-                "b_value": b_value,
-            },
-            casting="safe",
-        )
+        try:
+            result = ne.evaluate(
+                "where(cond_value, a_value, b_value)",
+                local_dict={
+                    "cond_value": cond_value,
+                    "a_value": a_value,
+                    "b_value": b_value,
+                },
+                casting="safe",
+            )
+        except ValueError as detail:
+            if "unknown type object" in str(detail):
+                pass
+        except Exception as detail:
+            raise TypeError(str(detail))
 
     if result is None:
         result = _where_standard(cond, a, b)
@@ -158,10 +167,11 @@ set_use_numexpr(get_option("compute.use_numexpr"))
 
 
 def _has_bool_dtype(x):
-    if isinstance(x, ABCDataFrame):
-        return "bool" in x.dtypes
     try:
-        return x.dtype == bool
+        if isinstance(x, ABCDataFrame):
+            return "bool" in x.dtypes
+        else:
+            return x.dtype == bool
     except AttributeError:
         return isinstance(x, (bool, np.bool_))
 

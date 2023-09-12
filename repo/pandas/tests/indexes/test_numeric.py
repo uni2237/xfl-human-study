@@ -242,16 +242,9 @@ class TestFloat64Index(Numeric):
         # GH 13149
         for dtype in ["int16", "int32", "int64"]:
             i = Float64Index([0, 1.1, np.NAN])
-            msg = r"Cannot convert non-finite values \(NA or inf\) to integer"
+            msg = "Cannot convert NA to integer"
             with pytest.raises(ValueError, match=msg):
                 i.astype(dtype)
-
-    def test_cannot_cast_inf_to_int(self):
-        idx = pd.Float64Index([1, 2, np.inf])
-
-        msg = r"Cannot convert non-finite values \(NA or inf\) to integer"
-        with pytest.raises(ValueError, match=msg):
-            idx.astype(int)
 
     def test_type_coercion_fail(self, any_int_dtype):
         # see gh-15832

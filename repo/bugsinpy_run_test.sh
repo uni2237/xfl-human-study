@@ -1,1 +1,1 @@
-pytest pandas/tests/indexes/test_range.py::TestRangeIndex::test_get_indexer_decreasing 
+pytest -s pandas/tests/dtypes/test_missing.py::test_array_equivalent_nested 

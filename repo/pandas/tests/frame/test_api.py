@@ -10,6 +10,7 @@ from pandas import (
     Categorical,
     DataFrame,
     Series,
+    SparseDataFrame,
     SparseDtype,
     compat,
     date_range,
@@ -219,6 +220,9 @@ class SharedWithSparse:
 
     def test_iterrows_iso8601(self):
         # GH 19671
+        if self.klass == SparseDataFrame:
+            pytest.xfail(reason="SparseBlock datetime type not implemented.")
+
         s = self.klass(
             {
                 "non_iso8601": ["M1701", "M1802", "M1903", "M2004"],
