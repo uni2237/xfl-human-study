@@ -1,29 +1,122 @@
+## 테스트 실패 정보
 
-
-The test `pandas.tests.indexes.test_range.TestRangeIndex.test_get_indexer_decreasing()` failed. The test looks like:
+아래는 실패한 테스트와 실패한 에러 메시지에 대한 `pytest` 출력입니다.
+실패한 테스트 함수는 [여기](./repo/pandas/tests/series/test_combine_concat.py#L57)서도 보실 수 있습니다.
 
 ```python
-428 :     def test_get_indexer_decreasing(self, stop):
-429 :         # GH 28678
-430 :         index = RangeIndex(7, stop, -3)
-431 :         result = index.get_indexer(range(9))
-432 :         expected = np.array([-1, 2, -1, -1, 1, -1, -1, 0, -1], dtype=np.intp)
-433 :         tm.assert_numpy_array_equal(result, expected) # error occurred here
-```
+============================= test session starts ==============================
+platform linux -- Python 3.8.3, pytest-5.4.3, py-1.8.1, pluggy-0.13.1
+rootdir: /home/user/BugsInPy/temp/projects/pandas, inifile: setup.cfg
+plugins: hypothesis-5.16.0
+collected 1 item
 
-It failed with the following error message and call stack:
+pandas/tests/series/test_combine_concat.py F                             [100%]
 
-```
-________________ TestRangeIndex.test_get_indexer_decreasing[0] _________________
-E           AssertionError: numpy array are different
-E           
-E           numpy array values are different (55.55556 %)
-E           [left]:  [-1, -1, -1, 2, -1, -1, 1, -1, -1]
-E           [right]: [-1, 2, -1, -1, 1, -1, -1, 0, -1]
->       tm.assert_numpy_array_equal(result, expected)
-pandas/tests/indexes/test_range.py:433: 
->           raise_assert_detail(obj, msg, left, right)
-pandas/util/testing.py:1004: AssertionError
-```
+=================================== FAILURES ===================================
+_____________________ TestSeriesCombine.test_append_tuples _____________________
 
-Debug this issue.
+self = <pandas.tests.series.test_combine_concat.TestSeriesCombine object at 0x7f0380531280>
+
+    def test_append_tuples(self):
+        # GH 28410
+        s = pd.Series([1, 2, 3])
+        list_input = [s, s]
+        tuple_input = (s, s)
+    
+        expected = s.append(list_input)
+>       result = s.append(tuple_input)
+
+pandas/tests/series/test_combine_concat.py:64: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = 0    1
+1    2
+2    3
+dtype: int64
+to_append = (0    1
+1    2
+2    3
+dtype: int64, 0    1
+1    2
+2    3
+dtype: int64)
+ignore_index = False, verify_integrity = False
+
+    def append(self, to_append, ignore_index=False, verify_integrity=False):
+        """
+        Concatenate two or more Series.
+    
+        Parameters
+        ----------
+        to_append : Series or list/tuple of Series
+            Series to append with self.
+        ignore_index : bool, default False
+            If True, do not use the index labels.
+        verify_integrity : bool, default False
+            If True, raise Exception on creating index with duplicates.
+    
+        Returns
+        -------
+        Series
+            Concatenated Series.
+    
+        See Also
+        --------
+        concat : General function to concatenate DataFrame or Series objects.
+    
+        Notes
+        -----
+        Iteratively appending to a Series can be more computationally intensive
+        than a single concatenate. A better solution is to append values to a
+        list and then concatenate the list with the original Series all at
+        once.
+    
+        Examples
+        --------
+        >>> s1 = pd.Series([1, 2, 3])
+        >>> s2 = pd.Series([4, 5, 6])
+        >>> s3 = pd.Series([4, 5, 6], index=[3, 4, 5])
+        >>> s1.append(s2)
+        0    1
+        1    2
+        2    3
+        0    4
+        1    5
+        2    6
+        dtype: int64
+    
+        >>> s1.append(s3)
+        0    1
+        1    2
+        2    3
+        3    4
+        4    5
+        5    6
+        dtype: int64
+    
+        With `ignore_index` set to True:
+    
+        >>> s1.append(s2, ignore_index=True)
+        0    1
+        1    2
+        2    3
+        3    4
+        4    5
+        5    6
+        dtype: int64
+    
+        With `verify_integrity` set to True:
+    
+        >>> s1.append(s2, verify_integrity=True)
+        Traceback (most recent call last):
+        ...
+        ValueError: Indexes have overlapping values: [0, 1, 2]
+        """
+        from pandas.core.reshape.concat import concat
+    
+        if isinstance(to_append, (list, tuple)):
+>           to_concat = [self] + to_append
+E           TypeError: can only concatenate list (not "tuple") to list
+
+pandas/core/series.py:2733: TypeError
+```

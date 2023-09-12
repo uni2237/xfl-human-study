@@ -1,5 +1,11 @@
 # FL Rankings
 
-1. [Series.append](vscode://file/XFLCDIR/repo/pandas/core/series.py:2660)
-2. [CallableDynamicDoc.\_\_call\_\_](vscode://file/XFLCDIR/repo/pandas/_config/config.py:232)
-3. [config.\_get\_deprecated\_option](vscode://file/XFLCDIR/repo/pandas/_config/config.py:568)
+## Failing Test
+ * [pandas/tests/series/test_combine_concat.py::TestSeriesCombine::test_append_tuples](./repo/pandas/tests/series/test_combine_concat.py#L57)
+
+## GPT-3.5
+1. [Series.append](./repo/pandas/core/series.py#L2660) - 설명 [1, 2, 3, 4, 5]에 의해 제시됨
+
+
+## GPT-4
+1. [Series.append](./repo/pandas/core/series.py#L2660) - 설명 [2, 3, 4, 5]에 의해 제시됨
