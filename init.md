@@ -1,29 +1,112 @@
+## 테스트 실패 정보
 
+아래는 실패한 테스트와 실패한 테스트의 에러메시지에 대한 `pytest` 출력입니다. 실패한 테스트 함수는 [1번](./repo/pandas/tests/series/test_alter_axes.py#L270), [2번](./repo/pandas/tests/series/test_alter_axes.py#L279)에서도 보실 수 있습니다.
 
-The test `pandas.tests.indexes.test_range.TestRangeIndex.test_get_indexer_decreasing()` failed. The test looks like:
+### 1번
 
 ```python
-428 :     def test_get_indexer_decreasing(self, stop):
-429 :         # GH 28678
-430 :         index = RangeIndex(7, stop, -3)
-431 :         result = index.get_indexer(range(9))
-432 :         expected = np.array([-1, 2, -1, -1, 1, -1, -1, 0, -1], dtype=np.intp)
-433 :         tm.assert_numpy_array_equal(result, expected) # error occurred here
+============================= test session starts ==============================
+platform linux -- Python 3.8.3, pytest-5.4.3, py-1.8.1, pluggy-0.13.1
+rootdir: /home/user/BugsInPy/temp/projects/pandas, inifile: setup.cfg
+plugins: hypothesis-5.16.0
+collected 1 item
+
+pandas/tests/series/test_alter_axes.py F                                 [100%]
+
+=================================== FAILURES ===================================
+_____________ TestSeriesAlterAxes.test_rename_with_custom_indexer ______________
+
+self = <pandas.tests.series.test_alter_axes.TestSeriesAlterAxes object at 0x7ff0b92cccd0>
+
+    def test_rename_with_custom_indexer(self):
+        # GH 27814
+        class MyIndexer:
+            pass
+    
+        ix = MyIndexer()
+>       s = Series([1, 2, 3]).rename(ix)
+
+pandas/tests/series/test_alter_axes.py:276: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+pandas/core/series.py:4173: in rename
+    return super().rename(index=index, **kwargs)
+pandas/core/generic.py:1136: in rename
+    indexer = self.axes[axis].get_indexer_for(v)
+pandas/core/indexes/base.py:4771: in get_indexer_for
+    return self.get_indexer(target, **kwargs)
+pandas/core/indexes/range.py:384: in get_indexer
+    return super().get_indexer(target, method=method, tolerance=tolerance)
+pandas/core/indexes/base.py:2912: in get_indexer
+    target = ensure_index(target)
+pandas/core/indexes/base.py:5629: in ensure_index
+    return Index(index_like)
+pandas/core/indexes/base.py:499: in __new__
+    subarr = com.asarray_tuplesafe(data, dtype=object)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+values = <pandas.tests.series.test_alter_axes.TestSeriesAlterAxes.test_rename_with_custom_indexer.<locals>.MyIndexer object at 0x7ff0b92ccf70>
+dtype = <class 'object'>
+
+    def asarray_tuplesafe(values, dtype=None):
+    
+        if not (isinstance(values, (list, tuple)) or hasattr(values, "__array__")):
+>           values = list(values)
+E           TypeError: 'MyIndexer' object is not iterable
+
+pandas/core/common.py:231: TypeError
 ```
 
-It failed with the following error message and call stack:
+### 2번
 
-```
-________________ TestRangeIndex.test_get_indexer_decreasing[0] _________________
-E           AssertionError: numpy array are different
-E           
-E           numpy array values are different (55.55556 %)
-E           [left]:  [-1, -1, -1, 2, -1, -1, 1, -1, -1]
-E           [right]: [-1, 2, -1, -1, 1, -1, -1, 0, -1]
->       tm.assert_numpy_array_equal(result, expected)
-pandas/tests/indexes/test_range.py:433: 
->           raise_assert_detail(obj, msg, left, right)
-pandas/util/testing.py:1004: AssertionError
-```
+```python
+============================= test session starts ==============================
+platform linux -- Python 3.8.3, pytest-5.4.3, py-1.8.1, pluggy-0.13.1
+rootdir: /home/user/BugsInPy/temp/projects/pandas, inifile: setup.cfg
+plugins: hypothesis-5.16.0
+collected 1 item
 
-Debug this issue.
+pandas/tests/series/test_alter_axes.py F                                 [100%]
+
+=================================== FAILURES ===================================
+_________ TestSeriesAlterAxes.test_rename_with_custom_indexer_inplace __________
+
+self = <pandas.tests.series.test_alter_axes.TestSeriesAlterAxes object at 0x7f5fefc4fd00>
+
+    def test_rename_with_custom_indexer_inplace(self):
+        # GH 27814
+        class MyIndexer:
+            pass
+    
+        ix = MyIndexer()
+        s = Series([1, 2, 3])
+>       s.rename(ix, inplace=True)
+
+pandas/tests/series/test_alter_axes.py:286: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+pandas/core/series.py:4173: in rename
+    return super().rename(index=index, **kwargs)
+pandas/core/generic.py:1136: in rename
+    indexer = self.axes[axis].get_indexer_for(v)
+pandas/core/indexes/base.py:4771: in get_indexer_for
+    return self.get_indexer(target, **kwargs)
+pandas/core/indexes/range.py:384: in get_indexer
+    return super().get_indexer(target, method=method, tolerance=tolerance)
+pandas/core/indexes/base.py:2912: in get_indexer
+    target = ensure_index(target)
+pandas/core/indexes/base.py:5629: in ensure_index
+    return Index(index_like)
+pandas/core/indexes/base.py:499: in __new__
+    subarr = com.asarray_tuplesafe(data, dtype=object)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+values = <pandas.tests.series.test_alter_axes.TestSeriesAlterAxes.test_rename_with_custom_indexer_inplace.<locals>.MyIndexer object at 0x7f5fefc4ffa0>
+dtype = <class 'object'>
+
+    def asarray_tuplesafe(values, dtype=None):
+    
+        if not (isinstance(values, (list, tuple)) or hasattr(values, "__array__")):
+>           values = list(values)
+E           TypeError: 'MyIndexer' object is not iterable
+
+pandas/core/common.py:231: TypeError
+```

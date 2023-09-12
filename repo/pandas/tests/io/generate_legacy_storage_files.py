@@ -11,12 +11,12 @@ in ~/pandas
 cd ~/
 
 $ python pandas/pandas/tests/io/generate_legacy_storage_files.py \
-    pandas/pandas/tests/io/data/legacy_pickle/0.20.3/ pickle
+    pandas/pandas/tests/io/data/legacy_pickle/0.18.1/ pickle
 
 This script generates a storage file for the current arch, system,
 and python version
   pandas version: 0.20.3
-  output dir    : pandas/pandas/tests/io/data/legacy_pickle/0.20.3/
+  output dir    : pandas/pandas/tests/io/data/legacy_pickle/0.18.1/
   storage format: pickle
 created pickle file: 0.20.3_x86_64_darwin_3.5.2.pickle
 
@@ -53,6 +53,8 @@ from pandas import (
     Period,
     RangeIndex,
     Series,
+    SparseDataFrame,
+    SparseSeries,
     Timestamp,
     bdate_range,
     date_range,
@@ -84,13 +86,6 @@ from pandas.tseries.offsets import (
     YearEnd,
 )
 
-try:
-    # TODO: remove try/except when 0.24.0 is the legacy version.
-    from pandas.arrays import SparseArray
-except ImportError:
-    from pandas.core.sparse.api import SparseArray
-
-
 _loose_version = LooseVersion(pandas.__version__)
 
 
@@ -102,7 +97,7 @@ def _create_sp_series():
     arr[7:12] = nan
     arr[-1:] = nan
 
-    bseries = Series(SparseArray(arr, kind="block"))
+    bseries = SparseSeries(arr, kind="block")
     bseries.name = "bseries"
     return bseries
 
@@ -116,7 +111,7 @@ def _create_sp_tsseries():
     arr[-1:] = nan
 
     date_index = bdate_range("1/1/2011", periods=len(arr))
-    bseries = Series(SparseArray(arr, kind="block"), index=date_index)
+    bseries = SparseSeries(arr, index=date_index, kind="block")
     bseries.name = "btsseries"
     return bseries
 
@@ -132,7 +127,7 @@ def _create_sp_frame():
     }
 
     dates = bdate_range("1/1/2011", periods=10)
-    return DataFrame(data, index=dates).apply(SparseArray)
+    return SparseDataFrame(data, index=dates)
 
 
 def create_data():

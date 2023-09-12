@@ -5,7 +5,6 @@ and latex files. This module also applies to display formatting.
 
 import codecs
 from contextlib import contextmanager
-from datetime import tzinfo
 import decimal
 from functools import partial
 from io import StringIO
@@ -21,7 +20,6 @@ from typing import (
     Iterable,
     List,
     Optional,
-    Sequence,
     Tuple,
     Type,
     Union,
@@ -29,6 +27,8 @@ from typing import (
 )
 from unicodedata import east_asian_width
 
+from dateutil.tz.tz import tzutc
+from dateutil.zoneinfo import tzfile
 import numpy as np
 
 from pandas._config.config import get_option, set_option
@@ -91,7 +91,7 @@ common_docstring = """
             The subset of columns to write. Writes all columns by default.
         col_space : %(col_space_type)s, optional
             %(col_space)s.
-        header : %(header_type)s, optional
+        header : bool, optional
             %(header)s.
         index : bool, optional, default True
             Whether to print index (row) labels.
@@ -531,9 +531,9 @@ class DataFrameFormatter(TableFormatter):
     def __init__(
         self,
         frame: "DataFrame",
-        columns: Optional[Sequence[str]] = None,
+        columns: Optional[List[str]] = None,
         col_space: Optional[Union[str, int]] = None,
-        header: Union[bool, Sequence[str]] = True,
+        header: Union[bool, List[str]] = True,
         index: bool = True,
         na_rep: str = "NaN",
         formatters: Optional[formatters_type] = None,
@@ -549,8 +549,7 @@ class DataFrameFormatter(TableFormatter):
         decimal: str = ".",
         table_id: Optional[str] = None,
         render_links: bool = False,
-        bold_rows: bool = False,
-        escape: bool = True,
+        **kwds
     ):
         self.frame = frame
         self.show_index_names = index_names
@@ -581,8 +580,7 @@ class DataFrameFormatter(TableFormatter):
         else:
             self.justify = justify
 
-        self.bold_rows = bold_rows
-        self.escape = escape
+        self.kwds = kwds
 
         if columns is not None:
             self.columns = ensure_index(columns)
@@ -658,13 +656,6 @@ class DataFrameFormatter(TableFormatter):
                 frame = concat(
                     (frame.iloc[:, :col_num], frame.iloc[:, -col_num:]), axis=1
                 )
-                # truncate formatter
-                if isinstance(self.formatters, (list, tuple)):
-                    truncate_fmt = self.formatters
-                    self.formatters = [
-                        *truncate_fmt[:col_num],
-                        *truncate_fmt[-col_num:],
-                    ]
             self.tr_col_num = col_num
         if truncate_v:
             # cast here since if truncate_v is True, max_rows_adj is not None
@@ -895,8 +886,6 @@ class DataFrameFormatter(TableFormatter):
         multicolumn: bool = False,
         multicolumn_format: Optional[str] = None,
         multirow: bool = False,
-        caption: Optional[str] = None,
-        label: Optional[str] = None,
     ) -> Optional[str]:
         """
         Render a DataFrame to a LaTeX tabular/longtable environment output.
@@ -911,8 +900,6 @@ class DataFrameFormatter(TableFormatter):
             multicolumn=multicolumn,
             multicolumn_format=multicolumn_format,
             multirow=multirow,
-            caption=caption,
-            label=label,
         ).get_result(buf=buf, encoding=encoding)
 
     def _format_col(self, i: int) -> List[str]:
@@ -1559,7 +1546,9 @@ def _is_dates_only(
 
 
 def _format_datetime64(
-    x: Union[NaTType, Timestamp], tz: Optional[tzinfo] = None, nat_rep: str = "NaT"
+    x: Union[NaTType, Timestamp],
+    tz: Optional[Union[tzfile, tzutc]] = None,
+    nat_rep: str = "NaT",
 ) -> str:
     if x is None or (is_scalar(x) and isna(x)):
         return nat_rep

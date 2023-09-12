@@ -1,9 +1,7 @@
-import warnings
-
 import numpy as np
-
 import pandas as pd
 import pandas.util.testing as tm
+import warnings
 
 try:
     from pandas.api.types import union_categoricals
@@ -282,4 +280,4 @@ class Indexing:
         self.index.sort_values(ascending=False)
 
 
-from .pandas_vb_common import setup  # noqa: F401 isort:skip
+from .pandas_vb_common import setup  # noqa: F401

@@ -901,12 +901,12 @@ class Window(_Window):
         axis="",
     )
     @Appender(_shared_docs["aggregate"])
-    def aggregate(self, func, *args, **kwargs):
-        result, how = self._aggregate(func, *args, **kwargs)
+    def aggregate(self, arg, *args, **kwargs):
+        result, how = self._aggregate(arg, *args, **kwargs)
         if result is None:
 
             # these must apply directly
-            result = func(self)
+            result = arg(self)
 
         return result
 
@@ -1653,10 +1653,7 @@ class Rolling(_Rolling_and_Expanding):
     def _on(self):
 
         if self.on is None:
-            if self.axis == 0:
-                return self.obj.index
-            elif self.axis == 1:
-                return self.obj.columns
+            return self.obj.index
         elif isinstance(self.obj, ABCDataFrame) and self.on in self.obj.columns:
             return Index(self.obj[self.on])
         else:
@@ -1791,8 +1788,8 @@ class Rolling(_Rolling_and_Expanding):
         axis="",
     )
     @Appender(_shared_docs["aggregate"])
-    def aggregate(self, func, *args, **kwargs):
-        return super().aggregate(func, *args, **kwargs)
+    def aggregate(self, arg, *args, **kwargs):
+        return super().aggregate(arg, *args, **kwargs)
 
     agg = aggregate
 

@@ -10,16 +10,16 @@
             ]
         ],
         "depends": [
-            "/opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/numpy/core/include/numpy/arrayobject.h",
-            "/opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/numpy/core/include/numpy/ndarrayobject.h",
-            "/opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/numpy/core/include/numpy/npy_common.h",
-            "/opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/numpy/core/include/numpy/ufuncobject.h"
+            "/opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/numpy/core/include/numpy/arrayobject.h",
+            "/opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/numpy/core/include/numpy/ndarrayobject.h",
+            "/opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/numpy/core/include/numpy/npy_common.h",
+            "/opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/numpy/core/include/numpy/ufuncobject.h"
         ],
         "extra_compile_args": [
             "-Wno-unused-function"
         ],
         "include_dirs": [
-            "/opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/numpy/core/include"
+            "/opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/numpy/core/include"
         ],
         "language": "c",
         "name": "pandas._libs.tslibs.frequencies",
@@ -629,9 +629,14 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include <stdio.h>
 #include "numpy/arrayobject.h"
 #include "numpy/ufuncobject.h"
+#include "pythread.h"
 
     PyObject* char_to_string(const char* data) {
+    #if PY_VERSION_HEX >= 0x03000000
         return PyUnicode_FromString(data);
+    #else
+        return PyString_FromString(data);
+    #endif
     }
     
 #include "numpy/ndarrayobject.h"
@@ -870,9 +875,11 @@ static const char *__pyx_f[] = {
   "__init__.pxd",
   "pandas/_libs/tslibs/util.pxd",
   "type.pxd",
+  "bool.pxd",
+  "complex.pxd",
 };
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":775
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":775
  * # in Cython to enable them only on the right systems.
  * 
  * ctypedef npy_int8       int8_t             # <<<<<<<<<<<<<<
@@ -881,7 +888,7 @@ static const char *__pyx_f[] = {
  */
 typedef npy_int8 __pyx_t_5numpy_int8_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":776
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":776
  * 
  * ctypedef npy_int8       int8_t
  * ctypedef npy_int16      int16_t             # <<<<<<<<<<<<<<
@@ -890,7 +897,7 @@ typedef npy_int8 __pyx_t_5numpy_int8_t;
  */
 typedef npy_int16 __pyx_t_5numpy_int16_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":777
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":777
  * ctypedef npy_int8       int8_t
  * ctypedef npy_int16      int16_t
  * ctypedef npy_int32      int32_t             # <<<<<<<<<<<<<<
@@ -899,7 +906,7 @@ typedef npy_int16 __pyx_t_5numpy_int16_t;
  */
 typedef npy_int32 __pyx_t_5numpy_int32_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":778
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":778
  * ctypedef npy_int16      int16_t
  * ctypedef npy_int32      int32_t
  * ctypedef npy_int64      int64_t             # <<<<<<<<<<<<<<
@@ -908,7 +915,7 @@ typedef npy_int32 __pyx_t_5numpy_int32_t;
  */
 typedef npy_int64 __pyx_t_5numpy_int64_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":782
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":782
  * #ctypedef npy_int128     int128_t
  * 
  * ctypedef npy_uint8      uint8_t             # <<<<<<<<<<<<<<
@@ -917,7 +924,7 @@ typedef npy_int64 __pyx_t_5numpy_int64_t;
  */
 typedef npy_uint8 __pyx_t_5numpy_uint8_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":783
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":783
  * 
  * ctypedef npy_uint8      uint8_t
  * ctypedef npy_uint16     uint16_t             # <<<<<<<<<<<<<<
@@ -926,7 +933,7 @@ typedef npy_uint8 __pyx_t_5numpy_uint8_t;
  */
 typedef npy_uint16 __pyx_t_5numpy_uint16_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":784
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":784
  * ctypedef npy_uint8      uint8_t
  * ctypedef npy_uint16     uint16_t
  * ctypedef npy_uint32     uint32_t             # <<<<<<<<<<<<<<
@@ -935,7 +942,7 @@ typedef npy_uint16 __pyx_t_5numpy_uint16_t;
  */
 typedef npy_uint32 __pyx_t_5numpy_uint32_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":785
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":785
  * ctypedef npy_uint16     uint16_t
  * ctypedef npy_uint32     uint32_t
  * ctypedef npy_uint64     uint64_t             # <<<<<<<<<<<<<<
@@ -944,7 +951,7 @@ typedef npy_uint32 __pyx_t_5numpy_uint32_t;
  */
 typedef npy_uint64 __pyx_t_5numpy_uint64_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":789
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":789
  * #ctypedef npy_uint128    uint128_t
  * 
  * ctypedef npy_float32    float32_t             # <<<<<<<<<<<<<<
@@ -953,7 +960,7 @@ typedef npy_uint64 __pyx_t_5numpy_uint64_t;
  */
 typedef npy_float32 __pyx_t_5numpy_float32_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":790
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":790
  * 
  * ctypedef npy_float32    float32_t
  * ctypedef npy_float64    float64_t             # <<<<<<<<<<<<<<
@@ -962,7 +969,7 @@ typedef npy_float32 __pyx_t_5numpy_float32_t;
  */
 typedef npy_float64 __pyx_t_5numpy_float64_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":799
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":799
  * # The int types are mapped a bit surprising --
  * # numpy.int corresponds to 'l' and numpy.long to 'q'
  * ctypedef npy_long       int_t             # <<<<<<<<<<<<<<
@@ -971,7 +978,7 @@ typedef npy_float64 __pyx_t_5numpy_float64_t;
  */
 typedef npy_long __pyx_t_5numpy_int_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":800
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":800
  * # numpy.int corresponds to 'l' and numpy.long to 'q'
  * ctypedef npy_long       int_t
  * ctypedef npy_longlong   long_t             # <<<<<<<<<<<<<<
@@ -980,7 +987,7 @@ typedef npy_long __pyx_t_5numpy_int_t;
  */
 typedef npy_longlong __pyx_t_5numpy_long_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":801
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":801
  * ctypedef npy_long       int_t
  * ctypedef npy_longlong   long_t
  * ctypedef npy_longlong   longlong_t             # <<<<<<<<<<<<<<
@@ -989,7 +996,7 @@ typedef npy_longlong __pyx_t_5numpy_long_t;
  */
 typedef npy_longlong __pyx_t_5numpy_longlong_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":803
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":803
  * ctypedef npy_longlong   longlong_t
  * 
  * ctypedef npy_ulong      uint_t             # <<<<<<<<<<<<<<
@@ -998,7 +1005,7 @@ typedef npy_longlong __pyx_t_5numpy_longlong_t;
  */
 typedef npy_ulong __pyx_t_5numpy_uint_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":804
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":804
  * 
  * ctypedef npy_ulong      uint_t
  * ctypedef npy_ulonglong  ulong_t             # <<<<<<<<<<<<<<
@@ -1007,7 +1014,7 @@ typedef npy_ulong __pyx_t_5numpy_uint_t;
  */
 typedef npy_ulonglong __pyx_t_5numpy_ulong_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":805
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":805
  * ctypedef npy_ulong      uint_t
  * ctypedef npy_ulonglong  ulong_t
  * ctypedef npy_ulonglong  ulonglong_t             # <<<<<<<<<<<<<<
@@ -1016,7 +1023,7 @@ typedef npy_ulonglong __pyx_t_5numpy_ulong_t;
  */
 typedef npy_ulonglong __pyx_t_5numpy_ulonglong_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":807
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":807
  * ctypedef npy_ulonglong  ulonglong_t
  * 
  * ctypedef npy_intp       intp_t             # <<<<<<<<<<<<<<
@@ -1025,7 +1032,7 @@ typedef npy_ulonglong __pyx_t_5numpy_ulonglong_t;
  */
 typedef npy_intp __pyx_t_5numpy_intp_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":808
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":808
  * 
  * ctypedef npy_intp       intp_t
  * ctypedef npy_uintp      uintp_t             # <<<<<<<<<<<<<<
@@ -1034,7 +1041,7 @@ typedef npy_intp __pyx_t_5numpy_intp_t;
  */
 typedef npy_uintp __pyx_t_5numpy_uintp_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":810
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":810
  * ctypedef npy_uintp      uintp_t
  * 
  * ctypedef npy_double     float_t             # <<<<<<<<<<<<<<
@@ -1043,7 +1050,7 @@ typedef npy_uintp __pyx_t_5numpy_uintp_t;
  */
 typedef npy_double __pyx_t_5numpy_float_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":811
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":811
  * 
  * ctypedef npy_double     float_t
  * ctypedef npy_double     double_t             # <<<<<<<<<<<<<<
@@ -1052,7 +1059,7 @@ typedef npy_double __pyx_t_5numpy_float_t;
  */
 typedef npy_double __pyx_t_5numpy_double_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":812
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":812
  * ctypedef npy_double     float_t
  * ctypedef npy_double     double_t
  * ctypedef npy_longdouble longdouble_t             # <<<<<<<<<<<<<<
@@ -1087,7 +1094,7 @@ static CYTHON_INLINE __pyx_t_double_complex __pyx_t_double_complex_from_parts(do
 
 /*--- Type declarations ---*/
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":814
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":814
  * ctypedef npy_longdouble longdouble_t
  * 
  * ctypedef npy_cfloat      cfloat_t             # <<<<<<<<<<<<<<
@@ -1096,7 +1103,7 @@ static CYTHON_INLINE __pyx_t_double_complex __pyx_t_double_complex_from_parts(do
  */
 typedef npy_cfloat __pyx_t_5numpy_cfloat_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":815
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":815
  * 
  * ctypedef npy_cfloat      cfloat_t
  * ctypedef npy_cdouble     cdouble_t             # <<<<<<<<<<<<<<
@@ -1105,7 +1112,7 @@ typedef npy_cfloat __pyx_t_5numpy_cfloat_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_cdouble_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":816
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":816
  * ctypedef npy_cfloat      cfloat_t
  * ctypedef npy_cdouble     cdouble_t
  * ctypedef npy_clongdouble clongdouble_t             # <<<<<<<<<<<<<<
@@ -1114,7 +1121,7 @@ typedef npy_cdouble __pyx_t_5numpy_cdouble_t;
  */
 typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":818
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":818
  * ctypedef npy_clongdouble clongdouble_t
  * 
  * ctypedef npy_cdouble     complex_t             # <<<<<<<<<<<<<<
@@ -1302,6 +1309,30 @@ static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j);
 static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
                                                      int is_list, int wraparound, int boundscheck);
 
+/* GetTopmostException.proto */
+#if CYTHON_USE_EXC_INFO_STACK
+static _PyErr_StackItem * __Pyx_PyErr_GetTopmostException(PyThreadState *tstate);
+#endif
+
+/* SaveResetException.proto */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_ExceptionSave(type, value, tb)  __Pyx__ExceptionSave(__pyx_tstate, type, value, tb)
+static CYTHON_INLINE void __Pyx__ExceptionSave(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
+#define __Pyx_ExceptionReset(type, value, tb)  __Pyx__ExceptionReset(__pyx_tstate, type, value, tb)
+static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb);
+#else
+#define __Pyx_ExceptionSave(type, value, tb)   PyErr_GetExcInfo(type, value, tb)
+#define __Pyx_ExceptionReset(type, value, tb)  PyErr_SetExcInfo(type, value, tb)
+#endif
+
+/* GetException.proto */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_GetException(type, value, tb)  __Pyx__GetException(__pyx_tstate, type, value, tb)
+static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
+#else
+static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb);
+#endif
+
 /* RaiseTooManyValuesToUnpack.proto */
 static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected);
 
@@ -1412,12 +1443,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObjec
 /* RaiseException.proto */
 static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause);
 
-/* ArgTypeTest.proto */
-#define __Pyx_ArgTypeTest(obj, type, none_allowed, name, exact)\
-    ((likely((Py_TYPE(obj) == type) | (none_allowed && (obj == Py_None)))) ? 1 :\
-        __Pyx__ArgTypeTest(obj, type, name, exact))
-static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *name, int exact);
-
 /* PySequenceContains.proto */
 static CYTHON_INLINE int __Pyx_PySequence_ContainsTF(PyObject* item, PyObject* seq, int eq) {
     int result = PySequence_Contains(seq, item);
@@ -1431,39 +1456,11 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
 #define __Pyx_PyObject_CallNoArg(func) __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL)
 #endif
 
-/* DictGetItem.proto */
-#if PY_MAJOR_VERSION >= 3 && !CYTHON_COMPILING_IN_PYPY
-static PyObject *__Pyx_PyDict_GetItem(PyObject *d, PyObject* key);
-#define __Pyx_PyObject_Dict_GetItem(obj, name)\
-    (likely(PyDict_CheckExact(obj)) ?\
-     __Pyx_PyDict_GetItem(obj, name) : PyObject_GetItem(obj, name))
+/* ObjectGetItem.proto */
+#if CYTHON_USE_TYPE_SLOTS
+static CYTHON_INLINE PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key);
 #else
-#define __Pyx_PyDict_GetItem(d, key) PyObject_GetItem(d, key)
-#define __Pyx_PyObject_Dict_GetItem(obj, name)  PyObject_GetItem(obj, name)
-#endif
-
-/* GetTopmostException.proto */
-#if CYTHON_USE_EXC_INFO_STACK
-static _PyErr_StackItem * __Pyx_PyErr_GetTopmostException(PyThreadState *tstate);
-#endif
-
-/* SaveResetException.proto */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_ExceptionSave(type, value, tb)  __Pyx__ExceptionSave(__pyx_tstate, type, value, tb)
-static CYTHON_INLINE void __Pyx__ExceptionSave(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
-#define __Pyx_ExceptionReset(type, value, tb)  __Pyx__ExceptionReset(__pyx_tstate, type, value, tb)
-static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb);
-#else
-#define __Pyx_ExceptionSave(type, value, tb)   PyErr_GetExcInfo(type, value, tb)
-#define __Pyx_ExceptionReset(type, value, tb)  PyErr_SetExcInfo(type, value, tb)
-#endif
-
-/* GetException.proto */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_GetException(type, value, tb)  __Pyx__GetException(__pyx_tstate, type, value, tb)
-static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
-#else
-static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb);
+#define __Pyx_PyObject_GetItem(obj, key)  PyObject_GetItem(obj, key)
 #endif
 
 /* PyIntCompare.proto */
@@ -1485,6 +1482,17 @@ static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
 static void __Pyx_WriteUnraisable(const char *name, int clineno,
                                   int lineno, const char *filename,
                                   int full_traceback, int nogil);
+
+/* DictGetItem.proto */
+#if PY_MAJOR_VERSION >= 3 && !CYTHON_COMPILING_IN_PYPY
+static PyObject *__Pyx_PyDict_GetItem(PyObject *d, PyObject* key);
+#define __Pyx_PyObject_Dict_GetItem(obj, name)\
+    (likely(PyDict_CheckExact(obj)) ?\
+     __Pyx_PyDict_GetItem(obj, name) : PyObject_GetItem(obj, name))
+#else
+#define __Pyx_PyDict_GetItem(d, key) PyObject_GetItem(d, key)
+#define __Pyx_PyObject_Dict_GetItem(obj, name)  PyObject_GetItem(obj, name)
+#endif
 
 /* PyIntBinop.proto */
 #if !CYTHON_COMPILING_IN_PYPY
@@ -1543,13 +1551,6 @@ static PyObject *__Pyx_Py3MetaclassPrepare(PyObject *metaclass, PyObject *bases,
                                            PyObject *mkw, PyObject *modname, PyObject *doc);
 static PyObject *__Pyx_Py3ClassCreate(PyObject *metaclass, PyObject *name, PyObject *bases, PyObject *dict,
                                       PyObject *mkw, int calculate_metaclass, int allow_py2_metaclass);
-
-/* ObjectGetItem.proto */
-#if CYTHON_USE_TYPE_SLOTS
-static CYTHON_INLINE PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key);
-#else
-#define __Pyx_PyObject_GetItem(obj, key)  PyObject_GetItem(obj, key)
-#endif
 
 /* SliceObject.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(
@@ -1730,13 +1731,77 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 /* Module declarations from 'cpython.type' */
 static PyTypeObject *__pyx_ptype_7cpython_4type_type = 0;
 
+/* Module declarations from 'cpython.version' */
+
+/* Module declarations from 'cpython.exc' */
+
+/* Module declarations from 'cpython.module' */
+
+/* Module declarations from 'cpython.mem' */
+
+/* Module declarations from 'cpython.tuple' */
+
+/* Module declarations from 'cpython.list' */
+
+/* Module declarations from 'cpython.sequence' */
+
+/* Module declarations from 'cpython.mapping' */
+
+/* Module declarations from 'cpython.iterator' */
+
+/* Module declarations from 'cpython.number' */
+
+/* Module declarations from 'cpython.int' */
+
+/* Module declarations from '__builtin__' */
+
+/* Module declarations from 'cpython.bool' */
+static PyTypeObject *__pyx_ptype_7cpython_4bool_bool = 0;
+
+/* Module declarations from 'cpython.long' */
+
+/* Module declarations from 'cpython.float' */
+
+/* Module declarations from '__builtin__' */
+
+/* Module declarations from 'cpython.complex' */
+static PyTypeObject *__pyx_ptype_7cpython_7complex_complex = 0;
+
+/* Module declarations from 'cpython.string' */
+
+/* Module declarations from 'cpython.unicode' */
+
+/* Module declarations from 'cpython.dict' */
+
+/* Module declarations from 'cpython.instance' */
+
+/* Module declarations from 'cpython.function' */
+
+/* Module declarations from 'cpython.method' */
+
+/* Module declarations from 'cpython.weakref' */
+
+/* Module declarations from 'cpython.getargs' */
+
+/* Module declarations from 'cpython.pythread' */
+
+/* Module declarations from 'cpython.pystate' */
+
+/* Module declarations from 'cpython.cobject' */
+
+/* Module declarations from 'cpython.oldbuffer' */
+
+/* Module declarations from 'cpython.set' */
+
+/* Module declarations from 'cpython.bytes' */
+
+/* Module declarations from 'cpython.pycapsule' */
+
 /* Module declarations from 'cpython' */
 
 /* Module declarations from 'cpython.object' */
 
 /* Module declarations from 'cpython.ref' */
-
-/* Module declarations from 'cpython.mem' */
 
 /* Module declarations from 'numpy' */
 
@@ -1909,22 +1974,22 @@ static const char __pyx_k_dont_uppercase[] = "_dont_uppercase";
 static const char __pyx_k_is_superperiod[] = "is_superperiod";
 static const char __pyx_k_lite_rule_alias[] = "_lite_rule_alias";
 static const char __pyx_k_period_code_map[] = "_period_code_map";
-static const char __pyx_k_get_freq_line_309[] = "get_freq (line 309)";
+static const char __pyx_k_get_freq_line_305[] = "get_freq (line 305)";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_Invalid_frequency_0[] = "Invalid frequency: {0}";
 static const char __pyx_k_INVALID_FREQ_ERR_MSG[] = "INVALID_FREQ_ERR_MSG";
-static const char __pyx_k_get_freq_str_line_229[] = "get_freq_str (line 229)";
+static const char __pyx_k_get_freq_str_line_225[] = "get_freq_str (line 225)";
 static const char __pyx_k_d_d_d_s_A_Za_z_dA_Za_z[] = "([+\\-]?\\d*|[+\\-]?\\d*\\.\\d*)\\s*([A-Za-z]+([\\-][\\dA-Za-z\\-]+)?)";
 static const char __pyx_k_get_freq_code_line_129[] = "get_freq_code (line 129)";
 static const char __pyx_k_Could_not_evaluate_freq[] = "Could not evaluate {freq}";
-static const char __pyx_k_get_rule_month_line_488[] = "get_rule_month (line 488)";
+static const char __pyx_k_get_rule_month_line_484[] = "get_rule_month (line 484)";
 static const char __pyx_k_reverse_period_code_map[] = "_reverse_period_code_map";
 static const char __pyx_k_ndarray_is_not_C_contiguous[] = "ndarray is not C contiguous";
 static const char __pyx_k_pandas__libs_tslibs_ccalendar[] = "pandas._libs.tslibs.ccalendar";
 static const char __pyx_k_Return_frequency_code_of_given[] = "\n    Return frequency code of given frequency str.\n    If input is not string, return input as it is.\n\n    Examples\n    --------\n    >>> get_freq('A')\n    1000\n\n    >>> get_freq('3A')\n    1000\n    ";
 static const char __pyx_k_Return_starting_month_of_given[] = "\n    Return starting month of given freq, default is December.\n\n    Parameters\n    ----------\n    source : object\n    default : object (default \"DEC\")\n\n    Returns\n    -------\n    rule_month: object (usually string)\n\n    Examples\n    --------\n    >>> get_rule_month('D')\n    'DEC'\n\n    >>> get_rule_month('A-JAN')\n    'JAN'\n    ";
-static const char __pyx_k_get_to_timestamp_base_line_273[] = "get_to_timestamp_base (line 273)";
-static const char __pyx_k_Return_freq_str_or_tuple_to_fre[] = "\n    Return freq str or tuple to freq code and stride (mult)\n\n    Parameters\n    ----------\n    freqstr : str or tuple\n\n    Returns\n    -------\n    return : tuple of base frequency code and stride (mult)\n\n    Raises\n    ------\n    TypeError : if passed a tuple witth incorrect types\n\n    Examples\n    --------\n    >>> get_freq_code('3D')\n    (6000, 3)\n\n    >>> get_freq_code('D')\n    (6000, 1)\n\n    >>> get_freq_code(('D', 3))\n    (6000, 3)\n    ";
+static const char __pyx_k_get_to_timestamp_base_line_269[] = "get_to_timestamp_base (line 269)";
+static const char __pyx_k_Return_freq_str_or_tuple_to_fre[] = "\n    Return freq str or tuple to freq code and stride (mult)\n\n    Parameters\n    ----------\n    freqstr : str or tuple\n\n    Returns\n    -------\n    return : tuple of base frequency code and stride (mult)\n\n    Examples\n    --------\n    >>> get_freq_code('3D')\n    (6000, 3)\n\n    >>> get_freq_code('D')\n    (6000, 1)\n\n    >>> get_freq_code(('D', 3))\n    (6000, 3)\n    ";
 static const char __pyx_k_Return_frequency_code_group_use[] = "\n    Return frequency code group used for base of to_timestamp against\n    frequency code.\n\n    Parameters\n    ----------\n    base : int (member of FreqGroup)\n\n    Returns\n    -------\n    base : int\n\n    Examples\n    --------\n    # Return day freq code against longer freq than day\n    >>> get_to_timestamp_base(get_freq_code('D')[0])\n    6000\n    >>> get_to_timestamp_base(get_freq_code('W')[0])\n    6000\n    >>> get_to_timestamp_base(get_freq_code('M')[0])\n    6000\n\n    # Return second freq code against hour between second\n    >>> get_to_timestamp_base(get_freq_code('H')[0])\n    9000\n    >>> get_to_timestamp_base(get_freq_code('S')[0])\n    9000\n    ";
 static const char __pyx_k_Return_the_summary_string_assoc[] = "\n    Return the summary string associated with this offset code, possibly\n    adjusted by a multiplier.\n\n    Parameters\n    ----------\n    base : int (member of FreqGroup)\n\n    Returns\n    -------\n    freq_str : str\n\n    Examples\n    --------\n    >>> get_freq_str(1000)\n    'A-DEC'\n\n    >>> get_freq_str(2000, 2)\n    '2Q-DEC'\n\n    >>> get_freq_str(\"foo\")\n    ";
 static const char __pyx_k_numpy_core_multiarray_failed_to[] = "numpy.core.multiarray failed to import";
@@ -2042,10 +2107,10 @@ static PyObject *__pyx_n_s_freqstr;
 static PyObject *__pyx_n_u_freqstr;
 static PyObject *__pyx_n_s_get;
 static PyObject *__pyx_kp_u_get_freq_code_line_129;
-static PyObject *__pyx_kp_u_get_freq_line_309;
-static PyObject *__pyx_kp_u_get_freq_str_line_229;
-static PyObject *__pyx_kp_u_get_rule_month_line_488;
-static PyObject *__pyx_kp_u_get_to_timestamp_base_line_273;
+static PyObject *__pyx_kp_u_get_freq_line_305;
+static PyObject *__pyx_kp_u_get_freq_str_line_225;
+static PyObject *__pyx_kp_u_get_rule_month_line_484;
+static PyObject *__pyx_kp_u_get_to_timestamp_base_line_269;
 static PyObject *__pyx_n_s_group;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_is_subperiod;
@@ -2181,38 +2246,42 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(PyOb
   PyObject *__pyx_t_4 = NULL;
   int __pyx_t_5;
   PyObject *__pyx_t_6 = NULL;
-  PyObject *(*__pyx_t_7)(PyObject *);
+  PyObject *__pyx_t_7 = NULL;
+  PyObject *__pyx_t_8 = NULL;
+  PyObject *__pyx_t_9 = NULL;
+  PyObject *__pyx_t_10 = NULL;
+  PyObject *(*__pyx_t_11)(PyObject *);
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_freq_code", 0);
   __Pyx_INCREF(__pyx_v_freqstr);
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":156
+  /* "pandas/_libs/tslibs/frequencies.pyx":152
  *     (6000, 3)
  *     """
  *     if getattr(freqstr, '_typ', None) == 'dateoffset':             # <<<<<<<<<<<<<<
  *         freqstr = (freqstr.rule_code, freqstr.n)
  * 
  */
-  __pyx_t_1 = __Pyx_GetAttr3(__pyx_v_freqstr, __pyx_n_u_typ, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetAttr3(__pyx_v_freqstr, __pyx_n_u_typ, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_1, __pyx_n_u_dateoffset, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_1, __pyx_n_u_dateoffset, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":157
+    /* "pandas/_libs/tslibs/frequencies.pyx":153
  *     """
  *     if getattr(freqstr, '_typ', None) == 'dateoffset':
  *         freqstr = (freqstr.rule_code, freqstr.n)             # <<<<<<<<<<<<<<
  * 
  *     if isinstance(freqstr, tuple):
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_freqstr, __pyx_n_s_rule_code); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 157, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_freqstr, __pyx_n_s_rule_code); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 153, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_freqstr, __pyx_n_s_n); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 157, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_freqstr, __pyx_n_s_n); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 153, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 157, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 153, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
@@ -2223,7 +2292,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(PyOb
     __Pyx_DECREF_SET(__pyx_v_freqstr, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":156
+    /* "pandas/_libs/tslibs/frequencies.pyx":152
  *     (6000, 3)
  *     """
  *     if getattr(freqstr, '_typ', None) == 'dateoffset':             # <<<<<<<<<<<<<<
@@ -2232,7 +2301,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(PyOb
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":159
+  /* "pandas/_libs/tslibs/frequencies.pyx":155
  *         freqstr = (freqstr.rule_code, freqstr.n)
  * 
  *     if isinstance(freqstr, tuple):             # <<<<<<<<<<<<<<
@@ -2243,14 +2312,14 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(PyOb
   __pyx_t_5 = (__pyx_t_2 != 0);
   if (__pyx_t_5) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":160
+    /* "pandas/_libs/tslibs/frequencies.pyx":156
  * 
  *     if isinstance(freqstr, tuple):
  *         if is_integer_object(freqstr[0]) and is_integer_object(freqstr[1]):             # <<<<<<<<<<<<<<
  *             # e.g., freqstr = (2000, 1)
  *             return freqstr
  */
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_freqstr, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 160, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_freqstr, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 156, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_2 = (__pyx_f_6pandas_5_libs_6tslibs_4util_is_integer_object(__pyx_t_4) != 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -2259,7 +2328,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(PyOb
       __pyx_t_5 = __pyx_t_2;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_freqstr, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 160, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_freqstr, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 156, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_2 = (__pyx_f_6pandas_5_libs_6tslibs_4util_is_integer_object(__pyx_t_4) != 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -2267,19 +2336,19 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(PyOb
     __pyx_L6_bool_binop_done:;
     if (__pyx_t_5) {
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":162
+      /* "pandas/_libs/tslibs/frequencies.pyx":158
  *         if is_integer_object(freqstr[0]) and is_integer_object(freqstr[1]):
  *             # e.g., freqstr = (2000, 1)
  *             return freqstr             # <<<<<<<<<<<<<<
- *         elif is_integer_object(freqstr[0]):
- *             # Note: passing freqstr[1] below will raise TypeError if that
+ *         else:
+ *             # e.g., freqstr = ('T', 5)
  */
       __Pyx_XDECREF(__pyx_r);
       __Pyx_INCREF(__pyx_v_freqstr);
       __pyx_r = __pyx_v_freqstr;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":160
+      /* "pandas/_libs/tslibs/frequencies.pyx":156
  * 
  *     if isinstance(freqstr, tuple):
  *         if is_integer_object(freqstr[0]) and is_integer_object(freqstr[1]):             # <<<<<<<<<<<<<<
@@ -2288,127 +2357,192 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(PyOb
  */
     }
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":163
- *             # e.g., freqstr = (2000, 1)
- *             return freqstr
- *         elif is_integer_object(freqstr[0]):             # <<<<<<<<<<<<<<
- *             # Note: passing freqstr[1] below will raise TypeError if that
- *             #  is not a str
- */
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_freqstr, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 163, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = (__pyx_f_6pandas_5_libs_6tslibs_4util_is_integer_object(__pyx_t_4) != 0);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (__pyx_t_5) {
-
-      /* "pandas/_libs/tslibs/frequencies.pyx":166
- *             # Note: passing freqstr[1] below will raise TypeError if that
- *             #  is not a str
- *             code = _period_str_to_code(freqstr[1])             # <<<<<<<<<<<<<<
- *             stride = freqstr[0]
- *             return code, stride
- */
-      __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_freqstr, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 166, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      if (!(likely(PyUnicode_CheckExact(__pyx_t_4))||((__pyx_t_4) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_4)->tp_name), 0))) __PYX_ERR(0, 166, __pyx_L1_error)
-      __pyx_t_3 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_code(((PyObject*)__pyx_t_4), 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 166, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_v_code = __pyx_t_3;
-      __pyx_t_3 = 0;
-
-      /* "pandas/_libs/tslibs/frequencies.pyx":167
- *             #  is not a str
- *             code = _period_str_to_code(freqstr[1])
- *             stride = freqstr[0]             # <<<<<<<<<<<<<<
- *             return code, stride
- *         else:
- */
-      __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_freqstr, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 167, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __pyx_v_stride = __pyx_t_3;
-      __pyx_t_3 = 0;
-
-      /* "pandas/_libs/tslibs/frequencies.pyx":168
- *             code = _period_str_to_code(freqstr[1])
- *             stride = freqstr[0]
- *             return code, stride             # <<<<<<<<<<<<<<
+    /* "pandas/_libs/tslibs/frequencies.pyx":161
  *         else:
  *             # e.g., freqstr = ('T', 5)
- */
-      __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 168, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_INCREF(__pyx_v_code);
-      __Pyx_GIVEREF(__pyx_v_code);
-      PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_code);
-      __Pyx_INCREF(__pyx_v_stride);
-      __Pyx_GIVEREF(__pyx_v_stride);
-      PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_stride);
-      __pyx_r = __pyx_t_3;
-      __pyx_t_3 = 0;
-      goto __pyx_L0;
-
-      /* "pandas/_libs/tslibs/frequencies.pyx":163
- *             # e.g., freqstr = (2000, 1)
- *             return freqstr
- *         elif is_integer_object(freqstr[0]):             # <<<<<<<<<<<<<<
- *             # Note: passing freqstr[1] below will raise TypeError if that
- *             #  is not a str
- */
-    }
-
-    /* "pandas/_libs/tslibs/frequencies.pyx":171
- *         else:
- *             # e.g., freqstr = ('T', 5)
- *             code = _period_str_to_code(freqstr[0])             # <<<<<<<<<<<<<<
- *             stride = freqstr[1]
- *             return code, stride
+ *             try:             # <<<<<<<<<<<<<<
+ *                 code = _period_str_to_code(freqstr[0])
+ *                 stride = freqstr[1]
  */
     /*else*/ {
-      __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_freqstr, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 171, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      if (!(likely(PyUnicode_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 171, __pyx_L1_error)
-      __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_code(((PyObject*)__pyx_t_3), 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 171, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_v_code = __pyx_t_4;
-      __pyx_t_4 = 0;
+      {
+        __Pyx_PyThreadState_declare
+        __Pyx_PyThreadState_assign
+        __Pyx_ExceptionSave(&__pyx_t_6, &__pyx_t_7, &__pyx_t_8);
+        __Pyx_XGOTREF(__pyx_t_6);
+        __Pyx_XGOTREF(__pyx_t_7);
+        __Pyx_XGOTREF(__pyx_t_8);
+        /*try:*/ {
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":172
+          /* "pandas/_libs/tslibs/frequencies.pyx":162
  *             # e.g., freqstr = ('T', 5)
- *             code = _period_str_to_code(freqstr[0])
- *             stride = freqstr[1]             # <<<<<<<<<<<<<<
+ *             try:
+ *                 code = _period_str_to_code(freqstr[0])             # <<<<<<<<<<<<<<
+ *                 stride = freqstr[1]
+ *             except:
+ */
+          __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_freqstr, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 162, __pyx_L8_error)
+          __Pyx_GOTREF(__pyx_t_4);
+          __pyx_t_3 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_code(__pyx_t_4, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 162, __pyx_L8_error)
+          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+          __pyx_v_code = __pyx_t_3;
+          __pyx_t_3 = 0;
+
+          /* "pandas/_libs/tslibs/frequencies.pyx":163
+ *             try:
+ *                 code = _period_str_to_code(freqstr[0])
+ *                 stride = freqstr[1]             # <<<<<<<<<<<<<<
+ *             except:
+ *                 if is_integer_object(freqstr[1]):
+ */
+          __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_freqstr, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 163, __pyx_L8_error)
+          __Pyx_GOTREF(__pyx_t_3);
+          __pyx_v_stride = __pyx_t_3;
+          __pyx_t_3 = 0;
+
+          /* "pandas/_libs/tslibs/frequencies.pyx":161
+ *         else:
+ *             # e.g., freqstr = ('T', 5)
+ *             try:             # <<<<<<<<<<<<<<
+ *                 code = _period_str_to_code(freqstr[0])
+ *                 stride = freqstr[1]
+ */
+        }
+        __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+        __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
+        goto __pyx_L13_try_end;
+        __pyx_L8_error:;
+        __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+        __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+        /* "pandas/_libs/tslibs/frequencies.pyx":164
+ *                 code = _period_str_to_code(freqstr[0])
+ *                 stride = freqstr[1]
+ *             except:             # <<<<<<<<<<<<<<
+ *                 if is_integer_object(freqstr[1]):
+ *                     raise
+ */
+        /*except:*/ {
+          __Pyx_AddTraceback("pandas._libs.tslibs.frequencies.get_freq_code", __pyx_clineno, __pyx_lineno, __pyx_filename);
+          if (__Pyx_GetException(&__pyx_t_3, &__pyx_t_4, &__pyx_t_1) < 0) __PYX_ERR(0, 164, __pyx_L10_except_error)
+          __Pyx_GOTREF(__pyx_t_3);
+          __Pyx_GOTREF(__pyx_t_4);
+          __Pyx_GOTREF(__pyx_t_1);
+
+          /* "pandas/_libs/tslibs/frequencies.pyx":165
+ *                 stride = freqstr[1]
+ *             except:
+ *                 if is_integer_object(freqstr[1]):             # <<<<<<<<<<<<<<
+ *                     raise
+ *                 code = _period_str_to_code(freqstr[1])
+ */
+          __pyx_t_9 = __Pyx_GetItemInt(__pyx_v_freqstr, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 165, __pyx_L10_except_error)
+          __Pyx_GOTREF(__pyx_t_9);
+          __pyx_t_5 = (__pyx_f_6pandas_5_libs_6tslibs_4util_is_integer_object(__pyx_t_9) != 0);
+          __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+          if (unlikely(__pyx_t_5)) {
+
+            /* "pandas/_libs/tslibs/frequencies.pyx":166
+ *             except:
+ *                 if is_integer_object(freqstr[1]):
+ *                     raise             # <<<<<<<<<<<<<<
+ *                 code = _period_str_to_code(freqstr[1])
+ *                 stride = freqstr[0]
+ */
+            __Pyx_GIVEREF(__pyx_t_3);
+            __Pyx_GIVEREF(__pyx_t_4);
+            __Pyx_XGIVEREF(__pyx_t_1);
+            __Pyx_ErrRestoreWithState(__pyx_t_3, __pyx_t_4, __pyx_t_1);
+            __pyx_t_3 = 0; __pyx_t_4 = 0; __pyx_t_1 = 0; 
+            __PYX_ERR(0, 166, __pyx_L10_except_error)
+
+            /* "pandas/_libs/tslibs/frequencies.pyx":165
+ *                 stride = freqstr[1]
+ *             except:
+ *                 if is_integer_object(freqstr[1]):             # <<<<<<<<<<<<<<
+ *                     raise
+ *                 code = _period_str_to_code(freqstr[1])
+ */
+          }
+
+          /* "pandas/_libs/tslibs/frequencies.pyx":167
+ *                 if is_integer_object(freqstr[1]):
+ *                     raise
+ *                 code = _period_str_to_code(freqstr[1])             # <<<<<<<<<<<<<<
+ *                 stride = freqstr[0]
+ *             return code, stride
+ */
+          __pyx_t_9 = __Pyx_GetItemInt(__pyx_v_freqstr, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 167, __pyx_L10_except_error)
+          __Pyx_GOTREF(__pyx_t_9);
+          __pyx_t_10 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_code(__pyx_t_9, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 167, __pyx_L10_except_error)
+          __Pyx_GOTREF(__pyx_t_10);
+          __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+          __Pyx_XDECREF_SET(__pyx_v_code, __pyx_t_10);
+          __pyx_t_10 = 0;
+
+          /* "pandas/_libs/tslibs/frequencies.pyx":168
+ *                     raise
+ *                 code = _period_str_to_code(freqstr[1])
+ *                 stride = freqstr[0]             # <<<<<<<<<<<<<<
  *             return code, stride
  * 
  */
-      __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_freqstr, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 172, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      __pyx_v_stride = __pyx_t_4;
-      __pyx_t_4 = 0;
+          __pyx_t_10 = __Pyx_GetItemInt(__pyx_v_freqstr, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 168, __pyx_L10_except_error)
+          __Pyx_GOTREF(__pyx_t_10);
+          __Pyx_XDECREF_SET(__pyx_v_stride, __pyx_t_10);
+          __pyx_t_10 = 0;
+          __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+          __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+          goto __pyx_L9_exception_handled;
+        }
+        __pyx_L10_except_error:;
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":173
- *             code = _period_str_to_code(freqstr[0])
- *             stride = freqstr[1]
+        /* "pandas/_libs/tslibs/frequencies.pyx":161
+ *         else:
+ *             # e.g., freqstr = ('T', 5)
+ *             try:             # <<<<<<<<<<<<<<
+ *                 code = _period_str_to_code(freqstr[0])
+ *                 stride = freqstr[1]
+ */
+        __Pyx_XGIVEREF(__pyx_t_6);
+        __Pyx_XGIVEREF(__pyx_t_7);
+        __Pyx_XGIVEREF(__pyx_t_8);
+        __Pyx_ExceptionReset(__pyx_t_6, __pyx_t_7, __pyx_t_8);
+        goto __pyx_L1_error;
+        __pyx_L9_exception_handled:;
+        __Pyx_XGIVEREF(__pyx_t_6);
+        __Pyx_XGIVEREF(__pyx_t_7);
+        __Pyx_XGIVEREF(__pyx_t_8);
+        __Pyx_ExceptionReset(__pyx_t_6, __pyx_t_7, __pyx_t_8);
+        __pyx_L13_try_end:;
+      }
+
+      /* "pandas/_libs/tslibs/frequencies.pyx":169
+ *                 code = _period_str_to_code(freqstr[1])
+ *                 stride = freqstr[0]
  *             return code, stride             # <<<<<<<<<<<<<<
  * 
  *     if is_integer_object(freqstr):
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 173, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
+      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 169, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
       __Pyx_INCREF(__pyx_v_code);
       __Pyx_GIVEREF(__pyx_v_code);
-      PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_code);
+      PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_code);
       __Pyx_INCREF(__pyx_v_stride);
       __Pyx_GIVEREF(__pyx_v_stride);
-      PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_stride);
-      __pyx_r = __pyx_t_4;
-      __pyx_t_4 = 0;
+      PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_stride);
+      __pyx_r = __pyx_t_1;
+      __pyx_t_1 = 0;
       goto __pyx_L0;
     }
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":159
+    /* "pandas/_libs/tslibs/frequencies.pyx":155
  *         freqstr = (freqstr.rule_code, freqstr.n)
  * 
  *     if isinstance(freqstr, tuple):             # <<<<<<<<<<<<<<
@@ -2417,7 +2551,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(PyOb
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":175
+  /* "pandas/_libs/tslibs/frequencies.pyx":171
  *             return code, stride
  * 
  *     if is_integer_object(freqstr):             # <<<<<<<<<<<<<<
@@ -2427,7 +2561,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(PyOb
   __pyx_t_5 = (__pyx_f_6pandas_5_libs_6tslibs_4util_is_integer_object(__pyx_v_freqstr) != 0);
   if (__pyx_t_5) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":176
+    /* "pandas/_libs/tslibs/frequencies.pyx":172
  * 
  *     if is_integer_object(freqstr):
  *         return freqstr, 1             # <<<<<<<<<<<<<<
@@ -2435,19 +2569,19 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(PyOb
  *     base, stride = _base_and_stride(freqstr)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 176, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 172, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
     __Pyx_INCREF(__pyx_v_freqstr);
     __Pyx_GIVEREF(__pyx_v_freqstr);
-    PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_freqstr);
+    PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_freqstr);
     __Pyx_INCREF(__pyx_int_1);
     __Pyx_GIVEREF(__pyx_int_1);
-    PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_int_1);
-    __pyx_r = __pyx_t_4;
-    __pyx_t_4 = 0;
+    PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_int_1);
+    __pyx_r = __pyx_t_1;
+    __pyx_t_1 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":175
+    /* "pandas/_libs/tslibs/frequencies.pyx":171
  *             return code, stride
  * 
  *     if is_integer_object(freqstr):             # <<<<<<<<<<<<<<
@@ -2456,81 +2590,79 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(PyOb
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":178
+  /* "pandas/_libs/tslibs/frequencies.pyx":174
  *         return freqstr, 1
  * 
  *     base, stride = _base_and_stride(freqstr)             # <<<<<<<<<<<<<<
  *     code = _period_str_to_code(base)
  * 
  */
-  if (!(likely(PyUnicode_CheckExact(__pyx_v_freqstr))||((__pyx_v_freqstr) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_freqstr)->tp_name), 0))) __PYX_ERR(0, 178, __pyx_L1_error)
-  __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__base_and_stride(((PyObject*)__pyx_v_freqstr), 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if ((likely(PyTuple_CheckExact(__pyx_t_4))) || (PyList_CheckExact(__pyx_t_4))) {
-    PyObject* sequence = __pyx_t_4;
+  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__base_and_stride(__pyx_v_freqstr, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 174, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
+    PyObject* sequence = __pyx_t_1;
     Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 178, __pyx_L1_error)
+      __PYX_ERR(0, 174, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
-      __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0); 
-      __pyx_t_1 = PyTuple_GET_ITEM(sequence, 1); 
+      __pyx_t_4 = PyTuple_GET_ITEM(sequence, 0); 
+      __pyx_t_3 = PyTuple_GET_ITEM(sequence, 1); 
     } else {
-      __pyx_t_3 = PyList_GET_ITEM(sequence, 0); 
-      __pyx_t_1 = PyList_GET_ITEM(sequence, 1); 
+      __pyx_t_4 = PyList_GET_ITEM(sequence, 0); 
+      __pyx_t_3 = PyList_GET_ITEM(sequence, 1); 
     }
+    __Pyx_INCREF(__pyx_t_4);
     __Pyx_INCREF(__pyx_t_3);
-    __Pyx_INCREF(__pyx_t_1);
     #else
-    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 178, __pyx_L1_error)
+    __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 174, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 174, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 178, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
     #endif
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_6 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 178, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_7 = Py_TYPE(__pyx_t_6)->tp_iternext;
-    index = 0; __pyx_t_3 = __pyx_t_7(__pyx_t_6); if (unlikely(!__pyx_t_3)) goto __pyx_L9_unpacking_failed;
+    __pyx_t_10 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 174, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_10);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_11 = Py_TYPE(__pyx_t_10)->tp_iternext;
+    index = 0; __pyx_t_4 = __pyx_t_11(__pyx_t_10); if (unlikely(!__pyx_t_4)) goto __pyx_L18_unpacking_failed;
+    __Pyx_GOTREF(__pyx_t_4);
+    index = 1; __pyx_t_3 = __pyx_t_11(__pyx_t_10); if (unlikely(!__pyx_t_3)) goto __pyx_L18_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_3);
-    index = 1; __pyx_t_1 = __pyx_t_7(__pyx_t_6); if (unlikely(!__pyx_t_1)) goto __pyx_L9_unpacking_failed;
-    __Pyx_GOTREF(__pyx_t_1);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 2) < 0) __PYX_ERR(0, 178, __pyx_L1_error)
-    __pyx_t_7 = NULL;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    goto __pyx_L10_unpacking_done;
-    __pyx_L9_unpacking_failed:;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_7 = NULL;
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_11(__pyx_t_10), 2) < 0) __PYX_ERR(0, 174, __pyx_L1_error)
+    __pyx_t_11 = NULL;
+    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+    goto __pyx_L19_unpacking_done;
+    __pyx_L18_unpacking_failed:;
+    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+    __pyx_t_11 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 178, __pyx_L1_error)
-    __pyx_L10_unpacking_done:;
+    __PYX_ERR(0, 174, __pyx_L1_error)
+    __pyx_L19_unpacking_done:;
   }
-  __pyx_v_base = __pyx_t_3;
+  __pyx_v_base = __pyx_t_4;
+  __pyx_t_4 = 0;
+  __pyx_v_stride = __pyx_t_3;
   __pyx_t_3 = 0;
-  __pyx_v_stride = __pyx_t_1;
-  __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":179
+  /* "pandas/_libs/tslibs/frequencies.pyx":175
  * 
  *     base, stride = _base_and_stride(freqstr)
  *     code = _period_str_to_code(base)             # <<<<<<<<<<<<<<
  * 
  *     return code, stride
  */
-  if (!(likely(PyUnicode_CheckExact(__pyx_v_base))||((__pyx_v_base) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_base)->tp_name), 0))) __PYX_ERR(0, 179, __pyx_L1_error)
-  __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_code(((PyObject*)__pyx_v_base), 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 179, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_v_code = __pyx_t_4;
-  __pyx_t_4 = 0;
+  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_code(__pyx_v_base, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_code = __pyx_t_1;
+  __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":181
+  /* "pandas/_libs/tslibs/frequencies.pyx":177
  *     code = _period_str_to_code(base)
  * 
  *     return code, stride             # <<<<<<<<<<<<<<
@@ -2538,16 +2670,16 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(PyOb
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 181, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_code);
   __Pyx_GIVEREF(__pyx_v_code);
-  PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_code);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_code);
   __Pyx_INCREF(__pyx_v_stride);
   __Pyx_GIVEREF(__pyx_v_stride);
-  PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_stride);
-  __pyx_r = __pyx_t_4;
-  __pyx_t_4 = 0;
+  PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_stride);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
   goto __pyx_L0;
 
   /* "pandas/_libs/tslibs/frequencies.pyx":129
@@ -2563,7 +2695,8 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(PyOb
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_XDECREF(__pyx_t_10);
   __Pyx_AddTraceback("pandas._libs.tslibs.frequencies.get_freq_code", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
@@ -2578,7 +2711,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(PyOb
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_11frequencies_1get_freq_code(PyObject *__pyx_self, PyObject *__pyx_v_freqstr); /*proto*/
-static char __pyx_doc_6pandas_5_libs_6tslibs_11frequencies_get_freq_code[] = "\n    Return freq str or tuple to freq code and stride (mult)\n\n    Parameters\n    ----------\n    freqstr : str or tuple\n\n    Returns\n    -------\n    return : tuple of base frequency code and stride (mult)\n\n    Raises\n    ------\n    TypeError : if passed a tuple witth incorrect types\n\n    Examples\n    --------\n    >>> get_freq_code('3D')\n    (6000, 3)\n\n    >>> get_freq_code('D')\n    (6000, 1)\n\n    >>> get_freq_code(('D', 3))\n    (6000, 3)\n    ";
+static char __pyx_doc_6pandas_5_libs_6tslibs_11frequencies_get_freq_code[] = "\n    Return freq str or tuple to freq code and stride (mult)\n\n    Parameters\n    ----------\n    freqstr : str or tuple\n\n    Returns\n    -------\n    return : tuple of base frequency code and stride (mult)\n\n    Examples\n    --------\n    >>> get_freq_code('3D')\n    (6000, 3)\n\n    >>> get_freq_code('D')\n    (6000, 1)\n\n    >>> get_freq_code(('D', 3))\n    (6000, 3)\n    ";
 static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_11frequencies_1get_freq_code(PyObject *__pyx_self, PyObject *__pyx_v_freqstr) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -2616,10 +2749,10 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(CYT
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/frequencies.pyx":184
+/* "pandas/_libs/tslibs/frequencies.pyx":180
  * 
  * 
- * cpdef _base_and_stride(str freqstr):             # <<<<<<<<<<<<<<
+ * cpdef _base_and_stride(freqstr):             # <<<<<<<<<<<<<<
  *     """
  *     Return base freq and stride info from string representation
  */
@@ -2642,16 +2775,16 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__base_and_stride(P
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_base_and_stride", 0);
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":197
+  /* "pandas/_libs/tslibs/frequencies.pyx":193
  *     _freq_and_stride('5Min') -> 'Min', 5
  *     """
  *     groups = opattern.match(freqstr)             # <<<<<<<<<<<<<<
  * 
  *     if not groups:
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_opattern); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_opattern); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_match); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_match); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -2666,47 +2799,47 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__base_and_stride(P
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_v_freqstr) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_freqstr);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_groups = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":199
+  /* "pandas/_libs/tslibs/frequencies.pyx":195
  *     groups = opattern.match(freqstr)
  * 
  *     if not groups:             # <<<<<<<<<<<<<<
  *         raise ValueError("Could not evaluate {freq}".format(freq=freqstr))
  * 
  */
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_groups); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 199, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_groups); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 195, __pyx_L1_error)
   __pyx_t_5 = ((!__pyx_t_4) != 0);
   if (unlikely(__pyx_t_5)) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":200
+    /* "pandas/_libs/tslibs/frequencies.pyx":196
  * 
  *     if not groups:
  *         raise ValueError("Could not evaluate {freq}".format(freq=freqstr))             # <<<<<<<<<<<<<<
  * 
  *     stride = groups.group(1)
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Could_not_evaluate_freq, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Could_not_evaluate_freq, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 196, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 200, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 196, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_freq, __pyx_v_freqstr) < 0) __PYX_ERR(0, 200, __pyx_L1_error)
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 200, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_freq, __pyx_v_freqstr) < 0) __PYX_ERR(0, 196, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 196, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 200, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 196, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __PYX_ERR(0, 200, __pyx_L1_error)
+    __PYX_ERR(0, 196, __pyx_L1_error)
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":199
+    /* "pandas/_libs/tslibs/frequencies.pyx":195
  *     groups = opattern.match(freqstr)
  * 
  *     if not groups:             # <<<<<<<<<<<<<<
@@ -2715,14 +2848,14 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__base_and_stride(P
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":202
+  /* "pandas/_libs/tslibs/frequencies.pyx":198
  *         raise ValueError("Could not evaluate {freq}".format(freq=freqstr))
  * 
  *     stride = groups.group(1)             # <<<<<<<<<<<<<<
  * 
  *     if len(stride):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_groups, __pyx_n_s_group); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 202, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_groups, __pyx_n_s_group); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_1 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -2736,36 +2869,36 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__base_and_stride(P
   }
   __pyx_t_3 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_1, __pyx_int_1) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_int_1);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 202, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_stride = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":204
+  /* "pandas/_libs/tslibs/frequencies.pyx":200
  *     stride = groups.group(1)
  * 
  *     if len(stride):             # <<<<<<<<<<<<<<
  *         stride = int(stride)
  *     else:
  */
-  __pyx_t_6 = PyObject_Length(__pyx_v_stride); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 204, __pyx_L1_error)
+  __pyx_t_6 = PyObject_Length(__pyx_v_stride); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 200, __pyx_L1_error)
   __pyx_t_5 = (__pyx_t_6 != 0);
   if (__pyx_t_5) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":205
+    /* "pandas/_libs/tslibs/frequencies.pyx":201
  * 
  *     if len(stride):
  *         stride = int(stride)             # <<<<<<<<<<<<<<
  *     else:
  *         stride = 1
  */
-    __pyx_t_3 = __Pyx_PyNumber_Int(__pyx_v_stride); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 205, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyNumber_Int(__pyx_v_stride); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 201, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF_SET(__pyx_v_stride, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":204
+    /* "pandas/_libs/tslibs/frequencies.pyx":200
  *     stride = groups.group(1)
  * 
  *     if len(stride):             # <<<<<<<<<<<<<<
@@ -2775,7 +2908,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__base_and_stride(P
     goto __pyx_L4;
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":207
+  /* "pandas/_libs/tslibs/frequencies.pyx":203
  *         stride = int(stride)
  *     else:
  *         stride = 1             # <<<<<<<<<<<<<<
@@ -2788,14 +2921,14 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__base_and_stride(P
   }
   __pyx_L4:;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":209
+  /* "pandas/_libs/tslibs/frequencies.pyx":205
  *         stride = 1
  * 
  *     base = groups.group(2)             # <<<<<<<<<<<<<<
  * 
  *     return base, stride
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_groups, __pyx_n_s_group); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 209, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_groups, __pyx_n_s_group); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_1 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -2809,13 +2942,13 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__base_and_stride(P
   }
   __pyx_t_3 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_1, __pyx_int_2) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_int_2);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 209, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_base = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":211
+  /* "pandas/_libs/tslibs/frequencies.pyx":207
  *     base = groups.group(2)
  * 
  *     return base, stride             # <<<<<<<<<<<<<<
@@ -2823,7 +2956,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__base_and_stride(P
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 207, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_v_base);
   __Pyx_GIVEREF(__pyx_v_base);
@@ -2835,10 +2968,10 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__base_and_stride(P
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":184
+  /* "pandas/_libs/tslibs/frequencies.pyx":180
  * 
  * 
- * cpdef _base_and_stride(str freqstr):             # <<<<<<<<<<<<<<
+ * cpdef _base_and_stride(freqstr):             # <<<<<<<<<<<<<<
  *     """
  *     Return base freq and stride info from string representation
  */
@@ -2863,20 +2996,12 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__base_and_stride(P
 static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_11frequencies_3_base_and_stride(PyObject *__pyx_self, PyObject *__pyx_v_freqstr); /*proto*/
 static char __pyx_doc_6pandas_5_libs_6tslibs_11frequencies_2_base_and_stride[] = "\n    Return base freq and stride info from string representation\n\n    Returns\n    -------\n    base : str\n    stride : int\n\n    Examples\n    --------\n    _freq_and_stride('5Min') -> 'Min', 5\n    ";
 static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_11frequencies_3_base_and_stride(PyObject *__pyx_self, PyObject *__pyx_v_freqstr) {
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_base_and_stride (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_freqstr), (&PyUnicode_Type), 1, "freqstr", 1))) __PYX_ERR(0, 184, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6pandas_5_libs_6tslibs_11frequencies_2_base_and_stride(__pyx_self, ((PyObject*)__pyx_v_freqstr));
+  __pyx_r = __pyx_pf_6pandas_5_libs_6tslibs_11frequencies_2_base_and_stride(__pyx_self, ((PyObject *)__pyx_v_freqstr));
 
   /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __pyx_r = NULL;
-  __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
@@ -2890,7 +3015,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_2_base_and_stride
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_base_and_stride", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__base_and_stride(__pyx_v_freqstr, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__base_and_stride(__pyx_v_freqstr, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2907,10 +3032,10 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_2_base_and_stride
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/frequencies.pyx":214
+/* "pandas/_libs/tslibs/frequencies.pyx":210
  * 
  * 
- * cpdef _period_str_to_code(str freqstr):             # <<<<<<<<<<<<<<
+ * cpdef _period_str_to_code(freqstr):             # <<<<<<<<<<<<<<
  *     freqstr = _lite_rule_alias.get(freqstr, freqstr)
  * 
  */
@@ -2938,16 +3063,16 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
   __Pyx_RefNannySetupContext("_period_str_to_code", 0);
   __Pyx_INCREF(__pyx_v_freqstr);
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":215
+  /* "pandas/_libs/tslibs/frequencies.pyx":211
  * 
- * cpdef _period_str_to_code(str freqstr):
+ * cpdef _period_str_to_code(freqstr):
  *     freqstr = _lite_rule_alias.get(freqstr, freqstr)             # <<<<<<<<<<<<<<
  * 
  *     if freqstr not in _dont_uppercase:
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_lite_rule_alias); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_lite_rule_alias); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_get); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_get); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -2965,7 +3090,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_freqstr, __pyx_v_freqstr};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 211, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
@@ -2973,13 +3098,13 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_freqstr, __pyx_v_freqstr};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 211, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   {
-    __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 215, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 211, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     if (__pyx_t_2) {
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2); __pyx_t_2 = NULL;
@@ -2990,37 +3115,36 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
     __Pyx_INCREF(__pyx_v_freqstr);
     __Pyx_GIVEREF(__pyx_v_freqstr);
     PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_4, __pyx_v_freqstr);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 211, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 215, __pyx_L1_error)
-  __Pyx_DECREF_SET(__pyx_v_freqstr, ((PyObject*)__pyx_t_1));
+  __Pyx_DECREF_SET(__pyx_v_freqstr, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":217
+  /* "pandas/_libs/tslibs/frequencies.pyx":213
  *     freqstr = _lite_rule_alias.get(freqstr, freqstr)
  * 
  *     if freqstr not in _dont_uppercase:             # <<<<<<<<<<<<<<
  *         lower = freqstr.lower()
  *         freqstr = _lite_rule_alias.get(lower, freqstr)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_dont_uppercase); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_dont_uppercase); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = (__Pyx_PySequence_ContainsTF(__pyx_v_freqstr, __pyx_t_1, Py_NE)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_6 = (__Pyx_PySequence_ContainsTF(__pyx_v_freqstr, __pyx_t_1, Py_NE)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_7 = (__pyx_t_6 != 0);
   if (__pyx_t_7) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":218
+    /* "pandas/_libs/tslibs/frequencies.pyx":214
  * 
  *     if freqstr not in _dont_uppercase:
  *         lower = freqstr.lower()             # <<<<<<<<<<<<<<
  *         freqstr = _lite_rule_alias.get(lower, freqstr)
  * 
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_freqstr, __pyx_n_s_lower); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 218, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_freqstr, __pyx_n_s_lower); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 214, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -3034,22 +3158,22 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
     }
     __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 218, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 214, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_lower = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":219
+    /* "pandas/_libs/tslibs/frequencies.pyx":215
  *     if freqstr not in _dont_uppercase:
  *         lower = freqstr.lower()
  *         freqstr = _lite_rule_alias.get(lower, freqstr)             # <<<<<<<<<<<<<<
  * 
  *     if freqstr not in _dont_uppercase:
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_lite_rule_alias); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 219, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_lite_rule_alias); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 215, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_get); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 219, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_get); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 215, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -3067,7 +3191,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_lower, __pyx_v_freqstr};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -3075,13 +3199,13 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_lower, __pyx_v_freqstr};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_2 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 219, __pyx_L1_error)
+      __pyx_t_2 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 215, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       if (__pyx_t_3) {
         __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -3092,16 +3216,15 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
       __Pyx_INCREF(__pyx_v_freqstr);
       __Pyx_GIVEREF(__pyx_v_freqstr);
       PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_4, __pyx_v_freqstr);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 219, __pyx_L1_error)
-    __Pyx_DECREF_SET(__pyx_v_freqstr, ((PyObject*)__pyx_t_1));
+    __Pyx_DECREF_SET(__pyx_v_freqstr, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":217
+    /* "pandas/_libs/tslibs/frequencies.pyx":213
  *     freqstr = _lite_rule_alias.get(freqstr, freqstr)
  * 
  *     if freqstr not in _dont_uppercase:             # <<<<<<<<<<<<<<
@@ -3110,28 +3233,28 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":221
+  /* "pandas/_libs/tslibs/frequencies.pyx":217
  *         freqstr = _lite_rule_alias.get(lower, freqstr)
  * 
  *     if freqstr not in _dont_uppercase:             # <<<<<<<<<<<<<<
  *         freqstr = freqstr.upper()
  *     try:
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_dont_uppercase); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_dont_uppercase); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = (__Pyx_PySequence_ContainsTF(__pyx_v_freqstr, __pyx_t_1, Py_NE)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_7 = (__Pyx_PySequence_ContainsTF(__pyx_v_freqstr, __pyx_t_1, Py_NE)); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_6 = (__pyx_t_7 != 0);
   if (__pyx_t_6) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":222
+    /* "pandas/_libs/tslibs/frequencies.pyx":218
  * 
  *     if freqstr not in _dont_uppercase:
  *         freqstr = freqstr.upper()             # <<<<<<<<<<<<<<
  *     try:
  *         return _period_code_map[freqstr]
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_freqstr, __pyx_n_s_upper); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 222, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_freqstr, __pyx_n_s_upper); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 218, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_2 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -3145,14 +3268,13 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
     }
     __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 222, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 218, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 222, __pyx_L1_error)
-    __Pyx_DECREF_SET(__pyx_v_freqstr, ((PyObject*)__pyx_t_1));
+    __Pyx_DECREF_SET(__pyx_v_freqstr, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":221
+    /* "pandas/_libs/tslibs/frequencies.pyx":217
  *         freqstr = _lite_rule_alias.get(lower, freqstr)
  * 
  *     if freqstr not in _dont_uppercase:             # <<<<<<<<<<<<<<
@@ -3161,7 +3283,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":223
+  /* "pandas/_libs/tslibs/frequencies.pyx":219
  *     if freqstr not in _dont_uppercase:
  *         freqstr = freqstr.upper()
  *     try:             # <<<<<<<<<<<<<<
@@ -3177,7 +3299,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
     __Pyx_XGOTREF(__pyx_t_10);
     /*try:*/ {
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":224
+      /* "pandas/_libs/tslibs/frequencies.pyx":220
  *         freqstr = freqstr.upper()
  *     try:
  *         return _period_code_map[freqstr]             # <<<<<<<<<<<<<<
@@ -3185,16 +3307,16 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
  *         raise ValueError(INVALID_FREQ_ERR_MSG.format(freqstr))
  */
       __Pyx_XDECREF(__pyx_r);
-      __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_period_code_map); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 224, __pyx_L5_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_period_code_map); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 220, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_v_freqstr); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 224, __pyx_L5_error)
+      __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_freqstr); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 220, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_r = __pyx_t_5;
       __pyx_t_5 = 0;
       goto __pyx_L9_try_return;
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":223
+      /* "pandas/_libs/tslibs/frequencies.pyx":219
  *     if freqstr not in _dont_uppercase:
  *         freqstr = freqstr.upper()
  *     try:             # <<<<<<<<<<<<<<
@@ -3208,7 +3330,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":225
+    /* "pandas/_libs/tslibs/frequencies.pyx":221
  *     try:
  *         return _period_code_map[freqstr]
  *     except KeyError:             # <<<<<<<<<<<<<<
@@ -3218,21 +3340,21 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
     __pyx_t_4 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_KeyError);
     if (__pyx_t_4) {
       __Pyx_AddTraceback("pandas._libs.tslibs.frequencies._period_str_to_code", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_1, &__pyx_t_2) < 0) __PYX_ERR(0, 225, __pyx_L7_except_error)
+      if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_1, &__pyx_t_2) < 0) __PYX_ERR(0, 221, __pyx_L7_except_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_GOTREF(__pyx_t_2);
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":226
+      /* "pandas/_libs/tslibs/frequencies.pyx":222
  *         return _period_code_map[freqstr]
  *     except KeyError:
  *         raise ValueError(INVALID_FREQ_ERR_MSG.format(freqstr))             # <<<<<<<<<<<<<<
  * 
  * 
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_INVALID_FREQ_ERR_MSG); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 226, __pyx_L7_except_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_INVALID_FREQ_ERR_MSG); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 222, __pyx_L7_except_error)
       __Pyx_GOTREF(__pyx_t_11);
-      __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_format); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 226, __pyx_L7_except_error)
+      __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_format); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 222, __pyx_L7_except_error)
       __Pyx_GOTREF(__pyx_t_12);
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
       __pyx_t_11 = NULL;
@@ -3247,20 +3369,20 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
       }
       __pyx_t_3 = (__pyx_t_11) ? __Pyx_PyObject_Call2Args(__pyx_t_12, __pyx_t_11, __pyx_v_freqstr) : __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_v_freqstr);
       __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 226, __pyx_L7_except_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 222, __pyx_L7_except_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-      __pyx_t_12 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_3); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 226, __pyx_L7_except_error)
+      __pyx_t_12 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_3); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 222, __pyx_L7_except_error)
       __Pyx_GOTREF(__pyx_t_12);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_Raise(__pyx_t_12, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-      __PYX_ERR(0, 226, __pyx_L7_except_error)
+      __PYX_ERR(0, 222, __pyx_L7_except_error)
     }
     goto __pyx_L7_except_error;
     __pyx_L7_except_error:;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":223
+    /* "pandas/_libs/tslibs/frequencies.pyx":219
  *     if freqstr not in _dont_uppercase:
  *         freqstr = freqstr.upper()
  *     try:             # <<<<<<<<<<<<<<
@@ -3280,10 +3402,10 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
     goto __pyx_L0;
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":214
+  /* "pandas/_libs/tslibs/frequencies.pyx":210
  * 
  * 
- * cpdef _period_str_to_code(str freqstr):             # <<<<<<<<<<<<<<
+ * cpdef _period_str_to_code(freqstr):             # <<<<<<<<<<<<<<
  *     freqstr = _lite_rule_alias.get(freqstr, freqstr)
  * 
  */
@@ -3309,20 +3431,12 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_cod
 /* Python wrapper */
 static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_11frequencies_5_period_str_to_code(PyObject *__pyx_self, PyObject *__pyx_v_freqstr); /*proto*/
 static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_11frequencies_5_period_str_to_code(PyObject *__pyx_self, PyObject *__pyx_v_freqstr) {
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_period_str_to_code (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_freqstr), (&PyUnicode_Type), 1, "freqstr", 1))) __PYX_ERR(0, 214, __pyx_L1_error)
-  __pyx_r = __pyx_pf_6pandas_5_libs_6tslibs_11frequencies_4_period_str_to_code(__pyx_self, ((PyObject*)__pyx_v_freqstr));
+  __pyx_r = __pyx_pf_6pandas_5_libs_6tslibs_11frequencies_4_period_str_to_code(__pyx_self, ((PyObject *)__pyx_v_freqstr));
 
   /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __pyx_r = NULL;
-  __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
@@ -3336,7 +3450,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_4_period_str_to_c
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_period_str_to_code", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_code(__pyx_v_freqstr, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 214, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__period_str_to_code(__pyx_v_freqstr, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 210, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3353,7 +3467,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_4_period_str_to_c
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/frequencies.pyx":229
+/* "pandas/_libs/tslibs/frequencies.pyx":225
  * 
  * 
  * cpdef str get_freq_str(base, mult=1):             # <<<<<<<<<<<<<<
@@ -3381,16 +3495,16 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_str(PyObj
     }
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":252
+  /* "pandas/_libs/tslibs/frequencies.pyx":248
  *     >>> get_freq_str("foo")
  *     """
  *     code = _reverse_period_code_map.get(base)             # <<<<<<<<<<<<<<
  *     if mult == 1:
  *         return code
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_reverse_period_code_map); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 252, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_reverse_period_code_map); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 248, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_get); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 252, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_get); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 248, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -3405,26 +3519,26 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_str(PyObj
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_v_base) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_base);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 252, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 248, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_code = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":253
+  /* "pandas/_libs/tslibs/frequencies.pyx":249
  *     """
  *     code = _reverse_period_code_map.get(base)
  *     if mult == 1:             # <<<<<<<<<<<<<<
  *         return code
  *     return str(mult) + code
  */
-  __pyx_t_1 = __Pyx_PyInt_EqObjC(__pyx_v_mult, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 253, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_EqObjC(__pyx_v_mult, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 249, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 253, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 249, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":254
+    /* "pandas/_libs/tslibs/frequencies.pyx":250
  *     code = _reverse_period_code_map.get(base)
  *     if mult == 1:
  *         return code             # <<<<<<<<<<<<<<
@@ -3432,12 +3546,12 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_str(PyObj
  * 
  */
     __Pyx_XDECREF(__pyx_r);
-    if (!(likely(PyUnicode_CheckExact(__pyx_v_code))||((__pyx_v_code) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_code)->tp_name), 0))) __PYX_ERR(0, 254, __pyx_L1_error)
+    if (!(likely(PyUnicode_CheckExact(__pyx_v_code))||((__pyx_v_code) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_code)->tp_name), 0))) __PYX_ERR(0, 250, __pyx_L1_error)
     __Pyx_INCREF(__pyx_v_code);
     __pyx_r = ((PyObject*)__pyx_v_code);
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":253
+    /* "pandas/_libs/tslibs/frequencies.pyx":249
  *     """
  *     code = _reverse_period_code_map.get(base)
  *     if mult == 1:             # <<<<<<<<<<<<<<
@@ -3446,7 +3560,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_str(PyObj
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":255
+  /* "pandas/_libs/tslibs/frequencies.pyx":251
  *     if mult == 1:
  *         return code
  *     return str(mult) + code             # <<<<<<<<<<<<<<
@@ -3454,17 +3568,17 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_str(PyObj
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyUnicode_Type)), __pyx_v_mult); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 255, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyUnicode_Type)), __pyx_v_mult); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyNumber_Add(__pyx_t_1, __pyx_v_code); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 255, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Add(__pyx_t_1, __pyx_v_code); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(PyUnicode_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 255, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 251, __pyx_L1_error)
   __pyx_r = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":229
+  /* "pandas/_libs/tslibs/frequencies.pyx":225
  * 
  * 
  * cpdef str get_freq_str(base, mult=1):             # <<<<<<<<<<<<<<
@@ -3526,7 +3640,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_11frequencies_7get_freq_str(PyO
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_freq_str") < 0)) __PYX_ERR(0, 229, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_freq_str") < 0)) __PYX_ERR(0, 225, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -3542,7 +3656,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_11frequencies_7get_freq_str(PyO
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_freq_str", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 229, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_freq_str", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 225, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.frequencies.get_freq_str", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3567,7 +3681,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_6get_freq_str(CYT
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.mult = __pyx_v_mult;
-  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_str(__pyx_v_base, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 229, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_str(__pyx_v_base, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 225, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3584,7 +3698,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_6get_freq_str(CYT
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/frequencies.pyx":258
+/* "pandas/_libs/tslibs/frequencies.pyx":254
  * 
  * 
  * cpdef str get_base_alias(freqstr):             # <<<<<<<<<<<<<<
@@ -3603,7 +3717,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_base_alias(PyO
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_base_alias", 0);
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":270
+  /* "pandas/_libs/tslibs/frequencies.pyx":266
  *     base_alias : str
  *     """
  *     return _base_and_stride(freqstr)[0]             # <<<<<<<<<<<<<<
@@ -3611,18 +3725,17 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_base_alias(PyO
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  if (!(likely(PyUnicode_CheckExact(__pyx_v_freqstr))||((__pyx_v_freqstr) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_freqstr)->tp_name), 0))) __PYX_ERR(0, 270, __pyx_L1_error)
-  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__base_and_stride(((PyObject*)__pyx_v_freqstr), 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 270, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__base_and_stride(__pyx_v_freqstr, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 266, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 270, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 266, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(PyUnicode_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 270, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 266, __pyx_L1_error)
   __pyx_r = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":258
+  /* "pandas/_libs/tslibs/frequencies.pyx":254
  * 
  * 
  * cpdef str get_base_alias(freqstr):             # <<<<<<<<<<<<<<
@@ -3665,7 +3778,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_8get_base_alias(C
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_base_alias", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_base_alias(__pyx_v_freqstr, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_base_alias(__pyx_v_freqstr, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3682,7 +3795,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_8get_base_alias(C
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/frequencies.pyx":273
+/* "pandas/_libs/tslibs/frequencies.pyx":269
  * 
  * 
  * cpdef int get_to_timestamp_base(int base):             # <<<<<<<<<<<<<<
@@ -3706,45 +3819,45 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_to_timestamp_base(in
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_to_timestamp_base", 0);
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":302
+  /* "pandas/_libs/tslibs/frequencies.pyx":298
  *     9000
  *     """
  *     if base < FreqGroup.FR_BUS:             # <<<<<<<<<<<<<<
  *         return FreqGroup.FR_DAY
  *     elif FreqGroup.FR_HR <= base <= FreqGroup.FR_SEC:
  */
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_base); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_base); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_FreqGroup); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_FreqGroup); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_FR_BUS); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_FR_BUS); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":303
+    /* "pandas/_libs/tslibs/frequencies.pyx":299
  *     """
  *     if base < FreqGroup.FR_BUS:
  *         return FreqGroup.FR_DAY             # <<<<<<<<<<<<<<
  *     elif FreqGroup.FR_HR <= base <= FreqGroup.FR_SEC:
  *         return FreqGroup.FR_SEC
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_FreqGroup); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 303, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_FreqGroup); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 299, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_FR_DAY); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 303, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_FR_DAY); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 299, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 303, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 299, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_r = __pyx_t_5;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":302
+    /* "pandas/_libs/tslibs/frequencies.pyx":298
  *     9000
  *     """
  *     if base < FreqGroup.FR_BUS:             # <<<<<<<<<<<<<<
@@ -3753,55 +3866,55 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_to_timestamp_base(in
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":304
+  /* "pandas/_libs/tslibs/frequencies.pyx":300
  *     if base < FreqGroup.FR_BUS:
  *         return FreqGroup.FR_DAY
  *     elif FreqGroup.FR_HR <= base <= FreqGroup.FR_SEC:             # <<<<<<<<<<<<<<
  *         return FreqGroup.FR_SEC
  *     return base
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_FreqGroup); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_FreqGroup); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 300, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_FR_HR); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_FR_HR); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 300, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_base); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_base); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 300, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_t_3, Py_LE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_t_3, Py_LE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 300, __pyx_L1_error)
   if (__Pyx_PyObject_IsTrue(__pyx_t_1)) {
     __Pyx_DECREF(__pyx_t_1);
-    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_FreqGroup); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 304, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_FreqGroup); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 300, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_FR_SEC); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 304, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_FR_SEC); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 300, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_1 = PyObject_RichCompare(__pyx_t_3, __pyx_t_7, Py_LE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 304, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(__pyx_t_3, __pyx_t_7, Py_LE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 300, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 300, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":305
+    /* "pandas/_libs/tslibs/frequencies.pyx":301
  *         return FreqGroup.FR_DAY
  *     elif FreqGroup.FR_HR <= base <= FreqGroup.FR_SEC:
  *         return FreqGroup.FR_SEC             # <<<<<<<<<<<<<<
  *     return base
  * 
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_FreqGroup); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 305, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_FreqGroup); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_FR_SEC); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 305, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_FR_SEC); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 301, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 305, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 301, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_r = __pyx_t_5;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":304
+    /* "pandas/_libs/tslibs/frequencies.pyx":300
  *     if base < FreqGroup.FR_BUS:
  *         return FreqGroup.FR_DAY
  *     elif FreqGroup.FR_HR <= base <= FreqGroup.FR_SEC:             # <<<<<<<<<<<<<<
@@ -3810,7 +3923,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_to_timestamp_base(in
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":306
+  /* "pandas/_libs/tslibs/frequencies.pyx":302
  *     elif FreqGroup.FR_HR <= base <= FreqGroup.FR_SEC:
  *         return FreqGroup.FR_SEC
  *     return base             # <<<<<<<<<<<<<<
@@ -3820,7 +3933,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_to_timestamp_base(in
   __pyx_r = __pyx_v_base;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":273
+  /* "pandas/_libs/tslibs/frequencies.pyx":269
  * 
  * 
  * cpdef int get_to_timestamp_base(int base):             # <<<<<<<<<<<<<<
@@ -3854,7 +3967,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_11frequencies_11get_to_timestam
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_to_timestamp_base (wrapper)", 0);
   assert(__pyx_arg_base); {
-    __pyx_v_base = __Pyx_PyInt_As_int(__pyx_arg_base); if (unlikely((__pyx_v_base == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 273, __pyx_L3_error)
+    __pyx_v_base = __Pyx_PyInt_As_int(__pyx_arg_base); if (unlikely((__pyx_v_base == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 269, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3878,7 +3991,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_10get_to_timestam
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_to_timestamp_base", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_to_timestamp_base(__pyx_v_base, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 273, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_to_timestamp_base(__pyx_v_base, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 269, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3895,7 +4008,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_10get_to_timestam
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/frequencies.pyx":309
+/* "pandas/_libs/tslibs/frequencies.pyx":305
  * 
  * 
  * cpdef object get_freq(object freq):             # <<<<<<<<<<<<<<
@@ -3922,7 +4035,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq(PyObject 
   __Pyx_RefNannySetupContext("get_freq", 0);
   __Pyx_INCREF(__pyx_v_freq);
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":322
+  /* "pandas/_libs/tslibs/frequencies.pyx":318
  *     1000
  *     """
  *     if isinstance(freq, str):             # <<<<<<<<<<<<<<
@@ -3933,14 +4046,14 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq(PyObject 
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":323
+    /* "pandas/_libs/tslibs/frequencies.pyx":319
  *     """
  *     if isinstance(freq, str):
  *         base, mult = get_freq_code(freq)             # <<<<<<<<<<<<<<
  *         freq = base
  *     return freq
  */
-    __pyx_t_3 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(__pyx_v_freq, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 323, __pyx_L1_error)
+    __pyx_t_3 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq_code(__pyx_v_freq, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 319, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     if ((likely(PyTuple_CheckExact(__pyx_t_3))) || (PyList_CheckExact(__pyx_t_3))) {
       PyObject* sequence = __pyx_t_3;
@@ -3948,7 +4061,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq(PyObject 
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 323, __pyx_L1_error)
+        __PYX_ERR(0, 319, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -3961,15 +4074,15 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq(PyObject 
       __Pyx_INCREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_t_5);
       #else
-      __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 323, __pyx_L1_error)
+      __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 319, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 323, __pyx_L1_error)
+      __pyx_t_5 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 319, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       #endif
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_6 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 323, __pyx_L1_error)
+      __pyx_t_6 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 319, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_7 = Py_TYPE(__pyx_t_6)->tp_iternext;
@@ -3977,7 +4090,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq(PyObject 
       __Pyx_GOTREF(__pyx_t_4);
       index = 1; __pyx_t_5 = __pyx_t_7(__pyx_t_6); if (unlikely(!__pyx_t_5)) goto __pyx_L4_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_5);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 2) < 0) __PYX_ERR(0, 323, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 2) < 0) __PYX_ERR(0, 319, __pyx_L1_error)
       __pyx_t_7 = NULL;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       goto __pyx_L5_unpacking_done;
@@ -3985,7 +4098,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq(PyObject 
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __pyx_t_7 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 323, __pyx_L1_error)
+      __PYX_ERR(0, 319, __pyx_L1_error)
       __pyx_L5_unpacking_done:;
     }
     __pyx_v_base = __pyx_t_4;
@@ -3993,7 +4106,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq(PyObject 
     __pyx_v_mult = __pyx_t_5;
     __pyx_t_5 = 0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":324
+    /* "pandas/_libs/tslibs/frequencies.pyx":320
  *     if isinstance(freq, str):
  *         base, mult = get_freq_code(freq)
  *         freq = base             # <<<<<<<<<<<<<<
@@ -4003,7 +4116,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq(PyObject 
     __Pyx_INCREF(__pyx_v_base);
     __Pyx_DECREF_SET(__pyx_v_freq, __pyx_v_base);
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":322
+    /* "pandas/_libs/tslibs/frequencies.pyx":318
  *     1000
  *     """
  *     if isinstance(freq, str):             # <<<<<<<<<<<<<<
@@ -4012,7 +4125,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq(PyObject 
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":325
+  /* "pandas/_libs/tslibs/frequencies.pyx":321
  *         base, mult = get_freq_code(freq)
  *         freq = base
  *     return freq             # <<<<<<<<<<<<<<
@@ -4024,7 +4137,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq(PyObject 
   __pyx_r = __pyx_v_freq;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":309
+  /* "pandas/_libs/tslibs/frequencies.pyx":305
  * 
  * 
  * cpdef object get_freq(object freq):             # <<<<<<<<<<<<<<
@@ -4072,7 +4185,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_12get_freq(CYTHON
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_freq", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq(__pyx_v_freq, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_freq(__pyx_v_freq, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 305, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4089,7 +4202,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_12get_freq(CYTHON
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/frequencies.pyx":331
+/* "pandas/_libs/tslibs/frequencies.pyx":327
  * # Frequency comparison
  * 
  * def is_subperiod(source, target) -> bint:             # <<<<<<<<<<<<<<
@@ -4133,11 +4246,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_11frequencies_15is_subperiod(Py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_target)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("is_subperiod", 1, 2, 2, 1); __PYX_ERR(0, 331, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("is_subperiod", 1, 2, 2, 1); __PYX_ERR(0, 327, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "is_subperiod") < 0)) __PYX_ERR(0, 331, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "is_subperiod") < 0)) __PYX_ERR(0, 327, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4150,7 +4263,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_11frequencies_15is_subperiod(Py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("is_subperiod", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 331, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("is_subperiod", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 327, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.frequencies.is_subperiod", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4179,7 +4292,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
   __Pyx_INCREF(__pyx_v_source);
   __Pyx_INCREF(__pyx_v_target);
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":348
+  /* "pandas/_libs/tslibs/frequencies.pyx":344
  *     """
  * 
  *     if target is None or source is None:             # <<<<<<<<<<<<<<
@@ -4199,7 +4312,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":349
+    /* "pandas/_libs/tslibs/frequencies.pyx":345
  * 
  *     if target is None or source is None:
  *         return False             # <<<<<<<<<<<<<<
@@ -4211,7 +4324,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
     __pyx_r = Py_False;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":348
+    /* "pandas/_libs/tslibs/frequencies.pyx":344
  *     """
  * 
  *     if target is None or source is None:             # <<<<<<<<<<<<<<
@@ -4220,53 +4333,53 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":350
+  /* "pandas/_libs/tslibs/frequencies.pyx":346
  *     if target is None or source is None:
  *         return False
  *     source = _maybe_coerce_freq(source)             # <<<<<<<<<<<<<<
  *     target = _maybe_coerce_freq(target)
  * 
  */
-  __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__maybe_coerce_freq(__pyx_v_source); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__maybe_coerce_freq(__pyx_v_source); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 346, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF_SET(__pyx_v_source, __pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":351
+  /* "pandas/_libs/tslibs/frequencies.pyx":347
  *         return False
  *     source = _maybe_coerce_freq(source)
  *     target = _maybe_coerce_freq(target)             # <<<<<<<<<<<<<<
  * 
  *     if _is_annual(target):
  */
-  __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__maybe_coerce_freq(__pyx_v_target); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 351, __pyx_L1_error)
+  __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__maybe_coerce_freq(__pyx_v_target); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 347, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF_SET(__pyx_v_target, __pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":353
+  /* "pandas/_libs/tslibs/frequencies.pyx":349
  *     target = _maybe_coerce_freq(target)
  * 
  *     if _is_annual(target):             # <<<<<<<<<<<<<<
  *         if _is_quarterly(source):
  *             return _quarter_months_conform(get_rule_month(source),
  */
-  if (!(likely(PyUnicode_CheckExact(__pyx_v_target))||((__pyx_v_target) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_target)->tp_name), 0))) __PYX_ERR(0, 353, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_v_target))||((__pyx_v_target) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_target)->tp_name), 0))) __PYX_ERR(0, 349, __pyx_L1_error)
   __pyx_t_1 = (__pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_annual(((PyObject*)__pyx_v_target)) != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":354
+    /* "pandas/_libs/tslibs/frequencies.pyx":350
  * 
  *     if _is_annual(target):
  *         if _is_quarterly(source):             # <<<<<<<<<<<<<<
  *             return _quarter_months_conform(get_rule_month(source),
  *                                            get_rule_month(target))
  */
-    if (!(likely(PyUnicode_CheckExact(__pyx_v_source))||((__pyx_v_source) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_source)->tp_name), 0))) __PYX_ERR(0, 354, __pyx_L1_error)
+    if (!(likely(PyUnicode_CheckExact(__pyx_v_source))||((__pyx_v_source) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_source)->tp_name), 0))) __PYX_ERR(0, 350, __pyx_L1_error)
     __pyx_t_1 = (__pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_quarterly(((PyObject*)__pyx_v_source)) != 0);
     if (__pyx_t_1) {
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":355
+      /* "pandas/_libs/tslibs/frequencies.pyx":351
  *     if _is_annual(target):
  *         if _is_quarterly(source):
  *             return _quarter_months_conform(get_rule_month(source),             # <<<<<<<<<<<<<<
@@ -4274,29 +4387,29 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
  *         return source in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(__pyx_v_source, 0, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 355, __pyx_L1_error)
+      __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(__pyx_v_source, 0, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 351, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      if (!(likely(PyUnicode_CheckExact(__pyx_t_4))||((__pyx_t_4) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_4)->tp_name), 0))) __PYX_ERR(0, 355, __pyx_L1_error)
+      if (!(likely(PyUnicode_CheckExact(__pyx_t_4))||((__pyx_t_4) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_4)->tp_name), 0))) __PYX_ERR(0, 351, __pyx_L1_error)
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":356
+      /* "pandas/_libs/tslibs/frequencies.pyx":352
  *         if _is_quarterly(source):
  *             return _quarter_months_conform(get_rule_month(source),
  *                                            get_rule_month(target))             # <<<<<<<<<<<<<<
  *         return source in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_quarterly(target):
  */
-      __pyx_t_5 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(__pyx_v_target, 0, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 356, __pyx_L1_error)
+      __pyx_t_5 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(__pyx_v_target, 0, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 352, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      if (!(likely(PyUnicode_CheckExact(__pyx_t_5))||((__pyx_t_5) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_5)->tp_name), 0))) __PYX_ERR(0, 356, __pyx_L1_error)
+      if (!(likely(PyUnicode_CheckExact(__pyx_t_5))||((__pyx_t_5) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_5)->tp_name), 0))) __PYX_ERR(0, 352, __pyx_L1_error)
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":355
+      /* "pandas/_libs/tslibs/frequencies.pyx":351
  *     if _is_annual(target):
  *         if _is_quarterly(source):
  *             return _quarter_months_conform(get_rule_month(source),             # <<<<<<<<<<<<<<
  *                                            get_rule_month(target))
  *         return source in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  */
-      __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_f_6pandas_5_libs_6tslibs_11frequencies__quarter_months_conform(((PyObject*)__pyx_t_4), ((PyObject*)__pyx_t_5))); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 355, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_f_6pandas_5_libs_6tslibs_11frequencies__quarter_months_conform(((PyObject*)__pyx_t_4), ((PyObject*)__pyx_t_5))); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 351, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -4304,7 +4417,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
       __pyx_t_6 = 0;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":354
+      /* "pandas/_libs/tslibs/frequencies.pyx":350
  * 
  *     if _is_annual(target):
  *         if _is_quarterly(source):             # <<<<<<<<<<<<<<
@@ -4313,7 +4426,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
  */
     }
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":357
+    /* "pandas/_libs/tslibs/frequencies.pyx":353
  *             return _quarter_months_conform(get_rule_month(source),
  *                                            get_rule_month(target))
  *         return source in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -4323,71 +4436,71 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_source);
     __pyx_t_6 = __pyx_v_source;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 353, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L8_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 353, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L8_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 353, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L8_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 353, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L8_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 353, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L8_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 353, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L8_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 353, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L8_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 353, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L8_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 353, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L8_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 353, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L8_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 357, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 353, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":353
+    /* "pandas/_libs/tslibs/frequencies.pyx":349
  *     target = _maybe_coerce_freq(target)
  * 
  *     if _is_annual(target):             # <<<<<<<<<<<<<<
@@ -4396,18 +4509,18 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":358
+  /* "pandas/_libs/tslibs/frequencies.pyx":354
  *                                            get_rule_month(target))
  *         return source in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_quarterly(target):             # <<<<<<<<<<<<<<
  *         return source in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_monthly(target):
  */
-  if (!(likely(PyUnicode_CheckExact(__pyx_v_target))||((__pyx_v_target) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_target)->tp_name), 0))) __PYX_ERR(0, 358, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_v_target))||((__pyx_v_target) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_target)->tp_name), 0))) __PYX_ERR(0, 354, __pyx_L1_error)
   __pyx_t_1 = (__pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_quarterly(((PyObject*)__pyx_v_target)) != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":359
+    /* "pandas/_libs/tslibs/frequencies.pyx":355
  *         return source in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_quarterly(target):
  *         return source in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -4417,71 +4530,71 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_source);
     __pyx_t_6 = __pyx_v_source;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 355, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L18_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 355, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L18_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 355, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L18_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 355, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L18_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 355, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L18_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 355, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L18_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 355, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L18_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 355, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L18_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 355, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L18_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 355, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L18_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 355, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":358
+    /* "pandas/_libs/tslibs/frequencies.pyx":354
  *                                            get_rule_month(target))
  *         return source in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_quarterly(target):             # <<<<<<<<<<<<<<
@@ -4490,18 +4603,18 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":360
+  /* "pandas/_libs/tslibs/frequencies.pyx":356
  *     elif _is_quarterly(target):
  *         return source in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_monthly(target):             # <<<<<<<<<<<<<<
  *         return source in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_weekly(target):
  */
-  if (!(likely(PyUnicode_CheckExact(__pyx_v_target))||((__pyx_v_target) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_target)->tp_name), 0))) __PYX_ERR(0, 360, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_v_target))||((__pyx_v_target) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_target)->tp_name), 0))) __PYX_ERR(0, 356, __pyx_L1_error)
   __pyx_t_1 = (__pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_monthly(((PyObject*)__pyx_v_target)) != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":361
+    /* "pandas/_libs/tslibs/frequencies.pyx":357
  *         return source in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_monthly(target):
  *         return source in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -4511,65 +4624,65 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_source);
     __pyx_t_6 = __pyx_v_source;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L28_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L28_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L28_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L28_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L28_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L28_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L28_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L28_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 357, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L28_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 361, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 357, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":360
+    /* "pandas/_libs/tslibs/frequencies.pyx":356
  *     elif _is_quarterly(target):
  *         return source in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_monthly(target):             # <<<<<<<<<<<<<<
@@ -4578,18 +4691,18 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":362
+  /* "pandas/_libs/tslibs/frequencies.pyx":358
  *     elif _is_monthly(target):
  *         return source in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_weekly(target):             # <<<<<<<<<<<<<<
  *         return source in {target, 'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'B':
  */
-  if (!(likely(PyUnicode_CheckExact(__pyx_v_target))||((__pyx_v_target) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_target)->tp_name), 0))) __PYX_ERR(0, 362, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_v_target))||((__pyx_v_target) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_target)->tp_name), 0))) __PYX_ERR(0, 358, __pyx_L1_error)
   __pyx_t_1 = (__pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_weekly(((PyObject*)__pyx_v_target)) != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":363
+    /* "pandas/_libs/tslibs/frequencies.pyx":359
  *         return source in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_weekly(target):
  *         return source in {target, 'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -4599,73 +4712,73 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_source);
     __pyx_t_6 = __pyx_v_source;
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_6, __pyx_v_target, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 363, __pyx_L1_error)
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_6, __pyx_v_target, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L37_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L37_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L37_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L37_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L37_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L37_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L37_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L37_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L37_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 359, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L37_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 359, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":362
+    /* "pandas/_libs/tslibs/frequencies.pyx":358
  *     elif _is_monthly(target):
  *         return source in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_weekly(target):             # <<<<<<<<<<<<<<
@@ -4674,17 +4787,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":364
+  /* "pandas/_libs/tslibs/frequencies.pyx":360
  *     elif _is_weekly(target):
  *         return source in {target, 'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'B':             # <<<<<<<<<<<<<<
  *         return source in {'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'C':
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 360, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":365
+    /* "pandas/_libs/tslibs/frequencies.pyx":361
  *         return source in {target, 'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'B':
  *         return source in {'B', 'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -4694,53 +4807,53 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_source);
     __pyx_t_6 = __pyx_v_source;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L47_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L47_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L47_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L47_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L47_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L47_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 361, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L47_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 361, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":364
+    /* "pandas/_libs/tslibs/frequencies.pyx":360
  *     elif _is_weekly(target):
  *         return source in {target, 'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'B':             # <<<<<<<<<<<<<<
@@ -4749,17 +4862,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":366
+  /* "pandas/_libs/tslibs/frequencies.pyx":362
  *     elif target == 'B':
  *         return source in {'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'C':             # <<<<<<<<<<<<<<
  *         return source in {'C', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'D':
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 366, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 362, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":367
+    /* "pandas/_libs/tslibs/frequencies.pyx":363
  *         return source in {'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'C':
  *         return source in {'C', 'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -4769,53 +4882,53 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_source);
     __pyx_t_6 = __pyx_v_source;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 367, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L54_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 367, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L54_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 367, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L54_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 367, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L54_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 367, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L54_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 367, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L54_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 367, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 363, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L54_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 367, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 363, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":366
+    /* "pandas/_libs/tslibs/frequencies.pyx":362
  *     elif target == 'B':
  *         return source in {'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'C':             # <<<<<<<<<<<<<<
@@ -4824,17 +4937,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":368
+  /* "pandas/_libs/tslibs/frequencies.pyx":364
  *     elif target == 'C':
  *         return source in {'C', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'D':             # <<<<<<<<<<<<<<
  *         return source in {'D', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'H':
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 368, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 364, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":369
+    /* "pandas/_libs/tslibs/frequencies.pyx":365
  *         return source in {'C', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'D':
  *         return source in {'D', 'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -4844,53 +4957,53 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_source);
     __pyx_t_6 = __pyx_v_source;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 365, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L61_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 365, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L61_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 365, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L61_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 365, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L61_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 365, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L61_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 365, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L61_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 365, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L61_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 369, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 365, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":368
+    /* "pandas/_libs/tslibs/frequencies.pyx":364
  *     elif target == 'C':
  *         return source in {'C', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'D':             # <<<<<<<<<<<<<<
@@ -4899,17 +5012,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":370
+  /* "pandas/_libs/tslibs/frequencies.pyx":366
  *     elif target == 'D':
  *         return source in {'D', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'H':             # <<<<<<<<<<<<<<
  *         return source in {'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'T':
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 370, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 366, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":371
+    /* "pandas/_libs/tslibs/frequencies.pyx":367
  *         return source in {'D', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'H':
  *         return source in {'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -4919,47 +5032,47 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_source);
     __pyx_t_6 = __pyx_v_source;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 371, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 367, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L68_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 371, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 367, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L68_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 371, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 367, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L68_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 371, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 367, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L68_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 371, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 367, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L68_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 371, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 367, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L68_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 371, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 367, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":370
+    /* "pandas/_libs/tslibs/frequencies.pyx":366
  *     elif target == 'D':
  *         return source in {'D', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'H':             # <<<<<<<<<<<<<<
@@ -4968,17 +5081,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":372
+  /* "pandas/_libs/tslibs/frequencies.pyx":368
  *     elif target == 'H':
  *         return source in {'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'T':             # <<<<<<<<<<<<<<
  *         return source in {'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'S':
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 372, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 368, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":373
+    /* "pandas/_libs/tslibs/frequencies.pyx":369
  *         return source in {'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'T':
  *         return source in {'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -4988,41 +5101,41 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_source);
     __pyx_t_6 = __pyx_v_source;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 373, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 369, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L74_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 373, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 369, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L74_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 373, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 369, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L74_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 373, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 369, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L74_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 373, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 369, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L74_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 373, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 369, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":372
+    /* "pandas/_libs/tslibs/frequencies.pyx":368
  *     elif target == 'H':
  *         return source in {'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'T':             # <<<<<<<<<<<<<<
@@ -5031,17 +5144,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":374
+  /* "pandas/_libs/tslibs/frequencies.pyx":370
  *     elif target == 'T':
  *         return source in {'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'S':             # <<<<<<<<<<<<<<
  *         return source in {'S', 'L', 'U', 'N'}
  *     elif target == 'L':
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 370, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":375
+    /* "pandas/_libs/tslibs/frequencies.pyx":371
  *         return source in {'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'S':
  *         return source in {'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -5051,35 +5164,35 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_source);
     __pyx_t_6 = __pyx_v_source;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 375, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 371, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L79_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 375, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 371, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L79_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 375, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 371, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L79_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 375, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 371, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L79_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 375, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 371, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":374
+    /* "pandas/_libs/tslibs/frequencies.pyx":370
  *     elif target == 'T':
  *         return source in {'T', 'S', 'L', 'U', 'N'}
  *     elif target == 'S':             # <<<<<<<<<<<<<<
@@ -5088,17 +5201,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":376
+  /* "pandas/_libs/tslibs/frequencies.pyx":372
  *     elif target == 'S':
  *         return source in {'S', 'L', 'U', 'N'}
  *     elif target == 'L':             # <<<<<<<<<<<<<<
  *         return source in {'L', 'U', 'N'}
  *     elif target == 'U':
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 376, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 372, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":377
+    /* "pandas/_libs/tslibs/frequencies.pyx":373
  *         return source in {'S', 'L', 'U', 'N'}
  *     elif target == 'L':
  *         return source in {'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -5108,29 +5221,29 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_source);
     __pyx_t_6 = __pyx_v_source;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 377, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 373, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L83_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 377, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 373, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L83_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 377, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 373, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L83_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 377, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 373, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":376
+    /* "pandas/_libs/tslibs/frequencies.pyx":372
  *     elif target == 'S':
  *         return source in {'S', 'L', 'U', 'N'}
  *     elif target == 'L':             # <<<<<<<<<<<<<<
@@ -5139,17 +5252,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":378
+  /* "pandas/_libs/tslibs/frequencies.pyx":374
  *     elif target == 'L':
  *         return source in {'L', 'U', 'N'}
  *     elif target == 'U':             # <<<<<<<<<<<<<<
  *         return source in {'U', 'N'}
  *     elif target == 'N':
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 378, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 374, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":379
+    /* "pandas/_libs/tslibs/frequencies.pyx":375
  *         return source in {'L', 'U', 'N'}
  *     elif target == 'U':
  *         return source in {'U', 'N'}             # <<<<<<<<<<<<<<
@@ -5159,23 +5272,23 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_source);
     __pyx_t_6 = __pyx_v_source;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 379, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 375, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L86_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 379, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 375, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L86_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 379, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 375, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":378
+    /* "pandas/_libs/tslibs/frequencies.pyx":374
  *     elif target == 'L':
  *         return source in {'L', 'U', 'N'}
  *     elif target == 'U':             # <<<<<<<<<<<<<<
@@ -5184,17 +5297,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":380
+  /* "pandas/_libs/tslibs/frequencies.pyx":376
  *     elif target == 'U':
  *         return source in {'U', 'N'}
  *     elif target == 'N':             # <<<<<<<<<<<<<<
  *         return source in {'N'}
  * 
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 380, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_target, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 376, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":381
+    /* "pandas/_libs/tslibs/frequencies.pyx":377
  *         return source in {'U', 'N'}
  *     elif target == 'N':
  *         return source in {'N'}             # <<<<<<<<<<<<<<
@@ -5204,15 +5317,15 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_source);
     __pyx_t_6 = __pyx_v_source;
-    __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 377, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 377, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":380
+    /* "pandas/_libs/tslibs/frequencies.pyx":376
  *     elif target == 'U':
  *         return source in {'U', 'N'}
  *     elif target == 'N':             # <<<<<<<<<<<<<<
@@ -5221,7 +5334,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":331
+  /* "pandas/_libs/tslibs/frequencies.pyx":327
  * # Frequency comparison
  * 
  * def is_subperiod(source, target) -> bint:             # <<<<<<<<<<<<<<
@@ -5246,7 +5359,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_14is_subperiod(CY
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/frequencies.pyx":384
+/* "pandas/_libs/tslibs/frequencies.pyx":380
  * 
  * 
  * def is_superperiod(source, target) -> bint:             # <<<<<<<<<<<<<<
@@ -5290,11 +5403,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_11frequencies_17is_superperiod(
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_target)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("is_superperiod", 1, 2, 2, 1); __PYX_ERR(0, 384, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("is_superperiod", 1, 2, 2, 1); __PYX_ERR(0, 380, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "is_superperiod") < 0)) __PYX_ERR(0, 384, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "is_superperiod") < 0)) __PYX_ERR(0, 380, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -5307,7 +5420,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_11frequencies_17is_superperiod(
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("is_superperiod", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 384, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("is_superperiod", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 380, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.frequencies.is_superperiod", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -5338,7 +5451,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
   __Pyx_INCREF(__pyx_v_source);
   __Pyx_INCREF(__pyx_v_target);
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":400
+  /* "pandas/_libs/tslibs/frequencies.pyx":396
  *     is_superperiod : boolean
  *     """
  *     if target is None or source is None:             # <<<<<<<<<<<<<<
@@ -5358,7 +5471,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":401
+    /* "pandas/_libs/tslibs/frequencies.pyx":397
  *     """
  *     if target is None or source is None:
  *         return False             # <<<<<<<<<<<<<<
@@ -5370,7 +5483,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
     __pyx_r = Py_False;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":400
+    /* "pandas/_libs/tslibs/frequencies.pyx":396
  *     is_superperiod : boolean
  *     """
  *     if target is None or source is None:             # <<<<<<<<<<<<<<
@@ -5379,53 +5492,53 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":402
+  /* "pandas/_libs/tslibs/frequencies.pyx":398
  *     if target is None or source is None:
  *         return False
  *     source = _maybe_coerce_freq(source)             # <<<<<<<<<<<<<<
  *     target = _maybe_coerce_freq(target)
  * 
  */
-  __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__maybe_coerce_freq(__pyx_v_source); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 402, __pyx_L1_error)
+  __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__maybe_coerce_freq(__pyx_v_source); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 398, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF_SET(__pyx_v_source, __pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":403
+  /* "pandas/_libs/tslibs/frequencies.pyx":399
  *         return False
  *     source = _maybe_coerce_freq(source)
  *     target = _maybe_coerce_freq(target)             # <<<<<<<<<<<<<<
  * 
  *     if _is_annual(source):
  */
-  __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__maybe_coerce_freq(__pyx_v_target); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 403, __pyx_L1_error)
+  __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies__maybe_coerce_freq(__pyx_v_target); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 399, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF_SET(__pyx_v_target, __pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":405
+  /* "pandas/_libs/tslibs/frequencies.pyx":401
  *     target = _maybe_coerce_freq(target)
  * 
  *     if _is_annual(source):             # <<<<<<<<<<<<<<
  *         if _is_annual(target):
  *             return get_rule_month(source) == get_rule_month(target)
  */
-  if (!(likely(PyUnicode_CheckExact(__pyx_v_source))||((__pyx_v_source) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_source)->tp_name), 0))) __PYX_ERR(0, 405, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_v_source))||((__pyx_v_source) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_source)->tp_name), 0))) __PYX_ERR(0, 401, __pyx_L1_error)
   __pyx_t_1 = (__pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_annual(((PyObject*)__pyx_v_source)) != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":406
+    /* "pandas/_libs/tslibs/frequencies.pyx":402
  * 
  *     if _is_annual(source):
  *         if _is_annual(target):             # <<<<<<<<<<<<<<
  *             return get_rule_month(source) == get_rule_month(target)
  * 
  */
-    if (!(likely(PyUnicode_CheckExact(__pyx_v_target))||((__pyx_v_target) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_target)->tp_name), 0))) __PYX_ERR(0, 406, __pyx_L1_error)
+    if (!(likely(PyUnicode_CheckExact(__pyx_v_target))||((__pyx_v_target) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_target)->tp_name), 0))) __PYX_ERR(0, 402, __pyx_L1_error)
     __pyx_t_1 = (__pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_annual(((PyObject*)__pyx_v_target)) != 0);
     if (__pyx_t_1) {
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":407
+      /* "pandas/_libs/tslibs/frequencies.pyx":403
  *     if _is_annual(source):
  *         if _is_annual(target):
  *             return get_rule_month(source) == get_rule_month(target)             # <<<<<<<<<<<<<<
@@ -5433,18 +5546,18 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
  *         if _is_quarterly(target):
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(__pyx_v_source, 0, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 407, __pyx_L1_error)
+      __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(__pyx_v_source, 0, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 403, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(__pyx_v_target, 0, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 407, __pyx_L1_error)
+      __pyx_t_5 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(__pyx_v_target, 0, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 403, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = PyObject_RichCompare(__pyx_t_4, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 407, __pyx_L1_error)
+      __pyx_t_6 = PyObject_RichCompare(__pyx_t_4, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 403, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_r = __pyx_t_6;
       __pyx_t_6 = 0;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":406
+      /* "pandas/_libs/tslibs/frequencies.pyx":402
  * 
  *     if _is_annual(source):
  *         if _is_annual(target):             # <<<<<<<<<<<<<<
@@ -5453,42 +5566,42 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
  */
     }
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":409
+    /* "pandas/_libs/tslibs/frequencies.pyx":405
  *             return get_rule_month(source) == get_rule_month(target)
  * 
  *         if _is_quarterly(target):             # <<<<<<<<<<<<<<
  *             smonth = get_rule_month(source)
  *             tmonth = get_rule_month(target)
  */
-    if (!(likely(PyUnicode_CheckExact(__pyx_v_target))||((__pyx_v_target) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_target)->tp_name), 0))) __PYX_ERR(0, 409, __pyx_L1_error)
+    if (!(likely(PyUnicode_CheckExact(__pyx_v_target))||((__pyx_v_target) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_target)->tp_name), 0))) __PYX_ERR(0, 405, __pyx_L1_error)
     __pyx_t_1 = (__pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_quarterly(((PyObject*)__pyx_v_target)) != 0);
     if (__pyx_t_1) {
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":410
+      /* "pandas/_libs/tslibs/frequencies.pyx":406
  * 
  *         if _is_quarterly(target):
  *             smonth = get_rule_month(source)             # <<<<<<<<<<<<<<
  *             tmonth = get_rule_month(target)
  *             return _quarter_months_conform(smonth, tmonth)
  */
-      __pyx_t_6 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(__pyx_v_source, 0, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 410, __pyx_L1_error)
+      __pyx_t_6 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(__pyx_v_source, 0, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 406, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __pyx_v_smonth = __pyx_t_6;
       __pyx_t_6 = 0;
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":411
+      /* "pandas/_libs/tslibs/frequencies.pyx":407
  *         if _is_quarterly(target):
  *             smonth = get_rule_month(source)
  *             tmonth = get_rule_month(target)             # <<<<<<<<<<<<<<
  *             return _quarter_months_conform(smonth, tmonth)
  *         return target in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  */
-      __pyx_t_6 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(__pyx_v_target, 0, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 411, __pyx_L1_error)
+      __pyx_t_6 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(__pyx_v_target, 0, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 407, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __pyx_v_tmonth = __pyx_t_6;
       __pyx_t_6 = 0;
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":412
+      /* "pandas/_libs/tslibs/frequencies.pyx":408
  *             smonth = get_rule_month(source)
  *             tmonth = get_rule_month(target)
  *             return _quarter_months_conform(smonth, tmonth)             # <<<<<<<<<<<<<<
@@ -5496,15 +5609,15 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
  *     elif _is_quarterly(source):
  */
       __Pyx_XDECREF(__pyx_r);
-      if (!(likely(PyUnicode_CheckExact(__pyx_v_smonth))||((__pyx_v_smonth) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_smonth)->tp_name), 0))) __PYX_ERR(0, 412, __pyx_L1_error)
-      if (!(likely(PyUnicode_CheckExact(__pyx_v_tmonth))||((__pyx_v_tmonth) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_tmonth)->tp_name), 0))) __PYX_ERR(0, 412, __pyx_L1_error)
-      __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_f_6pandas_5_libs_6tslibs_11frequencies__quarter_months_conform(((PyObject*)__pyx_v_smonth), ((PyObject*)__pyx_v_tmonth))); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 412, __pyx_L1_error)
+      if (!(likely(PyUnicode_CheckExact(__pyx_v_smonth))||((__pyx_v_smonth) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_smonth)->tp_name), 0))) __PYX_ERR(0, 408, __pyx_L1_error)
+      if (!(likely(PyUnicode_CheckExact(__pyx_v_tmonth))||((__pyx_v_tmonth) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_tmonth)->tp_name), 0))) __PYX_ERR(0, 408, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_f_6pandas_5_libs_6tslibs_11frequencies__quarter_months_conform(((PyObject*)__pyx_v_smonth), ((PyObject*)__pyx_v_tmonth))); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 408, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __pyx_r = __pyx_t_6;
       __pyx_t_6 = 0;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/frequencies.pyx":409
+      /* "pandas/_libs/tslibs/frequencies.pyx":405
  *             return get_rule_month(source) == get_rule_month(target)
  * 
  *         if _is_quarterly(target):             # <<<<<<<<<<<<<<
@@ -5513,7 +5626,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
  */
     }
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":413
+    /* "pandas/_libs/tslibs/frequencies.pyx":409
  *             tmonth = get_rule_month(target)
  *             return _quarter_months_conform(smonth, tmonth)
  *         return target in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -5523,71 +5636,71 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_target);
     __pyx_t_6 = __pyx_v_target;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 409, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 409, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 409, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 409, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 409, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 409, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 409, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 409, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 409, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 409, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L9_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 413, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 409, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":405
+    /* "pandas/_libs/tslibs/frequencies.pyx":401
  *     target = _maybe_coerce_freq(target)
  * 
  *     if _is_annual(source):             # <<<<<<<<<<<<<<
@@ -5596,18 +5709,18 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":414
+  /* "pandas/_libs/tslibs/frequencies.pyx":410
  *             return _quarter_months_conform(smonth, tmonth)
  *         return target in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_quarterly(source):             # <<<<<<<<<<<<<<
  *         return target in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_monthly(source):
  */
-  if (!(likely(PyUnicode_CheckExact(__pyx_v_source))||((__pyx_v_source) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_source)->tp_name), 0))) __PYX_ERR(0, 414, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_v_source))||((__pyx_v_source) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_source)->tp_name), 0))) __PYX_ERR(0, 410, __pyx_L1_error)
   __pyx_t_1 = (__pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_quarterly(((PyObject*)__pyx_v_source)) != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":415
+    /* "pandas/_libs/tslibs/frequencies.pyx":411
  *         return target in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_quarterly(source):
  *         return target in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -5617,71 +5730,71 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_target);
     __pyx_t_6 = __pyx_v_target;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 411, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L19_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 411, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L19_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 411, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L19_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 411, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L19_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 411, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L19_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 411, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L19_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 411, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L19_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 411, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L19_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 411, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L19_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 411, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L19_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 415, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 411, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":414
+    /* "pandas/_libs/tslibs/frequencies.pyx":410
  *             return _quarter_months_conform(smonth, tmonth)
  *         return target in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_quarterly(source):             # <<<<<<<<<<<<<<
@@ -5690,18 +5803,18 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":416
+  /* "pandas/_libs/tslibs/frequencies.pyx":412
  *     elif _is_quarterly(source):
  *         return target in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_monthly(source):             # <<<<<<<<<<<<<<
  *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_weekly(source):
  */
-  if (!(likely(PyUnicode_CheckExact(__pyx_v_source))||((__pyx_v_source) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_source)->tp_name), 0))) __PYX_ERR(0, 416, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_v_source))||((__pyx_v_source) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_source)->tp_name), 0))) __PYX_ERR(0, 412, __pyx_L1_error)
   __pyx_t_1 = (__pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_monthly(((PyObject*)__pyx_v_source)) != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":417
+    /* "pandas/_libs/tslibs/frequencies.pyx":413
  *         return target in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_monthly(source):
  *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -5711,65 +5824,65 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_target);
     __pyx_t_6 = __pyx_v_target;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L29_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L29_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L29_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L29_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L29_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L29_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L29_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L29_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L29_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 417, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 413, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":416
+    /* "pandas/_libs/tslibs/frequencies.pyx":412
  *     elif _is_quarterly(source):
  *         return target in {'D', 'C', 'B', 'M', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_monthly(source):             # <<<<<<<<<<<<<<
@@ -5778,18 +5891,18 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":418
+  /* "pandas/_libs/tslibs/frequencies.pyx":414
  *     elif _is_monthly(source):
  *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_weekly(source):             # <<<<<<<<<<<<<<
  *         return target in {source, 'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif source == 'B':
  */
-  if (!(likely(PyUnicode_CheckExact(__pyx_v_source))||((__pyx_v_source) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_source)->tp_name), 0))) __PYX_ERR(0, 418, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_v_source))||((__pyx_v_source) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_source)->tp_name), 0))) __PYX_ERR(0, 414, __pyx_L1_error)
   __pyx_t_1 = (__pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_weekly(((PyObject*)__pyx_v_source)) != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":419
+    /* "pandas/_libs/tslibs/frequencies.pyx":415
  *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_weekly(source):
  *         return target in {source, 'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -5799,73 +5912,73 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_target);
     __pyx_t_6 = __pyx_v_target;
-    __pyx_t_5 = PyObject_RichCompare(__pyx_t_6, __pyx_v_source, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 419, __pyx_L1_error)
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_6, __pyx_v_source, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 415, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L38_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L38_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L38_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L38_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L38_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L38_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L38_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L38_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L38_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 415, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L38_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 415, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":418
+    /* "pandas/_libs/tslibs/frequencies.pyx":414
  *     elif _is_monthly(source):
  *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif _is_weekly(source):             # <<<<<<<<<<<<<<
@@ -5874,22 +5987,196 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":420
+  /* "pandas/_libs/tslibs/frequencies.pyx":416
  *     elif _is_weekly(source):
  *         return target in {source, 'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif source == 'B':             # <<<<<<<<<<<<<<
  *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif source == 'C':
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 420, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 416, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":421
+    /* "pandas/_libs/tslibs/frequencies.pyx":417
  *         return target in {source, 'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif source == 'B':
  *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
  *     elif source == 'C':
  *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
+ */
+    __Pyx_XDECREF(__pyx_r);
+    __Pyx_INCREF(__pyx_v_target);
+    __pyx_t_6 = __pyx_v_target;
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    if (!__pyx_t_2) {
+    } else {
+      __pyx_t_1 = __pyx_t_2;
+      goto __pyx_L48_bool_binop_done;
+    }
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    if (!__pyx_t_2) {
+    } else {
+      __pyx_t_1 = __pyx_t_2;
+      goto __pyx_L48_bool_binop_done;
+    }
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    if (!__pyx_t_2) {
+    } else {
+      __pyx_t_1 = __pyx_t_2;
+      goto __pyx_L48_bool_binop_done;
+    }
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    if (!__pyx_t_2) {
+    } else {
+      __pyx_t_1 = __pyx_t_2;
+      goto __pyx_L48_bool_binop_done;
+    }
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    if (!__pyx_t_2) {
+    } else {
+      __pyx_t_1 = __pyx_t_2;
+      goto __pyx_L48_bool_binop_done;
+    }
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    if (!__pyx_t_2) {
+    } else {
+      __pyx_t_1 = __pyx_t_2;
+      goto __pyx_L48_bool_binop_done;
+    }
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    if (!__pyx_t_2) {
+    } else {
+      __pyx_t_1 = __pyx_t_2;
+      goto __pyx_L48_bool_binop_done;
+    }
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    if (!__pyx_t_2) {
+    } else {
+      __pyx_t_1 = __pyx_t_2;
+      goto __pyx_L48_bool_binop_done;
+    }
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 417, __pyx_L1_error)
+    __pyx_t_1 = __pyx_t_2;
+    __pyx_L48_bool_binop_done:;
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 417, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_r = __pyx_t_6;
+    __pyx_t_6 = 0;
+    goto __pyx_L0;
+
+    /* "pandas/_libs/tslibs/frequencies.pyx":416
+ *     elif _is_weekly(source):
+ *         return target in {source, 'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
+ *     elif source == 'B':             # <<<<<<<<<<<<<<
+ *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
+ *     elif source == 'C':
+ */
+  }
+
+  /* "pandas/_libs/tslibs/frequencies.pyx":418
+ *     elif source == 'B':
+ *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
+ *     elif source == 'C':             # <<<<<<<<<<<<<<
+ *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
+ *     elif source == 'D':
+ */
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 418, __pyx_L1_error)
+  if (__pyx_t_1) {
+
+    /* "pandas/_libs/tslibs/frequencies.pyx":419
+ *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
+ *     elif source == 'C':
+ *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
+ *     elif source == 'D':
+ *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
+ */
+    __Pyx_XDECREF(__pyx_r);
+    __Pyx_INCREF(__pyx_v_target);
+    __pyx_t_6 = __pyx_v_target;
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    if (!__pyx_t_2) {
+    } else {
+      __pyx_t_1 = __pyx_t_2;
+      goto __pyx_L57_bool_binop_done;
+    }
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    if (!__pyx_t_2) {
+    } else {
+      __pyx_t_1 = __pyx_t_2;
+      goto __pyx_L57_bool_binop_done;
+    }
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    if (!__pyx_t_2) {
+    } else {
+      __pyx_t_1 = __pyx_t_2;
+      goto __pyx_L57_bool_binop_done;
+    }
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    if (!__pyx_t_2) {
+    } else {
+      __pyx_t_1 = __pyx_t_2;
+      goto __pyx_L57_bool_binop_done;
+    }
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    if (!__pyx_t_2) {
+    } else {
+      __pyx_t_1 = __pyx_t_2;
+      goto __pyx_L57_bool_binop_done;
+    }
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    if (!__pyx_t_2) {
+    } else {
+      __pyx_t_1 = __pyx_t_2;
+      goto __pyx_L57_bool_binop_done;
+    }
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    if (!__pyx_t_2) {
+    } else {
+      __pyx_t_1 = __pyx_t_2;
+      goto __pyx_L57_bool_binop_done;
+    }
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    if (!__pyx_t_2) {
+    } else {
+      __pyx_t_1 = __pyx_t_2;
+      goto __pyx_L57_bool_binop_done;
+    }
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __pyx_t_1 = __pyx_t_2;
+    __pyx_L57_bool_binop_done:;
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 419, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_r = __pyx_t_6;
+    __pyx_t_6 = 0;
+    goto __pyx_L0;
+
+    /* "pandas/_libs/tslibs/frequencies.pyx":418
+ *     elif source == 'B':
+ *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
+ *     elif source == 'C':             # <<<<<<<<<<<<<<
+ *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
+ *     elif source == 'D':
+ */
+  }
+
+  /* "pandas/_libs/tslibs/frequencies.pyx":420
+ *     elif source == 'C':
+ *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
+ *     elif source == 'D':             # <<<<<<<<<<<<<<
+ *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
+ *     elif source == 'H':
+ */
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 420, __pyx_L1_error)
+  if (__pyx_t_1) {
+
+    /* "pandas/_libs/tslibs/frequencies.pyx":421
+ *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
+ *     elif source == 'D':
+ *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
+ *     elif source == 'H':
+ *         return target in {'H', 'T', 'S', 'L', 'U', 'N'}
  */
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_target);
@@ -5898,53 +6185,53 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L48_bool_binop_done;
+      goto __pyx_L66_bool_binop_done;
     }
     __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 421, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L48_bool_binop_done;
+      goto __pyx_L66_bool_binop_done;
     }
     __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 421, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L48_bool_binop_done;
+      goto __pyx_L66_bool_binop_done;
     }
     __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 421, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L48_bool_binop_done;
+      goto __pyx_L66_bool_binop_done;
     }
     __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 421, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L48_bool_binop_done;
+      goto __pyx_L66_bool_binop_done;
     }
     __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 421, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L48_bool_binop_done;
+      goto __pyx_L66_bool_binop_done;
     }
     __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 421, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L48_bool_binop_done;
+      goto __pyx_L66_bool_binop_done;
     }
     __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 421, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L48_bool_binop_done;
+      goto __pyx_L66_bool_binop_done;
     }
     __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 421, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
-    __pyx_L48_bool_binop_done:;
+    __pyx_L66_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 421, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
@@ -5953,199 +6240,25 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
     goto __pyx_L0;
 
     /* "pandas/_libs/tslibs/frequencies.pyx":420
- *     elif _is_weekly(source):
- *         return target in {source, 'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
- *     elif source == 'B':             # <<<<<<<<<<<<<<
- *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif source == 'C':
+ *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
+ *     elif source == 'D':             # <<<<<<<<<<<<<<
+ *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
+ *     elif source == 'H':
  */
   }
 
   /* "pandas/_libs/tslibs/frequencies.pyx":422
- *     elif source == 'B':
- *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
- *     elif source == 'C':             # <<<<<<<<<<<<<<
- *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
- *     elif source == 'D':
- */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 422, __pyx_L1_error)
-  if (__pyx_t_1) {
-
-    /* "pandas/_libs/tslibs/frequencies.pyx":423
- *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
- *     elif source == 'C':
- *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
- *     elif source == 'D':
- *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
- */
-    __Pyx_XDECREF(__pyx_r);
-    __Pyx_INCREF(__pyx_v_target);
-    __pyx_t_6 = __pyx_v_target;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 423, __pyx_L1_error)
-    if (!__pyx_t_2) {
-    } else {
-      __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L57_bool_binop_done;
-    }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 423, __pyx_L1_error)
-    if (!__pyx_t_2) {
-    } else {
-      __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L57_bool_binop_done;
-    }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 423, __pyx_L1_error)
-    if (!__pyx_t_2) {
-    } else {
-      __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L57_bool_binop_done;
-    }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 423, __pyx_L1_error)
-    if (!__pyx_t_2) {
-    } else {
-      __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L57_bool_binop_done;
-    }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 423, __pyx_L1_error)
-    if (!__pyx_t_2) {
-    } else {
-      __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L57_bool_binop_done;
-    }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 423, __pyx_L1_error)
-    if (!__pyx_t_2) {
-    } else {
-      __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L57_bool_binop_done;
-    }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 423, __pyx_L1_error)
-    if (!__pyx_t_2) {
-    } else {
-      __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L57_bool_binop_done;
-    }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 423, __pyx_L1_error)
-    if (!__pyx_t_2) {
-    } else {
-      __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L57_bool_binop_done;
-    }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 423, __pyx_L1_error)
-    __pyx_t_1 = __pyx_t_2;
-    __pyx_L57_bool_binop_done:;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 423, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_r = __pyx_t_6;
-    __pyx_t_6 = 0;
-    goto __pyx_L0;
-
-    /* "pandas/_libs/tslibs/frequencies.pyx":422
- *     elif source == 'B':
- *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
- *     elif source == 'C':             # <<<<<<<<<<<<<<
- *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
- *     elif source == 'D':
- */
-  }
-
-  /* "pandas/_libs/tslibs/frequencies.pyx":424
- *     elif source == 'C':
- *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
- *     elif source == 'D':             # <<<<<<<<<<<<<<
- *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
- *     elif source == 'H':
- */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 424, __pyx_L1_error)
-  if (__pyx_t_1) {
-
-    /* "pandas/_libs/tslibs/frequencies.pyx":425
- *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
- *     elif source == 'D':
- *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
- *     elif source == 'H':
- *         return target in {'H', 'T', 'S', 'L', 'U', 'N'}
- */
-    __Pyx_XDECREF(__pyx_r);
-    __Pyx_INCREF(__pyx_v_target);
-    __pyx_t_6 = __pyx_v_target;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 425, __pyx_L1_error)
-    if (!__pyx_t_2) {
-    } else {
-      __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L66_bool_binop_done;
-    }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_C, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 425, __pyx_L1_error)
-    if (!__pyx_t_2) {
-    } else {
-      __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L66_bool_binop_done;
-    }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_B, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 425, __pyx_L1_error)
-    if (!__pyx_t_2) {
-    } else {
-      __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L66_bool_binop_done;
-    }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 425, __pyx_L1_error)
-    if (!__pyx_t_2) {
-    } else {
-      __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L66_bool_binop_done;
-    }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 425, __pyx_L1_error)
-    if (!__pyx_t_2) {
-    } else {
-      __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L66_bool_binop_done;
-    }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 425, __pyx_L1_error)
-    if (!__pyx_t_2) {
-    } else {
-      __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L66_bool_binop_done;
-    }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 425, __pyx_L1_error)
-    if (!__pyx_t_2) {
-    } else {
-      __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L66_bool_binop_done;
-    }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 425, __pyx_L1_error)
-    if (!__pyx_t_2) {
-    } else {
-      __pyx_t_1 = __pyx_t_2;
-      goto __pyx_L66_bool_binop_done;
-    }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 425, __pyx_L1_error)
-    __pyx_t_1 = __pyx_t_2;
-    __pyx_L66_bool_binop_done:;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 425, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_r = __pyx_t_6;
-    __pyx_t_6 = 0;
-    goto __pyx_L0;
-
-    /* "pandas/_libs/tslibs/frequencies.pyx":424
- *     elif source == 'C':
- *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
- *     elif source == 'D':             # <<<<<<<<<<<<<<
- *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
- *     elif source == 'H':
- */
-  }
-
-  /* "pandas/_libs/tslibs/frequencies.pyx":426
  *     elif source == 'D':
  *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif source == 'H':             # <<<<<<<<<<<<<<
  *         return target in {'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif source == 'T':
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 426, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 422, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":427
+    /* "pandas/_libs/tslibs/frequencies.pyx":423
  *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif source == 'H':
  *         return target in {'H', 'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -6155,47 +6268,47 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_target);
     __pyx_t_6 = __pyx_v_target;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 427, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 423, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L75_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 427, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 423, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L75_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 427, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 423, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L75_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 427, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 423, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L75_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 427, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 423, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L75_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 427, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 423, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L75_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 427, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 423, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":426
+    /* "pandas/_libs/tslibs/frequencies.pyx":422
  *     elif source == 'D':
  *         return target in {'D', 'C', 'B', 'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif source == 'H':             # <<<<<<<<<<<<<<
@@ -6204,17 +6317,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":428
+  /* "pandas/_libs/tslibs/frequencies.pyx":424
  *     elif source == 'H':
  *         return target in {'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif source == 'T':             # <<<<<<<<<<<<<<
  *         return target in {'T', 'S', 'L', 'U', 'N'}
  *     elif source == 'S':
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 428, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 424, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":429
+    /* "pandas/_libs/tslibs/frequencies.pyx":425
  *         return target in {'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif source == 'T':
  *         return target in {'T', 'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -6224,41 +6337,41 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_target);
     __pyx_t_6 = __pyx_v_target;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 429, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 425, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L81_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 429, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 425, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L81_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 429, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 425, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L81_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 429, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 425, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L81_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 429, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 425, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L81_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 429, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 425, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":428
+    /* "pandas/_libs/tslibs/frequencies.pyx":424
  *     elif source == 'H':
  *         return target in {'H', 'T', 'S', 'L', 'U', 'N'}
  *     elif source == 'T':             # <<<<<<<<<<<<<<
@@ -6267,17 +6380,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":430
+  /* "pandas/_libs/tslibs/frequencies.pyx":426
  *     elif source == 'T':
  *         return target in {'T', 'S', 'L', 'U', 'N'}
  *     elif source == 'S':             # <<<<<<<<<<<<<<
  *         return target in {'S', 'L', 'U', 'N'}
  *     elif source == 'L':
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 430, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 426, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":431
+    /* "pandas/_libs/tslibs/frequencies.pyx":427
  *         return target in {'T', 'S', 'L', 'U', 'N'}
  *     elif source == 'S':
  *         return target in {'S', 'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -6287,35 +6400,35 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_target);
     __pyx_t_6 = __pyx_v_target;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 431, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 427, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L86_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 431, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 427, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L86_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 431, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 427, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L86_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 431, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 427, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L86_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 431, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 427, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":430
+    /* "pandas/_libs/tslibs/frequencies.pyx":426
  *     elif source == 'T':
  *         return target in {'T', 'S', 'L', 'U', 'N'}
  *     elif source == 'S':             # <<<<<<<<<<<<<<
@@ -6324,17 +6437,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":432
+  /* "pandas/_libs/tslibs/frequencies.pyx":428
  *     elif source == 'S':
  *         return target in {'S', 'L', 'U', 'N'}
  *     elif source == 'L':             # <<<<<<<<<<<<<<
  *         return target in {'L', 'U', 'N'}
  *     elif source == 'U':
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 432, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 428, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":433
+    /* "pandas/_libs/tslibs/frequencies.pyx":429
  *         return target in {'S', 'L', 'U', 'N'}
  *     elif source == 'L':
  *         return target in {'L', 'U', 'N'}             # <<<<<<<<<<<<<<
@@ -6344,29 +6457,29 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_target);
     __pyx_t_6 = __pyx_v_target;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 433, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_L, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 429, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L90_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 433, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 429, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L90_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 433, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 429, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L90_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 433, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 429, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":432
+    /* "pandas/_libs/tslibs/frequencies.pyx":428
  *     elif source == 'S':
  *         return target in {'S', 'L', 'U', 'N'}
  *     elif source == 'L':             # <<<<<<<<<<<<<<
@@ -6375,17 +6488,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":434
+  /* "pandas/_libs/tslibs/frequencies.pyx":430
  *     elif source == 'L':
  *         return target in {'L', 'U', 'N'}
  *     elif source == 'U':             # <<<<<<<<<<<<<<
  *         return target in {'U', 'N'}
  *     elif source == 'N':
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 434, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 430, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":435
+    /* "pandas/_libs/tslibs/frequencies.pyx":431
  *         return target in {'L', 'U', 'N'}
  *     elif source == 'U':
  *         return target in {'U', 'N'}             # <<<<<<<<<<<<<<
@@ -6395,23 +6508,23 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_target);
     __pyx_t_6 = __pyx_v_target;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 435, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_U, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 431, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_1 = __pyx_t_2;
       goto __pyx_L93_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 435, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 431, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_2;
     __pyx_L93_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 435, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 431, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":434
+    /* "pandas/_libs/tslibs/frequencies.pyx":430
  *     elif source == 'L':
  *         return target in {'L', 'U', 'N'}
  *     elif source == 'U':             # <<<<<<<<<<<<<<
@@ -6420,17 +6533,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":436
+  /* "pandas/_libs/tslibs/frequencies.pyx":432
  *     elif source == 'U':
  *         return target in {'U', 'N'}
  *     elif source == 'N':             # <<<<<<<<<<<<<<
  *         return target in {'N'}
  * 
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 436, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_source, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 432, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":437
+    /* "pandas/_libs/tslibs/frequencies.pyx":433
  *         return target in {'U', 'N'}
  *     elif source == 'N':
  *         return target in {'N'}             # <<<<<<<<<<<<<<
@@ -6440,15 +6553,15 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_target);
     __pyx_t_6 = __pyx_v_target;
-    __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 437, __pyx_L1_error)
+    __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_6, __pyx_n_u_N, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 433, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 437, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 433, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":436
+    /* "pandas/_libs/tslibs/frequencies.pyx":432
  *     elif source == 'U':
  *         return target in {'U', 'N'}
  *     elif source == 'N':             # <<<<<<<<<<<<<<
@@ -6457,7 +6570,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":384
+  /* "pandas/_libs/tslibs/frequencies.pyx":380
  * 
  * 
  * def is_superperiod(source, target) -> bint:             # <<<<<<<<<<<<<<
@@ -6484,7 +6597,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_16is_superperiod(
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/frequencies.pyx":440
+/* "pandas/_libs/tslibs/frequencies.pyx":436
  * 
  * 
  * cdef str _maybe_coerce_freq(code):             # <<<<<<<<<<<<<<
@@ -6505,7 +6618,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__maybe_coerce_freq
   __Pyx_RefNannySetupContext("_maybe_coerce_freq", 0);
   __Pyx_INCREF(__pyx_v_code);
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":453
+  /* "pandas/_libs/tslibs/frequencies.pyx":449
  *     code : string
  *     """
  *     assert code is not None             # <<<<<<<<<<<<<<
@@ -6517,37 +6630,37 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__maybe_coerce_freq
     __pyx_t_1 = (__pyx_v_code != Py_None);
     if (unlikely(!(__pyx_t_1 != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      __PYX_ERR(0, 453, __pyx_L1_error)
+      __PYX_ERR(0, 449, __pyx_L1_error)
     }
   }
   #endif
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":454
+  /* "pandas/_libs/tslibs/frequencies.pyx":450
  *     """
  *     assert code is not None
  *     if getattr(code, '_typ', None) == 'dateoffset':             # <<<<<<<<<<<<<<
  *         # i.e. isinstance(code, ABCDateOffset):
  *         code = code.rule_code
  */
-  __pyx_t_2 = __Pyx_GetAttr3(__pyx_v_code, __pyx_n_u_typ, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 454, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetAttr3(__pyx_v_code, __pyx_n_u_typ, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 450, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_2, __pyx_n_u_dateoffset, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 454, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_2, __pyx_n_u_dateoffset, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 450, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":456
+    /* "pandas/_libs/tslibs/frequencies.pyx":452
  *     if getattr(code, '_typ', None) == 'dateoffset':
  *         # i.e. isinstance(code, ABCDateOffset):
  *         code = code.rule_code             # <<<<<<<<<<<<<<
  *     return code.upper()
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_code, __pyx_n_s_rule_code); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 456, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_code, __pyx_n_s_rule_code); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 452, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF_SET(__pyx_v_code, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":454
+    /* "pandas/_libs/tslibs/frequencies.pyx":450
  *     """
  *     assert code is not None
  *     if getattr(code, '_typ', None) == 'dateoffset':             # <<<<<<<<<<<<<<
@@ -6556,7 +6669,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__maybe_coerce_freq
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":457
+  /* "pandas/_libs/tslibs/frequencies.pyx":453
  *         # i.e. isinstance(code, ABCDateOffset):
  *         code = code.rule_code
  *     return code.upper()             # <<<<<<<<<<<<<<
@@ -6564,7 +6677,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__maybe_coerce_freq
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_code, __pyx_n_s_upper); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 457, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_code, __pyx_n_s_upper); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 453, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -6578,15 +6691,15 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__maybe_coerce_freq
   }
   __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 457, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 453, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(PyUnicode_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 457, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 453, __pyx_L1_error)
   __pyx_r = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":440
+  /* "pandas/_libs/tslibs/frequencies.pyx":436
  * 
  * 
  * cdef str _maybe_coerce_freq(code):             # <<<<<<<<<<<<<<
@@ -6608,7 +6721,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies__maybe_coerce_freq
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/frequencies.pyx":460
+/* "pandas/_libs/tslibs/frequencies.pyx":456
  * 
  * 
  * cdef bint _quarter_months_conform(str source, str target):             # <<<<<<<<<<<<<<
@@ -6630,56 +6743,56 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__quarter_months_conform(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_quarter_months_conform", 0);
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":461
+  /* "pandas/_libs/tslibs/frequencies.pyx":457
  * 
  * cdef bint _quarter_months_conform(str source, str target):
  *     snum = MONTH_NUMBERS[source]             # <<<<<<<<<<<<<<
  *     tnum = MONTH_NUMBERS[target]
  *     return snum % 3 == tnum % 3
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_MONTH_NUMBERS); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 461, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_MONTH_NUMBERS); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 457, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_v_source); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 461, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_t_1, __pyx_v_source); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 457, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_snum = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":462
+  /* "pandas/_libs/tslibs/frequencies.pyx":458
  * cdef bint _quarter_months_conform(str source, str target):
  *     snum = MONTH_NUMBERS[source]
  *     tnum = MONTH_NUMBERS[target]             # <<<<<<<<<<<<<<
  *     return snum % 3 == tnum % 3
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_MONTH_NUMBERS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 462, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_MONTH_NUMBERS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 458, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_v_target); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 462, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_t_2, __pyx_v_target); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 458, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_tnum = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":463
+  /* "pandas/_libs/tslibs/frequencies.pyx":459
  *     snum = MONTH_NUMBERS[source]
  *     tnum = MONTH_NUMBERS[target]
  *     return snum % 3 == tnum % 3             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_RemainderObjC(__pyx_v_snum, __pyx_int_3, 3, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 463, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_RemainderObjC(__pyx_v_snum, __pyx_int_3, 3, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 459, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_RemainderObjC(__pyx_v_tnum, __pyx_int_3, 3, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 463, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_RemainderObjC(__pyx_v_tnum, __pyx_int_3, 3, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 459, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 463, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 459, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 463, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 459, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_4;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":460
+  /* "pandas/_libs/tslibs/frequencies.pyx":456
  * 
  * 
  * cdef bint _quarter_months_conform(str source, str target):             # <<<<<<<<<<<<<<
@@ -6701,7 +6814,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__quarter_months_conform(
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/frequencies.pyx":466
+/* "pandas/_libs/tslibs/frequencies.pyx":462
  * 
  * 
  * cdef bint _is_annual(str rule):             # <<<<<<<<<<<<<<
@@ -6724,14 +6837,14 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_annual(PyObject *__p
   __Pyx_RefNannySetupContext("_is_annual", 0);
   __Pyx_INCREF(__pyx_v_rule);
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":467
+  /* "pandas/_libs/tslibs/frequencies.pyx":463
  * 
  * cdef bint _is_annual(str rule):
  *     rule = rule.upper()             # <<<<<<<<<<<<<<
  *     return rule == 'A' or rule.startswith('A-')
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rule, __pyx_n_s_upper); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 467, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rule, __pyx_n_s_upper); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 463, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -6745,21 +6858,21 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_annual(PyObject *__p
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 467, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 463, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 467, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 463, __pyx_L1_error)
   __Pyx_DECREF_SET(__pyx_v_rule, ((PyObject*)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":468
+  /* "pandas/_libs/tslibs/frequencies.pyx":464
  * cdef bint _is_annual(str rule):
  *     rule = rule.upper()
  *     return rule == 'A' or rule.startswith('A-')             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_rule, __pyx_n_u_A, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 468, __pyx_L1_error)
+  __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_rule, __pyx_n_u_A, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 464, __pyx_L1_error)
   __pyx_t_6 = (__pyx_t_5 != 0);
   if (!__pyx_t_6) {
   } else {
@@ -6768,15 +6881,15 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_annual(PyObject *__p
   }
   if (unlikely(__pyx_v_rule == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "startswith");
-    __PYX_ERR(0, 468, __pyx_L1_error)
+    __PYX_ERR(0, 464, __pyx_L1_error)
   }
-  __pyx_t_6 = __Pyx_PyUnicode_Tailmatch(__pyx_v_rule, __pyx_kp_u_A_2, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 468, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyUnicode_Tailmatch(__pyx_v_rule, __pyx_kp_u_A_2, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 464, __pyx_L1_error)
   __pyx_t_4 = (__pyx_t_6 != 0);
   __pyx_L3_bool_binop_done:;
   __pyx_r = __pyx_t_4;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":466
+  /* "pandas/_libs/tslibs/frequencies.pyx":462
  * 
  * 
  * cdef bint _is_annual(str rule):             # <<<<<<<<<<<<<<
@@ -6797,7 +6910,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_annual(PyObject *__p
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/frequencies.pyx":471
+/* "pandas/_libs/tslibs/frequencies.pyx":467
  * 
  * 
  * cdef bint _is_quarterly(str rule):             # <<<<<<<<<<<<<<
@@ -6820,14 +6933,14 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_quarterly(PyObject *
   __Pyx_RefNannySetupContext("_is_quarterly", 0);
   __Pyx_INCREF(__pyx_v_rule);
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":472
+  /* "pandas/_libs/tslibs/frequencies.pyx":468
  * 
  * cdef bint _is_quarterly(str rule):
  *     rule = rule.upper()             # <<<<<<<<<<<<<<
  *     return rule == 'Q' or rule.startswith('Q-') or rule.startswith('BQ')
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rule, __pyx_n_s_upper); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 472, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rule, __pyx_n_s_upper); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 468, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -6841,21 +6954,21 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_quarterly(PyObject *
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 472, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 468, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 472, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 468, __pyx_L1_error)
   __Pyx_DECREF_SET(__pyx_v_rule, ((PyObject*)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":473
+  /* "pandas/_libs/tslibs/frequencies.pyx":469
  * cdef bint _is_quarterly(str rule):
  *     rule = rule.upper()
  *     return rule == 'Q' or rule.startswith('Q-') or rule.startswith('BQ')             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_rule, __pyx_n_u_Q, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 473, __pyx_L1_error)
+  __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_rule, __pyx_n_u_Q, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 469, __pyx_L1_error)
   __pyx_t_6 = (__pyx_t_5 != 0);
   if (!__pyx_t_6) {
   } else {
@@ -6864,9 +6977,9 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_quarterly(PyObject *
   }
   if (unlikely(__pyx_v_rule == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "startswith");
-    __PYX_ERR(0, 473, __pyx_L1_error)
+    __PYX_ERR(0, 469, __pyx_L1_error)
   }
-  __pyx_t_6 = __Pyx_PyUnicode_Tailmatch(__pyx_v_rule, __pyx_kp_u_Q_2, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 473, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyUnicode_Tailmatch(__pyx_v_rule, __pyx_kp_u_Q_2, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 469, __pyx_L1_error)
   if (!(__pyx_t_6 != 0)) {
   } else {
     __pyx_t_4 = (__pyx_t_6 != 0);
@@ -6874,15 +6987,15 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_quarterly(PyObject *
   }
   if (unlikely(__pyx_v_rule == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "startswith");
-    __PYX_ERR(0, 473, __pyx_L1_error)
+    __PYX_ERR(0, 469, __pyx_L1_error)
   }
-  __pyx_t_6 = __Pyx_PyUnicode_Tailmatch(__pyx_v_rule, __pyx_n_u_BQ, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 473, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyUnicode_Tailmatch(__pyx_v_rule, __pyx_n_u_BQ, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 469, __pyx_L1_error)
   __pyx_t_4 = (__pyx_t_6 != 0);
   __pyx_L3_bool_binop_done:;
   __pyx_r = __pyx_t_4;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":471
+  /* "pandas/_libs/tslibs/frequencies.pyx":467
  * 
  * 
  * cdef bint _is_quarterly(str rule):             # <<<<<<<<<<<<<<
@@ -6903,7 +7016,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_quarterly(PyObject *
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/frequencies.pyx":476
+/* "pandas/_libs/tslibs/frequencies.pyx":472
  * 
  * 
  * cdef bint _is_monthly(str rule):             # <<<<<<<<<<<<<<
@@ -6926,14 +7039,14 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_monthly(PyObject *__
   __Pyx_RefNannySetupContext("_is_monthly", 0);
   __Pyx_INCREF(__pyx_v_rule);
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":477
+  /* "pandas/_libs/tslibs/frequencies.pyx":473
  * 
  * cdef bint _is_monthly(str rule):
  *     rule = rule.upper()             # <<<<<<<<<<<<<<
  *     return rule == 'M' or rule == 'BM'
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rule, __pyx_n_s_upper); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 477, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rule, __pyx_n_s_upper); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 473, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -6947,35 +7060,35 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_monthly(PyObject *__
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 477, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 473, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 477, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 473, __pyx_L1_error)
   __Pyx_DECREF_SET(__pyx_v_rule, ((PyObject*)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":478
+  /* "pandas/_libs/tslibs/frequencies.pyx":474
  * cdef bint _is_monthly(str rule):
  *     rule = rule.upper()
  *     return rule == 'M' or rule == 'BM'             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_rule, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 478, __pyx_L1_error)
+  __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_rule, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 474, __pyx_L1_error)
   __pyx_t_6 = (__pyx_t_5 != 0);
   if (!__pyx_t_6) {
   } else {
     __pyx_t_4 = __pyx_t_6;
     goto __pyx_L3_bool_binop_done;
   }
-  __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_rule, __pyx_n_u_BM, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 478, __pyx_L1_error)
+  __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_rule, __pyx_n_u_BM, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 474, __pyx_L1_error)
   __pyx_t_5 = (__pyx_t_6 != 0);
   __pyx_t_4 = __pyx_t_5;
   __pyx_L3_bool_binop_done:;
   __pyx_r = __pyx_t_4;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":476
+  /* "pandas/_libs/tslibs/frequencies.pyx":472
  * 
  * 
  * cdef bint _is_monthly(str rule):             # <<<<<<<<<<<<<<
@@ -6996,7 +7109,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_monthly(PyObject *__
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/frequencies.pyx":481
+/* "pandas/_libs/tslibs/frequencies.pyx":477
  * 
  * 
  * cdef bint _is_weekly(str rule):             # <<<<<<<<<<<<<<
@@ -7019,14 +7132,14 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_weekly(PyObject *__p
   __Pyx_RefNannySetupContext("_is_weekly", 0);
   __Pyx_INCREF(__pyx_v_rule);
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":482
+  /* "pandas/_libs/tslibs/frequencies.pyx":478
  * 
  * cdef bint _is_weekly(str rule):
  *     rule = rule.upper()             # <<<<<<<<<<<<<<
  *     return rule == 'W' or rule.startswith('W-')
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rule, __pyx_n_s_upper); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 482, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rule, __pyx_n_s_upper); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 478, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -7040,21 +7153,21 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_weekly(PyObject *__p
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 482, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 478, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 482, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 478, __pyx_L1_error)
   __Pyx_DECREF_SET(__pyx_v_rule, ((PyObject*)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":483
+  /* "pandas/_libs/tslibs/frequencies.pyx":479
  * cdef bint _is_weekly(str rule):
  *     rule = rule.upper()
  *     return rule == 'W' or rule.startswith('W-')             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_rule, __pyx_n_u_W, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 483, __pyx_L1_error)
+  __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_rule, __pyx_n_u_W, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 479, __pyx_L1_error)
   __pyx_t_6 = (__pyx_t_5 != 0);
   if (!__pyx_t_6) {
   } else {
@@ -7063,15 +7176,15 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_weekly(PyObject *__p
   }
   if (unlikely(__pyx_v_rule == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "startswith");
-    __PYX_ERR(0, 483, __pyx_L1_error)
+    __PYX_ERR(0, 479, __pyx_L1_error)
   }
-  __pyx_t_6 = __Pyx_PyUnicode_Tailmatch(__pyx_v_rule, __pyx_kp_u_W_2, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 483, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyUnicode_Tailmatch(__pyx_v_rule, __pyx_kp_u_W_2, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 479, __pyx_L1_error)
   __pyx_t_4 = (__pyx_t_6 != 0);
   __pyx_L3_bool_binop_done:;
   __pyx_r = __pyx_t_4;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":481
+  /* "pandas/_libs/tslibs/frequencies.pyx":477
  * 
  * 
  * cdef bint _is_weekly(str rule):             # <<<<<<<<<<<<<<
@@ -7092,7 +7205,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_11frequencies__is_weekly(PyObject *__p
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/frequencies.pyx":488
+/* "pandas/_libs/tslibs/frequencies.pyx":484
  * # ----------------------------------------------------------------------
  * 
  * cpdef object get_rule_month(object source, object default='DEC'):             # <<<<<<<<<<<<<<
@@ -7121,30 +7234,30 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(PyO
   }
   __Pyx_INCREF(__pyx_v_source);
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":509
+  /* "pandas/_libs/tslibs/frequencies.pyx":505
  *     'JAN'
  *     """
  *     if hasattr(source, 'freqstr'):             # <<<<<<<<<<<<<<
  *         source = source.freqstr
  *     source = source.upper()
  */
-  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_source, __pyx_n_u_freqstr); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 509, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_source, __pyx_n_u_freqstr); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 505, __pyx_L1_error)
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":510
+    /* "pandas/_libs/tslibs/frequencies.pyx":506
  *     """
  *     if hasattr(source, 'freqstr'):
  *         source = source.freqstr             # <<<<<<<<<<<<<<
  *     source = source.upper()
  *     if '-' not in source:
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_source, __pyx_n_s_freqstr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 510, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_source, __pyx_n_s_freqstr); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 506, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF_SET(__pyx_v_source, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":509
+    /* "pandas/_libs/tslibs/frequencies.pyx":505
  *     'JAN'
  *     """
  *     if hasattr(source, 'freqstr'):             # <<<<<<<<<<<<<<
@@ -7153,14 +7266,14 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(PyO
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":511
+  /* "pandas/_libs/tslibs/frequencies.pyx":507
  *     if hasattr(source, 'freqstr'):
  *         source = source.freqstr
  *     source = source.upper()             # <<<<<<<<<<<<<<
  *     if '-' not in source:
  *         return default
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_source, __pyx_n_s_upper); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 511, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_source, __pyx_n_s_upper); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 507, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -7174,24 +7287,24 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(PyO
   }
   __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 511, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 507, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF_SET(__pyx_v_source, __pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":512
+  /* "pandas/_libs/tslibs/frequencies.pyx":508
  *         source = source.freqstr
  *     source = source.upper()
  *     if '-' not in source:             # <<<<<<<<<<<<<<
  *         return default
  *     else:
  */
-  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_kp_u_, __pyx_v_source, Py_NE)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 512, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_kp_u_, __pyx_v_source, Py_NE)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 508, __pyx_L1_error)
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":513
+    /* "pandas/_libs/tslibs/frequencies.pyx":509
  *     source = source.upper()
  *     if '-' not in source:
  *         return default             # <<<<<<<<<<<<<<
@@ -7203,7 +7316,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(PyO
     __pyx_r = __pyx_v_default;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/frequencies.pyx":512
+    /* "pandas/_libs/tslibs/frequencies.pyx":508
  *         source = source.freqstr
  *     source = source.upper()
  *     if '-' not in source:             # <<<<<<<<<<<<<<
@@ -7212,14 +7325,14 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(PyO
  */
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":515
+  /* "pandas/_libs/tslibs/frequencies.pyx":511
  *         return default
  *     else:
  *         return source.split('-')[1]             # <<<<<<<<<<<<<<
  */
   /*else*/ {
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_source, __pyx_n_s_split); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 515, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_source, __pyx_n_s_split); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 511, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -7233,10 +7346,10 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(PyO
     }
     __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_kp_u_) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_kp_u_);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 515, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 511, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 515, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 511, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_r = __pyx_t_4;
@@ -7244,7 +7357,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(PyO
     goto __pyx_L0;
   }
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":488
+  /* "pandas/_libs/tslibs/frequencies.pyx":484
  * # ----------------------------------------------------------------------
  * 
  * cpdef object get_rule_month(object source, object default='DEC'):             # <<<<<<<<<<<<<<
@@ -7306,7 +7419,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_11frequencies_19get_rule_month(
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_rule_month") < 0)) __PYX_ERR(0, 488, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_rule_month") < 0)) __PYX_ERR(0, 484, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -7322,7 +7435,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_11frequencies_19get_rule_month(
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_rule_month", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 488, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_rule_month", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 484, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.frequencies.get_rule_month", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -7347,7 +7460,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_18get_rule_month(
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.__pyx_default = __pyx_v_default;
-  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(__pyx_v_source, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 488, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_11frequencies_get_rule_month(__pyx_v_source, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 484, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7364,7 +7477,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_11frequencies_18get_rule_month(
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":258
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":258
  *         # experimental exception made for __getbuffer__ and __releasebuffer__
  *         # -- the details of this may change.
  *         def __getbuffer__(ndarray self, Py_buffer* info, int flags):             # <<<<<<<<<<<<<<
@@ -7416,7 +7529,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_v_info->obj = Py_None; __Pyx_INCREF(Py_None);
   __Pyx_GIVEREF(__pyx_v_info->obj);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":265
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":265
  * 
  *             cdef int i, ndim
  *             cdef int endian_detector = 1             # <<<<<<<<<<<<<<
@@ -7425,7 +7538,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_endian_detector = 1;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":266
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":266
  *             cdef int i, ndim
  *             cdef int endian_detector = 1
  *             cdef bint little_endian = ((<char*>&endian_detector)[0] != 0)             # <<<<<<<<<<<<<<
@@ -7434,7 +7547,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_little_endian = ((((char *)(&__pyx_v_endian_detector))[0]) != 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":268
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":268
  *             cdef bint little_endian = ((<char*>&endian_detector)[0] != 0)
  * 
  *             ndim = PyArray_NDIM(self)             # <<<<<<<<<<<<<<
@@ -7443,7 +7556,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_ndim = PyArray_NDIM(__pyx_v_self);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":270
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":270
  *             ndim = PyArray_NDIM(self)
  * 
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)             # <<<<<<<<<<<<<<
@@ -7457,7 +7570,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     goto __pyx_L4_bool_binop_done;
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":271
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":271
  * 
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_ARRAY_C_CONTIGUOUS)):             # <<<<<<<<<<<<<<
@@ -7468,7 +7581,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_t_1 = __pyx_t_2;
   __pyx_L4_bool_binop_done:;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":270
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":270
  *             ndim = PyArray_NDIM(self)
  * 
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)             # <<<<<<<<<<<<<<
@@ -7477,7 +7590,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   if (unlikely(__pyx_t_1)) {
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":272
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":272
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_ARRAY_C_CONTIGUOUS)):
  *                 raise ValueError(u"ndarray is not C contiguous")             # <<<<<<<<<<<<<<
@@ -7490,7 +7603,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(1, 272, __pyx_L1_error)
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":270
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":270
  *             ndim = PyArray_NDIM(self)
  * 
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)             # <<<<<<<<<<<<<<
@@ -7499,7 +7612,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":274
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":274
  *                 raise ValueError(u"ndarray is not C contiguous")
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)             # <<<<<<<<<<<<<<
@@ -7513,7 +7626,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     goto __pyx_L7_bool_binop_done;
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":275
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":275
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_ARRAY_F_CONTIGUOUS)):             # <<<<<<<<<<<<<<
@@ -7524,7 +7637,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_t_1 = __pyx_t_2;
   __pyx_L7_bool_binop_done:;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":274
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":274
  *                 raise ValueError(u"ndarray is not C contiguous")
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)             # <<<<<<<<<<<<<<
@@ -7533,7 +7646,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   if (unlikely(__pyx_t_1)) {
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":276
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":276
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_ARRAY_F_CONTIGUOUS)):
  *                 raise ValueError(u"ndarray is not Fortran contiguous")             # <<<<<<<<<<<<<<
@@ -7546,7 +7659,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(1, 276, __pyx_L1_error)
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":274
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":274
  *                 raise ValueError(u"ndarray is not C contiguous")
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)             # <<<<<<<<<<<<<<
@@ -7555,7 +7668,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":278
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":278
  *                 raise ValueError(u"ndarray is not Fortran contiguous")
  * 
  *             info.buf = PyArray_DATA(self)             # <<<<<<<<<<<<<<
@@ -7564,7 +7677,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_info->buf = PyArray_DATA(__pyx_v_self);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":279
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":279
  * 
  *             info.buf = PyArray_DATA(self)
  *             info.ndim = ndim             # <<<<<<<<<<<<<<
@@ -7573,7 +7686,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_info->ndim = __pyx_v_ndim;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":280
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":280
  *             info.buf = PyArray_DATA(self)
  *             info.ndim = ndim
  *             if sizeof(npy_intp) != sizeof(Py_ssize_t):             # <<<<<<<<<<<<<<
@@ -7583,7 +7696,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_t_1 = (((sizeof(npy_intp)) != (sizeof(Py_ssize_t))) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":283
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":283
  *                 # Allocate new buffer for strides and shape info.
  *                 # This is allocated as one block, strides first.
  *                 info.strides = <Py_ssize_t*>PyObject_Malloc(sizeof(Py_ssize_t) * 2 * <size_t>ndim)             # <<<<<<<<<<<<<<
@@ -7592,7 +7705,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     __pyx_v_info->strides = ((Py_ssize_t *)PyObject_Malloc((((sizeof(Py_ssize_t)) * 2) * ((size_t)__pyx_v_ndim))));
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":284
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":284
  *                 # This is allocated as one block, strides first.
  *                 info.strides = <Py_ssize_t*>PyObject_Malloc(sizeof(Py_ssize_t) * 2 * <size_t>ndim)
  *                 info.shape = info.strides + ndim             # <<<<<<<<<<<<<<
@@ -7601,7 +7714,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     __pyx_v_info->shape = (__pyx_v_info->strides + __pyx_v_ndim);
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":285
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":285
  *                 info.strides = <Py_ssize_t*>PyObject_Malloc(sizeof(Py_ssize_t) * 2 * <size_t>ndim)
  *                 info.shape = info.strides + ndim
  *                 for i in range(ndim):             # <<<<<<<<<<<<<<
@@ -7613,7 +7726,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_5; __pyx_t_6+=1) {
       __pyx_v_i = __pyx_t_6;
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":286
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":286
  *                 info.shape = info.strides + ndim
  *                 for i in range(ndim):
  *                     info.strides[i] = PyArray_STRIDES(self)[i]             # <<<<<<<<<<<<<<
@@ -7622,7 +7735,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
       (__pyx_v_info->strides[__pyx_v_i]) = (PyArray_STRIDES(__pyx_v_self)[__pyx_v_i]);
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":287
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":287
  *                 for i in range(ndim):
  *                     info.strides[i] = PyArray_STRIDES(self)[i]
  *                     info.shape[i] = PyArray_DIMS(self)[i]             # <<<<<<<<<<<<<<
@@ -7632,7 +7745,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       (__pyx_v_info->shape[__pyx_v_i]) = (PyArray_DIMS(__pyx_v_self)[__pyx_v_i]);
     }
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":280
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":280
  *             info.buf = PyArray_DATA(self)
  *             info.ndim = ndim
  *             if sizeof(npy_intp) != sizeof(Py_ssize_t):             # <<<<<<<<<<<<<<
@@ -7642,7 +7755,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     goto __pyx_L9;
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":289
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":289
  *                     info.shape[i] = PyArray_DIMS(self)[i]
  *             else:
  *                 info.strides = <Py_ssize_t*>PyArray_STRIDES(self)             # <<<<<<<<<<<<<<
@@ -7652,7 +7765,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   /*else*/ {
     __pyx_v_info->strides = ((Py_ssize_t *)PyArray_STRIDES(__pyx_v_self));
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":290
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":290
  *             else:
  *                 info.strides = <Py_ssize_t*>PyArray_STRIDES(self)
  *                 info.shape = <Py_ssize_t*>PyArray_DIMS(self)             # <<<<<<<<<<<<<<
@@ -7663,7 +7776,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   }
   __pyx_L9:;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":291
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":291
  *                 info.strides = <Py_ssize_t*>PyArray_STRIDES(self)
  *                 info.shape = <Py_ssize_t*>PyArray_DIMS(self)
  *             info.suboffsets = NULL             # <<<<<<<<<<<<<<
@@ -7672,7 +7785,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_info->suboffsets = NULL;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":292
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":292
  *                 info.shape = <Py_ssize_t*>PyArray_DIMS(self)
  *             info.suboffsets = NULL
  *             info.itemsize = PyArray_ITEMSIZE(self)             # <<<<<<<<<<<<<<
@@ -7681,7 +7794,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_info->itemsize = PyArray_ITEMSIZE(__pyx_v_self);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":293
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":293
  *             info.suboffsets = NULL
  *             info.itemsize = PyArray_ITEMSIZE(self)
  *             info.readonly = not PyArray_ISWRITEABLE(self)             # <<<<<<<<<<<<<<
@@ -7690,7 +7803,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_info->readonly = (!(PyArray_ISWRITEABLE(__pyx_v_self) != 0));
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":296
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":296
  * 
  *             cdef int t
  *             cdef char* f = NULL             # <<<<<<<<<<<<<<
@@ -7699,7 +7812,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_f = NULL;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":297
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":297
  *             cdef int t
  *             cdef char* f = NULL
  *             cdef dtype descr = <dtype>PyArray_DESCR(self)             # <<<<<<<<<<<<<<
@@ -7712,7 +7825,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_v_descr = ((PyArray_Descr *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":300
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":300
  *             cdef int offset
  * 
  *             info.obj = self             # <<<<<<<<<<<<<<
@@ -7725,7 +7838,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __Pyx_DECREF(__pyx_v_info->obj);
   __pyx_v_info->obj = ((PyObject *)__pyx_v_self);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":302
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":302
  *             info.obj = self
  * 
  *             if not PyDataType_HASFIELDS(descr):             # <<<<<<<<<<<<<<
@@ -7735,7 +7848,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_t_1 = ((!(PyDataType_HASFIELDS(__pyx_v_descr) != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":303
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":303
  * 
  *             if not PyDataType_HASFIELDS(descr):
  *                 t = descr.type_num             # <<<<<<<<<<<<<<
@@ -7745,7 +7858,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     __pyx_t_4 = __pyx_v_descr->type_num;
     __pyx_v_t = __pyx_t_4;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":304
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":304
  *             if not PyDataType_HASFIELDS(descr):
  *                 t = descr.type_num
  *                 if ((descr.byteorder == c'>' and little_endian) or             # <<<<<<<<<<<<<<
@@ -7765,7 +7878,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     }
     __pyx_L15_next_or:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":305
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":305
  *                 t = descr.type_num
  *                 if ((descr.byteorder == c'>' and little_endian) or
  *                     (descr.byteorder == c'<' and not little_endian)):             # <<<<<<<<<<<<<<
@@ -7782,7 +7895,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     __pyx_t_1 = __pyx_t_2;
     __pyx_L14_bool_binop_done:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":304
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":304
  *             if not PyDataType_HASFIELDS(descr):
  *                 t = descr.type_num
  *                 if ((descr.byteorder == c'>' and little_endian) or             # <<<<<<<<<<<<<<
@@ -7791,7 +7904,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     if (unlikely(__pyx_t_1)) {
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":306
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":306
  *                 if ((descr.byteorder == c'>' and little_endian) or
  *                     (descr.byteorder == c'<' and not little_endian)):
  *                     raise ValueError(u"Non-native byte order not supported")             # <<<<<<<<<<<<<<
@@ -7804,7 +7917,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __PYX_ERR(1, 306, __pyx_L1_error)
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":304
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":304
  *             if not PyDataType_HASFIELDS(descr):
  *                 t = descr.type_num
  *                 if ((descr.byteorder == c'>' and little_endian) or             # <<<<<<<<<<<<<<
@@ -7813,7 +7926,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     }
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":307
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":307
  *                     (descr.byteorder == c'<' and not little_endian)):
  *                     raise ValueError(u"Non-native byte order not supported")
  *                 if   t == NPY_BYTE:        f = "b"             # <<<<<<<<<<<<<<
@@ -7826,7 +7939,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_UBYTE:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":308
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":308
  *                     raise ValueError(u"Non-native byte order not supported")
  *                 if   t == NPY_BYTE:        f = "b"
  *                 elif t == NPY_UBYTE:       f = "B"             # <<<<<<<<<<<<<<
@@ -7837,7 +7950,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_SHORT:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":309
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":309
  *                 if   t == NPY_BYTE:        f = "b"
  *                 elif t == NPY_UBYTE:       f = "B"
  *                 elif t == NPY_SHORT:       f = "h"             # <<<<<<<<<<<<<<
@@ -7848,7 +7961,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_USHORT:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":310
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":310
  *                 elif t == NPY_UBYTE:       f = "B"
  *                 elif t == NPY_SHORT:       f = "h"
  *                 elif t == NPY_USHORT:      f = "H"             # <<<<<<<<<<<<<<
@@ -7859,7 +7972,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_INT:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":311
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":311
  *                 elif t == NPY_SHORT:       f = "h"
  *                 elif t == NPY_USHORT:      f = "H"
  *                 elif t == NPY_INT:         f = "i"             # <<<<<<<<<<<<<<
@@ -7870,7 +7983,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_UINT:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":312
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":312
  *                 elif t == NPY_USHORT:      f = "H"
  *                 elif t == NPY_INT:         f = "i"
  *                 elif t == NPY_UINT:        f = "I"             # <<<<<<<<<<<<<<
@@ -7881,7 +7994,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_LONG:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":313
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":313
  *                 elif t == NPY_INT:         f = "i"
  *                 elif t == NPY_UINT:        f = "I"
  *                 elif t == NPY_LONG:        f = "l"             # <<<<<<<<<<<<<<
@@ -7892,7 +8005,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_ULONG:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":314
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":314
  *                 elif t == NPY_UINT:        f = "I"
  *                 elif t == NPY_LONG:        f = "l"
  *                 elif t == NPY_ULONG:       f = "L"             # <<<<<<<<<<<<<<
@@ -7903,7 +8016,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_LONGLONG:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":315
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":315
  *                 elif t == NPY_LONG:        f = "l"
  *                 elif t == NPY_ULONG:       f = "L"
  *                 elif t == NPY_LONGLONG:    f = "q"             # <<<<<<<<<<<<<<
@@ -7914,7 +8027,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_ULONGLONG:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":316
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":316
  *                 elif t == NPY_ULONG:       f = "L"
  *                 elif t == NPY_LONGLONG:    f = "q"
  *                 elif t == NPY_ULONGLONG:   f = "Q"             # <<<<<<<<<<<<<<
@@ -7925,7 +8038,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_FLOAT:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":317
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":317
  *                 elif t == NPY_LONGLONG:    f = "q"
  *                 elif t == NPY_ULONGLONG:   f = "Q"
  *                 elif t == NPY_FLOAT:       f = "f"             # <<<<<<<<<<<<<<
@@ -7936,7 +8049,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_DOUBLE:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":318
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":318
  *                 elif t == NPY_ULONGLONG:   f = "Q"
  *                 elif t == NPY_FLOAT:       f = "f"
  *                 elif t == NPY_DOUBLE:      f = "d"             # <<<<<<<<<<<<<<
@@ -7947,7 +8060,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_LONGDOUBLE:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":319
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":319
  *                 elif t == NPY_FLOAT:       f = "f"
  *                 elif t == NPY_DOUBLE:      f = "d"
  *                 elif t == NPY_LONGDOUBLE:  f = "g"             # <<<<<<<<<<<<<<
@@ -7958,7 +8071,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_CFLOAT:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":320
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":320
  *                 elif t == NPY_DOUBLE:      f = "d"
  *                 elif t == NPY_LONGDOUBLE:  f = "g"
  *                 elif t == NPY_CFLOAT:      f = "Zf"             # <<<<<<<<<<<<<<
@@ -7969,7 +8082,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_CDOUBLE:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":321
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":321
  *                 elif t == NPY_LONGDOUBLE:  f = "g"
  *                 elif t == NPY_CFLOAT:      f = "Zf"
  *                 elif t == NPY_CDOUBLE:     f = "Zd"             # <<<<<<<<<<<<<<
@@ -7980,7 +8093,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_CLONGDOUBLE:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":322
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":322
  *                 elif t == NPY_CFLOAT:      f = "Zf"
  *                 elif t == NPY_CDOUBLE:     f = "Zd"
  *                 elif t == NPY_CLONGDOUBLE: f = "Zg"             # <<<<<<<<<<<<<<
@@ -7991,7 +8104,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_OBJECT:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":323
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":323
  *                 elif t == NPY_CDOUBLE:     f = "Zd"
  *                 elif t == NPY_CLONGDOUBLE: f = "Zg"
  *                 elif t == NPY_OBJECT:      f = "O"             # <<<<<<<<<<<<<<
@@ -8002,7 +8115,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       default:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":325
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":325
  *                 elif t == NPY_OBJECT:      f = "O"
  *                 else:
  *                     raise ValueError(u"unknown dtype code in numpy.pxd (%d)" % t)             # <<<<<<<<<<<<<<
@@ -8023,7 +8136,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
     }
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":326
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":326
  *                 else:
  *                     raise ValueError(u"unknown dtype code in numpy.pxd (%d)" % t)
  *                 info.format = f             # <<<<<<<<<<<<<<
@@ -8032,7 +8145,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     __pyx_v_info->format = __pyx_v_f;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":327
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":327
  *                     raise ValueError(u"unknown dtype code in numpy.pxd (%d)" % t)
  *                 info.format = f
  *                 return             # <<<<<<<<<<<<<<
@@ -8042,7 +8155,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     __pyx_r = 0;
     goto __pyx_L0;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":302
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":302
  *             info.obj = self
  * 
  *             if not PyDataType_HASFIELDS(descr):             # <<<<<<<<<<<<<<
@@ -8051,7 +8164,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":329
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":329
  *                 return
  *             else:
  *                 info.format = <char*>PyObject_Malloc(_buffer_format_string_len)             # <<<<<<<<<<<<<<
@@ -8061,7 +8174,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   /*else*/ {
     __pyx_v_info->format = ((char *)PyObject_Malloc(0xFF));
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":330
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":330
  *             else:
  *                 info.format = <char*>PyObject_Malloc(_buffer_format_string_len)
  *                 info.format[0] = c'^' # Native data types, manual alignment             # <<<<<<<<<<<<<<
@@ -8070,7 +8183,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     (__pyx_v_info->format[0]) = '^';
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":331
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":331
  *                 info.format = <char*>PyObject_Malloc(_buffer_format_string_len)
  *                 info.format[0] = c'^' # Native data types, manual alignment
  *                 offset = 0             # <<<<<<<<<<<<<<
@@ -8079,7 +8192,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     __pyx_v_offset = 0;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":332
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":332
  *                 info.format[0] = c'^' # Native data types, manual alignment
  *                 offset = 0
  *                 f = _util_dtypestring(descr, info.format + 1,             # <<<<<<<<<<<<<<
@@ -8089,7 +8202,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     __pyx_t_9 = __pyx_f_5numpy__util_dtypestring(__pyx_v_descr, (__pyx_v_info->format + 1), (__pyx_v_info->format + 0xFF), (&__pyx_v_offset)); if (unlikely(__pyx_t_9 == ((char *)NULL))) __PYX_ERR(1, 332, __pyx_L1_error)
     __pyx_v_f = __pyx_t_9;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":335
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":335
  *                                       info.format + _buffer_format_string_len,
  *                                       &offset)
  *                 f[0] = c'\0' # Terminate format string             # <<<<<<<<<<<<<<
@@ -8099,7 +8212,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     (__pyx_v_f[0]) = '\x00';
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":258
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":258
  *         # experimental exception made for __getbuffer__ and __releasebuffer__
  *         # -- the details of this may change.
  *         def __getbuffer__(ndarray self, Py_buffer* info, int flags):             # <<<<<<<<<<<<<<
@@ -8131,7 +8244,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":337
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":337
  *                 f[0] = c'\0' # Terminate format string
  * 
  *         def __releasebuffer__(ndarray self, Py_buffer* info):             # <<<<<<<<<<<<<<
@@ -8155,7 +8268,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__releasebuffer__", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":338
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":338
  * 
  *         def __releasebuffer__(ndarray self, Py_buffer* info):
  *             if PyArray_HASFIELDS(self):             # <<<<<<<<<<<<<<
@@ -8165,7 +8278,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
   __pyx_t_1 = (PyArray_HASFIELDS(__pyx_v_self) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":339
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":339
  *         def __releasebuffer__(ndarray self, Py_buffer* info):
  *             if PyArray_HASFIELDS(self):
  *                 PyObject_Free(info.format)             # <<<<<<<<<<<<<<
@@ -8174,7 +8287,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
  */
     PyObject_Free(__pyx_v_info->format);
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":338
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":338
  * 
  *         def __releasebuffer__(ndarray self, Py_buffer* info):
  *             if PyArray_HASFIELDS(self):             # <<<<<<<<<<<<<<
@@ -8183,7 +8296,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
  */
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":340
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":340
  *             if PyArray_HASFIELDS(self):
  *                 PyObject_Free(info.format)
  *             if sizeof(npy_intp) != sizeof(Py_ssize_t):             # <<<<<<<<<<<<<<
@@ -8193,7 +8306,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
   __pyx_t_1 = (((sizeof(npy_intp)) != (sizeof(Py_ssize_t))) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":341
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":341
  *                 PyObject_Free(info.format)
  *             if sizeof(npy_intp) != sizeof(Py_ssize_t):
  *                 PyObject_Free(info.strides)             # <<<<<<<<<<<<<<
@@ -8202,7 +8315,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
  */
     PyObject_Free(__pyx_v_info->strides);
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":340
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":340
  *             if PyArray_HASFIELDS(self):
  *                 PyObject_Free(info.format)
  *             if sizeof(npy_intp) != sizeof(Py_ssize_t):             # <<<<<<<<<<<<<<
@@ -8211,7 +8324,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
  */
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":337
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":337
  *                 f[0] = c'\0' # Terminate format string
  * 
  *         def __releasebuffer__(ndarray self, Py_buffer* info):             # <<<<<<<<<<<<<<
@@ -8223,7 +8336,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
   __Pyx_RefNannyFinishContext();
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":820
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":820
  * ctypedef npy_cdouble     complex_t
  * 
  * cdef inline object PyArray_MultiIterNew1(a):             # <<<<<<<<<<<<<<
@@ -8240,7 +8353,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew1", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":821
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":821
  * 
  * cdef inline object PyArray_MultiIterNew1(a):
  *     return PyArray_MultiIterNew(1, <void*>a)             # <<<<<<<<<<<<<<
@@ -8254,7 +8367,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":820
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":820
  * ctypedef npy_cdouble     complex_t
  * 
  * cdef inline object PyArray_MultiIterNew1(a):             # <<<<<<<<<<<<<<
@@ -8273,7 +8386,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":823
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":823
  *     return PyArray_MultiIterNew(1, <void*>a)
  * 
  * cdef inline object PyArray_MultiIterNew2(a, b):             # <<<<<<<<<<<<<<
@@ -8290,7 +8403,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew2", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":824
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":824
  * 
  * cdef inline object PyArray_MultiIterNew2(a, b):
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)             # <<<<<<<<<<<<<<
@@ -8304,7 +8417,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":823
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":823
  *     return PyArray_MultiIterNew(1, <void*>a)
  * 
  * cdef inline object PyArray_MultiIterNew2(a, b):             # <<<<<<<<<<<<<<
@@ -8323,7 +8436,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":826
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":826
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
  * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):             # <<<<<<<<<<<<<<
@@ -8340,7 +8453,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew3", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":827
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":827
  * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)             # <<<<<<<<<<<<<<
@@ -8354,7 +8467,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":826
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":826
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
  * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):             # <<<<<<<<<<<<<<
@@ -8373,7 +8486,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":829
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":829
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
  * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):             # <<<<<<<<<<<<<<
@@ -8390,7 +8503,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew4", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":830
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":830
  * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)             # <<<<<<<<<<<<<<
@@ -8404,7 +8517,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":829
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":829
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
  * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):             # <<<<<<<<<<<<<<
@@ -8423,7 +8536,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":832
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":832
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
  * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):             # <<<<<<<<<<<<<<
@@ -8440,7 +8553,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew5", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":833
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":833
  * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)             # <<<<<<<<<<<<<<
@@ -8454,7 +8567,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":832
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":832
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
  * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):             # <<<<<<<<<<<<<<
@@ -8473,7 +8586,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":835
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":835
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
  * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):             # <<<<<<<<<<<<<<
@@ -8487,7 +8600,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("PyDataType_SHAPE", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":836
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":836
  * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):             # <<<<<<<<<<<<<<
@@ -8497,7 +8610,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   __pyx_t_1 = (PyDataType_HASSUBARRAY(__pyx_v_d) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":837
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":837
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):
  *         return <tuple>d.subarray.shape             # <<<<<<<<<<<<<<
@@ -8509,7 +8622,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
     __pyx_r = ((PyObject*)__pyx_v_d->subarray->shape);
     goto __pyx_L0;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":836
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":836
  * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):             # <<<<<<<<<<<<<<
@@ -8518,7 +8631,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
  */
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":839
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":839
  *         return <tuple>d.subarray.shape
  *     else:
  *         return ()             # <<<<<<<<<<<<<<
@@ -8532,7 +8645,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
     goto __pyx_L0;
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":835
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":835
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
  * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):             # <<<<<<<<<<<<<<
@@ -8547,7 +8660,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":841
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":841
  *         return ()
  * 
  * cdef inline char* _util_dtypestring(dtype descr, char* f, char* end, int* offset) except NULL:             # <<<<<<<<<<<<<<
@@ -8579,7 +8692,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_util_dtypestring", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":846
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":846
  * 
  *     cdef dtype child
  *     cdef int endian_detector = 1             # <<<<<<<<<<<<<<
@@ -8588,7 +8701,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
   __pyx_v_endian_detector = 1;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":847
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":847
  *     cdef dtype child
  *     cdef int endian_detector = 1
  *     cdef bint little_endian = ((<char*>&endian_detector)[0] != 0)             # <<<<<<<<<<<<<<
@@ -8597,7 +8710,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
   __pyx_v_little_endian = ((((char *)(&__pyx_v_endian_detector))[0]) != 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":850
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":850
  *     cdef tuple fields
  * 
  *     for childname in descr.names:             # <<<<<<<<<<<<<<
@@ -8620,7 +8733,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __Pyx_XDECREF_SET(__pyx_v_childname, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":851
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":851
  * 
  *     for childname in descr.names:
  *         fields = descr.fields[childname]             # <<<<<<<<<<<<<<
@@ -8637,7 +8750,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __Pyx_XDECREF_SET(__pyx_v_fields, ((PyObject*)__pyx_t_3));
     __pyx_t_3 = 0;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":852
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":852
  *     for childname in descr.names:
  *         fields = descr.fields[childname]
  *         child, new_offset = fields             # <<<<<<<<<<<<<<
@@ -8672,7 +8785,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __Pyx_XDECREF_SET(__pyx_v_new_offset, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":854
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":854
  *         child, new_offset = fields
  * 
  *         if (end - f) - <int>(new_offset - offset[0]) < 15:             # <<<<<<<<<<<<<<
@@ -8689,7 +8802,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __pyx_t_6 = ((((__pyx_v_end - __pyx_v_f) - ((int)__pyx_t_5)) < 15) != 0);
     if (unlikely(__pyx_t_6)) {
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":855
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":855
  * 
  *         if (end - f) - <int>(new_offset - offset[0]) < 15:
  *             raise RuntimeError(u"Format string allocated too short, see comment in numpy.pxd")             # <<<<<<<<<<<<<<
@@ -8702,7 +8815,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __PYX_ERR(1, 855, __pyx_L1_error)
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":854
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":854
  *         child, new_offset = fields
  * 
  *         if (end - f) - <int>(new_offset - offset[0]) < 15:             # <<<<<<<<<<<<<<
@@ -8711,7 +8824,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
     }
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":857
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":857
  *             raise RuntimeError(u"Format string allocated too short, see comment in numpy.pxd")
  * 
  *         if ((child.byteorder == c'>' and little_endian) or             # <<<<<<<<<<<<<<
@@ -8731,7 +8844,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     }
     __pyx_L8_next_or:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":858
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":858
  * 
  *         if ((child.byteorder == c'>' and little_endian) or
  *             (child.byteorder == c'<' and not little_endian)):             # <<<<<<<<<<<<<<
@@ -8748,7 +8861,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __pyx_t_6 = __pyx_t_7;
     __pyx_L7_bool_binop_done:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":857
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":857
  *             raise RuntimeError(u"Format string allocated too short, see comment in numpy.pxd")
  * 
  *         if ((child.byteorder == c'>' and little_endian) or             # <<<<<<<<<<<<<<
@@ -8757,7 +8870,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
     if (unlikely(__pyx_t_6)) {
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":859
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":859
  *         if ((child.byteorder == c'>' and little_endian) or
  *             (child.byteorder == c'<' and not little_endian)):
  *             raise ValueError(u"Non-native byte order not supported")             # <<<<<<<<<<<<<<
@@ -8770,7 +8883,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __PYX_ERR(1, 859, __pyx_L1_error)
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":857
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":857
  *             raise RuntimeError(u"Format string allocated too short, see comment in numpy.pxd")
  * 
  *         if ((child.byteorder == c'>' and little_endian) or             # <<<<<<<<<<<<<<
@@ -8779,7 +8892,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
     }
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":869
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":869
  * 
  *         # Output padding bytes
  *         while offset[0] < new_offset:             # <<<<<<<<<<<<<<
@@ -8795,7 +8908,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       if (!__pyx_t_6) break;
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":870
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":870
  *         # Output padding bytes
  *         while offset[0] < new_offset:
  *             f[0] = 120 # "x"; pad byte             # <<<<<<<<<<<<<<
@@ -8804,7 +8917,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
       (__pyx_v_f[0]) = 0x78;
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":871
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":871
  *         while offset[0] < new_offset:
  *             f[0] = 120 # "x"; pad byte
  *             f += 1             # <<<<<<<<<<<<<<
@@ -8813,7 +8926,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
       __pyx_v_f = (__pyx_v_f + 1);
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":872
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":872
  *             f[0] = 120 # "x"; pad byte
  *             f += 1
  *             offset[0] += 1             # <<<<<<<<<<<<<<
@@ -8824,7 +8937,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       (__pyx_v_offset[__pyx_t_8]) = ((__pyx_v_offset[__pyx_t_8]) + 1);
     }
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":874
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":874
  *             offset[0] += 1
  * 
  *         offset[0] += child.itemsize             # <<<<<<<<<<<<<<
@@ -8834,7 +8947,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __pyx_t_8 = 0;
     (__pyx_v_offset[__pyx_t_8]) = ((__pyx_v_offset[__pyx_t_8]) + __pyx_v_child->elsize);
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":876
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":876
  *         offset[0] += child.itemsize
  * 
  *         if not PyDataType_HASFIELDS(child):             # <<<<<<<<<<<<<<
@@ -8844,7 +8957,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __pyx_t_6 = ((!(PyDataType_HASFIELDS(__pyx_v_child) != 0)) != 0);
     if (__pyx_t_6) {
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":877
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":877
  * 
  *         if not PyDataType_HASFIELDS(child):
  *             t = child.type_num             # <<<<<<<<<<<<<<
@@ -8856,7 +8969,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       __Pyx_XDECREF_SET(__pyx_v_t, __pyx_t_4);
       __pyx_t_4 = 0;
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":878
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":878
  *         if not PyDataType_HASFIELDS(child):
  *             t = child.type_num
  *             if end - f < 5:             # <<<<<<<<<<<<<<
@@ -8866,7 +8979,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       __pyx_t_6 = (((__pyx_v_end - __pyx_v_f) < 5) != 0);
       if (unlikely(__pyx_t_6)) {
 
-        /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":879
+        /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":879
  *             t = child.type_num
  *             if end - f < 5:
  *                 raise RuntimeError(u"Format string allocated too short.")             # <<<<<<<<<<<<<<
@@ -8879,7 +8992,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __PYX_ERR(1, 879, __pyx_L1_error)
 
-        /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":878
+        /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":878
  *         if not PyDataType_HASFIELDS(child):
  *             t = child.type_num
  *             if end - f < 5:             # <<<<<<<<<<<<<<
@@ -8888,7 +9001,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":882
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":882
  * 
  *             # Until ticket #99 is fixed, use integers to avoid warnings
  *             if   t == NPY_BYTE:        f[0] =  98 #"b"             # <<<<<<<<<<<<<<
@@ -8906,7 +9019,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":883
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":883
  *             # Until ticket #99 is fixed, use integers to avoid warnings
  *             if   t == NPY_BYTE:        f[0] =  98 #"b"
  *             elif t == NPY_UBYTE:       f[0] =  66 #"B"             # <<<<<<<<<<<<<<
@@ -8924,7 +9037,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":884
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":884
  *             if   t == NPY_BYTE:        f[0] =  98 #"b"
  *             elif t == NPY_UBYTE:       f[0] =  66 #"B"
  *             elif t == NPY_SHORT:       f[0] = 104 #"h"             # <<<<<<<<<<<<<<
@@ -8942,7 +9055,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":885
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":885
  *             elif t == NPY_UBYTE:       f[0] =  66 #"B"
  *             elif t == NPY_SHORT:       f[0] = 104 #"h"
  *             elif t == NPY_USHORT:      f[0] =  72 #"H"             # <<<<<<<<<<<<<<
@@ -8960,7 +9073,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":886
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":886
  *             elif t == NPY_SHORT:       f[0] = 104 #"h"
  *             elif t == NPY_USHORT:      f[0] =  72 #"H"
  *             elif t == NPY_INT:         f[0] = 105 #"i"             # <<<<<<<<<<<<<<
@@ -8978,7 +9091,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":887
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":887
  *             elif t == NPY_USHORT:      f[0] =  72 #"H"
  *             elif t == NPY_INT:         f[0] = 105 #"i"
  *             elif t == NPY_UINT:        f[0] =  73 #"I"             # <<<<<<<<<<<<<<
@@ -8996,7 +9109,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":888
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":888
  *             elif t == NPY_INT:         f[0] = 105 #"i"
  *             elif t == NPY_UINT:        f[0] =  73 #"I"
  *             elif t == NPY_LONG:        f[0] = 108 #"l"             # <<<<<<<<<<<<<<
@@ -9014,7 +9127,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":889
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":889
  *             elif t == NPY_UINT:        f[0] =  73 #"I"
  *             elif t == NPY_LONG:        f[0] = 108 #"l"
  *             elif t == NPY_ULONG:       f[0] = 76  #"L"             # <<<<<<<<<<<<<<
@@ -9032,7 +9145,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":890
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":890
  *             elif t == NPY_LONG:        f[0] = 108 #"l"
  *             elif t == NPY_ULONG:       f[0] = 76  #"L"
  *             elif t == NPY_LONGLONG:    f[0] = 113 #"q"             # <<<<<<<<<<<<<<
@@ -9050,7 +9163,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":891
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":891
  *             elif t == NPY_ULONG:       f[0] = 76  #"L"
  *             elif t == NPY_LONGLONG:    f[0] = 113 #"q"
  *             elif t == NPY_ULONGLONG:   f[0] = 81  #"Q"             # <<<<<<<<<<<<<<
@@ -9068,7 +9181,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":892
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":892
  *             elif t == NPY_LONGLONG:    f[0] = 113 #"q"
  *             elif t == NPY_ULONGLONG:   f[0] = 81  #"Q"
  *             elif t == NPY_FLOAT:       f[0] = 102 #"f"             # <<<<<<<<<<<<<<
@@ -9086,7 +9199,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":893
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":893
  *             elif t == NPY_ULONGLONG:   f[0] = 81  #"Q"
  *             elif t == NPY_FLOAT:       f[0] = 102 #"f"
  *             elif t == NPY_DOUBLE:      f[0] = 100 #"d"             # <<<<<<<<<<<<<<
@@ -9104,7 +9217,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":894
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":894
  *             elif t == NPY_FLOAT:       f[0] = 102 #"f"
  *             elif t == NPY_DOUBLE:      f[0] = 100 #"d"
  *             elif t == NPY_LONGDOUBLE:  f[0] = 103 #"g"             # <<<<<<<<<<<<<<
@@ -9122,7 +9235,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":895
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":895
  *             elif t == NPY_DOUBLE:      f[0] = 100 #"d"
  *             elif t == NPY_LONGDOUBLE:  f[0] = 103 #"g"
  *             elif t == NPY_CFLOAT:      f[0] = 90; f[1] = 102; f += 1 # Zf             # <<<<<<<<<<<<<<
@@ -9142,7 +9255,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":896
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":896
  *             elif t == NPY_LONGDOUBLE:  f[0] = 103 #"g"
  *             elif t == NPY_CFLOAT:      f[0] = 90; f[1] = 102; f += 1 # Zf
  *             elif t == NPY_CDOUBLE:     f[0] = 90; f[1] = 100; f += 1 # Zd             # <<<<<<<<<<<<<<
@@ -9162,7 +9275,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":897
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":897
  *             elif t == NPY_CFLOAT:      f[0] = 90; f[1] = 102; f += 1 # Zf
  *             elif t == NPY_CDOUBLE:     f[0] = 90; f[1] = 100; f += 1 # Zd
  *             elif t == NPY_CLONGDOUBLE: f[0] = 90; f[1] = 103; f += 1 # Zg             # <<<<<<<<<<<<<<
@@ -9182,7 +9295,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":898
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":898
  *             elif t == NPY_CDOUBLE:     f[0] = 90; f[1] = 100; f += 1 # Zd
  *             elif t == NPY_CLONGDOUBLE: f[0] = 90; f[1] = 103; f += 1 # Zg
  *             elif t == NPY_OBJECT:      f[0] = 79 #"O"             # <<<<<<<<<<<<<<
@@ -9200,7 +9313,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":900
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":900
  *             elif t == NPY_OBJECT:      f[0] = 79 #"O"
  *             else:
  *                 raise ValueError(u"unknown dtype code in numpy.pxd (%d)" % t)             # <<<<<<<<<<<<<<
@@ -9219,7 +9332,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       }
       __pyx_L15:;
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":901
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":901
  *             else:
  *                 raise ValueError(u"unknown dtype code in numpy.pxd (%d)" % t)
  *             f += 1             # <<<<<<<<<<<<<<
@@ -9228,7 +9341,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
       __pyx_v_f = (__pyx_v_f + 1);
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":876
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":876
  *         offset[0] += child.itemsize
  * 
  *         if not PyDataType_HASFIELDS(child):             # <<<<<<<<<<<<<<
@@ -9238,7 +9351,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       goto __pyx_L13;
     }
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":905
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":905
  *             # Cython ignores struct boundary information ("T{...}"),
  *             # so don't output it
  *             f = _util_dtypestring(child, f, end, offset)             # <<<<<<<<<<<<<<
@@ -9251,7 +9364,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     }
     __pyx_L13:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":850
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":850
  *     cdef tuple fields
  * 
  *     for childname in descr.names:             # <<<<<<<<<<<<<<
@@ -9261,7 +9374,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":906
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":906
  *             # so don't output it
  *             f = _util_dtypestring(child, f, end, offset)
  *     return f             # <<<<<<<<<<<<<<
@@ -9271,7 +9384,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
   __pyx_r = __pyx_v_f;
   goto __pyx_L0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":841
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":841
  *         return ()
  * 
  * cdef inline char* _util_dtypestring(dtype descr, char* f, char* end, int* offset) except NULL:             # <<<<<<<<<<<<<<
@@ -9296,7 +9409,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1021
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1021
  *     int _import_umath() except -1
  * 
  * cdef inline void set_array_base(ndarray arr, object base):             # <<<<<<<<<<<<<<
@@ -9308,7 +9421,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("set_array_base", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1022
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1022
  * 
  * cdef inline void set_array_base(ndarray arr, object base):
  *     Py_INCREF(base) # important to do this before stealing the reference below!             # <<<<<<<<<<<<<<
@@ -9317,7 +9430,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
  */
   Py_INCREF(__pyx_v_base);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1023
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1023
  * cdef inline void set_array_base(ndarray arr, object base):
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)             # <<<<<<<<<<<<<<
@@ -9326,7 +9439,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
  */
   (void)(PyArray_SetBaseObject(__pyx_v_arr, __pyx_v_base));
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1021
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1021
  *     int _import_umath() except -1
  * 
  * cdef inline void set_array_base(ndarray arr, object base):             # <<<<<<<<<<<<<<
@@ -9338,7 +9451,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   __Pyx_RefNannyFinishContext();
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1025
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1025
  *     PyArray_SetBaseObject(arr, base)
  * 
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
@@ -9353,7 +9466,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("get_array_base", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1026
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1026
  * 
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)             # <<<<<<<<<<<<<<
@@ -9362,7 +9475,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
  */
   __pyx_v_base = PyArray_BASE(__pyx_v_arr);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1027
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1027
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)
  *     if base is NULL:             # <<<<<<<<<<<<<<
@@ -9372,7 +9485,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   __pyx_t_1 = ((__pyx_v_base == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1028
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1028
  *     base = PyArray_BASE(arr)
  *     if base is NULL:
  *         return None             # <<<<<<<<<<<<<<
@@ -9383,7 +9496,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1027
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1027
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)
  *     if base is NULL:             # <<<<<<<<<<<<<<
@@ -9392,7 +9505,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
  */
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1029
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1029
  *     if base is NULL:
  *         return None
  *     return <object>base             # <<<<<<<<<<<<<<
@@ -9404,7 +9517,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   __pyx_r = ((PyObject *)__pyx_v_base);
   goto __pyx_L0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1025
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1025
  *     PyArray_SetBaseObject(arr, base)
  * 
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
@@ -9419,7 +9532,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1033
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1033
  * # Versions of the import_* functions which are more suitable for
  * # Cython code.
  * cdef inline int import_array() except -1:             # <<<<<<<<<<<<<<
@@ -9443,7 +9556,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("import_array", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1034
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1034
  * # Cython code.
  * cdef inline int import_array() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -9459,7 +9572,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1035
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1035
  * cdef inline int import_array() except -1:
  *     try:
  *         _import_array()             # <<<<<<<<<<<<<<
@@ -9468,7 +9581,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
  */
       __pyx_t_4 = _import_array(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(1, 1035, __pyx_L3_error)
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1034
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1034
  * # Cython code.
  * cdef inline int import_array() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -9482,7 +9595,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     goto __pyx_L8_try_end;
     __pyx_L3_error:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1036
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1036
  *     try:
  *         _import_array()
  *     except Exception:             # <<<<<<<<<<<<<<
@@ -9497,7 +9610,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1037
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1037
  *         _import_array()
  *     except Exception:
  *         raise ImportError("numpy.core.multiarray failed to import")             # <<<<<<<<<<<<<<
@@ -9513,7 +9626,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1034
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1034
  * # Cython code.
  * cdef inline int import_array() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -9528,7 +9641,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     __pyx_L8_try_end:;
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1033
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1033
  * # Versions of the import_* functions which are more suitable for
  * # Cython code.
  * cdef inline int import_array() except -1:             # <<<<<<<<<<<<<<
@@ -9551,7 +9664,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1039
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1039
  *         raise ImportError("numpy.core.multiarray failed to import")
  * 
  * cdef inline int import_umath() except -1:             # <<<<<<<<<<<<<<
@@ -9575,7 +9688,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("import_umath", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1040
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1040
  * 
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -9591,7 +9704,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1041
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1041
  * cdef inline int import_umath() except -1:
  *     try:
  *         _import_umath()             # <<<<<<<<<<<<<<
@@ -9600,7 +9713,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
  */
       __pyx_t_4 = _import_umath(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(1, 1041, __pyx_L3_error)
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1040
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1040
  * 
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -9614,7 +9727,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     goto __pyx_L8_try_end;
     __pyx_L3_error:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1042
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1042
  *     try:
  *         _import_umath()
  *     except Exception:             # <<<<<<<<<<<<<<
@@ -9629,7 +9742,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1043
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1043
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
@@ -9645,7 +9758,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1040
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1040
  * 
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -9660,7 +9773,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     __pyx_L8_try_end:;
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1039
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1039
  *         raise ImportError("numpy.core.multiarray failed to import")
  * 
  * cdef inline int import_umath() except -1:             # <<<<<<<<<<<<<<
@@ -9683,7 +9796,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1045
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1045
  *         raise ImportError("numpy.core.umath failed to import")
  * 
  * cdef inline int import_ufunc() except -1:             # <<<<<<<<<<<<<<
@@ -9707,7 +9820,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("import_ufunc", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1046
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1046
  * 
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -9723,7 +9836,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1047
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1047
  * cdef inline int import_ufunc() except -1:
  *     try:
  *         _import_umath()             # <<<<<<<<<<<<<<
@@ -9732,7 +9845,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
  */
       __pyx_t_4 = _import_umath(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(1, 1047, __pyx_L3_error)
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1046
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1046
  * 
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -9746,7 +9859,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     goto __pyx_L8_try_end;
     __pyx_L3_error:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1048
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1048
  *     try:
  *         _import_umath()
  *     except Exception:             # <<<<<<<<<<<<<<
@@ -9760,7 +9873,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1049
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1049
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
@@ -9774,7 +9887,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1046
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1046
  * 
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -9789,7 +9902,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     __pyx_L8_try_end:;
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1045
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1045
  *         raise ImportError("numpy.core.umath failed to import")
  * 
  * cdef inline int import_ufunc() except -1:             # <<<<<<<<<<<<<<
@@ -9812,7 +9925,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":49
+/* "pandas/_libs/tslibs/util.pxd":54
  * 
  * 
  * cdef inline int64_t get_nat():             # <<<<<<<<<<<<<<
@@ -9825,7 +9938,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_4util
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_nat", 0);
 
-  /* "pandas/_libs/tslibs/util.pxd":50
+  /* "pandas/_libs/tslibs/util.pxd":55
  * 
  * cdef inline int64_t get_nat():
  *     return NPY_MIN_INT64             # <<<<<<<<<<<<<<
@@ -9835,7 +9948,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_4util
   __pyx_r = NPY_MIN_INT64;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":49
+  /* "pandas/_libs/tslibs/util.pxd":54
  * 
  * 
  * cdef inline int64_t get_nat():             # <<<<<<<<<<<<<<
@@ -9849,7 +9962,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_4util
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":56
+/* "pandas/_libs/tslibs/util.pxd":61
  * # Type Checking
  * 
  * cdef inline bint is_integer_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -9862,7 +9975,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_integer_object(
   int __pyx_t_1;
   int __pyx_t_2;
 
-  /* "pandas/_libs/tslibs/util.pxd":74
+  /* "pandas/_libs/tslibs/util.pxd":79
  *     This counts np.timedelta64 objects as integers.
  *     """
  *     return (not PyBool_Check(obj) and PyArray_IsIntegerScalar(obj)             # <<<<<<<<<<<<<<
@@ -9876,7 +9989,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_integer_object(
     goto __pyx_L3_bool_binop_done;
   }
 
-  /* "pandas/_libs/tslibs/util.pxd":75
+  /* "pandas/_libs/tslibs/util.pxd":80
  *     """
  *     return (not PyBool_Check(obj) and PyArray_IsIntegerScalar(obj)
  *             and not is_timedelta64_object(obj))             # <<<<<<<<<<<<<<
@@ -9895,7 +10008,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_integer_object(
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":56
+  /* "pandas/_libs/tslibs/util.pxd":61
  * # Type Checking
  * 
  * cdef inline bint is_integer_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -9908,7 +10021,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_integer_object(
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":78
+/* "pandas/_libs/tslibs/util.pxd":83
  * 
  * 
  * cdef inline bint is_float_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -9921,7 +10034,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_float_object(Py
   int __pyx_t_1;
   int __pyx_t_2;
 
-  /* "pandas/_libs/tslibs/util.pxd":90
+  /* "pandas/_libs/tslibs/util.pxd":95
  *     is_float : bool
  *     """
  *     return (PyFloat_Check(obj) or             # <<<<<<<<<<<<<<
@@ -9935,7 +10048,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_float_object(Py
     goto __pyx_L3_bool_binop_done;
   }
 
-  /* "pandas/_libs/tslibs/util.pxd":91
+  /* "pandas/_libs/tslibs/util.pxd":96
  *     """
  *     return (PyFloat_Check(obj) or
  *             (PyObject_TypeCheck(obj, &PyFloatingArrType_Type)))             # <<<<<<<<<<<<<<
@@ -9948,7 +10061,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_float_object(Py
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":78
+  /* "pandas/_libs/tslibs/util.pxd":83
  * 
  * 
  * cdef inline bint is_float_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -9961,7 +10074,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_float_object(Py
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":94
+/* "pandas/_libs/tslibs/util.pxd":99
  * 
  * 
  * cdef inline bint is_complex_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -9974,7 +10087,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_complex_object(
   int __pyx_t_1;
   int __pyx_t_2;
 
-  /* "pandas/_libs/tslibs/util.pxd":106
+  /* "pandas/_libs/tslibs/util.pxd":111
  *     is_complex : bool
  *     """
  *     return (PyComplex_Check(obj) or             # <<<<<<<<<<<<<<
@@ -9988,7 +10101,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_complex_object(
     goto __pyx_L3_bool_binop_done;
   }
 
-  /* "pandas/_libs/tslibs/util.pxd":107
+  /* "pandas/_libs/tslibs/util.pxd":112
  *     """
  *     return (PyComplex_Check(obj) or
  *             PyObject_TypeCheck(obj, &PyComplexFloatingArrType_Type))             # <<<<<<<<<<<<<<
@@ -10001,7 +10114,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_complex_object(
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":94
+  /* "pandas/_libs/tslibs/util.pxd":99
  * 
  * 
  * cdef inline bint is_complex_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -10014,7 +10127,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_complex_object(
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":110
+/* "pandas/_libs/tslibs/util.pxd":115
  * 
  * 
  * cdef inline bint is_bool_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -10027,7 +10140,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_bool_object(PyO
   int __pyx_t_1;
   int __pyx_t_2;
 
-  /* "pandas/_libs/tslibs/util.pxd":122
+  /* "pandas/_libs/tslibs/util.pxd":127
  *     is_bool : bool
  *     """
  *     return (PyBool_Check(obj) or             # <<<<<<<<<<<<<<
@@ -10041,7 +10154,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_bool_object(PyO
     goto __pyx_L3_bool_binop_done;
   }
 
-  /* "pandas/_libs/tslibs/util.pxd":123
+  /* "pandas/_libs/tslibs/util.pxd":128
  *     """
  *     return (PyBool_Check(obj) or
  *             PyObject_TypeCheck(obj, &PyBoolArrType_Type))             # <<<<<<<<<<<<<<
@@ -10054,7 +10167,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_bool_object(PyO
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":110
+  /* "pandas/_libs/tslibs/util.pxd":115
  * 
  * 
  * cdef inline bint is_bool_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -10067,7 +10180,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_bool_object(PyO
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":126
+/* "pandas/_libs/tslibs/util.pxd":131
  * 
  * 
  * cdef inline bint is_timedelta64_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -10078,7 +10191,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_bool_object(PyO
 static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_timedelta64_object(PyObject *__pyx_v_obj) {
   int __pyx_r;
 
-  /* "pandas/_libs/tslibs/util.pxd":138
+  /* "pandas/_libs/tslibs/util.pxd":143
  *     is_timedelta64 : bool
  *     """
  *     return PyObject_TypeCheck(obj, &PyTimedeltaArrType_Type)             # <<<<<<<<<<<<<<
@@ -10088,7 +10201,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_timedelta64_obj
   __pyx_r = PyObject_TypeCheck(__pyx_v_obj, (&PyTimedeltaArrType_Type));
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":126
+  /* "pandas/_libs/tslibs/util.pxd":131
  * 
  * 
  * cdef inline bint is_timedelta64_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -10101,7 +10214,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_timedelta64_obj
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":141
+/* "pandas/_libs/tslibs/util.pxd":146
  * 
  * 
  * cdef inline bint is_datetime64_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -10112,7 +10225,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_timedelta64_obj
 static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_datetime64_object(PyObject *__pyx_v_obj) {
   int __pyx_r;
 
-  /* "pandas/_libs/tslibs/util.pxd":153
+  /* "pandas/_libs/tslibs/util.pxd":158
  *     is_datetime64 : bool
  *     """
  *     return PyObject_TypeCheck(obj, &PyDatetimeArrType_Type)             # <<<<<<<<<<<<<<
@@ -10122,7 +10235,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_datetime64_obje
   __pyx_r = PyObject_TypeCheck(__pyx_v_obj, (&PyDatetimeArrType_Type));
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":141
+  /* "pandas/_libs/tslibs/util.pxd":146
  * 
  * 
  * cdef inline bint is_datetime64_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -10135,7 +10248,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_datetime64_obje
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":156
+/* "pandas/_libs/tslibs/util.pxd":161
  * 
  * 
  * cdef inline bint is_array(object val):             # <<<<<<<<<<<<<<
@@ -10148,7 +10261,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_array(PyObject 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("is_array", 0);
 
-  /* "pandas/_libs/tslibs/util.pxd":168
+  /* "pandas/_libs/tslibs/util.pxd":173
  *     is_ndarray : bool
  *     """
  *     return PyArray_Check(val)             # <<<<<<<<<<<<<<
@@ -10158,7 +10271,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_array(PyObject 
   __pyx_r = PyArray_Check(__pyx_v_val);
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":156
+  /* "pandas/_libs/tslibs/util.pxd":161
  * 
  * 
  * cdef inline bint is_array(object val):             # <<<<<<<<<<<<<<
@@ -10172,7 +10285,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_array(PyObject 
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":171
+/* "pandas/_libs/tslibs/util.pxd":176
  * 
  * 
  * cdef inline bint is_period_object(object val):             # <<<<<<<<<<<<<<
@@ -10191,23 +10304,23 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_period_object(P
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("is_period_object", 0);
 
-  /* "pandas/_libs/tslibs/util.pxd":183
+  /* "pandas/_libs/tslibs/util.pxd":188
  *     is_period : bool
  *     """
  *     return getattr(val, '_typ', '_typ') == 'period'             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_1 = __Pyx_GetAttr3(__pyx_v_val, __pyx_n_u_typ, __pyx_n_u_typ); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 183, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetAttr3(__pyx_v_val, __pyx_n_u_typ, __pyx_n_u_typ); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_n_u_period, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 183, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_n_u_period, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 188, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(2, 183, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(2, 188, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_3;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":171
+  /* "pandas/_libs/tslibs/util.pxd":176
  * 
  * 
  * cdef inline bint is_period_object(object val):             # <<<<<<<<<<<<<<
@@ -10226,7 +10339,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_period_object(P
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":186
+/* "pandas/_libs/tslibs/util.pxd":191
  * 
  * 
  * cdef inline bint is_offset_object(object val):             # <<<<<<<<<<<<<<
@@ -10245,23 +10358,23 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_offset_object(P
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("is_offset_object", 0);
 
-  /* "pandas/_libs/tslibs/util.pxd":198
+  /* "pandas/_libs/tslibs/util.pxd":203
  *     is_date_offset : bool
  *     """
  *     return getattr(val, '_typ', None) == "dateoffset"             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_1 = __Pyx_GetAttr3(__pyx_v_val, __pyx_n_u_typ, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 198, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetAttr3(__pyx_v_val, __pyx_n_u_typ, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_n_u_dateoffset, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 198, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_n_u_dateoffset, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 203, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(2, 198, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(2, 203, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_3;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":186
+  /* "pandas/_libs/tslibs/util.pxd":191
  * 
  * 
  * cdef inline bint is_offset_object(object val):             # <<<<<<<<<<<<<<
@@ -10280,7 +10393,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_offset_object(P
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":201
+/* "pandas/_libs/tslibs/util.pxd":206
  * 
  * 
  * cdef inline bint is_nan(object val):             # <<<<<<<<<<<<<<
@@ -10301,7 +10414,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_nan(PyObject *_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("is_nan", 0);
 
-  /* "pandas/_libs/tslibs/util.pxd":215
+  /* "pandas/_libs/tslibs/util.pxd":220
  *     """
  *     cdef float64_t fval
  *     if is_float_object(val):             # <<<<<<<<<<<<<<
@@ -10311,17 +10424,17 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_nan(PyObject *_
   __pyx_t_1 = (__pyx_f_6pandas_5_libs_6tslibs_4util_is_float_object(__pyx_v_val) != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/util.pxd":216
+    /* "pandas/_libs/tslibs/util.pxd":221
  *     cdef float64_t fval
  *     if is_float_object(val):
  *         fval = val             # <<<<<<<<<<<<<<
  *         return fval != fval
  *     return is_complex_object(val) and val != val
  */
-    __pyx_t_2 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_2 == ((npy_float64)-1)) && PyErr_Occurred())) __PYX_ERR(2, 216, __pyx_L1_error)
+    __pyx_t_2 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_2 == ((npy_float64)-1)) && PyErr_Occurred())) __PYX_ERR(2, 221, __pyx_L1_error)
     __pyx_v_fval = __pyx_t_2;
 
-    /* "pandas/_libs/tslibs/util.pxd":217
+    /* "pandas/_libs/tslibs/util.pxd":222
  *     if is_float_object(val):
  *         fval = val
  *         return fval != fval             # <<<<<<<<<<<<<<
@@ -10331,7 +10444,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_nan(PyObject *_
     __pyx_r = (__pyx_v_fval != __pyx_v_fval);
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/util.pxd":215
+    /* "pandas/_libs/tslibs/util.pxd":220
  *     """
  *     cdef float64_t fval
  *     if is_float_object(val):             # <<<<<<<<<<<<<<
@@ -10340,7 +10453,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_nan(PyObject *_
  */
   }
 
-  /* "pandas/_libs/tslibs/util.pxd":218
+  /* "pandas/_libs/tslibs/util.pxd":223
  *         fval = val
  *         return fval != fval
  *     return is_complex_object(val) and val != val             # <<<<<<<<<<<<<<
@@ -10353,15 +10466,15 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_nan(PyObject *_
     __pyx_t_1 = __pyx_t_3;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_4 = PyObject_RichCompare(__pyx_v_val, __pyx_v_val, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(2, 218, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(2, 218, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_v_val, __pyx_v_val, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(2, 223, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(2, 223, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_1 = __pyx_t_3;
   __pyx_L4_bool_binop_done:;
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":201
+  /* "pandas/_libs/tslibs/util.pxd":206
  * 
  * 
  * cdef inline bint is_nan(object val):             # <<<<<<<<<<<<<<
@@ -10379,7 +10492,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_nan(PyObject *_
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":221
+/* "pandas/_libs/tslibs/util.pxd":226
  * 
  * 
  * cdef inline const char* get_c_string_buf_and_size(object py_string,             # <<<<<<<<<<<<<<
@@ -10398,7 +10511,7 @@ static CYTHON_INLINE char const *__pyx_f_6pandas_5_libs_6tslibs_4util_get_c_stri
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_c_string_buf_and_size", 0);
 
-  /* "pandas/_libs/tslibs/util.pxd":244
+  /* "pandas/_libs/tslibs/util.pxd":249
  *         const char *buf
  * 
  *     if PyUnicode_Check(py_string):             # <<<<<<<<<<<<<<
@@ -10408,17 +10521,17 @@ static CYTHON_INLINE char const *__pyx_f_6pandas_5_libs_6tslibs_4util_get_c_stri
   __pyx_t_1 = (PyUnicode_Check(__pyx_v_py_string) != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/util.pxd":245
+    /* "pandas/_libs/tslibs/util.pxd":250
  * 
  *     if PyUnicode_Check(py_string):
  *         buf = PyUnicode_AsUTF8AndSize(py_string, length)             # <<<<<<<<<<<<<<
  *     else:
  *         PyBytes_AsStringAndSize(py_string, <char**>&buf, length)
  */
-    __pyx_t_2 = PyUnicode_AsUTF8AndSize(__pyx_v_py_string, __pyx_v_length); if (unlikely(__pyx_t_2 == ((char const *)NULL))) __PYX_ERR(2, 245, __pyx_L1_error)
+    __pyx_t_2 = PyUnicode_AsUTF8AndSize(__pyx_v_py_string, __pyx_v_length); if (unlikely(__pyx_t_2 == ((char const *)NULL))) __PYX_ERR(2, 250, __pyx_L1_error)
     __pyx_v_buf = __pyx_t_2;
 
-    /* "pandas/_libs/tslibs/util.pxd":244
+    /* "pandas/_libs/tslibs/util.pxd":249
  *         const char *buf
  * 
  *     if PyUnicode_Check(py_string):             # <<<<<<<<<<<<<<
@@ -10428,7 +10541,7 @@ static CYTHON_INLINE char const *__pyx_f_6pandas_5_libs_6tslibs_4util_get_c_stri
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/util.pxd":247
+  /* "pandas/_libs/tslibs/util.pxd":252
  *         buf = PyUnicode_AsUTF8AndSize(py_string, length)
  *     else:
  *         PyBytes_AsStringAndSize(py_string, <char**>&buf, length)             # <<<<<<<<<<<<<<
@@ -10436,11 +10549,11 @@ static CYTHON_INLINE char const *__pyx_f_6pandas_5_libs_6tslibs_4util_get_c_stri
  * 
  */
   /*else*/ {
-    __pyx_t_1 = PyBytes_AsStringAndSize(__pyx_v_py_string, ((char **)(&__pyx_v_buf)), __pyx_v_length); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(2, 247, __pyx_L1_error)
+    __pyx_t_1 = PyBytes_AsStringAndSize(__pyx_v_py_string, ((char **)(&__pyx_v_buf)), __pyx_v_length); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(2, 252, __pyx_L1_error)
   }
   __pyx_L3:;
 
-  /* "pandas/_libs/tslibs/util.pxd":248
+  /* "pandas/_libs/tslibs/util.pxd":253
  *     else:
  *         PyBytes_AsStringAndSize(py_string, <char**>&buf, length)
  *     return buf             # <<<<<<<<<<<<<<
@@ -10450,7 +10563,7 @@ static CYTHON_INLINE char const *__pyx_f_6pandas_5_libs_6tslibs_4util_get_c_stri
   __pyx_r = __pyx_v_buf;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":221
+  /* "pandas/_libs/tslibs/util.pxd":226
  * 
  * 
  * cdef inline const char* get_c_string_buf_and_size(object py_string,             # <<<<<<<<<<<<<<
@@ -10467,7 +10580,7 @@ static CYTHON_INLINE char const *__pyx_f_6pandas_5_libs_6tslibs_4util_get_c_stri
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":251
+/* "pandas/_libs/tslibs/util.pxd":256
  * 
  * 
  * cdef inline const char* get_c_string(object py_string):             # <<<<<<<<<<<<<<
@@ -10479,7 +10592,7 @@ static CYTHON_INLINE char const *__pyx_f_6pandas_5_libs_6tslibs_4util_get_c_stri
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_c_string", 0);
 
-  /* "pandas/_libs/tslibs/util.pxd":252
+  /* "pandas/_libs/tslibs/util.pxd":257
  * 
  * cdef inline const char* get_c_string(object py_string):
  *     return get_c_string_buf_and_size(py_string, NULL)             # <<<<<<<<<<<<<<
@@ -10487,7 +10600,7 @@ static CYTHON_INLINE char const *__pyx_f_6pandas_5_libs_6tslibs_4util_get_c_stri
   __pyx_r = __pyx_f_6pandas_5_libs_6tslibs_4util_get_c_string_buf_and_size(__pyx_v_py_string, NULL);
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":251
+  /* "pandas/_libs/tslibs/util.pxd":256
  * 
  * 
  * cdef inline const char* get_c_string(object py_string):             # <<<<<<<<<<<<<<
@@ -10660,10 +10773,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_u_freqstr, __pyx_k_freqstr, sizeof(__pyx_k_freqstr), 0, 1, 0, 1},
   {&__pyx_n_s_get, __pyx_k_get, sizeof(__pyx_k_get), 0, 0, 1, 1},
   {&__pyx_kp_u_get_freq_code_line_129, __pyx_k_get_freq_code_line_129, sizeof(__pyx_k_get_freq_code_line_129), 0, 1, 0, 0},
-  {&__pyx_kp_u_get_freq_line_309, __pyx_k_get_freq_line_309, sizeof(__pyx_k_get_freq_line_309), 0, 1, 0, 0},
-  {&__pyx_kp_u_get_freq_str_line_229, __pyx_k_get_freq_str_line_229, sizeof(__pyx_k_get_freq_str_line_229), 0, 1, 0, 0},
-  {&__pyx_kp_u_get_rule_month_line_488, __pyx_k_get_rule_month_line_488, sizeof(__pyx_k_get_rule_month_line_488), 0, 1, 0, 0},
-  {&__pyx_kp_u_get_to_timestamp_base_line_273, __pyx_k_get_to_timestamp_base_line_273, sizeof(__pyx_k_get_to_timestamp_base_line_273), 0, 1, 0, 0},
+  {&__pyx_kp_u_get_freq_line_305, __pyx_k_get_freq_line_305, sizeof(__pyx_k_get_freq_line_305), 0, 1, 0, 0},
+  {&__pyx_kp_u_get_freq_str_line_225, __pyx_k_get_freq_str_line_225, sizeof(__pyx_k_get_freq_str_line_225), 0, 1, 0, 0},
+  {&__pyx_kp_u_get_rule_month_line_484, __pyx_k_get_rule_month_line_484, sizeof(__pyx_k_get_rule_month_line_484), 0, 1, 0, 0},
+  {&__pyx_kp_u_get_to_timestamp_base_line_269, __pyx_k_get_to_timestamp_base_line_269, sizeof(__pyx_k_get_to_timestamp_base_line_269), 0, 1, 0, 0},
   {&__pyx_n_s_group, __pyx_k_group, sizeof(__pyx_k_group), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_is_subperiod, __pyx_k_is_subperiod, sizeof(__pyx_k_is_subperiod), 0, 0, 1, 1},
@@ -10711,8 +10824,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 200, __pyx_L1_error)
-  __pyx_builtin_KeyError = __Pyx_GetBuiltinName(__pyx_n_s_KeyError); if (!__pyx_builtin_KeyError) __PYX_ERR(0, 225, __pyx_L1_error)
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 196, __pyx_L1_error)
+  __pyx_builtin_KeyError = __Pyx_GetBuiltinName(__pyx_n_s_KeyError); if (!__pyx_builtin_KeyError) __PYX_ERR(0, 221, __pyx_L1_error)
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(1, 285, __pyx_L1_error)
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(1, 855, __pyx_L1_error)
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(1, 1037, __pyx_L1_error)
@@ -10725,7 +10838,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":272
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":272
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_ARRAY_C_CONTIGUOUS)):
  *                 raise ValueError(u"ndarray is not C contiguous")             # <<<<<<<<<<<<<<
@@ -10736,7 +10849,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":276
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":276
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_ARRAY_F_CONTIGUOUS)):
  *                 raise ValueError(u"ndarray is not Fortran contiguous")             # <<<<<<<<<<<<<<
@@ -10747,7 +10860,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":306
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":306
  *                 if ((descr.byteorder == c'>' and little_endian) or
  *                     (descr.byteorder == c'<' and not little_endian)):
  *                     raise ValueError(u"Non-native byte order not supported")             # <<<<<<<<<<<<<<
@@ -10758,7 +10871,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":855
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":855
  * 
  *         if (end - f) - <int>(new_offset - offset[0]) < 15:
  *             raise RuntimeError(u"Format string allocated too short, see comment in numpy.pxd")             # <<<<<<<<<<<<<<
@@ -10769,7 +10882,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":879
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":879
  *             t = child.type_num
  *             if end - f < 5:
  *                 raise RuntimeError(u"Format string allocated too short.")             # <<<<<<<<<<<<<<
@@ -10780,7 +10893,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1037
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1037
  *         _import_array()
  *     except Exception:
  *         raise ImportError("numpy.core.multiarray failed to import")             # <<<<<<<<<<<<<<
@@ -10791,7 +10904,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1043
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1043
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
@@ -10824,29 +10937,29 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_slice__10);
   __Pyx_GIVEREF(__pyx_slice__10);
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":331
+  /* "pandas/_libs/tslibs/frequencies.pyx":327
  * # Frequency comparison
  * 
  * def is_subperiod(source, target) -> bint:             # <<<<<<<<<<<<<<
  *     """
  *     Returns True if downsampling is possible between source and target
  */
-  __pyx_tuple__11 = PyTuple_Pack(2, __pyx_n_s_source, __pyx_n_s_target); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 331, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(2, __pyx_n_s_source, __pyx_n_s_target); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 327, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_frequencies_2, __pyx_n_s_is_subperiod, 331, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 331, __pyx_L1_error)
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_frequencies_2, __pyx_n_s_is_subperiod, 327, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 327, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":384
+  /* "pandas/_libs/tslibs/frequencies.pyx":380
  * 
  * 
  * def is_superperiod(source, target) -> bint:             # <<<<<<<<<<<<<<
  *     """
  *     Returns True if upsampling is possible between source and target
  */
-  __pyx_tuple__13 = PyTuple_Pack(4, __pyx_n_s_source, __pyx_n_s_target, __pyx_n_s_smonth, __pyx_n_s_tmonth); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 384, __pyx_L1_error)
+  __pyx_tuple__13 = PyTuple_Pack(4, __pyx_n_s_source, __pyx_n_s_target, __pyx_n_s_smonth, __pyx_n_s_tmonth); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 380, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__13);
   __Pyx_GIVEREF(__pyx_tuple__13);
-  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_frequencies_2, __pyx_n_s_is_superperiod, 384, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 384, __pyx_L1_error)
+  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_frequencies_2, __pyx_n_s_is_superperiod, 380, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 380, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -10976,6 +11089,16 @@ static int __Pyx_modinit_type_import_code(void) {
   #endif
   __Pyx_ImportType_CheckSize_Warn);
    if (!__pyx_ptype_7cpython_4type_type) __PYX_ERR(3, 9, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyImport_ImportModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 8, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_ptype_7cpython_4bool_bool = __Pyx_ImportType(__pyx_t_1, __Pyx_BUILTIN_MODULE_NAME, "bool", sizeof(PyBoolObject), __Pyx_ImportType_CheckSize_Warn);
+   if (!__pyx_ptype_7cpython_4bool_bool) __PYX_ERR(4, 8, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyImport_ImportModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 15, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_ptype_7cpython_7complex_complex = __Pyx_ImportType(__pyx_t_1, __Pyx_BUILTIN_MODULE_NAME, "complex", sizeof(PyComplexObject), __Pyx_ImportType_CheckSize_Warn);
+   if (!__pyx_ptype_7cpython_7complex_complex) __PYX_ERR(5, 15, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = PyImport_ImportModule("numpy"); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 206, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -11801,28 +11924,28 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_dont_uppercase, __pyx_t_4) < 0) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":331
+  /* "pandas/_libs/tslibs/frequencies.pyx":327
  * # Frequency comparison
  * 
  * def is_subperiod(source, target) -> bint:             # <<<<<<<<<<<<<<
  *     """
  *     Returns True if downsampling is possible between source and target
  */
-  __pyx_t_4 = PyCFunction_NewEx(&__pyx_mdef_6pandas_5_libs_6tslibs_11frequencies_15is_subperiod, NULL, __pyx_n_s_pandas__libs_tslibs_frequencies); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 331, __pyx_L1_error)
+  __pyx_t_4 = PyCFunction_NewEx(&__pyx_mdef_6pandas_5_libs_6tslibs_11frequencies_15is_subperiod, NULL, __pyx_n_s_pandas__libs_tslibs_frequencies); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 327, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_is_subperiod, __pyx_t_4) < 0) __PYX_ERR(0, 331, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_is_subperiod, __pyx_t_4) < 0) __PYX_ERR(0, 327, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pandas/_libs/tslibs/frequencies.pyx":384
+  /* "pandas/_libs/tslibs/frequencies.pyx":380
  * 
  * 
  * def is_superperiod(source, target) -> bint:             # <<<<<<<<<<<<<<
  *     """
  *     Returns True if upsampling is possible between source and target
  */
-  __pyx_t_4 = PyCFunction_NewEx(&__pyx_mdef_6pandas_5_libs_6tslibs_11frequencies_17is_superperiod, NULL, __pyx_n_s_pandas__libs_tslibs_frequencies); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 384, __pyx_L1_error)
+  __pyx_t_4 = PyCFunction_NewEx(&__pyx_mdef_6pandas_5_libs_6tslibs_11frequencies_17is_superperiod, NULL, __pyx_n_s_pandas__libs_tslibs_frequencies); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 380, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_is_superperiod, __pyx_t_4) < 0) __PYX_ERR(0, 384, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_is_superperiod, __pyx_t_4) < 0) __PYX_ERR(0, 380, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "pandas/_libs/tslibs/frequencies.pyx":1
@@ -11833,14 +11956,14 @@ if (!__Pyx_RefNanny) {
   __pyx_t_4 = __Pyx_PyDict_NewPresized(5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   if (PyDict_SetItem(__pyx_t_4, __pyx_kp_u_get_freq_code_line_129, __pyx_kp_u_Return_freq_str_or_tuple_to_fre) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_kp_u_get_freq_str_line_229, __pyx_kp_u_Return_the_summary_string_assoc) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_kp_u_get_to_timestamp_base_line_273, __pyx_kp_u_Return_frequency_code_group_use) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_kp_u_get_freq_line_309, __pyx_kp_u_Return_frequency_code_of_given) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_kp_u_get_rule_month_line_488, __pyx_kp_u_Return_starting_month_of_given) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_kp_u_get_freq_str_line_225, __pyx_kp_u_Return_the_summary_string_assoc) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_kp_u_get_to_timestamp_base_line_269, __pyx_kp_u_Return_frequency_code_group_use) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_kp_u_get_freq_line_305, __pyx_kp_u_Return_frequency_code_of_given) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_kp_u_get_rule_month_line_484, __pyx_kp_u_Return_starting_month_of_given) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_4) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pandas/_libs/tslibs/util.pxd":251
+  /* "pandas/_libs/tslibs/util.pxd":256
  * 
  * 
  * cdef inline const char* get_c_string(object py_string):             # <<<<<<<<<<<<<<
@@ -12233,6 +12356,136 @@ static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i, 
     }
 #endif
     return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
+}
+
+/* GetTopmostException */
+#if CYTHON_USE_EXC_INFO_STACK
+static _PyErr_StackItem *
+__Pyx_PyErr_GetTopmostException(PyThreadState *tstate)
+{
+    _PyErr_StackItem *exc_info = tstate->exc_info;
+    while ((exc_info->exc_type == NULL || exc_info->exc_type == Py_None) &&
+           exc_info->previous_item != NULL)
+    {
+        exc_info = exc_info->previous_item;
+    }
+    return exc_info;
+}
+#endif
+
+/* SaveResetException */
+#if CYTHON_FAST_THREAD_STATE
+static CYTHON_INLINE void __Pyx__ExceptionSave(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
+    #if CYTHON_USE_EXC_INFO_STACK
+    _PyErr_StackItem *exc_info = __Pyx_PyErr_GetTopmostException(tstate);
+    *type = exc_info->exc_type;
+    *value = exc_info->exc_value;
+    *tb = exc_info->exc_traceback;
+    #else
+    *type = tstate->exc_type;
+    *value = tstate->exc_value;
+    *tb = tstate->exc_traceback;
+    #endif
+    Py_XINCREF(*type);
+    Py_XINCREF(*value);
+    Py_XINCREF(*tb);
+}
+static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+    #if CYTHON_USE_EXC_INFO_STACK
+    _PyErr_StackItem *exc_info = tstate->exc_info;
+    tmp_type = exc_info->exc_type;
+    tmp_value = exc_info->exc_value;
+    tmp_tb = exc_info->exc_traceback;
+    exc_info->exc_type = type;
+    exc_info->exc_value = value;
+    exc_info->exc_traceback = tb;
+    #else
+    tmp_type = tstate->exc_type;
+    tmp_value = tstate->exc_value;
+    tmp_tb = tstate->exc_traceback;
+    tstate->exc_type = type;
+    tstate->exc_value = value;
+    tstate->exc_traceback = tb;
+    #endif
+    Py_XDECREF(tmp_type);
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(tmp_tb);
+}
+#endif
+
+/* GetException */
+#if CYTHON_FAST_THREAD_STATE
+static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb)
+#else
+static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb)
+#endif
+{
+    PyObject *local_type, *local_value, *local_tb;
+#if CYTHON_FAST_THREAD_STATE
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+    local_type = tstate->curexc_type;
+    local_value = tstate->curexc_value;
+    local_tb = tstate->curexc_traceback;
+    tstate->curexc_type = 0;
+    tstate->curexc_value = 0;
+    tstate->curexc_traceback = 0;
+#else
+    PyErr_Fetch(&local_type, &local_value, &local_tb);
+#endif
+    PyErr_NormalizeException(&local_type, &local_value, &local_tb);
+#if CYTHON_FAST_THREAD_STATE
+    if (unlikely(tstate->curexc_type))
+#else
+    if (unlikely(PyErr_Occurred()))
+#endif
+        goto bad;
+    #if PY_MAJOR_VERSION >= 3
+    if (local_tb) {
+        if (unlikely(PyException_SetTraceback(local_value, local_tb) < 0))
+            goto bad;
+    }
+    #endif
+    Py_XINCREF(local_tb);
+    Py_XINCREF(local_type);
+    Py_XINCREF(local_value);
+    *type = local_type;
+    *value = local_value;
+    *tb = local_tb;
+#if CYTHON_FAST_THREAD_STATE
+    #if CYTHON_USE_EXC_INFO_STACK
+    {
+        _PyErr_StackItem *exc_info = tstate->exc_info;
+        tmp_type = exc_info->exc_type;
+        tmp_value = exc_info->exc_value;
+        tmp_tb = exc_info->exc_traceback;
+        exc_info->exc_type = local_type;
+        exc_info->exc_value = local_value;
+        exc_info->exc_traceback = local_tb;
+    }
+    #else
+    tmp_type = tstate->exc_type;
+    tmp_value = tstate->exc_value;
+    tmp_tb = tstate->exc_traceback;
+    tstate->exc_type = local_type;
+    tstate->exc_value = local_value;
+    tstate->exc_traceback = local_tb;
+    #endif
+    Py_XDECREF(tmp_type);
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(tmp_tb);
+#else
+    PyErr_SetExcInfo(local_type, local_value, local_tb);
+#endif
+    return 0;
+bad:
+    *type = 0;
+    *value = 0;
+    *tb = 0;
+    Py_XDECREF(local_type);
+    Py_XDECREF(local_value);
+    Py_XDECREF(local_tb);
+    return -1;
 }
 
 /* RaiseTooManyValuesToUnpack */
@@ -12766,27 +13019,6 @@ bad:
 }
 #endif
 
-/* ArgTypeTest */
-static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *name, int exact)
-{
-    if (unlikely(!type)) {
-        PyErr_SetString(PyExc_SystemError, "Missing type object");
-        return 0;
-    }
-    else if (exact) {
-        #if PY_MAJOR_VERSION == 2
-        if ((type == &PyBaseString_Type) && likely(__Pyx_PyBaseString_CheckExact(obj))) return 1;
-        #endif
-    }
-    else {
-        if (likely(__Pyx_TypeCheck(obj, type))) return 1;
-    }
-    PyErr_Format(PyExc_TypeError,
-        "Argument '%.200s' has incorrect type (expected %.200s, got %.200s)",
-        name, type->tp_name, Py_TYPE(obj)->tp_name);
-    return 0;
-}
-
 /* PyObjectCallNoArg */
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
@@ -12809,159 +13041,34 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
 }
 #endif
 
-/* DictGetItem */
-#if PY_MAJOR_VERSION >= 3 && !CYTHON_COMPILING_IN_PYPY
-static PyObject *__Pyx_PyDict_GetItem(PyObject *d, PyObject* key) {
-    PyObject *value;
-    value = PyDict_GetItemWithError(d, key);
-    if (unlikely(!value)) {
-        if (!PyErr_Occurred()) {
-            if (unlikely(PyTuple_Check(key))) {
-                PyObject* args = PyTuple_Pack(1, key);
-                if (likely(args)) {
-                    PyErr_SetObject(PyExc_KeyError, args);
-                    Py_DECREF(args);
-                }
-            } else {
-                PyErr_SetObject(PyExc_KeyError, key);
-            }
-        }
+/* ObjectGetItem */
+#if CYTHON_USE_TYPE_SLOTS
+static PyObject *__Pyx_PyObject_GetIndex(PyObject *obj, PyObject* index) {
+    PyObject *runerr;
+    Py_ssize_t key_value;
+    PySequenceMethods *m = Py_TYPE(obj)->tp_as_sequence;
+    if (unlikely(!(m && m->sq_item))) {
+        PyErr_Format(PyExc_TypeError, "'%.200s' object is not subscriptable", Py_TYPE(obj)->tp_name);
         return NULL;
     }
-    Py_INCREF(value);
-    return value;
-}
-#endif
-
-/* GetTopmostException */
-#if CYTHON_USE_EXC_INFO_STACK
-static _PyErr_StackItem *
-__Pyx_PyErr_GetTopmostException(PyThreadState *tstate)
-{
-    _PyErr_StackItem *exc_info = tstate->exc_info;
-    while ((exc_info->exc_type == NULL || exc_info->exc_type == Py_None) &&
-           exc_info->previous_item != NULL)
-    {
-        exc_info = exc_info->previous_item;
+    key_value = __Pyx_PyIndex_AsSsize_t(index);
+    if (likely(key_value != -1 || !(runerr = PyErr_Occurred()))) {
+        return __Pyx_GetItemInt_Fast(obj, key_value, 0, 1, 1);
     }
-    return exc_info;
-}
-#endif
-
-/* SaveResetException */
-#if CYTHON_FAST_THREAD_STATE
-static CYTHON_INLINE void __Pyx__ExceptionSave(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
-    #if CYTHON_USE_EXC_INFO_STACK
-    _PyErr_StackItem *exc_info = __Pyx_PyErr_GetTopmostException(tstate);
-    *type = exc_info->exc_type;
-    *value = exc_info->exc_value;
-    *tb = exc_info->exc_traceback;
-    #else
-    *type = tstate->exc_type;
-    *value = tstate->exc_value;
-    *tb = tstate->exc_traceback;
-    #endif
-    Py_XINCREF(*type);
-    Py_XINCREF(*value);
-    Py_XINCREF(*tb);
-}
-static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
-    PyObject *tmp_type, *tmp_value, *tmp_tb;
-    #if CYTHON_USE_EXC_INFO_STACK
-    _PyErr_StackItem *exc_info = tstate->exc_info;
-    tmp_type = exc_info->exc_type;
-    tmp_value = exc_info->exc_value;
-    tmp_tb = exc_info->exc_traceback;
-    exc_info->exc_type = type;
-    exc_info->exc_value = value;
-    exc_info->exc_traceback = tb;
-    #else
-    tmp_type = tstate->exc_type;
-    tmp_value = tstate->exc_value;
-    tmp_tb = tstate->exc_traceback;
-    tstate->exc_type = type;
-    tstate->exc_value = value;
-    tstate->exc_traceback = tb;
-    #endif
-    Py_XDECREF(tmp_type);
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(tmp_tb);
-}
-#endif
-
-/* GetException */
-#if CYTHON_FAST_THREAD_STATE
-static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb)
-#else
-static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb)
-#endif
-{
-    PyObject *local_type, *local_value, *local_tb;
-#if CYTHON_FAST_THREAD_STATE
-    PyObject *tmp_type, *tmp_value, *tmp_tb;
-    local_type = tstate->curexc_type;
-    local_value = tstate->curexc_value;
-    local_tb = tstate->curexc_traceback;
-    tstate->curexc_type = 0;
-    tstate->curexc_value = 0;
-    tstate->curexc_traceback = 0;
-#else
-    PyErr_Fetch(&local_type, &local_value, &local_tb);
-#endif
-    PyErr_NormalizeException(&local_type, &local_value, &local_tb);
-#if CYTHON_FAST_THREAD_STATE
-    if (unlikely(tstate->curexc_type))
-#else
-    if (unlikely(PyErr_Occurred()))
-#endif
-        goto bad;
-    #if PY_MAJOR_VERSION >= 3
-    if (local_tb) {
-        if (unlikely(PyException_SetTraceback(local_value, local_tb) < 0))
-            goto bad;
+    if (PyErr_GivenExceptionMatches(runerr, PyExc_OverflowError)) {
+        PyErr_Clear();
+        PyErr_Format(PyExc_IndexError, "cannot fit '%.200s' into an index-sized integer", Py_TYPE(index)->tp_name);
     }
-    #endif
-    Py_XINCREF(local_tb);
-    Py_XINCREF(local_type);
-    Py_XINCREF(local_value);
-    *type = local_type;
-    *value = local_value;
-    *tb = local_tb;
-#if CYTHON_FAST_THREAD_STATE
-    #if CYTHON_USE_EXC_INFO_STACK
-    {
-        _PyErr_StackItem *exc_info = tstate->exc_info;
-        tmp_type = exc_info->exc_type;
-        tmp_value = exc_info->exc_value;
-        tmp_tb = exc_info->exc_traceback;
-        exc_info->exc_type = local_type;
-        exc_info->exc_value = local_value;
-        exc_info->exc_traceback = local_tb;
-    }
-    #else
-    tmp_type = tstate->exc_type;
-    tmp_value = tstate->exc_value;
-    tmp_tb = tstate->exc_traceback;
-    tstate->exc_type = local_type;
-    tstate->exc_value = local_value;
-    tstate->exc_traceback = local_tb;
-    #endif
-    Py_XDECREF(tmp_type);
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(tmp_tb);
-#else
-    PyErr_SetExcInfo(local_type, local_value, local_tb);
-#endif
-    return 0;
-bad:
-    *type = 0;
-    *value = 0;
-    *tb = 0;
-    Py_XDECREF(local_type);
-    Py_XDECREF(local_value);
-    Py_XDECREF(local_tb);
-    return -1;
+    return NULL;
 }
+static PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key) {
+    PyMappingMethods *m = Py_TYPE(obj)->tp_as_mapping;
+    if (likely(m && m->mp_subscript)) {
+        return m->mp_subscript(obj, key);
+    }
+    return __Pyx_PyObject_GetIndex(obj, key);
+}
+#endif
 
 /* PyIntCompare */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_EqObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED long intval, CYTHON_UNUSED long inplace) {
@@ -13213,6 +13320,30 @@ static void __Pyx_WriteUnraisable(const char *name, CYTHON_UNUSED int clineno,
         PyGILState_Release(state);
 #endif
 }
+
+/* DictGetItem */
+#if PY_MAJOR_VERSION >= 3 && !CYTHON_COMPILING_IN_PYPY
+static PyObject *__Pyx_PyDict_GetItem(PyObject *d, PyObject* key) {
+    PyObject *value;
+    value = PyDict_GetItemWithError(d, key);
+    if (unlikely(!value)) {
+        if (!PyErr_Occurred()) {
+            if (unlikely(PyTuple_Check(key))) {
+                PyObject* args = PyTuple_Pack(1, key);
+                if (likely(args)) {
+                    PyErr_SetObject(PyExc_KeyError, args);
+                    Py_DECREF(args);
+                }
+            } else {
+                PyErr_SetObject(PyExc_KeyError, key);
+            }
+        }
+        return NULL;
+    }
+    Py_INCREF(value);
+    return value;
+}
+#endif
 
 /* PyIntBinop */
 #if !CYTHON_COMPILING_IN_PYPY
@@ -13649,35 +13780,6 @@ static PyObject *__Pyx_Py3ClassCreate(PyObject *metaclass, PyObject *name, PyObj
     Py_XDECREF(owned_metaclass);
     return result;
 }
-
-/* ObjectGetItem */
-#if CYTHON_USE_TYPE_SLOTS
-static PyObject *__Pyx_PyObject_GetIndex(PyObject *obj, PyObject* index) {
-    PyObject *runerr;
-    Py_ssize_t key_value;
-    PySequenceMethods *m = Py_TYPE(obj)->tp_as_sequence;
-    if (unlikely(!(m && m->sq_item))) {
-        PyErr_Format(PyExc_TypeError, "'%.200s' object is not subscriptable", Py_TYPE(obj)->tp_name);
-        return NULL;
-    }
-    key_value = __Pyx_PyIndex_AsSsize_t(index);
-    if (likely(key_value != -1 || !(runerr = PyErr_Occurred()))) {
-        return __Pyx_GetItemInt_Fast(obj, key_value, 0, 1, 1);
-    }
-    if (PyErr_GivenExceptionMatches(runerr, PyExc_OverflowError)) {
-        PyErr_Clear();
-        PyErr_Format(PyExc_IndexError, "cannot fit '%.200s' into an index-sized integer", Py_TYPE(index)->tp_name);
-    }
-    return NULL;
-}
-static PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key) {
-    PyMappingMethods *m = Py_TYPE(obj)->tp_as_mapping;
-    if (likely(m && m->mp_subscript)) {
-        return m->mp_subscript(obj, key);
-    }
-    return __Pyx_PyObject_GetIndex(obj, key);
-}
-#endif
 
 /* SliceObject */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(PyObject* obj,

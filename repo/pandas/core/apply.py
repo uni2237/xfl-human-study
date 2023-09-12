@@ -3,7 +3,7 @@ import warnings
 
 import numpy as np
 
-from pandas._libs import reduction as libreduction
+from pandas._libs import reduction
 from pandas.util._decorators import cache_readonly
 
 from pandas.core.dtypes.common import (
@@ -199,25 +199,21 @@ class FrameApply:
             return self.obj.copy()
 
         # we may need to infer
-        should_reduce = self.result_type == "reduce"
+        reduce = self.result_type == "reduce"
 
         from pandas import Series
 
-        if not should_reduce:
+        if not reduce:
+
+            EMPTY_SERIES = Series([])
             try:
-                r = self.f(Series([]))
+                r = self.f(EMPTY_SERIES, *self.args, **self.kwds)
+                reduce = not isinstance(r, Series)
             except Exception:
                 pass
-            else:
-                should_reduce = not isinstance(r, Series)
 
-        if should_reduce:
-            if len(self.agg_axis):
-                r = self.f(Series([]))
-            else:
-                r = np.nan
-
-            return self.obj._constructor_sliced(r, index=self.agg_axis)
+        if reduce:
+            return self.obj._constructor_sliced(np.nan, index=self.agg_axis)
         else:
             return self.obj.copy()
 
@@ -225,7 +221,7 @@ class FrameApply:
         """ apply to the values as a numpy array """
 
         try:
-            result = libreduction.compute_reduction(self.values, self.f, axis=self.axis)
+            result = reduction.compute_reduction(self.values, self.f, axis=self.axis)
         except Exception:
             result = np.apply_along_axis(self.f, self.axis, self.values)
 
@@ -285,7 +281,7 @@ class FrameApply:
             dummy = Series(empty_arr, index=index, dtype=values.dtype)
 
             try:
-                result = libreduction.compute_reduction(
+                result = reduction.compute_reduction(
                     values, self.f, axis=self.axis, dummy=dummy, labels=labels
                 )
                 return self.obj._constructor_sliced(result, index=labels)
@@ -310,11 +306,10 @@ class FrameApply:
             for i, v in enumerate(series_gen):
                 try:
                     results[i] = self.f(v)
-                except Exception:
-                    pass
-                else:
                     keys.append(v.name)
                     successes.append(i)
+                except Exception:
+                    pass
 
             # so will work with MultiIndex
             if len(successes) < len(res_index):
@@ -342,7 +337,7 @@ class FrameApply:
         results = self.results
 
         # see if we can infer the results
-        if len(results) > 0 and 0 in results and is_sequence(results[0]):
+        if len(results) > 0 and is_sequence(results[0]):
 
             return self.wrap_results_for_axis()
 

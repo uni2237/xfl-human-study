@@ -1,1 +1,2 @@
-pytest pandas/tests/indexes/test_range.py::TestRangeIndex::test_get_indexer_decreasing 
+pytest -s pandas/tests/series/test_alter_axes.py::TestSeriesAlterAxes::test_rename_with_custom_indexer 
+pytest -s pandas/tests/series/test_alter_axes.py::TestSeriesAlterAxes::test_rename_with_custom_indexer_inplace 

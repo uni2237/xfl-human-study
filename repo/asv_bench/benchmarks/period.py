@@ -1,5 +1,4 @@
 from pandas import DataFrame, Period, PeriodIndex, Series, date_range, period_range
-
 from pandas.tseries.frequencies import to_offset
 
 

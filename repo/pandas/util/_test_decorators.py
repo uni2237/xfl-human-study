@@ -25,8 +25,9 @@ For more information, refer to the ``pytest`` documentation on ``skipif``.
 """
 from distutils.version import LooseVersion
 import locale
-from typing import Callable, Optional
+from typing import Optional
 
+from _pytest.mark.structures import MarkDecorator
 import pytest
 
 from pandas.compat import is_platform_32bit, is_platform_windows
@@ -102,7 +103,7 @@ def _skip_if_no_scipy():
     )
 
 
-def skip_if_installed(package: str) -> Callable:
+def skip_if_installed(package: str,) -> MarkDecorator:
     """
     Skip a test if a package is installed.
 
@@ -116,7 +117,7 @@ def skip_if_installed(package: str) -> Callable:
     )
 
 
-def skip_if_no(package: str, min_version: Optional[str] = None) -> Callable:
+def skip_if_no(package: str, min_version: Optional[str] = None) -> MarkDecorator:
     """
     Generic function to help skip tests when required packages are not
     present on the testing system.

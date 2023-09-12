@@ -33,16 +33,7 @@ cdef class Float64Engine(IndexEngine):
 
         # A view is needed for some subclasses, such as PeriodEngine:
         values = self._get_index_values().view('float64')
-        try:
-            with warnings.catch_warnings():
-                # e.g. if values is float64 and `val` is a str, suppress warning
-                warnings.filterwarnings("ignore", category=FutureWarning)
-                indexer = values == val
-        except TypeError:
-            # if the equality above returns a bool, cython will raise TypeError
-            #  when trying to cast it to ndarray
-            raise KeyError(val)
-
+        indexer = values == val
         found = np.where(indexer)[0]
         count = len(found)
 
@@ -78,16 +69,7 @@ cdef class Float32Engine(IndexEngine):
 
         # A view is needed for some subclasses, such as PeriodEngine:
         values = self._get_index_values().view('float32')
-        try:
-            with warnings.catch_warnings():
-                # e.g. if values is float64 and `val` is a str, suppress warning
-                warnings.filterwarnings("ignore", category=FutureWarning)
-                indexer = values == val
-        except TypeError:
-            # if the equality above returns a bool, cython will raise TypeError
-            #  when trying to cast it to ndarray
-            raise KeyError(val)
-
+        indexer = values == val
         found = np.where(indexer)[0]
         count = len(found)
 
@@ -128,16 +110,7 @@ cdef class Int64Engine(IndexEngine):
 
         # A view is needed for some subclasses, such as PeriodEngine:
         values = self._get_index_values().view('int64')
-        try:
-            with warnings.catch_warnings():
-                # e.g. if values is float64 and `val` is a str, suppress warning
-                warnings.filterwarnings("ignore", category=FutureWarning)
-                indexer = values == val
-        except TypeError:
-            # if the equality above returns a bool, cython will raise TypeError
-            #  when trying to cast it to ndarray
-            raise KeyError(val)
-
+        indexer = values == val
         found = np.where(indexer)[0]
         count = len(found)
 
@@ -178,16 +151,7 @@ cdef class Int32Engine(IndexEngine):
 
         # A view is needed for some subclasses, such as PeriodEngine:
         values = self._get_index_values().view('int32')
-        try:
-            with warnings.catch_warnings():
-                # e.g. if values is float64 and `val` is a str, suppress warning
-                warnings.filterwarnings("ignore", category=FutureWarning)
-                indexer = values == val
-        except TypeError:
-            # if the equality above returns a bool, cython will raise TypeError
-            #  when trying to cast it to ndarray
-            raise KeyError(val)
-
+        indexer = values == val
         found = np.where(indexer)[0]
         count = len(found)
 
@@ -228,16 +192,7 @@ cdef class Int16Engine(IndexEngine):
 
         # A view is needed for some subclasses, such as PeriodEngine:
         values = self._get_index_values().view('int16')
-        try:
-            with warnings.catch_warnings():
-                # e.g. if values is float64 and `val` is a str, suppress warning
-                warnings.filterwarnings("ignore", category=FutureWarning)
-                indexer = values == val
-        except TypeError:
-            # if the equality above returns a bool, cython will raise TypeError
-            #  when trying to cast it to ndarray
-            raise KeyError(val)
-
+        indexer = values == val
         found = np.where(indexer)[0]
         count = len(found)
 
@@ -278,16 +233,7 @@ cdef class Int8Engine(IndexEngine):
 
         # A view is needed for some subclasses, such as PeriodEngine:
         values = self._get_index_values().view('int8')
-        try:
-            with warnings.catch_warnings():
-                # e.g. if values is float64 and `val` is a str, suppress warning
-                warnings.filterwarnings("ignore", category=FutureWarning)
-                indexer = values == val
-        except TypeError:
-            # if the equality above returns a bool, cython will raise TypeError
-            #  when trying to cast it to ndarray
-            raise KeyError(val)
-
+        indexer = values == val
         found = np.where(indexer)[0]
         count = len(found)
 
@@ -328,16 +274,7 @@ cdef class UInt64Engine(IndexEngine):
 
         # A view is needed for some subclasses, such as PeriodEngine:
         values = self._get_index_values().view('uint64')
-        try:
-            with warnings.catch_warnings():
-                # e.g. if values is float64 and `val` is a str, suppress warning
-                warnings.filterwarnings("ignore", category=FutureWarning)
-                indexer = values == val
-        except TypeError:
-            # if the equality above returns a bool, cython will raise TypeError
-            #  when trying to cast it to ndarray
-            raise KeyError(val)
-
+        indexer = values == val
         found = np.where(indexer)[0]
         count = len(found)
 
@@ -378,16 +315,7 @@ cdef class UInt32Engine(IndexEngine):
 
         # A view is needed for some subclasses, such as PeriodEngine:
         values = self._get_index_values().view('uint32')
-        try:
-            with warnings.catch_warnings():
-                # e.g. if values is float64 and `val` is a str, suppress warning
-                warnings.filterwarnings("ignore", category=FutureWarning)
-                indexer = values == val
-        except TypeError:
-            # if the equality above returns a bool, cython will raise TypeError
-            #  when trying to cast it to ndarray
-            raise KeyError(val)
-
+        indexer = values == val
         found = np.where(indexer)[0]
         count = len(found)
 
@@ -428,16 +356,7 @@ cdef class UInt16Engine(IndexEngine):
 
         # A view is needed for some subclasses, such as PeriodEngine:
         values = self._get_index_values().view('uint16')
-        try:
-            with warnings.catch_warnings():
-                # e.g. if values is float64 and `val` is a str, suppress warning
-                warnings.filterwarnings("ignore", category=FutureWarning)
-                indexer = values == val
-        except TypeError:
-            # if the equality above returns a bool, cython will raise TypeError
-            #  when trying to cast it to ndarray
-            raise KeyError(val)
-
+        indexer = values == val
         found = np.where(indexer)[0]
         count = len(found)
 
@@ -478,16 +397,7 @@ cdef class UInt8Engine(IndexEngine):
 
         # A view is needed for some subclasses, such as PeriodEngine:
         values = self._get_index_values().view('uint8')
-        try:
-            with warnings.catch_warnings():
-                # e.g. if values is float64 and `val` is a str, suppress warning
-                warnings.filterwarnings("ignore", category=FutureWarning)
-                indexer = values == val
-        except TypeError:
-            # if the equality above returns a bool, cython will raise TypeError
-            #  when trying to cast it to ndarray
-            raise KeyError(val)
-
+        indexer = values == val
         found = np.where(indexer)[0]
         count = len(found)
 

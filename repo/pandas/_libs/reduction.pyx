@@ -1,7 +1,7 @@
 from distutils.version import LooseVersion
 
 from cython import Py_ssize_t
-from cpython.ref cimport Py_INCREF
+from cpython cimport Py_INCREF
 
 from libc.stdlib cimport malloc, free
 
@@ -296,6 +296,8 @@ cdef class SeriesBinGrouper:
                 islider.advance(group_size)
                 vslider.advance(group_size)
 
+        except:
+            raise
         finally:
             # so we don't free the wrong memory
             islider.reset()
@@ -423,6 +425,8 @@ cdef class SeriesGrouper:
 
                     group_size = 0
 
+        except:
+            raise
         finally:
             # so we don't free the wrong memory
             islider.reset()
@@ -528,8 +532,7 @@ def apply_frame_axis0(object frame, object f, object names,
 
             try:
                 piece = f(chunk)
-            except Exception:
-                # We can't be more specific without knowing something about `f`
+            except:
                 raise InvalidApply('Let this error raise above us')
 
             # Need to infer if low level index slider will cause segfaults
@@ -540,7 +543,6 @@ def apply_frame_axis0(object frame, object f, object names,
                 else:
                     mutated = True
             except AttributeError:
-                # `piece` might not have an index, could be e.g. an int
                 pass
 
             results.append(piece)

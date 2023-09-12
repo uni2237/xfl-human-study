@@ -1,9 +1,8 @@
 import string
 
 import numpy as np
-
-from pandas import DataFrame, MultiIndex, Series, concat, date_range, merge, merge_asof
 import pandas.util.testing as tm
+from pandas import DataFrame, Series, MultiIndex, date_range, concat, merge, merge_asof
 
 try:
     from pandas import merge_ordered
@@ -349,4 +348,4 @@ class Align:
         self.ts1.align(self.ts2, join="left")
 
 
-from .pandas_vb_common import setup  # noqa: F401 isort:skip
+from .pandas_vb_common import setup  # noqa: F401

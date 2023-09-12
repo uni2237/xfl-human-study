@@ -14,9 +14,9 @@ def table(ax, data, rowLabels=None, colLabels=None, **kwargs):
     ----------
     ax : Matplotlib axes object
     data : DataFrame or Series
-        Data for table contents.
-    **kwargs
-        Keyword arguments to be passed to matplotlib.table.table.
+        data for table contents
+    kwargs : keywords, optional
+        keyword arguments which passed to matplotlib.table.table.
         If `rowLabels` or `colLabels` is not specified, data index or column
         name will be used.
 
@@ -82,7 +82,7 @@ def scatter_matrix(
     density_kwds=None,
     hist_kwds=None,
     range_padding=0.05,
-    **kwargs
+    **kwds
 ):
     """
     Draw a matrix of scatter plots.
@@ -91,26 +91,28 @@ def scatter_matrix(
     ----------
     frame : DataFrame
     alpha : float, optional
-        Amount of transparency applied.
+        amount of transparency applied
     figsize : (float,float), optional
-        A tuple (width, height) in inches.
+        a tuple (width, height) in inches
     ax : Matplotlib axis object, optional
     grid : bool, optional
-        Setting this to True will show the grid.
+        setting this to True will show the grid
     diagonal : {'hist', 'kde'}
-        Pick between 'kde' and 'hist' for either Kernel Density Estimation or
-        Histogram plot in the diagonal.
+        pick between 'kde' and 'hist' for
+        either Kernel Density Estimation or Histogram
+        plot in the diagonal
     marker : str, optional
-        Matplotlib marker type, default '.'.
-    density_kwds : keywords
-        Keyword arguments to be passed to kernel density estimate plot.
-    hist_kwds : keywords
-        Keyword arguments to be passed to hist function.
-    range_padding : float, default 0.05
-        Relative extension of axis range in x and y with respect to
-        (x_max - x_min) or (y_max - y_min).
-    **kwargs
-        Keyword arguments to be passed to scatter function.
+        Matplotlib marker type, default '.'
+    hist_kwds : other plotting keyword arguments
+        To be passed to hist function
+    density_kwds : other plotting keyword arguments
+        To be passed to kernel density estimate plot
+    range_padding : float, optional
+        relative extension of axis range in x and y
+        with respect to (x_max - x_min) or (y_max - y_min),
+        default 0.05
+    kwds : other plotting keyword arguments
+        To be passed to scatter function
 
     Returns
     -------
@@ -134,7 +136,7 @@ def scatter_matrix(
         density_kwds=density_kwds,
         hist_kwds=hist_kwds,
         range_padding=range_padding,
-        **kwargs
+        **kwds
     )
 
 
@@ -213,7 +215,7 @@ def radviz(frame, class_column, ax=None, color=None, colormap=None, **kwds):
 
 @deprecate_kwarg(old_arg_name="data", new_arg_name="frame")
 def andrews_curves(
-    frame, class_column, ax=None, samples=200, color=None, colormap=None, **kwargs
+    frame, class_column, ax=None, samples=200, color=None, colormap=None, **kwds
 ):
     """
     Generate a matplotlib plot of Andrews curves, for visualising clusters of
@@ -231,17 +233,17 @@ def andrews_curves(
     Parameters
     ----------
     frame : DataFrame
-        Data to be plotted, preferably normalized to (0.0, 1.0).
+        Data to be plotted, preferably normalized to (0.0, 1.0)
     class_column : Name of the column containing class names
     ax : matplotlib axes object, default None
     samples : Number of points to plot in each curve
     color : list or tuple, optional
-        Colors to use for the different classes.
+        Colors to use for the different classes
     colormap : str or matplotlib colormap object, default None
         Colormap to select colors from. If string, load colormap with that name
         from matplotlib.
-    **kwargs
-        Options to pass to matplotlib plotting method.
+    kwds : keywords
+        Options to pass to matplotlib plotting method
 
     Returns
     -------
@@ -255,7 +257,7 @@ def andrews_curves(
         samples=samples,
         color=color,
         colormap=colormap,
-        **kwargs
+        **kwds
     )
 
 
@@ -325,38 +327,38 @@ def parallel_coordinates(
     axvlines=True,
     axvlines_kwds=None,
     sort_labels=False,
-    **kwargs
+    **kwds
 ):
-    """
-    Parallel coordinates plotting.
+    """Parallel coordinates plotting.
 
     Parameters
     ----------
     frame : DataFrame
     class_column : str
-        Column name containing class names.
+        Column name containing class names
     cols : list, optional
-        A list of column names to use.
+        A list of column names to use
     ax : matplotlib.axis, optional
-        Matplotlib axis object.
+        matplotlib axis object
     color : list or tuple, optional
-        Colors to use for the different classes.
+        Colors to use for the different classes
     use_columns : bool, optional
-        If true, columns will be used as xticks.
+        If true, columns will be used as xticks
     xticks : list or tuple, optional
-        A list of values to use for xticks.
+        A list of values to use for xticks
     colormap : str or matplotlib colormap, default None
         Colormap to use for line colors.
     axvlines : bool, optional
-        If true, vertical lines will be added at each xtick.
+        If true, vertical lines will be added at each xtick
     axvlines_kwds : keywords, optional
-        Options to be passed to axvline method for vertical lines.
-    sort_labels : bool, default False
-        Sort class_column labels, useful when assigning colors.
+        Options to be passed to axvline method for vertical lines
+    sort_labels : bool, False
+        Sort class_column labels, useful when assigning colors
 
         .. versionadded:: 0.20.0
-    **kwargs
-        Options to pass to matplotlib plotting method.
+
+    kwds : keywords
+        Options to pass to matplotlib plotting method
 
     Returns
     -------
@@ -385,13 +387,12 @@ def parallel_coordinates(
         axvlines=axvlines,
         axvlines_kwds=axvlines_kwds,
         sort_labels=sort_labels,
-        **kwargs
+        **kwds
     )
 
 
 def lag_plot(series, lag=1, ax=None, **kwds):
-    """
-    Lag plot for time series.
+    """Lag plot for time series.
 
     Parameters
     ----------
@@ -408,23 +409,23 @@ def lag_plot(series, lag=1, ax=None, **kwds):
     return plot_backend.lag_plot(series=series, lag=lag, ax=ax, **kwds)
 
 
-def autocorrelation_plot(series, ax=None, **kwargs):
+def autocorrelation_plot(series, ax=None, **kwds):
     """
     Autocorrelation plot for time series.
 
     Parameters
     ----------
-    series : Time series
-    ax : Matplotlib axis object, optional
-    **kwargs
-        Options to pass to matplotlib plotting method.
+    series: Time series
+    ax: Matplotlib axis object, optional
+    kwds : keywords
+        Options to pass to matplotlib plotting method
 
     Returns
     -------
     class:`matplotlib.axis.Axes`
     """
     plot_backend = _get_plot_backend("matplotlib")
-    return plot_backend.autocorrelation_plot(series=series, ax=ax, **kwargs)
+    return plot_backend.autocorrelation_plot(series=series, ax=ax, **kwds)
 
 
 def tsplot(series, plotf, ax=None, **kwargs):

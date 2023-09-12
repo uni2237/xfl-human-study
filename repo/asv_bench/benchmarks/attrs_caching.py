@@ -1,5 +1,4 @@
 import numpy as np
-
 from pandas import DataFrame
 
 try:
@@ -33,4 +32,4 @@ class CacheReadonly:
         self.obj.prop
 
 
-from .pandas_vb_common import setup  # noqa: F401 isort:skip
+from .pandas_vb_common import setup  # noqa: F401

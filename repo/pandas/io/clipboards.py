@@ -9,7 +9,8 @@ from pandas import get_option, option_context
 
 def read_clipboard(sep=r"\s+", **kwargs):  # pragma: no cover
     r"""
-    Read text from clipboard and pass to read_csv.
+    Read text from clipboard and pass to read_csv. See read_csv for the
+    full argument list
 
     Parameters
     ----------
@@ -17,13 +18,9 @@ def read_clipboard(sep=r"\s+", **kwargs):  # pragma: no cover
         A string or regex delimiter. The default of '\s+' denotes
         one or more whitespace characters.
 
-    **kwargs
-        See read_csv for the full argument list.
-
     Returns
     -------
-    DataFrame
-        A parsed DataFrame object.
+    parsed : DataFrame
     """
     encoding = kwargs.pop("encoding", "utf-8")
 
@@ -131,7 +128,7 @@ def to_clipboard(obj, excel=True, sep=None, **kwargs):  # pragma: no cover
 
     if isinstance(obj, ABCDataFrame):
         # str(df) has various unhelpful defaults, like truncation
-        with option_context("display.max_colwidth", None):
+        with option_context("display.max_colwidth", 999999):
             objstr = obj.to_string(**kwargs)
     else:
         objstr = str(obj)

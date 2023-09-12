@@ -1,23 +1,22 @@
 import warnings
 
 import numpy as np
-
+import pandas.util.testing as tm
 from pandas import (
-    CategoricalIndex,
-    DataFrame,
-    Float64Index,
-    IndexSlice,
-    Int64Index,
-    IntervalIndex,
-    MultiIndex,
     Series,
+    DataFrame,
+    MultiIndex,
+    Int64Index,
     UInt64Index,
+    Float64Index,
+    IntervalIndex,
+    CategoricalIndex,
+    IndexSlice,
     concat,
     date_range,
     option_context,
     period_range,
 )
-import pandas.util.testing as tm
 
 
 class NumericSeriesIndexing:
@@ -372,4 +371,4 @@ class ChainIndexing:
                 df2["C"] = 1.0
 
 
-from .pandas_vb_common import setup  # noqa: F401 isort:skip
+from .pandas_vb_common import setup  # noqa: F401

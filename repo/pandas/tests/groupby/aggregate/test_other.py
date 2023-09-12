@@ -385,7 +385,10 @@ def test_agg_consistency():
     # agg with ([]) and () not consistent
     # GH 6715
     def P1(a):
-        return np.percentile(a.dropna(), q=1)
+        try:
+            return np.percentile(a.dropna(), q=1)
+        except Exception:
+            return np.nan
 
     df = DataFrame(
         {

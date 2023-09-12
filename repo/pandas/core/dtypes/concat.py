@@ -89,9 +89,10 @@ def concat_compat(to_concat, axis=0):
     # filter empty arrays
     # 1-d dtypes always are included here
     def is_nonempty(x):
-        if x.ndim <= axis:
+        try:
+            return x.shape[axis] > 0
+        except Exception:
             return True
-        return x.shape[axis] > 0
 
     # If all arrays are empty, there's nothing to convert, just short-cut to
     # the concatenation, #3121.

@@ -44,6 +44,7 @@ from pandas.core.dtypes.generic import (
     ABCDatetimeIndex,
     ABCSeries,
     ABCSparseArray,
+    ABCSparseSeries,
 )
 from pandas.core.dtypes.missing import (
     isna,
@@ -54,8 +55,8 @@ from pandas.core.dtypes.missing import (
 
 import pandas as pd
 from pandas.core import algorithms, base, generic, nanops, ops
-from pandas.core.accessor import CachedAccessor, DirNamesMixin
-from pandas.core.arrays import ExtensionArray
+from pandas.core.accessor import CachedAccessor
+from pandas.core.arrays import ExtensionArray, SparseArray
 from pandas.core.arrays.categorical import Categorical, CategoricalAccessor
 from pandas.core.arrays.sparse import SparseAccessor
 import pandas.core.common as com
@@ -176,10 +177,8 @@ class Series(base.IndexOpsMixin, generic.NDFrame):
     _metadata = ["name"]
     _accessors = {"dt", "cat", "str", "sparse"}
     # tolist is not actually deprecated, just suppressed in the __dir__
-    _deprecations = (
-        generic.NDFrame._deprecations
-        | DirNamesMixin._deprecations
-        | frozenset(["asobject", "reshape", "valid", "tolist", "ftype", "real", "imag"])
+    _deprecations = generic.NDFrame._deprecations | frozenset(
+        ["asobject", "reshape", "valid", "tolist"]
     )
 
     # Override cache_readonly bc Series is mutable
@@ -247,7 +246,7 @@ class Series(base.IndexOpsMixin, generic.NDFrame):
 
             elif isinstance(data, np.ndarray):
                 pass
-            elif isinstance(data, ABCSeries):
+            elif isinstance(data, (ABCSeries, ABCSparseSeries)):
                 if name is None:
                     name = data.name
                 if index is None:
@@ -386,6 +385,10 @@ class Series(base.IndexOpsMixin, generic.NDFrame):
             FutureWarning,
             stacklevel=2,
         )
+        if isinstance(arr, ABCSparseArray):
+            from pandas.core.sparse.series import SparseSeries
+
+            cls = SparseSeries
         return cls(
             arr, index=index, name=name, dtype=dtype, copy=copy, fastpath=fastpath
         )
@@ -1111,6 +1114,9 @@ class Series(base.IndexOpsMixin, generic.NDFrame):
                     return self.__getitem__(new_key)
                 raise
 
+        except Exception:
+            raise
+
         if is_iterator(key):
             key = list(key)
 
@@ -1131,9 +1137,7 @@ class Series(base.IndexOpsMixin, generic.NDFrame):
         elif isinstance(key, tuple):
             try:
                 return self._get_values_tuple(key)
-            except ValueError:
-                # if we don't have a MultiIndex, we may still be able to handle
-                #  a 1-tuple.  see test_1tuple_without_multiindex
+            except Exception:
                 if len(key) == 1:
                     key = key[0]
                     if isinstance(key, slice):
@@ -1188,9 +1192,7 @@ class Series(base.IndexOpsMixin, generic.NDFrame):
             return self._constructor(
                 self._data.get_slice(indexer), fastpath=True
             ).__finalize__(self)
-        except ValueError:
-            # mpl compat if we look up e.g. ser[:, np.newaxis];
-            #  see tests.series.timeseries.test_mpl_compat_hack
+        except Exception:
             return self._values[indexer]
 
     def _get_value(self, label, takeable: bool = False):
@@ -1283,6 +1285,11 @@ class Series(base.IndexOpsMixin, generic.NDFrame):
 
             if is_scalar(key):
                 key = [key]
+            elif not isinstance(key, (list, Series, np.ndarray)):
+                try:
+                    key = list(key)
+                except Exception:
+                    key = [key]
 
             if isinstance(key, Index):
                 key_type = key.inferred_type
@@ -1772,6 +1779,38 @@ class Series(base.IndexOpsMixin, generic.NDFrame):
             df = self._constructor_expanddim({name: self})
 
         return df
+
+    def to_sparse(self, kind="block", fill_value=None):
+        """
+        Convert Series to SparseSeries.
+
+        .. deprecated:: 0.25.0
+
+        Parameters
+        ----------
+        kind : {'block', 'integer'}, default 'block'
+        fill_value : float, defaults to NaN (missing)
+            Value to use for filling NaN values.
+
+        Returns
+        -------
+        SparseSeries
+            Sparse representation of the Series.
+        """
+
+        warnings.warn(
+            "Series.to_sparse is deprecated and will be removed in a future version",
+            FutureWarning,
+            stacklevel=2,
+        )
+        from pandas.core.sparse.series import SparseSeries
+
+        values = SparseArray(self, kind=kind, fill_value=fill_value)
+        with warnings.catch_warnings():
+            warnings.filterwarnings("ignore", message="SparseSeries")
+            return SparseSeries(values, index=self.index, name=self.name).__finalize__(
+                self
+            )
 
     def _set_name(self, name, inplace=False):
         """
@@ -2694,8 +2733,7 @@ class Series(base.IndexOpsMixin, generic.NDFrame):
         from pandas.core.reshape.concat import concat
 
         if isinstance(to_append, (list, tuple)):
-            to_concat = [self]
-            to_concat.extend(to_append)
+            to_concat = [self] + to_append
         else:
             to_concat = [self, to_append]
         return concat(
@@ -2738,7 +2776,10 @@ class Series(base.IndexOpsMixin, generic.NDFrame):
             result = func(this_vals, other_vals)
 
         name = ops.get_op_result_name(self, other)
-        ret = ops._construct_result(self, result, new_index, name)
+        if func.__name__ in ["divmod", "rdivmod"]:
+            ret = ops._construct_divmod_result(self, result, new_index, name)
+        else:
+            ret = ops._construct_result(self, result, new_index, name)
         return ret
 
     def combine(self, other, func, fill_value=None):
@@ -3579,7 +3620,7 @@ class Series(base.IndexOpsMixin, generic.NDFrame):
         Series.str.split : Split string values on specified separator.
         Series.unstack : Unstack, a.k.a. pivot, Series with MultiIndex
             to produce DataFrame.
-        DataFrame.melt : Unpivot a DataFrame from wide format to long format.
+        DataFrame.melt : Unpivot a DataFrame from wide format to long format
         DataFrame.explode : Explode a DataFrame from list-like
             columns to long format.
 
@@ -4124,10 +4165,12 @@ class Series(base.IndexOpsMixin, generic.NDFrame):
         """
         kwargs["inplace"] = validate_bool_kwarg(kwargs.get("inplace", False), "inplace")
 
-        if callable(index) or is_dict_like(index):
-            return super().rename(index=index, **kwargs)
-        else:
+        non_mapping = is_scalar(index) or (
+            is_list_like(index) and not is_dict_like(index)
+        )
+        if non_mapping:
             return self._set_name(index, inplace=kwargs.get("inplace"))
+        return super().rename(index=index, **kwargs)
 
     @Substitution(**_shared_doc_kwargs)
     @Appender(generic.NDFrame.reindex.__doc__)
@@ -4407,9 +4450,9 @@ class Series(base.IndexOpsMixin, generic.NDFrame):
 
         Parameters
         ----------
-        left : scalar or list-like
+        left : scalar
             Left boundary.
-        right : scalar or list-like
+        right : scalar
             Right boundary.
         inclusive : bool, default True
             Include boundaries.

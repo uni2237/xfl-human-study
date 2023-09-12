@@ -106,7 +106,7 @@ class DatetimeIndex(DatetimeIndexOpsMixin, Int64Index, DatetimeDelegateMixin):
         Optional datetime-like data to construct index with
     copy  : bool
         Make a copy of input ndarray
-    freq : str or pandas offset object, optional
+    freq : string or pandas offset object, optional
         One of pandas date offset strings or corresponding objects. The string
         'infer' can be passed in order to set the frequency of the index as the
         inferred frequency upon creation
@@ -129,7 +129,7 @@ class DatetimeIndex(DatetimeIndexOpsMixin, Int64Index, DatetimeDelegateMixin):
 
         .. deprecated:: 0.24.0
 
-    closed : str or None, default None
+    closed : string or None, default None
         Make the interval closed with respect to the given frequency to
         the 'left', 'right', or both sides (None)
 
@@ -661,7 +661,7 @@ class DatetimeIndex(DatetimeIndexOpsMixin, Int64Index, DatetimeDelegateMixin):
     def to_series(self, keep_tz=None, index=None, name=None):
         """
         Create a Series with both index and values equal to the index keys
-        useful with map for returning an indexer based on an index.
+        useful with map for returning an indexer based on an index
 
         Parameters
         ----------
@@ -687,10 +687,10 @@ class DatetimeIndex(DatetimeIndexOpsMixin, Int64Index, DatetimeDelegateMixin):
                 behaviour and silence the warning.
 
         index : Index, optional
-            Index of resulting Series. If None, defaults to original index.
-        name : str, optional
-            Name of resulting Series. If None, defaults to name of original
-            index.
+            index of resulting Series. If None, defaults to original index
+        name : string, optional
+            name of resulting Series. If None, defaults to name of original
+            index
 
         Returns
         -------
@@ -735,7 +735,7 @@ class DatetimeIndex(DatetimeIndexOpsMixin, Int64Index, DatetimeDelegateMixin):
 
     def snap(self, freq="S"):
         """
-        Snap time stamps to nearest occurring frequency.
+        Snap time stamps to nearest occurring frequency
 
         Returns
         -------
@@ -1371,8 +1371,8 @@ class DatetimeIndex(DatetimeIndexOpsMixin, Int64Index, DatetimeDelegateMixin):
             datetime.time or string in appropriate format ("%H:%M", "%H%M",
             "%I:%M%p", "%I%M%p", "%H:%M:%S", "%H%M%S", "%I:%M:%S%p",
             "%I%M%S%p").
-        include_start : bool, default True
-        include_end : bool, default True
+        include_start : boolean, default True
+        include_end : boolean, default True
 
         Returns
         -------
@@ -1435,7 +1435,7 @@ def date_range(
         Left bound for generating dates.
     end : str or datetime-like, optional
         Right bound for generating dates.
-    periods : int, optional
+    periods : integer, optional
         Number of periods to generate.
     freq : str or DateOffset, default 'D'
         Frequency strings can have multiples, e.g. '5H'. See
@@ -1594,26 +1594,26 @@ def bdate_range(
 ):
     """
     Return a fixed frequency DatetimeIndex, with business day as the default
-    frequency.
+    frequency
 
     Parameters
     ----------
-    start : str or datetime-like, default None
+    start : string or datetime-like, default None
         Left bound for generating dates.
-    end : str or datetime-like, default None
+    end : string or datetime-like, default None
         Right bound for generating dates.
-    periods : int, default None
+    periods : integer, default None
         Number of periods to generate.
-    freq : str or DateOffset, default 'B' (business daily)
+    freq : string or DateOffset, default 'B' (business daily)
         Frequency strings can have multiples, e.g. '5H'.
-    tz : str or None
+    tz : string or None
         Time zone name for returning localized DatetimeIndex, for example
         Asia/Beijing.
     normalize : bool, default False
         Normalize start/end dates to midnight before generating date range.
-    name : str, default None
+    name : string, default None
         Name of the resulting DatetimeIndex.
-    weekmask : str or None, default None
+    weekmask : string or None, default None
         Weekmask of valid business days, passed to ``numpy.busdaycalendar``,
         only used when custom frequency strings are passed.  The default
         value None is equivalent to 'Mon Tue Wed Thu Fri'.
@@ -1627,7 +1627,7 @@ def bdate_range(
 
         .. versionadded:: 0.21.0
 
-    closed : str, default None
+    closed : string, default None
         Make the interval closed with respect to the given frequency to
         the 'left', 'right', or both sides (None).
     **kwargs

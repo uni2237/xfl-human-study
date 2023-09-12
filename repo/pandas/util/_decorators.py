@@ -1,35 +1,21 @@
 from functools import wraps
 import inspect
 from textwrap import dedent
-from typing import (
-    Any,
-    Callable,
-    Dict,
-    List,
-    Optional,
-    Tuple,
-    Type,
-    TypeVar,
-    Union,
-    cast,
-)
+from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
 import warnings
 
 from pandas._libs.properties import cache_readonly  # noqa
 
-FuncType = Callable[..., Any]
-F = TypeVar("F", bound=FuncType)
-
 
 def deprecate(
     name: str,
-    alternative: Callable[..., Any],
+    alternative: Callable,
     version: str,
     alt_name: Optional[str] = None,
     klass: Optional[Type[Warning]] = None,
     stacklevel: int = 2,
     msg: Optional[str] = None,
-) -> Callable[..., Any]:
+) -> Callable:
     """
     Return a new function that emits a deprecation warning on use.
 
@@ -61,7 +47,7 @@ def deprecate(
     warning_msg = msg or "{} is deprecated, use {} instead".format(name, alt_name)
 
     @wraps(alternative)
-    def wrapper(*args, **kwargs) -> Callable[..., Any]:
+    def wrapper(*args, **kwargs):
         warnings.warn(warning_msg, klass, stacklevel=stacklevel)
         return alternative(*args, **kwargs)
 
@@ -104,9 +90,9 @@ def deprecate(
 def deprecate_kwarg(
     old_arg_name: str,
     new_arg_name: Optional[str],
-    mapping: Optional[Union[Dict[Any, Any], Callable[[Any], Any]]] = None,
+    mapping: Optional[Union[Dict, Callable[[Any], Any]]] = None,
     stacklevel: int = 2,
-) -> Callable[..., Any]:
+) -> Callable:
     """
     Decorator to deprecate a keyword argument of a function.
 
@@ -174,27 +160,27 @@ def deprecate_kwarg(
             "mapping from old to new argument values " "must be dict or callable!"
         )
 
-    def _deprecate_kwarg(func: F) -> F:
+    def _deprecate_kwarg(func):
         @wraps(func)
-        def wrapper(*args, **kwargs) -> Callable[..., Any]:
+        def wrapper(*args, **kwargs):
             old_arg_value = kwargs.pop(old_arg_name, None)
 
-            if old_arg_value is not None:
-                if new_arg_name is None:
-                    msg = (
-                        "the '{old_name}' keyword is deprecated and will be "
-                        "removed in a future version. "
-                        "Please take steps to stop the use of '{old_name}'"
-                    ).format(old_name=old_arg_name)
-                    warnings.warn(msg, FutureWarning, stacklevel=stacklevel)
-                    kwargs[old_arg_name] = old_arg_value
-                    return func(*args, **kwargs)
+            if new_arg_name is None and old_arg_value is not None:
+                msg = (
+                    "the '{old_name}' keyword is deprecated and will be "
+                    "removed in a future version. "
+                    "Please take steps to stop the use of '{old_name}'"
+                ).format(old_name=old_arg_name)
+                warnings.warn(msg, FutureWarning, stacklevel=stacklevel)
+                kwargs[old_arg_name] = old_arg_value
+                return func(*args, **kwargs)
 
-                elif mapping is not None:
-                    if callable(mapping):
-                        new_arg_value = mapping(old_arg_value)
-                    else:
+            if old_arg_value is not None:
+                if mapping is not None:
+                    if hasattr(mapping, "get"):
                         new_arg_value = mapping.get(old_arg_value, old_arg_value)
+                    else:
+                        new_arg_value = mapping(old_arg_value)
                     msg = (
                         "the {old_name}={old_val!r} keyword is deprecated, "
                         "use {new_name}={new_val!r} instead"
@@ -212,7 +198,7 @@ def deprecate_kwarg(
                     ).format(old_name=old_arg_name, new_name=new_arg_name)
 
                 warnings.warn(msg, FutureWarning, stacklevel=stacklevel)
-                if kwargs.get(new_arg_name) is not None:
+                if kwargs.get(new_arg_name, None) is not None:
                     msg = (
                         "Can only specify '{old_name}' or '{new_name}', " "not both"
                     ).format(old_name=old_arg_name, new_name=new_arg_name)
@@ -221,17 +207,17 @@ def deprecate_kwarg(
                     kwargs[new_arg_name] = new_arg_value
             return func(*args, **kwargs)
 
-        return cast(F, wrapper)
+        return wrapper
 
     return _deprecate_kwarg
 
 
 def rewrite_axis_style_signature(
     name: str, extra_params: List[Tuple[str, Any]]
-) -> Callable[..., Any]:
-    def decorate(func: F) -> F:
+) -> Callable:
+    def decorate(func):
         @wraps(func)
-        def wrapper(*args, **kwargs) -> Callable[..., Any]:
+        def wrapper(*args, **kwargs):
             return func(*args, **kwargs)
 
         kind = inspect.Parameter.POSITIONAL_OR_KEYWORD
@@ -248,9 +234,8 @@ def rewrite_axis_style_signature(
 
         sig = inspect.Signature(params)
 
-        # https://github.com/python/typing/issues/598
-        func.__signature__ = sig  # type: ignore
-        return cast(F, wrapper)
+        func.__signature__ = sig
+        return wrapper
 
     return decorate
 
@@ -294,17 +279,18 @@ class Substitution:
 
         self.params = args or kwargs
 
-    def __call__(self, func: F) -> F:
+    def __call__(self, func: Callable) -> Callable:
         func.__doc__ = func.__doc__ and func.__doc__ % self.params
         return func
 
     def update(self, *args, **kwargs) -> None:
         """
         Update self.params with supplied args.
+
+        If called, we assume self.params is a dict.
         """
 
-        if isinstance(self.params, dict):
-            self.params.update(*args, **kwargs)
+        self.params.update(*args, **kwargs)
 
 
 class Appender:
@@ -334,7 +320,7 @@ class Appender:
             self.addendum = addendum
         self.join = join
 
-    def __call__(self, func: F) -> F:
+    def __call__(self, func: Callable) -> Callable:
         func.__doc__ = func.__doc__ if func.__doc__ else ""
         self.addendum = self.addendum if self.addendum else ""
         docitems = [func.__doc__, self.addendum]

@@ -15,6 +15,7 @@ from pandas import (
 )
 import pandas.util.testing as tm
 
+
 method_blacklist = {
     "object": {
         "median",
@@ -625,4 +626,4 @@ class TransformNaN:
         self.df_nans.groupby("key").transform("first")
 
 
-from .pandas_vb_common import setup  # noqa: F401 isort:skip
+from .pandas_vb_common import setup  # noqa: F401

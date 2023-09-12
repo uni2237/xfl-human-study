@@ -1,8 +1,7 @@
 import warnings
 
 import numpy as np
-
-from pandas import DataFrame, Series
+from pandas import Series, DataFrame
 import pandas.util.testing as tm
 
 

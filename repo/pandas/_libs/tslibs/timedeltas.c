@@ -10,12 +10,12 @@
             ]
         ],
         "depends": [
-            "/opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/numpy/core/include/numpy/arrayobject.h",
-            "/opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/numpy/core/include/numpy/arrayscalars.h",
-            "/opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/numpy/core/include/numpy/ndarrayobject.h",
-            "/opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/numpy/core/include/numpy/ndarraytypes.h",
-            "/opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/numpy/core/include/numpy/npy_common.h",
-            "/opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/numpy/core/include/numpy/ufuncobject.h",
+            "/opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/numpy/core/include/numpy/arrayobject.h",
+            "/opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/numpy/core/include/numpy/arrayscalars.h",
+            "/opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/numpy/core/include/numpy/ndarrayobject.h",
+            "/opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/numpy/core/include/numpy/ndarraytypes.h",
+            "/opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/numpy/core/include/numpy/npy_common.h",
+            "/opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/numpy/core/include/numpy/ufuncobject.h",
             "pandas/_libs/tslibs/src/datetime/np_datetime.h",
             "pandas/_libs/tslibs/src/datetime/np_datetime_strings.h"
         ],
@@ -26,7 +26,7 @@
             "./pandas/_libs/tslibs",
             "pandas/_libs/tslibs",
             "pandas/_libs/tslibs/src",
-            "/opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/numpy/core/include"
+            "/opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/numpy/core/include"
         ],
         "language": "c",
         "name": "pandas._libs.tslibs.timedeltas",
@@ -638,10 +638,15 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include <stdio.h>
 #include "numpy/arrayobject.h"
 #include "numpy/ufuncobject.h"
+#include "pythread.h"
 #include "datetime.h"
 
     PyObject* char_to_string(const char* data) {
+    #if PY_VERSION_HEX >= 0x03000000
         return PyUnicode_FromString(data);
+    #else
+        return PyString_FromString(data);
+    #endif
     }
     
 #include "numpy/ndarrayobject.h"
@@ -649,7 +654,6 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include "numpy/ndarraytypes.h"
 #include "numpy/arrayscalars.h"
 #include "src/datetime/np_datetime.h"
-#include "pythread.h"
 #include <stdlib.h>
 #include "pystate.h"
 #ifdef _OPENMP
@@ -888,6 +892,8 @@ static const char *__pyx_f[] = {
   "datetime.pxd",
   "pandas/_libs/tslibs/util.pxd",
   "type.pxd",
+  "bool.pxd",
+  "complex.pxd",
   "pandas/_libs/tslibs/c_timestamp.pxd",
   "pandas/_libs/tslibs/nattype.pxd",
 };
@@ -1000,7 +1006,7 @@ typedef struct {
 } __Pyx_BufFmt_Context;
 
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":775
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":775
  * # in Cython to enable them only on the right systems.
  * 
  * ctypedef npy_int8       int8_t             # <<<<<<<<<<<<<<
@@ -1009,7 +1015,7 @@ typedef struct {
  */
 typedef npy_int8 __pyx_t_5numpy_int8_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":776
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":776
  * 
  * ctypedef npy_int8       int8_t
  * ctypedef npy_int16      int16_t             # <<<<<<<<<<<<<<
@@ -1018,7 +1024,7 @@ typedef npy_int8 __pyx_t_5numpy_int8_t;
  */
 typedef npy_int16 __pyx_t_5numpy_int16_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":777
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":777
  * ctypedef npy_int8       int8_t
  * ctypedef npy_int16      int16_t
  * ctypedef npy_int32      int32_t             # <<<<<<<<<<<<<<
@@ -1027,7 +1033,7 @@ typedef npy_int16 __pyx_t_5numpy_int16_t;
  */
 typedef npy_int32 __pyx_t_5numpy_int32_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":778
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":778
  * ctypedef npy_int16      int16_t
  * ctypedef npy_int32      int32_t
  * ctypedef npy_int64      int64_t             # <<<<<<<<<<<<<<
@@ -1036,7 +1042,7 @@ typedef npy_int32 __pyx_t_5numpy_int32_t;
  */
 typedef npy_int64 __pyx_t_5numpy_int64_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":782
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":782
  * #ctypedef npy_int128     int128_t
  * 
  * ctypedef npy_uint8      uint8_t             # <<<<<<<<<<<<<<
@@ -1045,7 +1051,7 @@ typedef npy_int64 __pyx_t_5numpy_int64_t;
  */
 typedef npy_uint8 __pyx_t_5numpy_uint8_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":783
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":783
  * 
  * ctypedef npy_uint8      uint8_t
  * ctypedef npy_uint16     uint16_t             # <<<<<<<<<<<<<<
@@ -1054,7 +1060,7 @@ typedef npy_uint8 __pyx_t_5numpy_uint8_t;
  */
 typedef npy_uint16 __pyx_t_5numpy_uint16_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":784
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":784
  * ctypedef npy_uint8      uint8_t
  * ctypedef npy_uint16     uint16_t
  * ctypedef npy_uint32     uint32_t             # <<<<<<<<<<<<<<
@@ -1063,7 +1069,7 @@ typedef npy_uint16 __pyx_t_5numpy_uint16_t;
  */
 typedef npy_uint32 __pyx_t_5numpy_uint32_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":785
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":785
  * ctypedef npy_uint16     uint16_t
  * ctypedef npy_uint32     uint32_t
  * ctypedef npy_uint64     uint64_t             # <<<<<<<<<<<<<<
@@ -1072,7 +1078,7 @@ typedef npy_uint32 __pyx_t_5numpy_uint32_t;
  */
 typedef npy_uint64 __pyx_t_5numpy_uint64_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":789
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":789
  * #ctypedef npy_uint128    uint128_t
  * 
  * ctypedef npy_float32    float32_t             # <<<<<<<<<<<<<<
@@ -1081,7 +1087,7 @@ typedef npy_uint64 __pyx_t_5numpy_uint64_t;
  */
 typedef npy_float32 __pyx_t_5numpy_float32_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":790
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":790
  * 
  * ctypedef npy_float32    float32_t
  * ctypedef npy_float64    float64_t             # <<<<<<<<<<<<<<
@@ -1090,7 +1096,7 @@ typedef npy_float32 __pyx_t_5numpy_float32_t;
  */
 typedef npy_float64 __pyx_t_5numpy_float64_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":799
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":799
  * # The int types are mapped a bit surprising --
  * # numpy.int corresponds to 'l' and numpy.long to 'q'
  * ctypedef npy_long       int_t             # <<<<<<<<<<<<<<
@@ -1099,7 +1105,7 @@ typedef npy_float64 __pyx_t_5numpy_float64_t;
  */
 typedef npy_long __pyx_t_5numpy_int_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":800
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":800
  * # numpy.int corresponds to 'l' and numpy.long to 'q'
  * ctypedef npy_long       int_t
  * ctypedef npy_longlong   long_t             # <<<<<<<<<<<<<<
@@ -1108,7 +1114,7 @@ typedef npy_long __pyx_t_5numpy_int_t;
  */
 typedef npy_longlong __pyx_t_5numpy_long_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":801
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":801
  * ctypedef npy_long       int_t
  * ctypedef npy_longlong   long_t
  * ctypedef npy_longlong   longlong_t             # <<<<<<<<<<<<<<
@@ -1117,7 +1123,7 @@ typedef npy_longlong __pyx_t_5numpy_long_t;
  */
 typedef npy_longlong __pyx_t_5numpy_longlong_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":803
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":803
  * ctypedef npy_longlong   longlong_t
  * 
  * ctypedef npy_ulong      uint_t             # <<<<<<<<<<<<<<
@@ -1126,7 +1132,7 @@ typedef npy_longlong __pyx_t_5numpy_longlong_t;
  */
 typedef npy_ulong __pyx_t_5numpy_uint_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":804
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":804
  * 
  * ctypedef npy_ulong      uint_t
  * ctypedef npy_ulonglong  ulong_t             # <<<<<<<<<<<<<<
@@ -1135,7 +1141,7 @@ typedef npy_ulong __pyx_t_5numpy_uint_t;
  */
 typedef npy_ulonglong __pyx_t_5numpy_ulong_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":805
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":805
  * ctypedef npy_ulong      uint_t
  * ctypedef npy_ulonglong  ulong_t
  * ctypedef npy_ulonglong  ulonglong_t             # <<<<<<<<<<<<<<
@@ -1144,7 +1150,7 @@ typedef npy_ulonglong __pyx_t_5numpy_ulong_t;
  */
 typedef npy_ulonglong __pyx_t_5numpy_ulonglong_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":807
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":807
  * ctypedef npy_ulonglong  ulonglong_t
  * 
  * ctypedef npy_intp       intp_t             # <<<<<<<<<<<<<<
@@ -1153,7 +1159,7 @@ typedef npy_ulonglong __pyx_t_5numpy_ulonglong_t;
  */
 typedef npy_intp __pyx_t_5numpy_intp_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":808
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":808
  * 
  * ctypedef npy_intp       intp_t
  * ctypedef npy_uintp      uintp_t             # <<<<<<<<<<<<<<
@@ -1162,7 +1168,7 @@ typedef npy_intp __pyx_t_5numpy_intp_t;
  */
 typedef npy_uintp __pyx_t_5numpy_uintp_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":810
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":810
  * ctypedef npy_uintp      uintp_t
  * 
  * ctypedef npy_double     float_t             # <<<<<<<<<<<<<<
@@ -1171,7 +1177,7 @@ typedef npy_uintp __pyx_t_5numpy_uintp_t;
  */
 typedef npy_double __pyx_t_5numpy_float_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":811
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":811
  * 
  * ctypedef npy_double     float_t
  * ctypedef npy_double     double_t             # <<<<<<<<<<<<<<
@@ -1180,7 +1186,7 @@ typedef npy_double __pyx_t_5numpy_float_t;
  */
 typedef npy_double __pyx_t_5numpy_double_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":812
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":812
  * ctypedef npy_double     float_t
  * ctypedef npy_double     double_t
  * ctypedef npy_longdouble longdouble_t             # <<<<<<<<<<<<<<
@@ -1224,7 +1230,7 @@ struct __pyx_MemviewEnum_obj;
 struct __pyx_memoryview_obj;
 struct __pyx_memoryviewslice_obj;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":814
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":814
  * ctypedef npy_longdouble longdouble_t
  * 
  * ctypedef npy_cfloat      cfloat_t             # <<<<<<<<<<<<<<
@@ -1233,7 +1239,7 @@ struct __pyx_memoryviewslice_obj;
  */
 typedef npy_cfloat __pyx_t_5numpy_cfloat_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":815
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":815
  * 
  * ctypedef npy_cfloat      cfloat_t
  * ctypedef npy_cdouble     cdouble_t             # <<<<<<<<<<<<<<
@@ -1242,7 +1248,7 @@ typedef npy_cfloat __pyx_t_5numpy_cfloat_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_cdouble_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":816
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":816
  * ctypedef npy_cfloat      cfloat_t
  * ctypedef npy_cdouble     cdouble_t
  * ctypedef npy_clongdouble clongdouble_t             # <<<<<<<<<<<<<<
@@ -1251,7 +1257,7 @@ typedef npy_cdouble __pyx_t_5numpy_cdouble_t;
  */
 typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":818
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":818
  * ctypedef npy_clongdouble clongdouble_t
  * 
  * ctypedef npy_cdouble     complex_t             # <<<<<<<<<<<<<<
@@ -1320,7 +1326,7 @@ struct __pyx_obj_6pandas_5_libs_6tslibs_7nattype__NaT {
 };
 
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":738
+/* "pandas/_libs/tslibs/timedeltas.pyx":733
  * # serve as a C extension type that shadows the Python class, where we do any
  * # heavy lifting.
  * cdef class _Timedelta(timedelta):             # <<<<<<<<<<<<<<
@@ -1343,7 +1349,7 @@ struct __pyx_obj_6pandas_5_libs_6tslibs_10timedeltas__Timedelta {
 };
 
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":552
+/* "pandas/_libs/tslibs/timedeltas.pyx":547
  * 
  * 
  * def _op_unary_method(func, name):             # <<<<<<<<<<<<<<
@@ -1356,7 +1362,7 @@ struct __pyx_obj_6pandas_5_libs_6tslibs_10timedeltas___pyx_scope_struct___op_una
 };
 
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":559
+/* "pandas/_libs/tslibs/timedeltas.pyx":554
  * 
  * 
  * def _binary_op_method_timedeltalike(op, name):             # <<<<<<<<<<<<<<
@@ -1467,7 +1473,7 @@ struct __pyx_vtabstruct_6pandas_5_libs_6tslibs_11c_timestamp__Timestamp {
 static struct __pyx_vtabstruct_6pandas_5_libs_6tslibs_11c_timestamp__Timestamp *__pyx_vtabptr_6pandas_5_libs_6tslibs_11c_timestamp__Timestamp;
 
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":738
+/* "pandas/_libs/tslibs/timedeltas.pyx":733
  * # serve as a C extension type that shadows the Python class, where we do any
  * # heavy lifting.
  * cdef class _Timedelta(timedelta):             # <<<<<<<<<<<<<<
@@ -1853,20 +1859,20 @@ static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject 
 #define __Pyx_ExceptionReset(type, value, tb)  PyErr_SetExcInfo(type, value, tb)
 #endif
 
-/* PyErrExceptionMatches.proto */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
-static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err);
-#else
-#define __Pyx_PyErr_ExceptionMatches(err)  PyErr_ExceptionMatches(err)
-#endif
-
 /* GetException.proto */
 #if CYTHON_FAST_THREAD_STATE
 #define __Pyx_GetException(type, value, tb)  __Pyx__GetException(__pyx_tstate, type, value, tb)
 static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
 #else
 static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb);
+#endif
+
+/* PyErrExceptionMatches.proto */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
+static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err);
+#else
+#define __Pyx_PyErr_ExceptionMatches(err)  PyErr_ExceptionMatches(err)
 #endif
 
 /* RaiseTooManyValuesToUnpack.proto */
@@ -1886,10 +1892,6 @@ static CYTHON_INLINE int __Pyx_PySequence_ContainsTF(PyObject* item, PyObject* s
     int result = PySequence_Contains(seq, item);
     return unlikely(result < 0) ? result : (result == (eq == Py_EQ));
 }
-
-/* unicode_iter.proto */
-static CYTHON_INLINE int __Pyx_init_unicode_iteration(
-    PyObject* ustring, Py_ssize_t *length, void** data, int *kind);
 
 /* UnicodeAsUCS4.proto */
 static CYTHON_INLINE Py_UCS4 __Pyx_PyUnicode_AsPy_UCS4(PyObject*);
@@ -2589,13 +2591,77 @@ static PyObject *__pyx_memoryviewslice_assign_item_from_object(struct __pyx_memo
 /* Module declarations from 'cpython.type' */
 static PyTypeObject *__pyx_ptype_7cpython_4type_type = 0;
 
+/* Module declarations from 'cpython.version' */
+
+/* Module declarations from 'cpython.exc' */
+
+/* Module declarations from 'cpython.module' */
+
+/* Module declarations from 'cpython.mem' */
+
+/* Module declarations from 'cpython.tuple' */
+
+/* Module declarations from 'cpython.list' */
+
+/* Module declarations from 'cpython.sequence' */
+
+/* Module declarations from 'cpython.mapping' */
+
+/* Module declarations from 'cpython.iterator' */
+
+/* Module declarations from 'cpython.number' */
+
+/* Module declarations from 'cpython.int' */
+
+/* Module declarations from '__builtin__' */
+
+/* Module declarations from 'cpython.bool' */
+static PyTypeObject *__pyx_ptype_7cpython_4bool_bool = 0;
+
+/* Module declarations from 'cpython.long' */
+
+/* Module declarations from 'cpython.float' */
+
+/* Module declarations from '__builtin__' */
+
+/* Module declarations from 'cpython.complex' */
+static PyTypeObject *__pyx_ptype_7cpython_7complex_complex = 0;
+
+/* Module declarations from 'cpython.string' */
+
+/* Module declarations from 'cpython.unicode' */
+
+/* Module declarations from 'cpython.dict' */
+
+/* Module declarations from 'cpython.instance' */
+
+/* Module declarations from 'cpython.function' */
+
+/* Module declarations from 'cpython.method' */
+
+/* Module declarations from 'cpython.weakref' */
+
+/* Module declarations from 'cpython.getargs' */
+
+/* Module declarations from 'cpython.pythread' */
+
+/* Module declarations from 'cpython.pystate' */
+
+/* Module declarations from 'cpython.cobject' */
+
+/* Module declarations from 'cpython.oldbuffer' */
+
+/* Module declarations from 'cpython.set' */
+
+/* Module declarations from 'cpython.bytes' */
+
+/* Module declarations from 'cpython.pycapsule' */
+
 /* Module declarations from 'cpython' */
 
 /* Module declarations from 'cpython.object' */
 
 /* Module declarations from 'cpython.ref' */
-
-/* Module declarations from 'cpython.mem' */
 
 /* Module declarations from 'numpy' */
 
@@ -2673,7 +2739,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
 static __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_delta_to_nanoseconds(PyObject *, int __pyx_skip_dispatch); /*proto*/
 static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_convert_to_timedelta64(PyObject *, PyObject *); /*proto*/
 static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_precision_from_unit(PyObject *, int __pyx_skip_dispatch); /*proto*/
-static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_string(PyObject *); /*proto*/
+static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_string(PyObject *); /*proto*/
 static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_as_neg(__pyx_t_5numpy_int64_t, int); /*proto*/
 static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(PyObject *, PyObject *, PyObject *); /*proto*/
 static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_unit(PyObject *, int __pyx_skip_dispatch); /*proto*/
@@ -3031,7 +3097,7 @@ static const char __pyx_k_itemsize_0_for_cython_array[] = "itemsize <= 0 for cyt
 static const char __pyx_k_ndarray_is_not_C_contiguous[] = "ndarray is not C contiguous";
 static const char __pyx_k_pandas__libs_tslibs_nattype[] = "pandas._libs.tslibs.nattype";
 static const char __pyx_k_pandas__libs_tslibs_offsets[] = "pandas._libs.tslibs.offsets";
-static const char __pyx_k_Timedelta_isoformat_line_1154[] = "_Timedelta.isoformat (line 1154)";
+static const char __pyx_k_Timedelta_isoformat_line_1149[] = "_Timedelta.isoformat (line 1149)";
 static const char __pyx_k_pandas__libs_tslibs_ccalendar[] = "pandas._libs.tslibs.ccalendar";
 static const char __pyx_k_unable_to_allocate_array_data[] = "unable to allocate array data.";
 static const char __pyx_k_Floor_division_between_integer[] = "                Floor division between integer array and Timedelta is\n                deprecated. Use 'array // timedelta.value' instead.\n                If you want to obtain epochs from an array of timestamps,\n                you can rather use\n                '(array - pd.Timestamp(\"1970-01-01\")) // pd.Timedelta(\"1s\")'.\n                ";
@@ -3041,18 +3107,18 @@ static const char __pyx_k_pandas__libs_tslibs_timedeltas[] = "pandas._libs.tslib
 static const char __pyx_k_pandas__libs_tslibs_timestamps[] = "pandas._libs.tslibs.timestamps";
 static const char __pyx_k_strided_and_direct_or_indirect[] = "<strided and direct or indirect>";
 static const char __pyx_k_unit_abbreviation_w_o_a_number[] = "unit abbreviation w/o a number";
-static const char __pyx_k_Format_Timedelta_as_ISO_8601_Du[] = "\n        Format Timedelta as ISO 8601 Duration like\n        ``P[n]Y[n]M[n]DT[n]H[n]M[n]S``, where the ``[n]`` s are replaced by the\n        values. See https://en.wikipedia.org/wiki/ISO_8601#Durations.\n\n        .. versionadded:: 0.20.0\n\n        Returns\n        -------\n        formatted : str\n\n        See Also\n        --------\n        Timestamp.isoformat\n\n        Notes\n        -----\n        The longest component is days, whose value may be larger than\n        365.\n        Every component is always included, even if its value is 0.\n        Pandas uses nanosecond precision, so up to 9 decimal places may\n        be included in the seconds component.\n        Trailing 0's are removed from the seconds component after the decimal.\n        We do not 0 pad components, so it's `...T5H...`, not `...T05H...`\n\n        Examples\n        --------\n        >>> td = pd.Timedelta(days=6, minutes=50, seconds=3,\n        ...                   milliseconds=10, microseconds=10, nanoseconds=12)\n        >>> td.isoformat()\n        'P6DT0H50M3.010010012S'\n        >>> pd.Timedelta(hours=1, seconds=10).isoformat()\n        'P0DT0H0M10S'\n        >>> pd.Timedelta(hours=1, seconds=10).isoformat()\n        'P0DT0H0M10S'\n        >>> pd.Timedelta(days=500.5).isoformat()\n        'P500DT12H0MS'\n        ";
+static const char __pyx_k_Format_Timedelta_as_ISO_8601_Du[] = "\n        Format Timedelta as ISO 8601 Duration like\n        ``P[n]Y[n]M[n]DT[n]H[n]M[n]S``, where the ``[n]`` s are replaced by the\n        values. See https://en.wikipedia.org/wiki/ISO_8601#Durations\n\n        .. versionadded:: 0.20.0\n\n        Returns\n        -------\n        formatted : str\n\n        See Also\n        --------\n        Timestamp.isoformat\n\n        Notes\n        -----\n        The longest component is days, whose value may be larger than\n        365.\n        Every component is always included, even if its value is 0.\n        Pandas uses nanosecond precision, so up to 9 decimal places may\n        be included in the seconds component.\n        Trailing 0's are removed from the seconds component after the decimal.\n        We do not 0 pad components, so it's `...T5H...`, not `...T05H...`\n\n        Examples\n        --------\n        >>> td = pd.Timedelta(days=6, minutes=50, seconds=3,\n        ...                   milliseconds=10, microseconds=10, nanoseconds=12)\n        >>> td.isoformat()\n        'P6DT0H50M3.010010012S'\n        >>> pd.Timedelta(hours=1, seconds=10).isoformat()\n        'P0DT0H0M10S'\n        >>> pd.Timedelta(hours=1, seconds=10).isoformat()\n        'P0DT0H0M10S'\n        >>> pd.Timedelta(days=500.5).isoformat()\n        'P500DT12H0MS'\n        ";
 static const char __pyx_k_Invalid_type_typ_Must_be_int_or[] = "Invalid type {typ}. Must be int or float.";
 static const char __pyx_k_Represents_a_duration_the_diffe[] = "\n    Represents a duration, the difference between two dates or times.\n\n    Timedelta is the pandas equivalent of python's ``datetime.timedelta``\n    and is interchangeable with it in most cases.\n\n    Parameters\n    ----------\n    value : Timedelta, timedelta, np.timedelta64, string, or integer\n    unit : str, optional\n        Denote the unit of the input, if input is an integer. Default 'ns'.\n        Possible values:\n        {'Y', 'M', 'W', 'D', 'days', 'day', 'hours', hour', 'hr', 'h',\n        'm', 'minute', 'min', 'minutes', 'T', 'S', 'seconds', 'sec', 'second',\n        'ms', 'milliseconds', 'millisecond', 'milli', 'millis', 'L',\n        'us', 'microseconds', 'microsecond', 'micro', 'micros', 'U',\n        'ns', 'nanoseconds', 'nano', 'nanos', 'nanosecond', 'N'}\n    **kwargs\n        Available kwargs: {days, seconds, microseconds,\n        milliseconds, minutes, hours, weeks}.\n        Values for construction in compat with datetime.timedelta.\n        Numpy ints and floats will be coerced to python ints and floats.\n\n    Notes\n    -----\n    The ``.value`` attribute is always in ns.\n    ";
 static const char __pyx_k_Return_a_numpy_timedelta64_arra[] = "\n        Return a numpy timedelta64 array scalar view.\n\n        Provides access to the array scalar view (i.e. a combination of the\n        value and the units) associated with the numpy.timedelta64().view(),\n        including a 64-bit integer representation of the timedelta in\n        nanoseconds (Python int compatible).\n\n        Returns\n        -------\n        numpy timedelta64 array scalar view\n            Array scalar view of the timedelta in nanoseconds.\n\n        Examples\n        --------\n        >>> td = pd.Timedelta('1 days 2 min 3 us 42 ns')\n        >>> td.asm8\n        numpy.timedelta64(86520000003042,'ns')\n\n        >>> td = pd.Timedelta('2 min 3 s')\n        >>> td.asm8\n        numpy.timedelta64(123000000000,'ns')\n\n        >>> td = pd.Timedelta('3 ms 5 us')\n        >>> td.asm8\n        numpy.timedelta64(3005000,'ns')\n\n        >>> td = pd.Timedelta(42, unit='ns')\n        >>> td.asm8\n        numpy.timedelta64(42,'ns')\n        ";
 static const char __pyx_k_Return_a_string_representing_th[] = "\n        Return a string representing the lowest timedelta resolution.\n\n        Each timedelta has a defined resolution that represents the lowest OR\n        most granular level of precision. Each level of resolution is\n        represented by a short string as defined below:\n\n        Resolution:     Return value\n\n        * Days:         'D'\n        * Hours:        'H'\n        * Minutes:      'T'\n        * Seconds:      'S'\n        * Milliseconds: 'L'\n        * Microseconds: 'U'\n        * Nanoseconds:  'N'\n\n        Returns\n        -------\n        str\n            Timedelta resolution.\n\n        Examples\n        --------\n        >>> td = pd.Timedelta('1 days 2 min 3 us 42 ns')\n        >>> td.resolution\n        'N'\n\n        >>> td = pd.Timedelta('1 days 2 min 3 us')\n        >>> td.resolution\n        'U'\n\n        >>> td = pd.Timedelta('2 min 3 s')\n        >>> td.resolution\n        'S'\n\n        >>> td = pd.Timedelta(36, unit='us')\n        >>> td.resolution\n        'U'\n        ";
 static const char __pyx_k_Return_the_number_of_nanosecond[] = "\n        Return the number of nanoseconds (n), where 0 <= n < 1 microsecond.\n\n        Returns\n        -------\n        int\n            Number of nanoseconds.\n\n        See Also\n        --------\n        Timedelta.components : Return all attributes with assigned values\n            (i.e. days, hours, minutes, seconds, milliseconds, microseconds,\n            nanoseconds).\n\n        Examples\n        --------\n        **Using string input**\n\n        >>> td = pd.Timedelta('1 days 2 min 3 us 42 ns')\n        >>> td.nanoseconds\n        42\n\n        **Using integer input**\n\n        >>> td = pd.Timedelta(42, unit='ns')\n        >>> td.nanoseconds\n        42\n        ";
 static const char __pyx_k_Return_the_timedelta_in_nanosec[] = "\n        Return the timedelta in nanoseconds (ns), for internal compatibility.\n\n        Returns\n        -------\n        int\n            Timedelta in nanoseconds.\n\n        Examples\n        --------\n        >>> td = pd.Timedelta('1 days 42 ns')\n        >>> td.delta\n        86400000000042\n\n        >>> td = pd.Timedelta('3 s')\n        >>> td.delta\n        3000000000\n\n        >>> td = pd.Timedelta('3 ms 5 us')\n        >>> td.delta\n        3005000\n\n        >>> td = pd.Timedelta(42, unit='ns')\n        >>> td.delta\n        42\n        ";
-static const char __pyx_k_Timedelta_asm8___get___line_923[] = "_Timedelta.asm8.__get__ (line 923)";
-static const char __pyx_k_Timedelta_delta___get___line_89[] = "_Timedelta.delta.__get__ (line 893)";
-static const char __pyx_k_Timedelta_nanoseconds___get___l[] = "_Timedelta.nanoseconds.__get__ (line 1066)";
-static const char __pyx_k_Timedelta_resolution___get___li[] = "_Timedelta.resolution.__get__ (line 1016)";
-static const char __pyx_k_Timedelta_resolution_string___g[] = "_Timedelta.resolution_string.__get__ (line 958)";
+static const char __pyx_k_Timedelta_asm8___get___line_918[] = "_Timedelta.asm8.__get__ (line 918)";
+static const char __pyx_k_Timedelta_delta___get___line_88[] = "_Timedelta.delta.__get__ (line 888)";
+static const char __pyx_k_Timedelta_nanoseconds___get___l[] = "_Timedelta.nanoseconds.__get__ (line 1061)";
+static const char __pyx_k_Timedelta_resolution___get___li[] = "_Timedelta.resolution.__get__ (line 1011)";
+static const char __pyx_k_Timedelta_resolution_string___g[] = "_Timedelta.resolution_string.__get__ (line 953)";
 static const char __pyx_k_days_days_sign_hours_02_minutes[] = "{days} days{sign}{hours:02}:{minutes:02}:{seconds:02}.{milliseconds:03}{microseconds:03}{nanoseconds:03}";
 static const char __pyx_k_expected_hh_mm_ss_format_before[] = "expected hh:mm:ss format before .";
 static const char __pyx_k_numpy_core_multiarray_failed_to[] = "numpy.core.multiarray failed to import";
@@ -3169,11 +3235,11 @@ static PyObject *__pyx_n_s_Timedelta___rtruediv;
 static PyObject *__pyx_n_s_Timedelta___setstate;
 static PyObject *__pyx_n_s_Timedelta___truediv;
 static PyObject *__pyx_n_s_Timedelta__round;
-static PyObject *__pyx_kp_u_Timedelta_asm8___get___line_923;
+static PyObject *__pyx_kp_u_Timedelta_asm8___get___line_918;
 static PyObject *__pyx_n_s_Timedelta_ceil;
-static PyObject *__pyx_kp_u_Timedelta_delta___get___line_89;
+static PyObject *__pyx_kp_u_Timedelta_delta___get___line_88;
 static PyObject *__pyx_n_s_Timedelta_floor;
-static PyObject *__pyx_kp_u_Timedelta_isoformat_line_1154;
+static PyObject *__pyx_kp_u_Timedelta_isoformat_line_1149;
 static PyObject *__pyx_n_s_Timedelta_lambda;
 static PyObject *__pyx_kp_u_Timedelta_nanoseconds___get___l;
 static PyObject *__pyx_kp_u_Timedelta_resolution___get___li;
@@ -5176,9 +5242,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_convert_to_timedelt
  *     elif hasattr(ts, 'delta'):
  */
     /*else*/ {
-      if (!(likely(PyUnicode_CheckExact(__pyx_v_ts))||((__pyx_v_ts) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_ts)->tp_name), 0))) __PYX_ERR(0, 193, __pyx_L1_error)
-      __pyx_t_11 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_string(((PyObject*)__pyx_v_ts)); if (unlikely(__pyx_t_11 == ((__pyx_t_5numpy_int64_t)-1LL) && PyErr_Occurred())) __PYX_ERR(0, 193, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_t_11); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 193, __pyx_L1_error)
+      __pyx_t_2 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_string(__pyx_v_ts); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 193, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF_SET(__pyx_v_ts, __pyx_t_2);
       __pyx_t_2 = 0;
@@ -5614,15 +5678,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_4array_to_timedelt
   Py_ssize_t __pyx_t_12;
   Py_ssize_t __pyx_t_13;
   Py_ssize_t __pyx_t_14;
-  Py_ssize_t __pyx_t_15;
-  __pyx_t_5numpy_int64_t __pyx_t_16;
-  int __pyx_t_17;
+  PyObject *__pyx_t_15 = NULL;
+  PyObject *__pyx_t_16 = NULL;
+  PyObject *__pyx_t_17 = NULL;
   PyObject *__pyx_t_18 = NULL;
-  PyObject *__pyx_t_19 = NULL;
+  int __pyx_t_19;
   PyObject *__pyx_t_20 = NULL;
   PyObject *__pyx_t_21 = NULL;
-  PyObject *__pyx_t_22 = NULL;
-  PyObject *__pyx_t_23 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -5753,7 +5815,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_4array_to_timedelt
  *     # this is where all of the error handling will take place.
  *     try:             # <<<<<<<<<<<<<<
  *         for i in range(n):
- *             if values[i] is NaT:
+ *             result[i] = parse_timedelta_string(values[i])
  */
   {
     __Pyx_PyThreadState_declare
@@ -5768,8 +5830,8 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_4array_to_timedelt
  *     # this is where all of the error handling will take place.
  *     try:
  *         for i in range(n):             # <<<<<<<<<<<<<<
- *             if values[i] is NaT:
- *                 # we allow this check in the fast-path because NaT is a C-object
+ *             result[i] = parse_timedelta_string(values[i])
+ *     except:
  */
       __pyx_t_11 = __pyx_v_n;
       __pyx_t_12 = __pyx_t_11;
@@ -5779,58 +5841,18 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_4array_to_timedelt
         /* "pandas/_libs/tslibs/timedeltas.pyx":231
  *     try:
  *         for i in range(n):
- *             if values[i] is NaT:             # <<<<<<<<<<<<<<
- *                 # we allow this check in the fast-path because NaT is a C-object
- *                 #  so this is an inexpensive check
+ *             result[i] = parse_timedelta_string(values[i])             # <<<<<<<<<<<<<<
+ *     except:
+ *         unit = parse_timedelta_unit(unit)
  */
         __pyx_t_14 = __pyx_v_i;
         __pyx_t_6 = (PyObject *) *((PyObject * *) ( /* dim=0 */ (__pyx_v_values.data + __pyx_t_14 * __pyx_v_values.strides[0]) ));
         __Pyx_INCREF((PyObject*)__pyx_t_6);
-        __pyx_t_3 = (__pyx_t_6 == ((PyObject *)__pyx_v_6pandas_5_libs_6tslibs_7nattype_c_NaT));
+        __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_string(__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L7_error)
+        __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        __pyx_t_2 = (__pyx_t_3 != 0);
-        if (__pyx_t_2) {
-
-          /* "pandas/_libs/tslibs/timedeltas.pyx":234
- *                 # we allow this check in the fast-path because NaT is a C-object
- *                 #  so this is an inexpensive check
- *                 iresult[i] = NPY_NAT             # <<<<<<<<<<<<<<
- *             else:
- *                 result[i] = parse_timedelta_string(values[i])
- */
-          __pyx_t_14 = __pyx_v_i;
-          *((__pyx_t_5numpy_int64_t *) ( /* dim=0 */ (__pyx_v_iresult.data + __pyx_t_14 * __pyx_v_iresult.strides[0]) )) = __pyx_v_6pandas_5_libs_6tslibs_7nattype_NPY_NAT;
-
-          /* "pandas/_libs/tslibs/timedeltas.pyx":231
- *     try:
- *         for i in range(n):
- *             if values[i] is NaT:             # <<<<<<<<<<<<<<
- *                 # we allow this check in the fast-path because NaT is a C-object
- *                 #  so this is an inexpensive check
- */
-          goto __pyx_L15;
-        }
-
-        /* "pandas/_libs/tslibs/timedeltas.pyx":236
- *                 iresult[i] = NPY_NAT
- *             else:
- *                 result[i] = parse_timedelta_string(values[i])             # <<<<<<<<<<<<<<
- *     except (TypeError, ValueError):
- *         unit = parse_timedelta_unit(unit)
- */
-        /*else*/ {
-          __pyx_t_15 = __pyx_v_i;
-          __pyx_t_6 = (PyObject *) *((PyObject * *) ( /* dim=0 */ (__pyx_v_values.data + __pyx_t_15 * __pyx_v_values.strides[0]) ));
-          __Pyx_INCREF((PyObject*)__pyx_t_6);
-          if (!(likely(PyUnicode_CheckExact(__pyx_t_6))||((__pyx_t_6) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_6)->tp_name), 0))) __PYX_ERR(0, 236, __pyx_L7_error)
-          __pyx_t_16 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_string(((PyObject*)__pyx_t_6)); if (unlikely(__pyx_t_16 == ((__pyx_t_5numpy_int64_t)-1LL) && PyErr_Occurred())) __PYX_ERR(0, 236, __pyx_L7_error)
-          __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __pyx_t_6 = __Pyx_PyInt_From_npy_int64(__pyx_t_16); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 236, __pyx_L7_error)
-          __Pyx_GOTREF(__pyx_t_6);
-          if (unlikely(__Pyx_SetItemInt(__pyx_v_result, __pyx_v_i, __pyx_t_6, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0) < 0)) __PYX_ERR(0, 236, __pyx_L7_error)
-          __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        }
-        __pyx_L15:;
+        if (unlikely(__Pyx_SetItemInt(__pyx_v_result, __pyx_v_i, __pyx_t_1, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0) < 0)) __PYX_ERR(0, 231, __pyx_L7_error)
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       }
 
       /* "pandas/_libs/tslibs/timedeltas.pyx":229
@@ -5838,7 +5860,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_4array_to_timedelt
  *     # this is where all of the error handling will take place.
  *     try:             # <<<<<<<<<<<<<<
  *         for i in range(n):
- *             if values[i] is NaT:
+ *             result[i] = parse_timedelta_string(values[i])
  */
     }
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -5852,35 +5874,34 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_4array_to_timedelt
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_t_7, 1);
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":237
- *             else:
- *                 result[i] = parse_timedelta_string(values[i])
- *     except (TypeError, ValueError):             # <<<<<<<<<<<<<<
+    /* "pandas/_libs/tslibs/timedeltas.pyx":232
+ *         for i in range(n):
+ *             result[i] = parse_timedelta_string(values[i])
+ *     except:             # <<<<<<<<<<<<<<
  *         unit = parse_timedelta_unit(unit)
  *         for i in range(n):
  */
-    __pyx_t_17 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_TypeError) || __Pyx_PyErr_ExceptionMatches(__pyx_builtin_ValueError);
-    if (__pyx_t_17) {
+    /*except:*/ {
       __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.array_to_timedelta64", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_6, &__pyx_t_1, &__pyx_t_5) < 0) __PYX_ERR(0, 237, __pyx_L9_except_error)
-      __Pyx_GOTREF(__pyx_t_6);
+      if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_6, &__pyx_t_5) < 0) __PYX_ERR(0, 232, __pyx_L9_except_error)
       __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_5);
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":238
- *                 result[i] = parse_timedelta_string(values[i])
- *     except (TypeError, ValueError):
+      /* "pandas/_libs/tslibs/timedeltas.pyx":233
+ *             result[i] = parse_timedelta_string(values[i])
+ *     except:
  *         unit = parse_timedelta_unit(unit)             # <<<<<<<<<<<<<<
  *         for i in range(n):
  *             try:
  */
-      __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_unit(__pyx_v_unit, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 238, __pyx_L9_except_error)
+      __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_unit(__pyx_v_unit, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 233, __pyx_L9_except_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF_SET(__pyx_v_unit, __pyx_t_4);
       __pyx_t_4 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":239
- *     except (TypeError, ValueError):
+      /* "pandas/_libs/tslibs/timedeltas.pyx":234
+ *     except:
  *         unit = parse_timedelta_unit(unit)
  *         for i in range(n):             # <<<<<<<<<<<<<<
  *             try:
@@ -5891,7 +5912,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_4array_to_timedelt
       for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
         __pyx_v_i = __pyx_t_13;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":240
+        /* "pandas/_libs/tslibs/timedeltas.pyx":235
  *         unit = parse_timedelta_unit(unit)
  *         for i in range(n):
  *             try:             # <<<<<<<<<<<<<<
@@ -5901,29 +5922,29 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_4array_to_timedelt
         {
           __Pyx_PyThreadState_declare
           __Pyx_PyThreadState_assign
-          __Pyx_ExceptionSave(&__pyx_t_18, &__pyx_t_19, &__pyx_t_20);
-          __Pyx_XGOTREF(__pyx_t_18);
-          __Pyx_XGOTREF(__pyx_t_19);
-          __Pyx_XGOTREF(__pyx_t_20);
+          __Pyx_ExceptionSave(&__pyx_t_15, &__pyx_t_16, &__pyx_t_17);
+          __Pyx_XGOTREF(__pyx_t_15);
+          __Pyx_XGOTREF(__pyx_t_16);
+          __Pyx_XGOTREF(__pyx_t_17);
           /*try:*/ {
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":241
+            /* "pandas/_libs/tslibs/timedeltas.pyx":236
  *         for i in range(n):
  *             try:
  *                 result[i] = convert_to_timedelta64(values[i], unit)             # <<<<<<<<<<<<<<
  *             except ValueError:
  *                 if errors == 'coerce':
  */
-            __pyx_t_15 = __pyx_v_i;
-            __pyx_t_4 = (PyObject *) *((PyObject * *) ( /* dim=0 */ (__pyx_v_values.data + __pyx_t_15 * __pyx_v_values.strides[0]) ));
+            __pyx_t_14 = __pyx_v_i;
+            __pyx_t_4 = (PyObject *) *((PyObject * *) ( /* dim=0 */ (__pyx_v_values.data + __pyx_t_14 * __pyx_v_values.strides[0]) ));
             __Pyx_INCREF((PyObject*)__pyx_t_4);
-            __pyx_t_21 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_convert_to_timedelta64(__pyx_t_4, __pyx_v_unit); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 241, __pyx_L20_error)
-            __Pyx_GOTREF(__pyx_t_21);
+            __pyx_t_18 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_convert_to_timedelta64(__pyx_t_4, __pyx_v_unit); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 236, __pyx_L19_error)
+            __Pyx_GOTREF(__pyx_t_18);
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-            if (unlikely(__Pyx_SetItemInt(__pyx_v_result, __pyx_v_i, __pyx_t_21, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0) < 0)) __PYX_ERR(0, 241, __pyx_L20_error)
-            __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
+            if (unlikely(__Pyx_SetItemInt(__pyx_v_result, __pyx_v_i, __pyx_t_18, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0) < 0)) __PYX_ERR(0, 236, __pyx_L19_error)
+            __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":240
+            /* "pandas/_libs/tslibs/timedeltas.pyx":235
  *         unit = parse_timedelta_unit(unit)
  *         for i in range(n):
  *             try:             # <<<<<<<<<<<<<<
@@ -5931,63 +5952,63 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_4array_to_timedelt
  *             except ValueError:
  */
           }
+          __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
+          __Pyx_XDECREF(__pyx_t_16); __pyx_t_16 = 0;
+          __Pyx_XDECREF(__pyx_t_17); __pyx_t_17 = 0;
+          goto __pyx_L26_try_end;
+          __pyx_L19_error:;
           __Pyx_XDECREF(__pyx_t_18); __pyx_t_18 = 0;
-          __Pyx_XDECREF(__pyx_t_19); __pyx_t_19 = 0;
-          __Pyx_XDECREF(__pyx_t_20); __pyx_t_20 = 0;
-          goto __pyx_L27_try_end;
-          __pyx_L20_error:;
-          __Pyx_XDECREF(__pyx_t_21); __pyx_t_21 = 0;
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __PYX_XDEC_MEMVIEW(&__pyx_t_7, 1);
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":242
+          /* "pandas/_libs/tslibs/timedeltas.pyx":237
  *             try:
  *                 result[i] = convert_to_timedelta64(values[i], unit)
  *             except ValueError:             # <<<<<<<<<<<<<<
  *                 if errors == 'coerce':
  *                     result[i] = NPY_NAT
  */
-          __pyx_t_17 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_ValueError);
-          if (__pyx_t_17) {
+          __pyx_t_19 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_ValueError);
+          if (__pyx_t_19) {
             __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.array_to_timedelta64", __pyx_clineno, __pyx_lineno, __pyx_filename);
-            if (__Pyx_GetException(&__pyx_t_21, &__pyx_t_4, &__pyx_t_22) < 0) __PYX_ERR(0, 242, __pyx_L22_except_error)
-            __Pyx_GOTREF(__pyx_t_21);
+            if (__Pyx_GetException(&__pyx_t_18, &__pyx_t_4, &__pyx_t_20) < 0) __PYX_ERR(0, 237, __pyx_L21_except_error)
+            __Pyx_GOTREF(__pyx_t_18);
             __Pyx_GOTREF(__pyx_t_4);
-            __Pyx_GOTREF(__pyx_t_22);
+            __Pyx_GOTREF(__pyx_t_20);
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":243
+            /* "pandas/_libs/tslibs/timedeltas.pyx":238
  *                 result[i] = convert_to_timedelta64(values[i], unit)
  *             except ValueError:
  *                 if errors == 'coerce':             # <<<<<<<<<<<<<<
  *                     result[i] = NPY_NAT
  *                 else:
  */
-            __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_errors, __pyx_n_u_coerce, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 243, __pyx_L22_except_error)
-            if (likely(__pyx_t_2)) {
+            __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_v_errors, __pyx_n_u_coerce, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 238, __pyx_L21_except_error)
+            if (likely(__pyx_t_3)) {
 
-              /* "pandas/_libs/tslibs/timedeltas.pyx":244
+              /* "pandas/_libs/tslibs/timedeltas.pyx":239
  *             except ValueError:
  *                 if errors == 'coerce':
  *                     result[i] = NPY_NAT             # <<<<<<<<<<<<<<
  *                 else:
  *                     raise
  */
-              __pyx_t_23 = __Pyx_PyInt_From_npy_int64(__pyx_v_6pandas_5_libs_6tslibs_7nattype_NPY_NAT); if (unlikely(!__pyx_t_23)) __PYX_ERR(0, 244, __pyx_L22_except_error)
-              __Pyx_GOTREF(__pyx_t_23);
-              if (unlikely(__Pyx_SetItemInt(__pyx_v_result, __pyx_v_i, __pyx_t_23, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0) < 0)) __PYX_ERR(0, 244, __pyx_L22_except_error)
-              __Pyx_DECREF(__pyx_t_23); __pyx_t_23 = 0;
+              __pyx_t_21 = __Pyx_PyInt_From_npy_int64(__pyx_v_6pandas_5_libs_6tslibs_7nattype_NPY_NAT); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 239, __pyx_L21_except_error)
+              __Pyx_GOTREF(__pyx_t_21);
+              if (unlikely(__Pyx_SetItemInt(__pyx_v_result, __pyx_v_i, __pyx_t_21, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0) < 0)) __PYX_ERR(0, 239, __pyx_L21_except_error)
+              __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
 
-              /* "pandas/_libs/tslibs/timedeltas.pyx":243
+              /* "pandas/_libs/tslibs/timedeltas.pyx":238
  *                 result[i] = convert_to_timedelta64(values[i], unit)
  *             except ValueError:
  *                 if errors == 'coerce':             # <<<<<<<<<<<<<<
  *                     result[i] = NPY_NAT
  *                 else:
  */
-              goto __pyx_L30;
+              goto __pyx_L29;
             }
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":246
+            /* "pandas/_libs/tslibs/timedeltas.pyx":241
  *                     result[i] = NPY_NAT
  *                 else:
  *                     raise             # <<<<<<<<<<<<<<
@@ -5995,48 +6016,47 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_4array_to_timedelt
  *     return iresult.base  # .base to access underlying np.ndarray
  */
             /*else*/ {
-              __Pyx_GIVEREF(__pyx_t_21);
+              __Pyx_GIVEREF(__pyx_t_18);
               __Pyx_GIVEREF(__pyx_t_4);
-              __Pyx_XGIVEREF(__pyx_t_22);
-              __Pyx_ErrRestoreWithState(__pyx_t_21, __pyx_t_4, __pyx_t_22);
-              __pyx_t_21 = 0; __pyx_t_4 = 0; __pyx_t_22 = 0; 
-              __PYX_ERR(0, 246, __pyx_L22_except_error)
+              __Pyx_XGIVEREF(__pyx_t_20);
+              __Pyx_ErrRestoreWithState(__pyx_t_18, __pyx_t_4, __pyx_t_20);
+              __pyx_t_18 = 0; __pyx_t_4 = 0; __pyx_t_20 = 0; 
+              __PYX_ERR(0, 241, __pyx_L21_except_error)
             }
-            __pyx_L30:;
-            __Pyx_XDECREF(__pyx_t_21); __pyx_t_21 = 0;
+            __pyx_L29:;
+            __Pyx_XDECREF(__pyx_t_18); __pyx_t_18 = 0;
             __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-            __Pyx_XDECREF(__pyx_t_22); __pyx_t_22 = 0;
-            goto __pyx_L21_exception_handled;
+            __Pyx_XDECREF(__pyx_t_20); __pyx_t_20 = 0;
+            goto __pyx_L20_exception_handled;
           }
-          goto __pyx_L22_except_error;
-          __pyx_L22_except_error:;
+          goto __pyx_L21_except_error;
+          __pyx_L21_except_error:;
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":240
+          /* "pandas/_libs/tslibs/timedeltas.pyx":235
  *         unit = parse_timedelta_unit(unit)
  *         for i in range(n):
  *             try:             # <<<<<<<<<<<<<<
  *                 result[i] = convert_to_timedelta64(values[i], unit)
  *             except ValueError:
  */
-          __Pyx_XGIVEREF(__pyx_t_18);
-          __Pyx_XGIVEREF(__pyx_t_19);
-          __Pyx_XGIVEREF(__pyx_t_20);
-          __Pyx_ExceptionReset(__pyx_t_18, __pyx_t_19, __pyx_t_20);
+          __Pyx_XGIVEREF(__pyx_t_15);
+          __Pyx_XGIVEREF(__pyx_t_16);
+          __Pyx_XGIVEREF(__pyx_t_17);
+          __Pyx_ExceptionReset(__pyx_t_15, __pyx_t_16, __pyx_t_17);
           goto __pyx_L9_except_error;
-          __pyx_L21_exception_handled:;
-          __Pyx_XGIVEREF(__pyx_t_18);
-          __Pyx_XGIVEREF(__pyx_t_19);
-          __Pyx_XGIVEREF(__pyx_t_20);
-          __Pyx_ExceptionReset(__pyx_t_18, __pyx_t_19, __pyx_t_20);
-          __pyx_L27_try_end:;
+          __pyx_L20_exception_handled:;
+          __Pyx_XGIVEREF(__pyx_t_15);
+          __Pyx_XGIVEREF(__pyx_t_16);
+          __Pyx_XGIVEREF(__pyx_t_17);
+          __Pyx_ExceptionReset(__pyx_t_15, __pyx_t_16, __pyx_t_17);
+          __pyx_L26_try_end:;
         }
       }
-      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       goto __pyx_L8_exception_handled;
     }
-    goto __pyx_L9_except_error;
     __pyx_L9_except_error:;
 
     /* "pandas/_libs/tslibs/timedeltas.pyx":229
@@ -6044,7 +6064,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_4array_to_timedelt
  *     # this is where all of the error handling will take place.
  *     try:             # <<<<<<<<<<<<<<
  *         for i in range(n):
- *             if values[i] is NaT:
+ *             result[i] = parse_timedelta_string(values[i])
  */
     __Pyx_XGIVEREF(__pyx_t_8);
     __Pyx_XGIVEREF(__pyx_t_9);
@@ -6059,7 +6079,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_4array_to_timedelt
     __pyx_L12_try_end:;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":248
+  /* "pandas/_libs/tslibs/timedeltas.pyx":243
  *                     raise
  * 
  *     return iresult.base  # .base to access underlying np.ndarray             # <<<<<<<<<<<<<<
@@ -6067,13 +6087,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_4array_to_timedelt
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_v_iresult, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5numpy_int64_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5numpy_int64_t, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 248, __pyx_L1_error)
+  __pyx_t_5 = __pyx_memoryview_fromslice(__pyx_v_iresult, 1, (PyObject *(*)(char *)) __pyx_memview_get_nn___pyx_t_5numpy_int64_t, (int (*)(char *, PyObject *)) __pyx_memview_set_nn___pyx_t_5numpy_int64_t, 0);; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 243, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_base); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 248, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_base); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 243, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_6;
+  __pyx_t_6 = 0;
   goto __pyx_L0;
 
   /* "pandas/_libs/tslibs/timedeltas.pyx":208
@@ -6091,9 +6111,9 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_4array_to_timedelt
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
   __PYX_XDEC_MEMVIEW(&__pyx_t_7, 1);
+  __Pyx_XDECREF(__pyx_t_18);
+  __Pyx_XDECREF(__pyx_t_20);
   __Pyx_XDECREF(__pyx_t_21);
-  __Pyx_XDECREF(__pyx_t_22);
-  __Pyx_XDECREF(__pyx_t_23);
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.array_to_timedelta64", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -6106,7 +6126,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_4array_to_timedelt
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":251
+/* "pandas/_libs/tslibs/timedeltas.pyx":246
  * 
  * 
  * cpdef inline object precision_from_unit(object unit):             # <<<<<<<<<<<<<<
@@ -6132,17 +6152,17 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("precision_from_unit", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":260
+  /* "pandas/_libs/tslibs/timedeltas.pyx":255
  *         int p
  * 
  *     if unit == 'Y':             # <<<<<<<<<<<<<<
  *         m = 1000000000L * 31556952
  *         p = 9
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_Y, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_Y, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 255, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":261
+    /* "pandas/_libs/tslibs/timedeltas.pyx":256
  * 
  *     if unit == 'Y':
  *         m = 1000000000L * 31556952             # <<<<<<<<<<<<<<
@@ -6151,7 +6171,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_m = 31556952000000000L;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":262
+    /* "pandas/_libs/tslibs/timedeltas.pyx":257
  *     if unit == 'Y':
  *         m = 1000000000L * 31556952
  *         p = 9             # <<<<<<<<<<<<<<
@@ -6160,7 +6180,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_p = 9;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":260
+    /* "pandas/_libs/tslibs/timedeltas.pyx":255
  *         int p
  * 
  *     if unit == 'Y':             # <<<<<<<<<<<<<<
@@ -6170,17 +6190,17 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":263
+  /* "pandas/_libs/tslibs/timedeltas.pyx":258
  *         m = 1000000000L * 31556952
  *         p = 9
  *     elif unit == 'M':             # <<<<<<<<<<<<<<
  *         m = 1000000000L * 2629746
  *         p = 9
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 263, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 258, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":264
+    /* "pandas/_libs/tslibs/timedeltas.pyx":259
  *         p = 9
  *     elif unit == 'M':
  *         m = 1000000000L * 2629746             # <<<<<<<<<<<<<<
@@ -6189,7 +6209,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_m = 2629746000000000L;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":265
+    /* "pandas/_libs/tslibs/timedeltas.pyx":260
  *     elif unit == 'M':
  *         m = 1000000000L * 2629746
  *         p = 9             # <<<<<<<<<<<<<<
@@ -6198,7 +6218,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_p = 9;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":263
+    /* "pandas/_libs/tslibs/timedeltas.pyx":258
  *         m = 1000000000L * 31556952
  *         p = 9
  *     elif unit == 'M':             # <<<<<<<<<<<<<<
@@ -6208,36 +6228,36 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":266
+  /* "pandas/_libs/tslibs/timedeltas.pyx":261
  *         m = 1000000000L * 2629746
  *         p = 9
  *     elif unit == 'W':             # <<<<<<<<<<<<<<
  *         m = 1000000000L * DAY_SECONDS * 7
  *         p = 9
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_W, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 266, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_W, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 261, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":267
+    /* "pandas/_libs/tslibs/timedeltas.pyx":262
  *         p = 9
  *     elif unit == 'W':
  *         m = 1000000000L * DAY_SECONDS * 7             # <<<<<<<<<<<<<<
  *         p = 9
  *     elif unit == 'D' or unit == 'd':
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_DAY_SECONDS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 267, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_DAY_SECONDS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 262, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyNumber_Multiply(__pyx_int_1000000000L, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 267, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Multiply(__pyx_int_1000000000L, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 262, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Multiply(__pyx_t_3, __pyx_int_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 267, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Multiply(__pyx_t_3, __pyx_int_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 262, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_4 = __Pyx_PyInt_As_npy_int64(__pyx_t_2); if (unlikely((__pyx_t_4 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 267, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_As_npy_int64(__pyx_t_2); if (unlikely((__pyx_t_4 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 262, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_m = __pyx_t_4;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":268
+    /* "pandas/_libs/tslibs/timedeltas.pyx":263
  *     elif unit == 'W':
  *         m = 1000000000L * DAY_SECONDS * 7
  *         p = 9             # <<<<<<<<<<<<<<
@@ -6246,7 +6266,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_p = 9;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":266
+    /* "pandas/_libs/tslibs/timedeltas.pyx":261
  *         m = 1000000000L * 2629746
  *         p = 9
  *     elif unit == 'W':             # <<<<<<<<<<<<<<
@@ -6256,41 +6276,41 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":269
+  /* "pandas/_libs/tslibs/timedeltas.pyx":264
  *         m = 1000000000L * DAY_SECONDS * 7
  *         p = 9
  *     elif unit == 'D' or unit == 'd':             # <<<<<<<<<<<<<<
  *         m = 1000000000L * DAY_SECONDS
  *         p = 9
  */
-  __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 269, __pyx_L1_error)
+  __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 264, __pyx_L1_error)
   if (!__pyx_t_5) {
   } else {
     __pyx_t_1 = __pyx_t_5;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_d, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 269, __pyx_L1_error)
+  __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_d, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 264, __pyx_L1_error)
   __pyx_t_1 = __pyx_t_5;
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":270
+    /* "pandas/_libs/tslibs/timedeltas.pyx":265
  *         p = 9
  *     elif unit == 'D' or unit == 'd':
  *         m = 1000000000L * DAY_SECONDS             # <<<<<<<<<<<<<<
  *         p = 9
  *     elif unit == 'h':
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_DAY_SECONDS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 270, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_DAY_SECONDS); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 265, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyNumber_Multiply(__pyx_int_1000000000L, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 270, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Multiply(__pyx_int_1000000000L, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 265, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_4 = __Pyx_PyInt_As_npy_int64(__pyx_t_3); if (unlikely((__pyx_t_4 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 270, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_As_npy_int64(__pyx_t_3); if (unlikely((__pyx_t_4 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 265, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_m = __pyx_t_4;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":271
+    /* "pandas/_libs/tslibs/timedeltas.pyx":266
  *     elif unit == 'D' or unit == 'd':
  *         m = 1000000000L * DAY_SECONDS
  *         p = 9             # <<<<<<<<<<<<<<
@@ -6299,7 +6319,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_p = 9;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":269
+    /* "pandas/_libs/tslibs/timedeltas.pyx":264
  *         m = 1000000000L * DAY_SECONDS * 7
  *         p = 9
  *     elif unit == 'D' or unit == 'd':             # <<<<<<<<<<<<<<
@@ -6309,17 +6329,17 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":272
+  /* "pandas/_libs/tslibs/timedeltas.pyx":267
  *         m = 1000000000L * DAY_SECONDS
  *         p = 9
  *     elif unit == 'h':             # <<<<<<<<<<<<<<
  *         m = 1000000000L * 3600
  *         p = 9
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_h, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_h, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 267, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":273
+    /* "pandas/_libs/tslibs/timedeltas.pyx":268
  *         p = 9
  *     elif unit == 'h':
  *         m = 1000000000L * 3600             # <<<<<<<<<<<<<<
@@ -6328,7 +6348,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_m = 3600000000000L;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":274
+    /* "pandas/_libs/tslibs/timedeltas.pyx":269
  *     elif unit == 'h':
  *         m = 1000000000L * 3600
  *         p = 9             # <<<<<<<<<<<<<<
@@ -6337,7 +6357,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_p = 9;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":272
+    /* "pandas/_libs/tslibs/timedeltas.pyx":267
  *         m = 1000000000L * DAY_SECONDS
  *         p = 9
  *     elif unit == 'h':             # <<<<<<<<<<<<<<
@@ -6347,17 +6367,17 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":275
+  /* "pandas/_libs/tslibs/timedeltas.pyx":270
  *         m = 1000000000L * 3600
  *         p = 9
  *     elif unit == 'm':             # <<<<<<<<<<<<<<
  *         m = 1000000000L * 60
  *         p = 9
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_m, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 275, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_m, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 270, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":276
+    /* "pandas/_libs/tslibs/timedeltas.pyx":271
  *         p = 9
  *     elif unit == 'm':
  *         m = 1000000000L * 60             # <<<<<<<<<<<<<<
@@ -6366,7 +6386,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_m = 60000000000L;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":277
+    /* "pandas/_libs/tslibs/timedeltas.pyx":272
  *     elif unit == 'm':
  *         m = 1000000000L * 60
  *         p = 9             # <<<<<<<<<<<<<<
@@ -6375,7 +6395,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_p = 9;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":275
+    /* "pandas/_libs/tslibs/timedeltas.pyx":270
  *         m = 1000000000L * 3600
  *         p = 9
  *     elif unit == 'm':             # <<<<<<<<<<<<<<
@@ -6385,17 +6405,17 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":278
+  /* "pandas/_libs/tslibs/timedeltas.pyx":273
  *         m = 1000000000L * 60
  *         p = 9
  *     elif unit == 's':             # <<<<<<<<<<<<<<
  *         m = 1000000000L
  *         p = 9
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_s, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 278, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_s, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 273, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":279
+    /* "pandas/_libs/tslibs/timedeltas.pyx":274
  *         p = 9
  *     elif unit == 's':
  *         m = 1000000000L             # <<<<<<<<<<<<<<
@@ -6404,7 +6424,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_m = 1000000000L;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":280
+    /* "pandas/_libs/tslibs/timedeltas.pyx":275
  *     elif unit == 's':
  *         m = 1000000000L
  *         p = 9             # <<<<<<<<<<<<<<
@@ -6413,7 +6433,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_p = 9;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":278
+    /* "pandas/_libs/tslibs/timedeltas.pyx":273
  *         m = 1000000000L * 60
  *         p = 9
  *     elif unit == 's':             # <<<<<<<<<<<<<<
@@ -6423,17 +6443,17 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":281
+  /* "pandas/_libs/tslibs/timedeltas.pyx":276
  *         m = 1000000000L
  *         p = 9
  *     elif unit == 'ms':             # <<<<<<<<<<<<<<
  *         m = 1000000L
  *         p = 6
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_ms, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 281, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_ms, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 276, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":282
+    /* "pandas/_libs/tslibs/timedeltas.pyx":277
  *         p = 9
  *     elif unit == 'ms':
  *         m = 1000000L             # <<<<<<<<<<<<<<
@@ -6442,7 +6462,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_m = 1000000L;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":283
+    /* "pandas/_libs/tslibs/timedeltas.pyx":278
  *     elif unit == 'ms':
  *         m = 1000000L
  *         p = 6             # <<<<<<<<<<<<<<
@@ -6451,7 +6471,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_p = 6;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":281
+    /* "pandas/_libs/tslibs/timedeltas.pyx":276
  *         m = 1000000000L
  *         p = 9
  *     elif unit == 'ms':             # <<<<<<<<<<<<<<
@@ -6461,17 +6481,17 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":284
+  /* "pandas/_libs/tslibs/timedeltas.pyx":279
  *         m = 1000000L
  *         p = 6
  *     elif unit == 'us':             # <<<<<<<<<<<<<<
  *         m = 1000L
  *         p = 3
  */
-  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_us, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_us, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 279, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":285
+    /* "pandas/_libs/tslibs/timedeltas.pyx":280
  *         p = 6
  *     elif unit == 'us':
  *         m = 1000L             # <<<<<<<<<<<<<<
@@ -6480,7 +6500,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_m = 1000L;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":286
+    /* "pandas/_libs/tslibs/timedeltas.pyx":281
  *     elif unit == 'us':
  *         m = 1000L
  *         p = 3             # <<<<<<<<<<<<<<
@@ -6489,7 +6509,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_p = 3;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":284
+    /* "pandas/_libs/tslibs/timedeltas.pyx":279
  *         m = 1000000L
  *         p = 6
  *     elif unit == 'us':             # <<<<<<<<<<<<<<
@@ -6499,14 +6519,14 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":287
+  /* "pandas/_libs/tslibs/timedeltas.pyx":282
  *         m = 1000L
  *         p = 3
  *     elif unit == 'ns' or unit is None:             # <<<<<<<<<<<<<<
  *         m = 1L
  *         p = 0
  */
-  __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_ns, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 287, __pyx_L1_error)
+  __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_ns, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 282, __pyx_L1_error)
   if (!__pyx_t_5) {
   } else {
     __pyx_t_1 = __pyx_t_5;
@@ -6518,7 +6538,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
   __pyx_L6_bool_binop_done:;
   if (likely(__pyx_t_1)) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":288
+    /* "pandas/_libs/tslibs/timedeltas.pyx":283
  *         p = 3
  *     elif unit == 'ns' or unit is None:
  *         m = 1L             # <<<<<<<<<<<<<<
@@ -6527,7 +6547,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_m = 1L;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":289
+    /* "pandas/_libs/tslibs/timedeltas.pyx":284
  *     elif unit == 'ns' or unit is None:
  *         m = 1L
  *         p = 0             # <<<<<<<<<<<<<<
@@ -6536,7 +6556,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  */
     __pyx_v_p = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":287
+    /* "pandas/_libs/tslibs/timedeltas.pyx":282
  *         m = 1000L
  *         p = 3
  *     elif unit == 'ns' or unit is None:             # <<<<<<<<<<<<<<
@@ -6546,7 +6566,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":291
+  /* "pandas/_libs/tslibs/timedeltas.pyx":286
  *         p = 0
  *     else:
  *         raise ValueError("cannot cast unit {unit}".format(unit=unit))             # <<<<<<<<<<<<<<
@@ -6554,25 +6574,25 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  * 
  */
   /*else*/ {
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_cannot_cast_unit_unit, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 291, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_cannot_cast_unit_unit, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 286, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 291, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 286, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_unit, __pyx_v_unit) < 0) __PYX_ERR(0, 291, __pyx_L1_error)
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 291, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_unit, __pyx_v_unit) < 0) __PYX_ERR(0, 286, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 286, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 291, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 286, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 291, __pyx_L1_error)
+    __PYX_ERR(0, 286, __pyx_L1_error)
   }
   __pyx_L3:;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":292
+  /* "pandas/_libs/tslibs/timedeltas.pyx":287
  *     else:
  *         raise ValueError("cannot cast unit {unit}".format(unit=unit))
  *     return m, p             # <<<<<<<<<<<<<<
@@ -6580,11 +6600,11 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_m); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_m); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 287, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_p); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_p); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 287, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 287, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
@@ -6596,7 +6616,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_preci
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":251
+  /* "pandas/_libs/tslibs/timedeltas.pyx":246
  * 
  * 
  * cpdef inline object precision_from_unit(object unit):             # <<<<<<<<<<<<<<
@@ -6640,7 +6660,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_6precision_from_un
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("precision_from_unit", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_precision_from_unit(__pyx_v_unit, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 251, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_precision_from_unit(__pyx_v_unit, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 246, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6657,7 +6677,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_6precision_from_un
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":295
+/* "pandas/_libs/tslibs/timedeltas.pyx":290
  * 
  * 
  * cdef inline int64_t cast_from_unit(object ts, object unit) except? -1:             # <<<<<<<<<<<<<<
@@ -6687,14 +6707,14 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("cast_from_unit", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":302
+  /* "pandas/_libs/tslibs/timedeltas.pyx":297
  *         int p
  * 
  *     m, p = precision_from_unit(unit)             # <<<<<<<<<<<<<<
  * 
  *     # just give me the unit back
  */
-  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_precision_from_unit(__pyx_v_unit, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_precision_from_unit(__pyx_v_unit, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 297, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
     PyObject* sequence = __pyx_t_1;
@@ -6702,7 +6722,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 302, __pyx_L1_error)
+      __PYX_ERR(0, 297, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -6715,15 +6735,15 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
     __Pyx_INCREF(__pyx_t_2);
     __Pyx_INCREF(__pyx_t_3);
     #else
-    __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 302, __pyx_L1_error)
+    __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 297, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 302, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 297, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 302, __pyx_L1_error)
+    __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 297, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_5 = Py_TYPE(__pyx_t_4)->tp_iternext;
@@ -6731,7 +6751,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
     __Pyx_GOTREF(__pyx_t_2);
     index = 1; __pyx_t_3 = __pyx_t_5(__pyx_t_4); if (unlikely(!__pyx_t_3)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_5(__pyx_t_4), 2) < 0) __PYX_ERR(0, 302, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_5(__pyx_t_4), 2) < 0) __PYX_ERR(0, 297, __pyx_L1_error)
     __pyx_t_5 = NULL;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     goto __pyx_L4_unpacking_done;
@@ -6739,17 +6759,17 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_5 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 302, __pyx_L1_error)
+    __PYX_ERR(0, 297, __pyx_L1_error)
     __pyx_L4_unpacking_done:;
   }
-  __pyx_t_6 = __Pyx_PyInt_As_npy_int64(__pyx_t_2); if (unlikely((__pyx_t_6 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_As_npy_int64(__pyx_t_2); if (unlikely((__pyx_t_6 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 297, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 297, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_m = __pyx_t_6;
   __pyx_v_p = __pyx_t_7;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":305
+  /* "pandas/_libs/tslibs/timedeltas.pyx":300
  * 
  *     # just give me the unit back
  *     if ts is None:             # <<<<<<<<<<<<<<
@@ -6760,7 +6780,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   __pyx_t_9 = (__pyx_t_8 != 0);
   if (__pyx_t_9) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":306
+    /* "pandas/_libs/tslibs/timedeltas.pyx":301
  *     # just give me the unit back
  *     if ts is None:
  *         return m             # <<<<<<<<<<<<<<
@@ -6770,7 +6790,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
     __pyx_r = __pyx_v_m;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":305
+    /* "pandas/_libs/tslibs/timedeltas.pyx":300
  * 
  *     # just give me the unit back
  *     if ts is None:             # <<<<<<<<<<<<<<
@@ -6779,32 +6799,32 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":310
+  /* "pandas/_libs/tslibs/timedeltas.pyx":305
  *     # cast the unit, multiply base/frace separately
  *     # to avoid precision issues from float -> int
  *     base = <int64_t>ts             # <<<<<<<<<<<<<<
  *     frac = ts - base
  *     if p:
  */
-  __pyx_t_6 = __Pyx_PyInt_As_npy_int64(__pyx_v_ts); if (unlikely((__pyx_t_6 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 310, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(((__pyx_t_5numpy_int64_t)__pyx_t_6)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_As_npy_int64(__pyx_v_ts); if (unlikely((__pyx_t_6 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 305, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(((__pyx_t_5numpy_int64_t)__pyx_t_6)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 305, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_base = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":311
+  /* "pandas/_libs/tslibs/timedeltas.pyx":306
  *     # to avoid precision issues from float -> int
  *     base = <int64_t>ts
  *     frac = ts - base             # <<<<<<<<<<<<<<
  *     if p:
  *         frac = round(frac, p)
  */
-  __pyx_t_1 = PyNumber_Subtract(__pyx_v_ts, __pyx_v_base); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 311, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Subtract(__pyx_v_ts, __pyx_v_base); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 306, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_frac = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":312
+  /* "pandas/_libs/tslibs/timedeltas.pyx":307
  *     base = <int64_t>ts
  *     frac = ts - base
  *     if p:             # <<<<<<<<<<<<<<
@@ -6814,16 +6834,16 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   __pyx_t_9 = (__pyx_v_p != 0);
   if (__pyx_t_9) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":313
+    /* "pandas/_libs/tslibs/timedeltas.pyx":308
  *     frac = ts - base
  *     if p:
  *         frac = round(frac, p)             # <<<<<<<<<<<<<<
  *     return <int64_t>(base * m) + <int64_t>(frac * m)
  * 
  */
-    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_p); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_p); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 308, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 313, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 308, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_v_frac);
     __Pyx_GIVEREF(__pyx_v_frac);
@@ -6831,13 +6851,13 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_round, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_round, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 308, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF_SET(__pyx_v_frac, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":312
+    /* "pandas/_libs/tslibs/timedeltas.pyx":307
  *     base = <int64_t>ts
  *     frac = ts - base
  *     if p:             # <<<<<<<<<<<<<<
@@ -6846,31 +6866,31 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":314
+  /* "pandas/_libs/tslibs/timedeltas.pyx":309
  *     if p:
  *         frac = round(frac, p)
  *     return <int64_t>(base * m) + <int64_t>(frac * m)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_m); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_m); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyNumber_Multiply(__pyx_v_base, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(__pyx_v_base, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_6 = __Pyx_PyInt_As_npy_int64(__pyx_t_3); if (unlikely((__pyx_t_6 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_As_npy_int64(__pyx_t_3); if (unlikely((__pyx_t_6 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_npy_int64(__pyx_v_m); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_npy_int64(__pyx_v_m); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyNumber_Multiply(__pyx_v_frac, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_v_frac, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_10 = __Pyx_PyInt_As_npy_int64(__pyx_t_1); if (unlikely((__pyx_t_10 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 314, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyInt_As_npy_int64(__pyx_t_1); if (unlikely((__pyx_t_10 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = (((__pyx_t_5numpy_int64_t)__pyx_t_6) + ((__pyx_t_5numpy_int64_t)__pyx_t_10));
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":295
+  /* "pandas/_libs/tslibs/timedeltas.pyx":290
  * 
  * 
  * cdef inline int64_t cast_from_unit(object ts, object unit) except? -1:             # <<<<<<<<<<<<<<
@@ -6893,15 +6913,15 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":317
+/* "pandas/_libs/tslibs/timedeltas.pyx":312
  * 
  * 
- * cdef inline int64_t parse_timedelta_string(str ts) except? -1:             # <<<<<<<<<<<<<<
+ * cdef inline parse_timedelta_string(object ts):             # <<<<<<<<<<<<<<
  *     """
  *     Parse a regular format timedelta string. Return an int64_t (in ns)
  */
 
-static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_string(PyObject *__pyx_v_ts) {
+static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_string(PyObject *__pyx_v_ts) {
   PyObject *__pyx_v_c = 0;
   int __pyx_v_neg;
   int __pyx_v_have_dot;
@@ -6914,31 +6934,27 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   PyObject *__pyx_v_number = 0;
   PyObject *__pyx_v_frac = 0;
   PyObject *__pyx_v_unit = 0;
-  __pyx_t_5numpy_int64_t __pyx_r;
+  PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   int __pyx_t_2;
   Py_ssize_t __pyx_t_3;
   int __pyx_t_4;
   int __pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
-  Py_ssize_t __pyx_t_7;
-  void *__pyx_t_8;
-  int __pyx_t_9;
+  PyObject *(*__pyx_t_6)(PyObject *);
+  PyObject *__pyx_t_7 = NULL;
+  long __pyx_t_8;
+  Py_ssize_t __pyx_t_9;
   int __pyx_t_10;
-  Py_ssize_t __pyx_t_11;
-  long __pyx_t_12;
-  Py_ssize_t __pyx_t_13;
-  int __pyx_t_14;
-  __pyx_t_5numpy_int64_t __pyx_t_15;
-  PyObject *__pyx_t_16 = NULL;
-  PyObject *__pyx_t_17 = NULL;
+  __pyx_t_5numpy_int64_t __pyx_t_11;
+  PyObject *__pyx_t_12 = NULL;
+  PyObject *__pyx_t_13 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("parse_timedelta_string", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":325
+  /* "pandas/_libs/tslibs/timedeltas.pyx":320
  *     cdef:
  *         unicode c
  *         bint neg = 0, have_dot = 0, have_value = 0, have_hhmmss = 0             # <<<<<<<<<<<<<<
@@ -6950,7 +6966,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   __pyx_v_have_value = 0;
   __pyx_v_have_hhmmss = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":326
+  /* "pandas/_libs/tslibs/timedeltas.pyx":321
  *         unicode c
  *         bint neg = 0, have_dot = 0, have_value = 0, have_hhmmss = 0
  *         object current_unit = None             # <<<<<<<<<<<<<<
@@ -6960,7 +6976,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   __Pyx_INCREF(Py_None);
   __pyx_v_current_unit = Py_None;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":327
+  /* "pandas/_libs/tslibs/timedeltas.pyx":322
  *         bint neg = 0, have_dot = 0, have_value = 0, have_hhmmss = 0
  *         object current_unit = None
  *         int64_t result = 0, m = 0, r             # <<<<<<<<<<<<<<
@@ -6970,64 +6986,64 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   __pyx_v_result = 0;
   __pyx_v_m = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":328
+  /* "pandas/_libs/tslibs/timedeltas.pyx":323
  *         object current_unit = None
  *         int64_t result = 0, m = 0, r
  *         list number = [], frac = [], unit = []             # <<<<<<<<<<<<<<
  * 
  *     # neg : tracks if we have a leading negative for the value
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_number = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_frac = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_unit = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":336
+  /* "pandas/_libs/tslibs/timedeltas.pyx":331
  *     # have_hhmmss : tracks if we have a regular format hh:mm:ss
  * 
  *     if len(ts) == 0 or ts in nat_strings:             # <<<<<<<<<<<<<<
  *         return NPY_NAT
  * 
  */
-  if (unlikely(__pyx_v_ts == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 336, __pyx_L1_error)
-  }
-  __pyx_t_3 = __Pyx_PyUnicode_GET_LENGTH(__pyx_v_ts); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_3 = PyObject_Length(__pyx_v_ts); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 331, __pyx_L1_error)
   __pyx_t_4 = ((__pyx_t_3 == 0) != 0);
   if (!__pyx_t_4) {
   } else {
     __pyx_t_2 = __pyx_t_4;
     goto __pyx_L4_bool_binop_done;
   }
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_nat_strings); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_nat_strings); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 331, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = (__Pyx_PySequence_ContainsTF(__pyx_v_ts, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 336, __pyx_L1_error)
+  __pyx_t_4 = (__Pyx_PySequence_ContainsTF(__pyx_v_ts, __pyx_t_1, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 331, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = (__pyx_t_4 != 0);
   __pyx_t_2 = __pyx_t_5;
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":337
+    /* "pandas/_libs/tslibs/timedeltas.pyx":332
  * 
  *     if len(ts) == 0 or ts in nat_strings:
  *         return NPY_NAT             # <<<<<<<<<<<<<<
  * 
  *     for c in ts:
  */
-    __pyx_r = __pyx_v_6pandas_5_libs_6tslibs_7nattype_NPY_NAT;
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_6pandas_5_libs_6tslibs_7nattype_NPY_NAT); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 332, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_r = __pyx_t_1;
+    __pyx_t_1 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":336
+    /* "pandas/_libs/tslibs/timedeltas.pyx":331
  *     # have_hhmmss : tracks if we have a regular format hh:mm:ss
  * 
  *     if len(ts) == 0 or ts in nat_strings:             # <<<<<<<<<<<<<<
@@ -7036,43 +7052,71 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":339
+  /* "pandas/_libs/tslibs/timedeltas.pyx":334
  *         return NPY_NAT
  * 
  *     for c in ts:             # <<<<<<<<<<<<<<
  * 
  *         # skip whitespace / commas
  */
-  if (unlikely(__pyx_v_ts == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "'NoneType' is not iterable");
-    __PYX_ERR(0, 339, __pyx_L1_error)
-  }
-  __Pyx_INCREF(__pyx_v_ts);
-  __pyx_t_6 = __pyx_v_ts;
-  __pyx_t_10 = __Pyx_init_unicode_iteration(__pyx_t_6, (&__pyx_t_7), (&__pyx_t_8), (&__pyx_t_9)); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 339, __pyx_L1_error)
-  for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_7; __pyx_t_11++) {
-    __pyx_t_3 = __pyx_t_11;
-    __pyx_t_1 = PyUnicode_FromOrdinal(__Pyx_PyUnicode_READ(__pyx_t_9, __pyx_t_8, __pyx_t_3)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 339, __pyx_L1_error)
+  if (likely(PyList_CheckExact(__pyx_v_ts)) || PyTuple_CheckExact(__pyx_v_ts)) {
+    __pyx_t_1 = __pyx_v_ts; __Pyx_INCREF(__pyx_t_1); __pyx_t_3 = 0;
+    __pyx_t_6 = NULL;
+  } else {
+    __pyx_t_3 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_ts); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 334, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 339, __pyx_L1_error)
-    __Pyx_XDECREF_SET(__pyx_v_c, ((PyObject*)__pyx_t_1));
-    __pyx_t_1 = 0;
+    __pyx_t_6 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 334, __pyx_L1_error)
+  }
+  for (;;) {
+    if (likely(!__pyx_t_6)) {
+      if (likely(PyList_CheckExact(__pyx_t_1))) {
+        if (__pyx_t_3 >= PyList_GET_SIZE(__pyx_t_1)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_7 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_3); __Pyx_INCREF(__pyx_t_7); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 334, __pyx_L1_error)
+        #else
+        __pyx_t_7 = PySequence_ITEM(__pyx_t_1, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 334, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        #endif
+      } else {
+        if (__pyx_t_3 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_7 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_3); __Pyx_INCREF(__pyx_t_7); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 334, __pyx_L1_error)
+        #else
+        __pyx_t_7 = PySequence_ITEM(__pyx_t_1, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 334, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        #endif
+      }
+    } else {
+      __pyx_t_7 = __pyx_t_6(__pyx_t_1);
+      if (unlikely(!__pyx_t_7)) {
+        PyObject* exc_type = PyErr_Occurred();
+        if (exc_type) {
+          if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+          else __PYX_ERR(0, 334, __pyx_L1_error)
+        }
+        break;
+      }
+      __Pyx_GOTREF(__pyx_t_7);
+    }
+    if (!(likely(PyUnicode_CheckExact(__pyx_t_7))||((__pyx_t_7) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_7)->tp_name), 0))) __PYX_ERR(0, 334, __pyx_L1_error)
+    __Pyx_XDECREF_SET(__pyx_v_c, ((PyObject*)__pyx_t_7));
+    __pyx_t_7 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":342
+    /* "pandas/_libs/tslibs/timedeltas.pyx":337
  * 
  *         # skip whitespace / commas
  *         if c == ' ' or c == ',':             # <<<<<<<<<<<<<<
  *             pass
  * 
  */
-    __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_kp_u__2, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 342, __pyx_L1_error)
+    __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_kp_u__2, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 337, __pyx_L1_error)
     __pyx_t_4 = (__pyx_t_5 != 0);
     if (!__pyx_t_4) {
     } else {
       __pyx_t_2 = __pyx_t_4;
       goto __pyx_L9_bool_binop_done;
     }
-    __pyx_t_4 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_kp_u__3, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 342, __pyx_L1_error)
+    __pyx_t_4 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_kp_u__3, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 337, __pyx_L1_error)
     __pyx_t_5 = (__pyx_t_4 != 0);
     __pyx_t_2 = __pyx_t_5;
     __pyx_L9_bool_binop_done:;
@@ -7080,31 +7124,31 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       goto __pyx_L8;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":346
+    /* "pandas/_libs/tslibs/timedeltas.pyx":341
  * 
  *         # positive signs are ignored
  *         elif c == '+':             # <<<<<<<<<<<<<<
  *             pass
  * 
  */
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_kp_u__4, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 346, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_kp_u__4, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 341, __pyx_L1_error)
     __pyx_t_5 = (__pyx_t_2 != 0);
     if (__pyx_t_5) {
       goto __pyx_L8;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":350
+    /* "pandas/_libs/tslibs/timedeltas.pyx":345
  * 
  *         # neg
  *         elif c == '-':             # <<<<<<<<<<<<<<
  * 
  *             if neg or have_value or have_hhmmss:
  */
-    __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_kp_u__5, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 350, __pyx_L1_error)
+    __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_kp_u__5, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 345, __pyx_L1_error)
     __pyx_t_2 = (__pyx_t_5 != 0);
     if (__pyx_t_2) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":352
+      /* "pandas/_libs/tslibs/timedeltas.pyx":347
  *         elif c == '-':
  * 
  *             if neg or have_value or have_hhmmss:             # <<<<<<<<<<<<<<
@@ -7128,20 +7172,20 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       __pyx_L12_bool_binop_done:;
       if (unlikely(__pyx_t_2)) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":353
+        /* "pandas/_libs/tslibs/timedeltas.pyx":348
  * 
  *             if neg or have_value or have_hhmmss:
  *                 raise ValueError("only leading negative signs are allowed")             # <<<<<<<<<<<<<<
  * 
  *             neg = 1
  */
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 353, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __Pyx_Raise(__pyx_t_1, 0, 0, 0);
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __PYX_ERR(0, 353, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 348, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __Pyx_Raise(__pyx_t_7, 0, 0, 0);
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __PYX_ERR(0, 348, __pyx_L1_error)
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":352
+        /* "pandas/_libs/tslibs/timedeltas.pyx":347
  *         elif c == '-':
  * 
  *             if neg or have_value or have_hhmmss:             # <<<<<<<<<<<<<<
@@ -7150,7 +7194,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":355
+      /* "pandas/_libs/tslibs/timedeltas.pyx":350
  *                 raise ValueError("only leading negative signs are allowed")
  * 
  *             neg = 1             # <<<<<<<<<<<<<<
@@ -7159,7 +7203,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
       __pyx_v_neg = 1;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":350
+      /* "pandas/_libs/tslibs/timedeltas.pyx":345
  * 
  *         # neg
  *         elif c == '-':             # <<<<<<<<<<<<<<
@@ -7169,27 +7213,27 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       goto __pyx_L8;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":358
+    /* "pandas/_libs/tslibs/timedeltas.pyx":353
  * 
  *         # number (ascii codes)
  *         elif ord(c) >= 48 and ord(c) <= 57:             # <<<<<<<<<<<<<<
  * 
  *             if have_dot:
  */
-    __pyx_t_12 = __Pyx_PyObject_Ord(__pyx_v_c); if (unlikely(__pyx_t_12 == ((long)(long)(Py_UCS4)-1))) __PYX_ERR(0, 358, __pyx_L1_error)
-    __pyx_t_5 = ((__pyx_t_12 >= 48) != 0);
+    __pyx_t_8 = __Pyx_PyObject_Ord(__pyx_v_c); if (unlikely(__pyx_t_8 == ((long)(long)(Py_UCS4)-1))) __PYX_ERR(0, 353, __pyx_L1_error)
+    __pyx_t_5 = ((__pyx_t_8 >= 48) != 0);
     if (__pyx_t_5) {
     } else {
       __pyx_t_2 = __pyx_t_5;
       goto __pyx_L15_bool_binop_done;
     }
-    __pyx_t_12 = __Pyx_PyObject_Ord(__pyx_v_c); if (unlikely(__pyx_t_12 == ((long)(long)(Py_UCS4)-1))) __PYX_ERR(0, 358, __pyx_L1_error)
-    __pyx_t_5 = ((__pyx_t_12 <= 57) != 0);
+    __pyx_t_8 = __Pyx_PyObject_Ord(__pyx_v_c); if (unlikely(__pyx_t_8 == ((long)(long)(Py_UCS4)-1))) __PYX_ERR(0, 353, __pyx_L1_error)
+    __pyx_t_5 = ((__pyx_t_8 <= 57) != 0);
     __pyx_t_2 = __pyx_t_5;
     __pyx_L15_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":360
+      /* "pandas/_libs/tslibs/timedeltas.pyx":355
  *         elif ord(c) >= 48 and ord(c) <= 57:
  * 
  *             if have_dot:             # <<<<<<<<<<<<<<
@@ -7199,27 +7243,27 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       __pyx_t_2 = (__pyx_v_have_dot != 0);
       if (__pyx_t_2) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":363
+        /* "pandas/_libs/tslibs/timedeltas.pyx":358
  * 
  *                 # we found a dot, but now its just a fraction
  *                 if len(unit):             # <<<<<<<<<<<<<<
  *                     number.append(c)
  *                     have_dot = 0
  */
-        __pyx_t_13 = PyList_GET_SIZE(__pyx_v_unit); if (unlikely(__pyx_t_13 == ((Py_ssize_t)-1))) __PYX_ERR(0, 363, __pyx_L1_error)
-        __pyx_t_2 = (__pyx_t_13 != 0);
+        __pyx_t_9 = PyList_GET_SIZE(__pyx_v_unit); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 358, __pyx_L1_error)
+        __pyx_t_2 = (__pyx_t_9 != 0);
         if (__pyx_t_2) {
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":364
+          /* "pandas/_libs/tslibs/timedeltas.pyx":359
  *                 # we found a dot, but now its just a fraction
  *                 if len(unit):
  *                     number.append(c)             # <<<<<<<<<<<<<<
  *                     have_dot = 0
  *                 else:
  */
-          __pyx_t_14 = __Pyx_PyList_Append(__pyx_v_number, __pyx_v_c); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 364, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_number, __pyx_v_c); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 359, __pyx_L1_error)
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":365
+          /* "pandas/_libs/tslibs/timedeltas.pyx":360
  *                 if len(unit):
  *                     number.append(c)
  *                     have_dot = 0             # <<<<<<<<<<<<<<
@@ -7228,7 +7272,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
           __pyx_v_have_dot = 0;
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":363
+          /* "pandas/_libs/tslibs/timedeltas.pyx":358
  * 
  *                 # we found a dot, but now its just a fraction
  *                 if len(unit):             # <<<<<<<<<<<<<<
@@ -7238,7 +7282,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
           goto __pyx_L18;
         }
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":367
+        /* "pandas/_libs/tslibs/timedeltas.pyx":362
  *                     have_dot = 0
  *                 else:
  *                     frac.append(c)             # <<<<<<<<<<<<<<
@@ -7246,11 +7290,11 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  *             elif not len(unit):
  */
         /*else*/ {
-          __pyx_t_14 = __Pyx_PyList_Append(__pyx_v_frac, __pyx_v_c); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 367, __pyx_L1_error)
+          __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_frac, __pyx_v_c); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 362, __pyx_L1_error)
         }
         __pyx_L18:;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":360
+        /* "pandas/_libs/tslibs/timedeltas.pyx":355
  *         elif ord(c) >= 48 and ord(c) <= 57:
  * 
  *             if have_dot:             # <<<<<<<<<<<<<<
@@ -7260,27 +7304,27 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
         goto __pyx_L17;
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":369
+      /* "pandas/_libs/tslibs/timedeltas.pyx":364
  *                     frac.append(c)
  * 
  *             elif not len(unit):             # <<<<<<<<<<<<<<
  *                 number.append(c)
  * 
  */
-      __pyx_t_13 = PyList_GET_SIZE(__pyx_v_unit); if (unlikely(__pyx_t_13 == ((Py_ssize_t)-1))) __PYX_ERR(0, 369, __pyx_L1_error)
-      __pyx_t_2 = ((!(__pyx_t_13 != 0)) != 0);
+      __pyx_t_9 = PyList_GET_SIZE(__pyx_v_unit); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 364, __pyx_L1_error)
+      __pyx_t_2 = ((!(__pyx_t_9 != 0)) != 0);
       if (__pyx_t_2) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":370
+        /* "pandas/_libs/tslibs/timedeltas.pyx":365
  * 
  *             elif not len(unit):
  *                 number.append(c)             # <<<<<<<<<<<<<<
  * 
  *             else:
  */
-        __pyx_t_14 = __Pyx_PyList_Append(__pyx_v_number, __pyx_v_c); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 370, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_number, __pyx_v_c); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 365, __pyx_L1_error)
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":369
+        /* "pandas/_libs/tslibs/timedeltas.pyx":364
  *                     frac.append(c)
  * 
  *             elif not len(unit):             # <<<<<<<<<<<<<<
@@ -7290,7 +7334,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
         goto __pyx_L17;
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":373
+      /* "pandas/_libs/tslibs/timedeltas.pyx":368
  * 
  *             else:
  *                 r = timedelta_from_spec(number, frac, unit)             # <<<<<<<<<<<<<<
@@ -7298,36 +7342,36 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  * 
  */
       /*else*/ {
-        __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(__pyx_v_number, __pyx_v_frac, __pyx_v_unit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 373, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_15 = __Pyx_PyInt_As_npy_int64(__pyx_t_1); if (unlikely((__pyx_t_15 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 373, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_v_r = __pyx_t_15;
+        __pyx_t_7 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(__pyx_v_number, __pyx_v_frac, __pyx_v_unit); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 368, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __pyx_t_11 = __Pyx_PyInt_As_npy_int64(__pyx_t_7); if (unlikely((__pyx_t_11 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 368, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __pyx_v_r = __pyx_t_11;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":374
+        /* "pandas/_libs/tslibs/timedeltas.pyx":369
  *             else:
  *                 r = timedelta_from_spec(number, frac, unit)
  *                 unit, number, frac = [], [c], []             # <<<<<<<<<<<<<<
  * 
  *                 result += timedelta_as_neg(r, neg)
  */
-        __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 374, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_16 = PyList_New(1); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 374, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_16);
+        __pyx_t_7 = PyList_New(0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 369, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __pyx_t_12 = PyList_New(1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 369, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_12);
         __Pyx_INCREF(__pyx_v_c);
         __Pyx_GIVEREF(__pyx_v_c);
-        PyList_SET_ITEM(__pyx_t_16, 0, __pyx_v_c);
-        __pyx_t_17 = PyList_New(0); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 374, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_17);
-        __Pyx_DECREF_SET(__pyx_v_unit, ((PyObject*)__pyx_t_1));
-        __pyx_t_1 = 0;
-        __Pyx_DECREF_SET(__pyx_v_number, ((PyObject*)__pyx_t_16));
-        __pyx_t_16 = 0;
-        __Pyx_DECREF_SET(__pyx_v_frac, ((PyObject*)__pyx_t_17));
-        __pyx_t_17 = 0;
+        PyList_SET_ITEM(__pyx_t_12, 0, __pyx_v_c);
+        __pyx_t_13 = PyList_New(0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 369, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        __Pyx_DECREF_SET(__pyx_v_unit, ((PyObject*)__pyx_t_7));
+        __pyx_t_7 = 0;
+        __Pyx_DECREF_SET(__pyx_v_number, ((PyObject*)__pyx_t_12));
+        __pyx_t_12 = 0;
+        __Pyx_DECREF_SET(__pyx_v_frac, ((PyObject*)__pyx_t_13));
+        __pyx_t_13 = 0;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":376
+        /* "pandas/_libs/tslibs/timedeltas.pyx":371
  *                 unit, number, frac = [], [c], []
  * 
  *                 result += timedelta_as_neg(r, neg)             # <<<<<<<<<<<<<<
@@ -7338,7 +7382,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       }
       __pyx_L17:;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":358
+      /* "pandas/_libs/tslibs/timedeltas.pyx":353
  * 
  *         # number (ascii codes)
  *         elif ord(c) >= 48 and ord(c) <= 57:             # <<<<<<<<<<<<<<
@@ -7348,18 +7392,18 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       goto __pyx_L8;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":379
+    /* "pandas/_libs/tslibs/timedeltas.pyx":374
  * 
  *         # hh:mm:ss.
  *         elif c == ':':             # <<<<<<<<<<<<<<
  * 
  *             # we flip this off if we have a leading value
  */
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_kp_u__7, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 379, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_kp_u__7, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 374, __pyx_L1_error)
     __pyx_t_5 = (__pyx_t_2 != 0);
     if (__pyx_t_5) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":382
+      /* "pandas/_libs/tslibs/timedeltas.pyx":377
  * 
  *             # we flip this off if we have a leading value
  *             if have_value:             # <<<<<<<<<<<<<<
@@ -7369,7 +7413,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       __pyx_t_5 = (__pyx_v_have_value != 0);
       if (__pyx_t_5) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":383
+        /* "pandas/_libs/tslibs/timedeltas.pyx":378
  *             # we flip this off if we have a leading value
  *             if have_value:
  *                 neg = 0             # <<<<<<<<<<<<<<
@@ -7378,7 +7422,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
         __pyx_v_neg = 0;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":382
+        /* "pandas/_libs/tslibs/timedeltas.pyx":377
  * 
  *             # we flip this off if we have a leading value
  *             if have_value:             # <<<<<<<<<<<<<<
@@ -7387,18 +7431,18 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":386
+      /* "pandas/_libs/tslibs/timedeltas.pyx":381
  * 
  *             # we are in the pattern hh:mm:ss pattern
  *             if len(number):             # <<<<<<<<<<<<<<
  *                 if current_unit is None:
  *                     current_unit = 'h'
  */
-      __pyx_t_13 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_13 == ((Py_ssize_t)-1))) __PYX_ERR(0, 386, __pyx_L1_error)
-      __pyx_t_5 = (__pyx_t_13 != 0);
+      __pyx_t_9 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 381, __pyx_L1_error)
+      __pyx_t_5 = (__pyx_t_9 != 0);
       if (likely(__pyx_t_5)) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":387
+        /* "pandas/_libs/tslibs/timedeltas.pyx":382
  *             # we are in the pattern hh:mm:ss pattern
  *             if len(number):
  *                 if current_unit is None:             # <<<<<<<<<<<<<<
@@ -7409,7 +7453,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
         __pyx_t_2 = (__pyx_t_5 != 0);
         if (__pyx_t_2) {
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":388
+          /* "pandas/_libs/tslibs/timedeltas.pyx":383
  *             if len(number):
  *                 if current_unit is None:
  *                     current_unit = 'h'             # <<<<<<<<<<<<<<
@@ -7419,7 +7463,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
           __Pyx_INCREF(__pyx_n_u_h);
           __Pyx_DECREF_SET(__pyx_v_current_unit, __pyx_n_u_h);
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":389
+          /* "pandas/_libs/tslibs/timedeltas.pyx":384
  *                 if current_unit is None:
  *                     current_unit = 'h'
  *                     m = 1000000000L * 3600             # <<<<<<<<<<<<<<
@@ -7428,7 +7472,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
           __pyx_v_m = 3600000000000L;
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":387
+          /* "pandas/_libs/tslibs/timedeltas.pyx":382
  *             # we are in the pattern hh:mm:ss pattern
  *             if len(number):
  *                 if current_unit is None:             # <<<<<<<<<<<<<<
@@ -7438,17 +7482,17 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
           goto __pyx_L21;
         }
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":390
+        /* "pandas/_libs/tslibs/timedeltas.pyx":385
  *                     current_unit = 'h'
  *                     m = 1000000000L * 3600
  *                 elif current_unit == 'h':             # <<<<<<<<<<<<<<
  *                     current_unit = 'm'
  *                     m = 1000000000L * 60
  */
-        __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_current_unit, __pyx_n_u_h, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 390, __pyx_L1_error)
+        __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_current_unit, __pyx_n_u_h, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 385, __pyx_L1_error)
         if (__pyx_t_2) {
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":391
+          /* "pandas/_libs/tslibs/timedeltas.pyx":386
  *                     m = 1000000000L * 3600
  *                 elif current_unit == 'h':
  *                     current_unit = 'm'             # <<<<<<<<<<<<<<
@@ -7458,7 +7502,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
           __Pyx_INCREF(__pyx_n_u_m);
           __Pyx_DECREF_SET(__pyx_v_current_unit, __pyx_n_u_m);
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":392
+          /* "pandas/_libs/tslibs/timedeltas.pyx":387
  *                 elif current_unit == 'h':
  *                     current_unit = 'm'
  *                     m = 1000000000L * 60             # <<<<<<<<<<<<<<
@@ -7467,7 +7511,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
           __pyx_v_m = 60000000000L;
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":390
+          /* "pandas/_libs/tslibs/timedeltas.pyx":385
  *                     current_unit = 'h'
  *                     m = 1000000000L * 3600
  *                 elif current_unit == 'h':             # <<<<<<<<<<<<<<
@@ -7477,17 +7521,17 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
           goto __pyx_L21;
         }
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":393
+        /* "pandas/_libs/tslibs/timedeltas.pyx":388
  *                     current_unit = 'm'
  *                     m = 1000000000L * 60
  *                 elif current_unit == 'm':             # <<<<<<<<<<<<<<
  *                     current_unit = 's'
  *                     m = 1000000000L
  */
-        __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_current_unit, __pyx_n_u_m, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 393, __pyx_L1_error)
+        __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_current_unit, __pyx_n_u_m, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 388, __pyx_L1_error)
         if (__pyx_t_2) {
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":394
+          /* "pandas/_libs/tslibs/timedeltas.pyx":389
  *                     m = 1000000000L * 60
  *                 elif current_unit == 'm':
  *                     current_unit = 's'             # <<<<<<<<<<<<<<
@@ -7497,7 +7541,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
           __Pyx_INCREF(__pyx_n_u_s);
           __Pyx_DECREF_SET(__pyx_v_current_unit, __pyx_n_u_s);
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":395
+          /* "pandas/_libs/tslibs/timedeltas.pyx":390
  *                 elif current_unit == 'm':
  *                     current_unit = 's'
  *                     m = 1000000000L             # <<<<<<<<<<<<<<
@@ -7506,7 +7550,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
           __pyx_v_m = 1000000000L;
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":393
+          /* "pandas/_libs/tslibs/timedeltas.pyx":388
  *                     current_unit = 'm'
  *                     m = 1000000000L * 60
  *                 elif current_unit == 'm':             # <<<<<<<<<<<<<<
@@ -7516,23 +7560,23 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
         }
         __pyx_L21:;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":396
+        /* "pandas/_libs/tslibs/timedeltas.pyx":391
  *                     current_unit = 's'
  *                     m = 1000000000L
  *                 r = <int64_t>int(''.join(number)) * m             # <<<<<<<<<<<<<<
  *                 result += timedelta_as_neg(r, neg)
  *                 have_hhmmss = 1
  */
-        __pyx_t_17 = PyUnicode_Join(__pyx_kp_u__8, __pyx_v_number); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 396, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_17);
-        __pyx_t_16 = __Pyx_PyNumber_Int(__pyx_t_17); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 396, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_16);
-        __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-        __pyx_t_15 = __Pyx_PyInt_As_npy_int64(__pyx_t_16); if (unlikely((__pyx_t_15 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 396, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-        __pyx_v_r = (((__pyx_t_5numpy_int64_t)__pyx_t_15) * __pyx_v_m);
+        __pyx_t_13 = PyUnicode_Join(__pyx_kp_u__8, __pyx_v_number); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 391, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        __pyx_t_12 = __Pyx_PyNumber_Int(__pyx_t_13); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 391, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_12);
+        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+        __pyx_t_11 = __Pyx_PyInt_As_npy_int64(__pyx_t_12); if (unlikely((__pyx_t_11 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 391, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+        __pyx_v_r = (((__pyx_t_5numpy_int64_t)__pyx_t_11) * __pyx_v_m);
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":397
+        /* "pandas/_libs/tslibs/timedeltas.pyx":392
  *                     m = 1000000000L
  *                 r = <int64_t>int(''.join(number)) * m
  *                 result += timedelta_as_neg(r, neg)             # <<<<<<<<<<<<<<
@@ -7541,7 +7585,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
         __pyx_v_result = (__pyx_v_result + __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_as_neg(__pyx_v_r, __pyx_v_neg));
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":398
+        /* "pandas/_libs/tslibs/timedeltas.pyx":393
  *                 r = <int64_t>int(''.join(number)) * m
  *                 result += timedelta_as_neg(r, neg)
  *                 have_hhmmss = 1             # <<<<<<<<<<<<<<
@@ -7550,7 +7594,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
         __pyx_v_have_hhmmss = 1;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":386
+        /* "pandas/_libs/tslibs/timedeltas.pyx":381
  * 
  *             # we are in the pattern hh:mm:ss pattern
  *             if len(number):             # <<<<<<<<<<<<<<
@@ -7560,7 +7604,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
         goto __pyx_L20;
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":400
+      /* "pandas/_libs/tslibs/timedeltas.pyx":395
  *                 have_hhmmss = 1
  *             else:
  *                 raise ValueError("expecting hh:mm:ss format, "             # <<<<<<<<<<<<<<
@@ -7569,56 +7613,56 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
       /*else*/ {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":401
+        /* "pandas/_libs/tslibs/timedeltas.pyx":396
  *             else:
  *                 raise ValueError("expecting hh:mm:ss format, "
  *                                  "received: {ts}".format(ts=ts))             # <<<<<<<<<<<<<<
  * 
  *             unit, number = [], []
  */
-        __pyx_t_16 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_expecting_hh_mm_ss_format_receiv, __pyx_n_s_format); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 401, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_16);
-        __pyx_t_17 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 401, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_17);
-        if (PyDict_SetItem(__pyx_t_17, __pyx_n_s_ts, __pyx_v_ts) < 0) __PYX_ERR(0, 401, __pyx_L1_error)
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_16, __pyx_empty_tuple, __pyx_t_17); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 401, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-        __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
+        __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_expecting_hh_mm_ss_format_receiv, __pyx_n_s_format); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 396, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_12);
+        __pyx_t_13 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 396, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        if (PyDict_SetItem(__pyx_t_13, __pyx_n_s_ts, __pyx_v_ts) < 0) __PYX_ERR(0, 396, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_empty_tuple, __pyx_t_13); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 396, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":400
+        /* "pandas/_libs/tslibs/timedeltas.pyx":395
  *                 have_hhmmss = 1
  *             else:
  *                 raise ValueError("expecting hh:mm:ss format, "             # <<<<<<<<<<<<<<
  *                                  "received: {ts}".format(ts=ts))
  * 
  */
-        __pyx_t_17 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_1); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 400, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_17);
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __Pyx_Raise(__pyx_t_17, 0, 0, 0);
-        __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-        __PYX_ERR(0, 400, __pyx_L1_error)
+        __pyx_t_13 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_7); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 395, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __Pyx_Raise(__pyx_t_13, 0, 0, 0);
+        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+        __PYX_ERR(0, 395, __pyx_L1_error)
       }
       __pyx_L20:;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":403
+      /* "pandas/_libs/tslibs/timedeltas.pyx":398
  *                                  "received: {ts}".format(ts=ts))
  * 
  *             unit, number = [], []             # <<<<<<<<<<<<<<
  * 
  *         # after the decimal point
  */
-      __pyx_t_17 = PyList_New(0); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 403, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_17);
-      __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 403, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_DECREF_SET(__pyx_v_unit, ((PyObject*)__pyx_t_17));
-      __pyx_t_17 = 0;
-      __Pyx_DECREF_SET(__pyx_v_number, ((PyObject*)__pyx_t_1));
-      __pyx_t_1 = 0;
+      __pyx_t_13 = PyList_New(0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 398, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_13);
+      __pyx_t_7 = PyList_New(0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 398, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __Pyx_DECREF_SET(__pyx_v_unit, ((PyObject*)__pyx_t_13));
+      __pyx_t_13 = 0;
+      __Pyx_DECREF_SET(__pyx_v_number, ((PyObject*)__pyx_t_7));
+      __pyx_t_7 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":379
+      /* "pandas/_libs/tslibs/timedeltas.pyx":374
  * 
  *         # hh:mm:ss.
  *         elif c == ':':             # <<<<<<<<<<<<<<
@@ -7628,26 +7672,26 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       goto __pyx_L8;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":406
+    /* "pandas/_libs/tslibs/timedeltas.pyx":401
  * 
  *         # after the decimal point
  *         elif c == '.':             # <<<<<<<<<<<<<<
  * 
  *             if len(number) and current_unit is not None:
  */
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_kp_u__9, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 406, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_kp_u__9, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 401, __pyx_L1_error)
     __pyx_t_5 = (__pyx_t_2 != 0);
     if (__pyx_t_5) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":408
+      /* "pandas/_libs/tslibs/timedeltas.pyx":403
  *         elif c == '.':
  * 
  *             if len(number) and current_unit is not None:             # <<<<<<<<<<<<<<
  * 
  *                 # by definition we had something like
  */
-      __pyx_t_13 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_13 == ((Py_ssize_t)-1))) __PYX_ERR(0, 408, __pyx_L1_error)
-      __pyx_t_2 = (__pyx_t_13 != 0);
+      __pyx_t_9 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 403, __pyx_L1_error)
+      __pyx_t_2 = (__pyx_t_9 != 0);
       if (__pyx_t_2) {
       } else {
         __pyx_t_5 = __pyx_t_2;
@@ -7659,30 +7703,30 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       __pyx_L23_bool_binop_done:;
       if (__pyx_t_5) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":413
+        /* "pandas/_libs/tslibs/timedeltas.pyx":408
  *                 # so we need to evaluate the final field from a
  *                 # hh:mm:ss (so current_unit is 'm')
  *                 if current_unit != 'm':             # <<<<<<<<<<<<<<
  *                     raise ValueError("expected hh:mm:ss format before .")
  *                 m = 1000000000L
  */
-        __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_current_unit, __pyx_n_u_m, Py_NE)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 413, __pyx_L1_error)
+        __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_current_unit, __pyx_n_u_m, Py_NE)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 408, __pyx_L1_error)
         if (unlikely(__pyx_t_5)) {
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":414
+          /* "pandas/_libs/tslibs/timedeltas.pyx":409
  *                 # hh:mm:ss (so current_unit is 'm')
  *                 if current_unit != 'm':
  *                     raise ValueError("expected hh:mm:ss format before .")             # <<<<<<<<<<<<<<
  *                 m = 1000000000L
  *                 r = <int64_t>int(''.join(number)) * m
  */
-          __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 414, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_1);
-          __Pyx_Raise(__pyx_t_1, 0, 0, 0);
-          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          __PYX_ERR(0, 414, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 409, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_7);
+          __Pyx_Raise(__pyx_t_7, 0, 0, 0);
+          __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+          __PYX_ERR(0, 409, __pyx_L1_error)
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":413
+          /* "pandas/_libs/tslibs/timedeltas.pyx":408
  *                 # so we need to evaluate the final field from a
  *                 # hh:mm:ss (so current_unit is 'm')
  *                 if current_unit != 'm':             # <<<<<<<<<<<<<<
@@ -7691,7 +7735,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
         }
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":415
+        /* "pandas/_libs/tslibs/timedeltas.pyx":410
  *                 if current_unit != 'm':
  *                     raise ValueError("expected hh:mm:ss format before .")
  *                 m = 1000000000L             # <<<<<<<<<<<<<<
@@ -7700,23 +7744,23 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
         __pyx_v_m = 1000000000L;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":416
+        /* "pandas/_libs/tslibs/timedeltas.pyx":411
  *                     raise ValueError("expected hh:mm:ss format before .")
  *                 m = 1000000000L
  *                 r = <int64_t>int(''.join(number)) * m             # <<<<<<<<<<<<<<
  *                 result += timedelta_as_neg(r, neg)
  *                 have_value = 1
  */
-        __pyx_t_1 = PyUnicode_Join(__pyx_kp_u__8, __pyx_v_number); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 416, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_17 = __Pyx_PyNumber_Int(__pyx_t_1); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 416, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_17);
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_15 = __Pyx_PyInt_As_npy_int64(__pyx_t_17); if (unlikely((__pyx_t_15 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 416, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-        __pyx_v_r = (((__pyx_t_5numpy_int64_t)__pyx_t_15) * __pyx_v_m);
+        __pyx_t_7 = PyUnicode_Join(__pyx_kp_u__8, __pyx_v_number); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 411, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __pyx_t_13 = __Pyx_PyNumber_Int(__pyx_t_7); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 411, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __pyx_t_11 = __Pyx_PyInt_As_npy_int64(__pyx_t_13); if (unlikely((__pyx_t_11 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 411, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+        __pyx_v_r = (((__pyx_t_5numpy_int64_t)__pyx_t_11) * __pyx_v_m);
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":417
+        /* "pandas/_libs/tslibs/timedeltas.pyx":412
  *                 m = 1000000000L
  *                 r = <int64_t>int(''.join(number)) * m
  *                 result += timedelta_as_neg(r, neg)             # <<<<<<<<<<<<<<
@@ -7725,7 +7769,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
         __pyx_v_result = (__pyx_v_result + __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_as_neg(__pyx_v_r, __pyx_v_neg));
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":418
+        /* "pandas/_libs/tslibs/timedeltas.pyx":413
  *                 r = <int64_t>int(''.join(number)) * m
  *                 result += timedelta_as_neg(r, neg)
  *                 have_value = 1             # <<<<<<<<<<<<<<
@@ -7734,27 +7778,27 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
         __pyx_v_have_value = 1;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":419
+        /* "pandas/_libs/tslibs/timedeltas.pyx":414
  *                 result += timedelta_as_neg(r, neg)
  *                 have_value = 1
  *                 unit, number, frac = [], [], []             # <<<<<<<<<<<<<<
  * 
  *             have_dot = 1
  */
-        __pyx_t_17 = PyList_New(0); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 419, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_17);
-        __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 419, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_16 = PyList_New(0); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 419, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_16);
-        __Pyx_DECREF_SET(__pyx_v_unit, ((PyObject*)__pyx_t_17));
-        __pyx_t_17 = 0;
-        __Pyx_DECREF_SET(__pyx_v_number, ((PyObject*)__pyx_t_1));
-        __pyx_t_1 = 0;
-        __Pyx_DECREF_SET(__pyx_v_frac, ((PyObject*)__pyx_t_16));
-        __pyx_t_16 = 0;
+        __pyx_t_13 = PyList_New(0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 414, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        __pyx_t_7 = PyList_New(0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 414, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        __pyx_t_12 = PyList_New(0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 414, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_12);
+        __Pyx_DECREF_SET(__pyx_v_unit, ((PyObject*)__pyx_t_13));
+        __pyx_t_13 = 0;
+        __Pyx_DECREF_SET(__pyx_v_number, ((PyObject*)__pyx_t_7));
+        __pyx_t_7 = 0;
+        __Pyx_DECREF_SET(__pyx_v_frac, ((PyObject*)__pyx_t_12));
+        __pyx_t_12 = 0;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":408
+        /* "pandas/_libs/tslibs/timedeltas.pyx":403
  *         elif c == '.':
  * 
  *             if len(number) and current_unit is not None:             # <<<<<<<<<<<<<<
@@ -7763,7 +7807,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":421
+      /* "pandas/_libs/tslibs/timedeltas.pyx":416
  *                 unit, number, frac = [], [], []
  * 
  *             have_dot = 1             # <<<<<<<<<<<<<<
@@ -7772,7 +7816,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
       __pyx_v_have_dot = 1;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":406
+      /* "pandas/_libs/tslibs/timedeltas.pyx":401
  * 
  *         # after the decimal point
  *         elif c == '.':             # <<<<<<<<<<<<<<
@@ -7782,7 +7826,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       goto __pyx_L8;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":425
+    /* "pandas/_libs/tslibs/timedeltas.pyx":420
  *         # unit
  *         else:
  *             unit.append(c)             # <<<<<<<<<<<<<<
@@ -7790,9 +7834,9 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  *             have_dot = 0
  */
     /*else*/ {
-      __pyx_t_14 = __Pyx_PyList_Append(__pyx_v_unit, __pyx_v_c); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 425, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_unit, __pyx_v_c); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 420, __pyx_L1_error)
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":426
+      /* "pandas/_libs/tslibs/timedeltas.pyx":421
  *         else:
  *             unit.append(c)
  *             have_value = 1             # <<<<<<<<<<<<<<
@@ -7801,7 +7845,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
       __pyx_v_have_value = 1;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":427
+      /* "pandas/_libs/tslibs/timedeltas.pyx":422
  *             unit.append(c)
  *             have_value = 1
  *             have_dot = 0             # <<<<<<<<<<<<<<
@@ -7811,10 +7855,18 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       __pyx_v_have_dot = 0;
     }
     __pyx_L8:;
-  }
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":431
+    /* "pandas/_libs/tslibs/timedeltas.pyx":334
+ *         return NPY_NAT
+ * 
+ *     for c in ts:             # <<<<<<<<<<<<<<
+ * 
+ *         # skip whitespace / commas
+ */
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pandas/_libs/tslibs/timedeltas.pyx":426
  *     # we had a dot, but we have a fractional
  *     # value since we have an unit
  *     if have_dot and len(unit):             # <<<<<<<<<<<<<<
@@ -7827,26 +7879,26 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
     __pyx_t_5 = __pyx_t_4;
     goto __pyx_L27_bool_binop_done;
   }
-  __pyx_t_7 = PyList_GET_SIZE(__pyx_v_unit); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 431, __pyx_L1_error)
-  __pyx_t_4 = (__pyx_t_7 != 0);
+  __pyx_t_3 = PyList_GET_SIZE(__pyx_v_unit); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 426, __pyx_L1_error)
+  __pyx_t_4 = (__pyx_t_3 != 0);
   __pyx_t_5 = __pyx_t_4;
   __pyx_L27_bool_binop_done:;
   if (__pyx_t_5) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":432
+    /* "pandas/_libs/tslibs/timedeltas.pyx":427
  *     # value since we have an unit
  *     if have_dot and len(unit):
  *         r = timedelta_from_spec(number, frac, unit)             # <<<<<<<<<<<<<<
  *         result += timedelta_as_neg(r, neg)
  * 
  */
-    __pyx_t_16 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(__pyx_v_number, __pyx_v_frac, __pyx_v_unit); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 432, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_16);
-    __pyx_t_15 = __Pyx_PyInt_As_npy_int64(__pyx_t_16); if (unlikely((__pyx_t_15 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 432, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-    __pyx_v_r = __pyx_t_15;
+    __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(__pyx_v_number, __pyx_v_frac, __pyx_v_unit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 427, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_11 = __Pyx_PyInt_As_npy_int64(__pyx_t_1); if (unlikely((__pyx_t_11 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 427, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_v_r = __pyx_t_11;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":433
+    /* "pandas/_libs/tslibs/timedeltas.pyx":428
  *     if have_dot and len(unit):
  *         r = timedelta_from_spec(number, frac, unit)
  *         result += timedelta_as_neg(r, neg)             # <<<<<<<<<<<<<<
@@ -7855,7 +7907,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
     __pyx_v_result = (__pyx_v_result + __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_as_neg(__pyx_v_r, __pyx_v_neg));
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":431
+    /* "pandas/_libs/tslibs/timedeltas.pyx":426
  *     # we had a dot, but we have a fractional
  *     # value since we have an unit
  *     if have_dot and len(unit):             # <<<<<<<<<<<<<<
@@ -7865,7 +7917,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
     goto __pyx_L26;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":437
+  /* "pandas/_libs/tslibs/timedeltas.pyx":432
  *     # we have a dot as part of a regular format
  *     # e.g. hh:mm:ss.fffffff
  *     elif have_dot:             # <<<<<<<<<<<<<<
@@ -7875,21 +7927,21 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   __pyx_t_5 = (__pyx_v_have_dot != 0);
   if (__pyx_t_5) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":439
+    /* "pandas/_libs/tslibs/timedeltas.pyx":434
  *     elif have_dot:
  * 
  *         if ((len(number) or len(frac)) and not len(unit)             # <<<<<<<<<<<<<<
  *                 and current_unit is None):
  *             raise ValueError("no units specified")
  */
-    __pyx_t_7 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 439, __pyx_L1_error)
-    __pyx_t_4 = (__pyx_t_7 != 0);
+    __pyx_t_3 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 434, __pyx_L1_error)
+    __pyx_t_4 = (__pyx_t_3 != 0);
     if (!__pyx_t_4) {
     } else {
       goto __pyx_L31_next_and;
     }
-    __pyx_t_7 = PyList_GET_SIZE(__pyx_v_frac); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 439, __pyx_L1_error)
-    __pyx_t_4 = (__pyx_t_7 != 0);
+    __pyx_t_3 = PyList_GET_SIZE(__pyx_v_frac); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 434, __pyx_L1_error)
+    __pyx_t_4 = (__pyx_t_3 != 0);
     if (__pyx_t_4) {
     } else {
       __pyx_t_5 = __pyx_t_4;
@@ -7897,30 +7949,30 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
     }
     __pyx_L31_next_and:;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":440
+    /* "pandas/_libs/tslibs/timedeltas.pyx":435
  * 
  *         if ((len(number) or len(frac)) and not len(unit)
  *                 and current_unit is None):             # <<<<<<<<<<<<<<
  *             raise ValueError("no units specified")
  * 
  */
-    __pyx_t_7 = PyList_GET_SIZE(__pyx_v_unit); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 439, __pyx_L1_error)
+    __pyx_t_3 = PyList_GET_SIZE(__pyx_v_unit); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 434, __pyx_L1_error)
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":439
+    /* "pandas/_libs/tslibs/timedeltas.pyx":434
  *     elif have_dot:
  * 
  *         if ((len(number) or len(frac)) and not len(unit)             # <<<<<<<<<<<<<<
  *                 and current_unit is None):
  *             raise ValueError("no units specified")
  */
-    __pyx_t_4 = ((!(__pyx_t_7 != 0)) != 0);
+    __pyx_t_4 = ((!(__pyx_t_3 != 0)) != 0);
     if (__pyx_t_4) {
     } else {
       __pyx_t_5 = __pyx_t_4;
       goto __pyx_L30_bool_binop_done;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":440
+    /* "pandas/_libs/tslibs/timedeltas.pyx":435
  * 
  *         if ((len(number) or len(frac)) and not len(unit)
  *                 and current_unit is None):             # <<<<<<<<<<<<<<
@@ -7932,7 +7984,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
     __pyx_t_5 = __pyx_t_2;
     __pyx_L30_bool_binop_done:;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":439
+    /* "pandas/_libs/tslibs/timedeltas.pyx":434
  *     elif have_dot:
  * 
  *         if ((len(number) or len(frac)) and not len(unit)             # <<<<<<<<<<<<<<
@@ -7941,20 +7993,20 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
     if (unlikely(__pyx_t_5)) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":441
+      /* "pandas/_libs/tslibs/timedeltas.pyx":436
  *         if ((len(number) or len(frac)) and not len(unit)
  *                 and current_unit is None):
  *             raise ValueError("no units specified")             # <<<<<<<<<<<<<<
  * 
  *         if len(frac) > 0 and len(frac) <= 3:
  */
-      __pyx_t_16 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 441, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_16);
-      __Pyx_Raise(__pyx_t_16, 0, 0, 0);
-      __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-      __PYX_ERR(0, 441, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 436, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_Raise(__pyx_t_1, 0, 0, 0);
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __PYX_ERR(0, 436, __pyx_L1_error)
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":439
+      /* "pandas/_libs/tslibs/timedeltas.pyx":434
  *     elif have_dot:
  * 
  *         if ((len(number) or len(frac)) and not len(unit)             # <<<<<<<<<<<<<<
@@ -7963,37 +8015,37 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":443
+    /* "pandas/_libs/tslibs/timedeltas.pyx":438
  *             raise ValueError("no units specified")
  * 
  *         if len(frac) > 0 and len(frac) <= 3:             # <<<<<<<<<<<<<<
  *             m = 10**(3 -len(frac)) * 1000L * 1000L
  *         elif len(frac) > 3 and len(frac) <= 6:
  */
-    __pyx_t_7 = PyList_GET_SIZE(__pyx_v_frac); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 443, __pyx_L1_error)
-    __pyx_t_2 = ((__pyx_t_7 > 0) != 0);
+    __pyx_t_3 = PyList_GET_SIZE(__pyx_v_frac); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 438, __pyx_L1_error)
+    __pyx_t_2 = ((__pyx_t_3 > 0) != 0);
     if (__pyx_t_2) {
     } else {
       __pyx_t_5 = __pyx_t_2;
       goto __pyx_L35_bool_binop_done;
     }
-    __pyx_t_7 = PyList_GET_SIZE(__pyx_v_frac); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 443, __pyx_L1_error)
-    __pyx_t_2 = ((__pyx_t_7 <= 3) != 0);
+    __pyx_t_3 = PyList_GET_SIZE(__pyx_v_frac); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 438, __pyx_L1_error)
+    __pyx_t_2 = ((__pyx_t_3 <= 3) != 0);
     __pyx_t_5 = __pyx_t_2;
     __pyx_L35_bool_binop_done:;
     if (__pyx_t_5) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":444
+      /* "pandas/_libs/tslibs/timedeltas.pyx":439
  * 
  *         if len(frac) > 0 and len(frac) <= 3:
  *             m = 10**(3 -len(frac)) * 1000L * 1000L             # <<<<<<<<<<<<<<
  *         elif len(frac) > 3 and len(frac) <= 6:
  *             m = 10**(6 -len(frac)) * 1000L
  */
-      __pyx_t_7 = PyList_GET_SIZE(__pyx_v_frac); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 444, __pyx_L1_error)
-      __pyx_v_m = ((__Pyx_pow_Py_ssize_t(10, (3 - __pyx_t_7)) * 1000L) * 1000L);
+      __pyx_t_3 = PyList_GET_SIZE(__pyx_v_frac); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 439, __pyx_L1_error)
+      __pyx_v_m = ((__Pyx_pow_Py_ssize_t(10, (3 - __pyx_t_3)) * 1000L) * 1000L);
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":443
+      /* "pandas/_libs/tslibs/timedeltas.pyx":438
  *             raise ValueError("no units specified")
  * 
  *         if len(frac) > 0 and len(frac) <= 3:             # <<<<<<<<<<<<<<
@@ -8003,37 +8055,37 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       goto __pyx_L34;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":445
+    /* "pandas/_libs/tslibs/timedeltas.pyx":440
  *         if len(frac) > 0 and len(frac) <= 3:
  *             m = 10**(3 -len(frac)) * 1000L * 1000L
  *         elif len(frac) > 3 and len(frac) <= 6:             # <<<<<<<<<<<<<<
  *             m = 10**(6 -len(frac)) * 1000L
  *         else:
  */
-    __pyx_t_7 = PyList_GET_SIZE(__pyx_v_frac); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 445, __pyx_L1_error)
-    __pyx_t_2 = ((__pyx_t_7 > 3) != 0);
+    __pyx_t_3 = PyList_GET_SIZE(__pyx_v_frac); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 440, __pyx_L1_error)
+    __pyx_t_2 = ((__pyx_t_3 > 3) != 0);
     if (__pyx_t_2) {
     } else {
       __pyx_t_5 = __pyx_t_2;
       goto __pyx_L37_bool_binop_done;
     }
-    __pyx_t_7 = PyList_GET_SIZE(__pyx_v_frac); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 445, __pyx_L1_error)
-    __pyx_t_2 = ((__pyx_t_7 <= 6) != 0);
+    __pyx_t_3 = PyList_GET_SIZE(__pyx_v_frac); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 440, __pyx_L1_error)
+    __pyx_t_2 = ((__pyx_t_3 <= 6) != 0);
     __pyx_t_5 = __pyx_t_2;
     __pyx_L37_bool_binop_done:;
     if (__pyx_t_5) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":446
+      /* "pandas/_libs/tslibs/timedeltas.pyx":441
  *             m = 10**(3 -len(frac)) * 1000L * 1000L
  *         elif len(frac) > 3 and len(frac) <= 6:
  *             m = 10**(6 -len(frac)) * 1000L             # <<<<<<<<<<<<<<
  *         else:
  *             m = 10**(9 -len(frac))
  */
-      __pyx_t_7 = PyList_GET_SIZE(__pyx_v_frac); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 446, __pyx_L1_error)
-      __pyx_v_m = (__Pyx_pow_Py_ssize_t(10, (6 - __pyx_t_7)) * 1000L);
+      __pyx_t_3 = PyList_GET_SIZE(__pyx_v_frac); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 441, __pyx_L1_error)
+      __pyx_v_m = (__Pyx_pow_Py_ssize_t(10, (6 - __pyx_t_3)) * 1000L);
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":445
+      /* "pandas/_libs/tslibs/timedeltas.pyx":440
  *         if len(frac) > 0 and len(frac) <= 3:
  *             m = 10**(3 -len(frac)) * 1000L * 1000L
  *         elif len(frac) > 3 and len(frac) <= 6:             # <<<<<<<<<<<<<<
@@ -8043,7 +8095,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       goto __pyx_L34;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":448
+    /* "pandas/_libs/tslibs/timedeltas.pyx":443
  *             m = 10**(6 -len(frac)) * 1000L
  *         else:
  *             m = 10**(9 -len(frac))             # <<<<<<<<<<<<<<
@@ -8051,28 +8103,28 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  *         r = <int64_t>int(''.join(frac)) * m
  */
     /*else*/ {
-      __pyx_t_7 = PyList_GET_SIZE(__pyx_v_frac); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 448, __pyx_L1_error)
-      __pyx_v_m = __Pyx_pow_Py_ssize_t(10, (9 - __pyx_t_7));
+      __pyx_t_3 = PyList_GET_SIZE(__pyx_v_frac); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 443, __pyx_L1_error)
+      __pyx_v_m = __Pyx_pow_Py_ssize_t(10, (9 - __pyx_t_3));
     }
     __pyx_L34:;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":450
+    /* "pandas/_libs/tslibs/timedeltas.pyx":445
  *             m = 10**(9 -len(frac))
  * 
  *         r = <int64_t>int(''.join(frac)) * m             # <<<<<<<<<<<<<<
  *         result += timedelta_as_neg(r, neg)
  * 
  */
-    __pyx_t_16 = PyUnicode_Join(__pyx_kp_u__8, __pyx_v_frac); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 450, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_16);
-    __pyx_t_1 = __Pyx_PyNumber_Int(__pyx_t_16); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 450, __pyx_L1_error)
+    __pyx_t_1 = PyUnicode_Join(__pyx_kp_u__8, __pyx_v_frac); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 445, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-    __pyx_t_15 = __Pyx_PyInt_As_npy_int64(__pyx_t_1); if (unlikely((__pyx_t_15 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 450, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyNumber_Int(__pyx_t_1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 445, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_v_r = (((__pyx_t_5numpy_int64_t)__pyx_t_15) * __pyx_v_m);
+    __pyx_t_11 = __Pyx_PyInt_As_npy_int64(__pyx_t_12); if (unlikely((__pyx_t_11 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 445, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+    __pyx_v_r = (((__pyx_t_5numpy_int64_t)__pyx_t_11) * __pyx_v_m);
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":451
+    /* "pandas/_libs/tslibs/timedeltas.pyx":446
  * 
  *         r = <int64_t>int(''.join(frac)) * m
  *         result += timedelta_as_neg(r, neg)             # <<<<<<<<<<<<<<
@@ -8081,7 +8133,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
     __pyx_v_result = (__pyx_v_result + __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_as_neg(__pyx_v_r, __pyx_v_neg));
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":437
+    /* "pandas/_libs/tslibs/timedeltas.pyx":432
  *     # we have a dot as part of a regular format
  *     # e.g. hh:mm:ss.fffffff
  *     elif have_dot:             # <<<<<<<<<<<<<<
@@ -8091,7 +8143,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
     goto __pyx_L26;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":455
+  /* "pandas/_libs/tslibs/timedeltas.pyx":450
  *     # we have a regular format
  *     # we must have seconds at this point (hence the unit is still 'm')
  *     elif current_unit is not None:             # <<<<<<<<<<<<<<
@@ -8102,30 +8154,30 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   __pyx_t_2 = (__pyx_t_5 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":456
+    /* "pandas/_libs/tslibs/timedeltas.pyx":451
  *     # we must have seconds at this point (hence the unit is still 'm')
  *     elif current_unit is not None:
  *         if current_unit != 'm':             # <<<<<<<<<<<<<<
  *             raise ValueError("expected hh:mm:ss format")
  *         m = 1000000000L
  */
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_current_unit, __pyx_n_u_m, Py_NE)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 456, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_current_unit, __pyx_n_u_m, Py_NE)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 451, __pyx_L1_error)
     if (unlikely(__pyx_t_2)) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":457
+      /* "pandas/_libs/tslibs/timedeltas.pyx":452
  *     elif current_unit is not None:
  *         if current_unit != 'm':
  *             raise ValueError("expected hh:mm:ss format")             # <<<<<<<<<<<<<<
  *         m = 1000000000L
  *         r = <int64_t>int(''.join(number)) * m
  */
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 457, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_Raise(__pyx_t_1, 0, 0, 0);
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __PYX_ERR(0, 457, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 452, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_12);
+      __Pyx_Raise(__pyx_t_12, 0, 0, 0);
+      __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+      __PYX_ERR(0, 452, __pyx_L1_error)
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":456
+      /* "pandas/_libs/tslibs/timedeltas.pyx":451
  *     # we must have seconds at this point (hence the unit is still 'm')
  *     elif current_unit is not None:
  *         if current_unit != 'm':             # <<<<<<<<<<<<<<
@@ -8134,7 +8186,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":458
+    /* "pandas/_libs/tslibs/timedeltas.pyx":453
  *         if current_unit != 'm':
  *             raise ValueError("expected hh:mm:ss format")
  *         m = 1000000000L             # <<<<<<<<<<<<<<
@@ -8143,23 +8195,23 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
     __pyx_v_m = 1000000000L;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":459
+    /* "pandas/_libs/tslibs/timedeltas.pyx":454
  *             raise ValueError("expected hh:mm:ss format")
  *         m = 1000000000L
  *         r = <int64_t>int(''.join(number)) * m             # <<<<<<<<<<<<<<
  *         result += timedelta_as_neg(r, neg)
  * 
  */
-    __pyx_t_1 = PyUnicode_Join(__pyx_kp_u__8, __pyx_v_number); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 459, __pyx_L1_error)
+    __pyx_t_12 = PyUnicode_Join(__pyx_kp_u__8, __pyx_v_number); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 454, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
+    __pyx_t_1 = __Pyx_PyNumber_Int(__pyx_t_12); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 454, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_16 = __Pyx_PyNumber_Int(__pyx_t_1); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 459, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_16);
+    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+    __pyx_t_11 = __Pyx_PyInt_As_npy_int64(__pyx_t_1); if (unlikely((__pyx_t_11 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 454, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_15 = __Pyx_PyInt_As_npy_int64(__pyx_t_16); if (unlikely((__pyx_t_15 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 459, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-    __pyx_v_r = (((__pyx_t_5numpy_int64_t)__pyx_t_15) * __pyx_v_m);
+    __pyx_v_r = (((__pyx_t_5numpy_int64_t)__pyx_t_11) * __pyx_v_m);
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":460
+    /* "pandas/_libs/tslibs/timedeltas.pyx":455
  *         m = 1000000000L
  *         r = <int64_t>int(''.join(number)) * m
  *         result += timedelta_as_neg(r, neg)             # <<<<<<<<<<<<<<
@@ -8168,7 +8220,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
     __pyx_v_result = (__pyx_v_result + __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_as_neg(__pyx_v_r, __pyx_v_neg));
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":455
+    /* "pandas/_libs/tslibs/timedeltas.pyx":450
  *     # we have a regular format
  *     # we must have seconds at this point (hence the unit is still 'm')
  *     elif current_unit is not None:             # <<<<<<<<<<<<<<
@@ -8178,42 +8230,42 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
     goto __pyx_L26;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":463
+  /* "pandas/_libs/tslibs/timedeltas.pyx":458
  * 
  *     # we have a last abbreviation
  *     elif len(unit):             # <<<<<<<<<<<<<<
  *         if len(number):
  *             r = timedelta_from_spec(number, frac, unit)
  */
-  __pyx_t_7 = PyList_GET_SIZE(__pyx_v_unit); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 463, __pyx_L1_error)
-  __pyx_t_2 = (__pyx_t_7 != 0);
+  __pyx_t_3 = PyList_GET_SIZE(__pyx_v_unit); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 458, __pyx_L1_error)
+  __pyx_t_2 = (__pyx_t_3 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":464
+    /* "pandas/_libs/tslibs/timedeltas.pyx":459
  *     # we have a last abbreviation
  *     elif len(unit):
  *         if len(number):             # <<<<<<<<<<<<<<
  *             r = timedelta_from_spec(number, frac, unit)
  *             result += timedelta_as_neg(r, neg)
  */
-    __pyx_t_7 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 464, __pyx_L1_error)
-    __pyx_t_2 = (__pyx_t_7 != 0);
+    __pyx_t_3 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 459, __pyx_L1_error)
+    __pyx_t_2 = (__pyx_t_3 != 0);
     if (likely(__pyx_t_2)) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":465
+      /* "pandas/_libs/tslibs/timedeltas.pyx":460
  *     elif len(unit):
  *         if len(number):
  *             r = timedelta_from_spec(number, frac, unit)             # <<<<<<<<<<<<<<
  *             result += timedelta_as_neg(r, neg)
  *         else:
  */
-      __pyx_t_16 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(__pyx_v_number, __pyx_v_frac, __pyx_v_unit); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 465, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_16);
-      __pyx_t_15 = __Pyx_PyInt_As_npy_int64(__pyx_t_16); if (unlikely((__pyx_t_15 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 465, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-      __pyx_v_r = __pyx_t_15;
+      __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(__pyx_v_number, __pyx_v_frac, __pyx_v_unit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 460, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_11 = __Pyx_PyInt_As_npy_int64(__pyx_t_1); if (unlikely((__pyx_t_11 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 460, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __pyx_v_r = __pyx_t_11;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":466
+      /* "pandas/_libs/tslibs/timedeltas.pyx":461
  *         if len(number):
  *             r = timedelta_from_spec(number, frac, unit)
  *             result += timedelta_as_neg(r, neg)             # <<<<<<<<<<<<<<
@@ -8222,7 +8274,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
       __pyx_v_result = (__pyx_v_result + __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_as_neg(__pyx_v_r, __pyx_v_neg));
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":464
+      /* "pandas/_libs/tslibs/timedeltas.pyx":459
  *     # we have a last abbreviation
  *     elif len(unit):
  *         if len(number):             # <<<<<<<<<<<<<<
@@ -8232,7 +8284,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       goto __pyx_L40;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":468
+    /* "pandas/_libs/tslibs/timedeltas.pyx":463
  *             result += timedelta_as_neg(r, neg)
  *         else:
  *             raise ValueError("unit abbreviation w/o a number")             # <<<<<<<<<<<<<<
@@ -8240,15 +8292,15 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  *     # treat as nanoseconds
  */
     /*else*/ {
-      __pyx_t_16 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 468, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_16);
-      __Pyx_Raise(__pyx_t_16, 0, 0, 0);
-      __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-      __PYX_ERR(0, 468, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 463, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_Raise(__pyx_t_1, 0, 0, 0);
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __PYX_ERR(0, 463, __pyx_L1_error)
     }
     __pyx_L40:;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":463
+    /* "pandas/_libs/tslibs/timedeltas.pyx":458
  * 
  *     # we have a last abbreviation
  *     elif len(unit):             # <<<<<<<<<<<<<<
@@ -8258,7 +8310,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
     goto __pyx_L26;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":473
+  /* "pandas/_libs/tslibs/timedeltas.pyx":468
  *     # but only if we don't have anything else
  *     else:
  *         if have_value:             # <<<<<<<<<<<<<<
@@ -8269,20 +8321,20 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
     __pyx_t_2 = (__pyx_v_have_value != 0);
     if (unlikely(__pyx_t_2)) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":474
+      /* "pandas/_libs/tslibs/timedeltas.pyx":469
  *     else:
  *         if have_value:
  *             raise ValueError("have leftover units")             # <<<<<<<<<<<<<<
  *         if len(number):
  *             r = timedelta_from_spec(number, frac, 'ns')
  */
-      __pyx_t_16 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 474, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_16);
-      __Pyx_Raise(__pyx_t_16, 0, 0, 0);
-      __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-      __PYX_ERR(0, 474, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 469, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_Raise(__pyx_t_1, 0, 0, 0);
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __PYX_ERR(0, 469, __pyx_L1_error)
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":473
+      /* "pandas/_libs/tslibs/timedeltas.pyx":468
  *     # but only if we don't have anything else
  *     else:
  *         if have_value:             # <<<<<<<<<<<<<<
@@ -8291,31 +8343,31 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":475
+    /* "pandas/_libs/tslibs/timedeltas.pyx":470
  *         if have_value:
  *             raise ValueError("have leftover units")
  *         if len(number):             # <<<<<<<<<<<<<<
  *             r = timedelta_from_spec(number, frac, 'ns')
  *             result += timedelta_as_neg(r, neg)
  */
-    __pyx_t_7 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 475, __pyx_L1_error)
-    __pyx_t_2 = (__pyx_t_7 != 0);
+    __pyx_t_3 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 470, __pyx_L1_error)
+    __pyx_t_2 = (__pyx_t_3 != 0);
     if (__pyx_t_2) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":476
+      /* "pandas/_libs/tslibs/timedeltas.pyx":471
  *             raise ValueError("have leftover units")
  *         if len(number):
  *             r = timedelta_from_spec(number, frac, 'ns')             # <<<<<<<<<<<<<<
  *             result += timedelta_as_neg(r, neg)
  * 
  */
-      __pyx_t_16 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(__pyx_v_number, __pyx_v_frac, __pyx_n_u_ns); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 476, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_16);
-      __pyx_t_15 = __Pyx_PyInt_As_npy_int64(__pyx_t_16); if (unlikely((__pyx_t_15 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 476, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-      __pyx_v_r = __pyx_t_15;
+      __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(__pyx_v_number, __pyx_v_frac, __pyx_n_u_ns); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 471, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_11 = __Pyx_PyInt_As_npy_int64(__pyx_t_1); if (unlikely((__pyx_t_11 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 471, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __pyx_v_r = __pyx_t_11;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":477
+      /* "pandas/_libs/tslibs/timedeltas.pyx":472
  *         if len(number):
  *             r = timedelta_from_spec(number, frac, 'ns')
  *             result += timedelta_as_neg(r, neg)             # <<<<<<<<<<<<<<
@@ -8324,7 +8376,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
       __pyx_v_result = (__pyx_v_result + __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_as_neg(__pyx_v_r, __pyx_v_neg));
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":475
+      /* "pandas/_libs/tslibs/timedeltas.pyx":470
  *         if have_value:
  *             raise ValueError("have leftover units")
  *         if len(number):             # <<<<<<<<<<<<<<
@@ -8335,20 +8387,24 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   }
   __pyx_L26:;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":479
+  /* "pandas/_libs/tslibs/timedeltas.pyx":474
  *             result += timedelta_as_neg(r, neg)
  * 
  *     return result             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_r = __pyx_v_result;
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_result); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 474, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":317
+  /* "pandas/_libs/tslibs/timedeltas.pyx":312
  * 
  * 
- * cdef inline int64_t parse_timedelta_string(str ts) except? -1:             # <<<<<<<<<<<<<<
+ * cdef inline parse_timedelta_string(object ts):             # <<<<<<<<<<<<<<
  *     """
  *     Parse a regular format timedelta string. Return an int64_t (in ns)
  */
@@ -8356,22 +8412,23 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_XDECREF(__pyx_t_16);
-  __Pyx_XDECREF(__pyx_t_17);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_XDECREF(__pyx_t_12);
+  __Pyx_XDECREF(__pyx_t_13);
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.parse_timedelta_string", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = -1LL;
+  __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_c);
   __Pyx_XDECREF(__pyx_v_current_unit);
   __Pyx_XDECREF(__pyx_v_number);
   __Pyx_XDECREF(__pyx_v_frac);
   __Pyx_XDECREF(__pyx_v_unit);
+  __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":482
+/* "pandas/_libs/tslibs/timedeltas.pyx":477
  * 
  * 
  * cdef inline int64_t timedelta_as_neg(int64_t value, bint neg):             # <<<<<<<<<<<<<<
@@ -8385,7 +8442,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("timedelta_as_neg", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":490
+  /* "pandas/_libs/tslibs/timedeltas.pyx":485
  *     neg : boolean if the a negative value
  *     """
  *     if neg:             # <<<<<<<<<<<<<<
@@ -8395,7 +8452,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   __pyx_t_1 = (__pyx_v_neg != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":491
+    /* "pandas/_libs/tslibs/timedeltas.pyx":486
  *     """
  *     if neg:
  *         return -value             # <<<<<<<<<<<<<<
@@ -8405,7 +8462,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
     __pyx_r = (-__pyx_v_value);
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":490
+    /* "pandas/_libs/tslibs/timedeltas.pyx":485
  *     neg : boolean if the a negative value
  *     """
  *     if neg:             # <<<<<<<<<<<<<<
@@ -8414,7 +8471,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":492
+  /* "pandas/_libs/tslibs/timedeltas.pyx":487
  *     if neg:
  *         return -value
  *     return value             # <<<<<<<<<<<<<<
@@ -8424,7 +8481,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   __pyx_r = __pyx_v_value;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":482
+  /* "pandas/_libs/tslibs/timedeltas.pyx":477
  * 
  * 
  * cdef inline int64_t timedelta_as_neg(int64_t value, bint neg):             # <<<<<<<<<<<<<<
@@ -8438,7 +8495,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":495
+/* "pandas/_libs/tslibs/timedeltas.pyx":490
  * 
  * 
  * cdef inline timedelta_from_spec(object number, object frac, object unit):             # <<<<<<<<<<<<<<
@@ -8468,7 +8525,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timed
   __Pyx_RefNannySetupContext("timedelta_from_spec", 0);
   __Pyx_INCREF(__pyx_v_unit);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":506
+  /* "pandas/_libs/tslibs/timedeltas.pyx":501
  *     cdef object n
  * 
  *     try:             # <<<<<<<<<<<<<<
@@ -8484,29 +8541,29 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timed
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":507
+      /* "pandas/_libs/tslibs/timedeltas.pyx":502
  * 
  *     try:
  *         unit = ''.join(unit)             # <<<<<<<<<<<<<<
  *         if unit == 'M':
  *             # To parse ISO 8601 string, 'M' should be treated as minute,
  */
-      __pyx_t_4 = PyUnicode_Join(__pyx_kp_u__8, __pyx_v_unit); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 507, __pyx_L3_error)
+      __pyx_t_4 = PyUnicode_Join(__pyx_kp_u__8, __pyx_v_unit); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 502, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF_SET(__pyx_v_unit, __pyx_t_4);
       __pyx_t_4 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":508
+      /* "pandas/_libs/tslibs/timedeltas.pyx":503
  *     try:
  *         unit = ''.join(unit)
  *         if unit == 'M':             # <<<<<<<<<<<<<<
  *             # To parse ISO 8601 string, 'M' should be treated as minute,
  *             # not month
  */
-      __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 508, __pyx_L3_error)
+      __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 503, __pyx_L3_error)
       if (__pyx_t_5) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":511
+        /* "pandas/_libs/tslibs/timedeltas.pyx":506
  *             # To parse ISO 8601 string, 'M' should be treated as minute,
  *             # not month
  *             unit = 'm'             # <<<<<<<<<<<<<<
@@ -8516,7 +8573,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timed
         __Pyx_INCREF(__pyx_n_u_m);
         __Pyx_DECREF_SET(__pyx_v_unit, __pyx_n_u_m);
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":508
+        /* "pandas/_libs/tslibs/timedeltas.pyx":503
  *     try:
  *         unit = ''.join(unit)
  *         if unit == 'M':             # <<<<<<<<<<<<<<
@@ -8525,19 +8582,19 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timed
  */
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":512
+      /* "pandas/_libs/tslibs/timedeltas.pyx":507
  *             # not month
  *             unit = 'm'
  *         unit = parse_timedelta_unit(unit)             # <<<<<<<<<<<<<<
  *     except KeyError:
  *         raise ValueError("invalid abbreviation: {unit}".format(unit=unit))
  */
-      __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_unit(__pyx_v_unit, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 512, __pyx_L3_error)
+      __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_unit(__pyx_v_unit, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 507, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF_SET(__pyx_v_unit, __pyx_t_4);
       __pyx_t_4 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":506
+      /* "pandas/_libs/tslibs/timedeltas.pyx":501
  *     cdef object n
  * 
  *     try:             # <<<<<<<<<<<<<<
@@ -8552,7 +8609,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timed
     __pyx_L3_error:;
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":513
+    /* "pandas/_libs/tslibs/timedeltas.pyx":508
  *             unit = 'm'
  *         unit = parse_timedelta_unit(unit)
  *     except KeyError:             # <<<<<<<<<<<<<<
@@ -8562,38 +8619,38 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timed
     __pyx_t_6 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_KeyError);
     if (__pyx_t_6) {
       __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.timedelta_from_spec", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_7, &__pyx_t_8) < 0) __PYX_ERR(0, 513, __pyx_L5_except_error)
+      if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_7, &__pyx_t_8) < 0) __PYX_ERR(0, 508, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_GOTREF(__pyx_t_8);
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":514
+      /* "pandas/_libs/tslibs/timedeltas.pyx":509
  *         unit = parse_timedelta_unit(unit)
  *     except KeyError:
  *         raise ValueError("invalid abbreviation: {unit}".format(unit=unit))             # <<<<<<<<<<<<<<
  * 
  *     n = ''.join(number) + '.' + ''.join(frac)
  */
-      __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_invalid_abbreviation_unit, __pyx_n_s_format); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 514, __pyx_L5_except_error)
+      __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_invalid_abbreviation_unit, __pyx_n_s_format); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 509, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_10 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 514, __pyx_L5_except_error)
+      __pyx_t_10 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 509, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_10);
-      if (PyDict_SetItem(__pyx_t_10, __pyx_n_s_unit, __pyx_v_unit) < 0) __PYX_ERR(0, 514, __pyx_L5_except_error)
-      __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_empty_tuple, __pyx_t_10); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 514, __pyx_L5_except_error)
+      if (PyDict_SetItem(__pyx_t_10, __pyx_n_s_unit, __pyx_v_unit) < 0) __PYX_ERR(0, 509, __pyx_L5_except_error)
+      __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_empty_tuple, __pyx_t_10); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 509, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_11);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __pyx_t_10 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_11); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 514, __pyx_L5_except_error)
+      __pyx_t_10 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_11); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 509, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
       __Pyx_Raise(__pyx_t_10, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __PYX_ERR(0, 514, __pyx_L5_except_error)
+      __PYX_ERR(0, 509, __pyx_L5_except_error)
     }
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":506
+    /* "pandas/_libs/tslibs/timedeltas.pyx":501
  *     cdef object n
  * 
  *     try:             # <<<<<<<<<<<<<<
@@ -8608,28 +8665,28 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timed
     __pyx_L8_try_end:;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":516
+  /* "pandas/_libs/tslibs/timedeltas.pyx":511
  *         raise ValueError("invalid abbreviation: {unit}".format(unit=unit))
  * 
  *     n = ''.join(number) + '.' + ''.join(frac)             # <<<<<<<<<<<<<<
  *     return cast_from_unit(float(n), unit)
  * 
  */
-  __pyx_t_8 = PyUnicode_Join(__pyx_kp_u__8, __pyx_v_number); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 516, __pyx_L1_error)
+  __pyx_t_8 = PyUnicode_Join(__pyx_kp_u__8, __pyx_v_number); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 511, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_7 = __Pyx_PyUnicode_Concat(__pyx_t_8, __pyx_kp_u__9); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 516, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyUnicode_Concat(__pyx_t_8, __pyx_kp_u__9); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 511, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = PyUnicode_Join(__pyx_kp_u__8, __pyx_v_frac); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 516, __pyx_L1_error)
+  __pyx_t_8 = PyUnicode_Join(__pyx_kp_u__8, __pyx_v_frac); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 511, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_4 = __Pyx_PyUnicode_Concat(__pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 516, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyUnicode_Concat(__pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 511, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_v_n = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":517
+  /* "pandas/_libs/tslibs/timedeltas.pyx":512
  * 
  *     n = ''.join(number) + '.' + ''.join(frac)
  *     return cast_from_unit(float(n), unit)             # <<<<<<<<<<<<<<
@@ -8637,17 +8694,17 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timed
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = __Pyx_PyNumber_Float(__pyx_v_n); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 517, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyNumber_Float(__pyx_v_n); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 512, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_12 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_cast_from_unit(__pyx_t_4, __pyx_v_unit); if (unlikely(__pyx_t_12 == ((__pyx_t_5numpy_int64_t)-1LL) && PyErr_Occurred())) __PYX_ERR(0, 517, __pyx_L1_error)
+  __pyx_t_12 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_cast_from_unit(__pyx_t_4, __pyx_v_unit); if (unlikely(__pyx_t_12 == ((__pyx_t_5numpy_int64_t)-1LL) && PyErr_Occurred())) __PYX_ERR(0, 512, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyInt_From_npy_int64(__pyx_t_12); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 517, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_npy_int64(__pyx_t_12); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 512, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":495
+  /* "pandas/_libs/tslibs/timedeltas.pyx":490
  * 
  * 
  * cdef inline timedelta_from_spec(object number, object frac, object unit):             # <<<<<<<<<<<<<<
@@ -8673,7 +8730,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timed
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":520
+/* "pandas/_libs/tslibs/timedeltas.pyx":515
  * 
  * 
  * cpdef inline object parse_timedelta_unit(object unit):             # <<<<<<<<<<<<<<
@@ -8702,7 +8759,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("parse_timedelta_unit", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":526
+  /* "pandas/_libs/tslibs/timedeltas.pyx":521
  *     unit : an unit string
  *     """
  *     if unit is None:             # <<<<<<<<<<<<<<
@@ -8713,7 +8770,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":527
+    /* "pandas/_libs/tslibs/timedeltas.pyx":522
  *     """
  *     if unit is None:
  *         return 'ns'             # <<<<<<<<<<<<<<
@@ -8725,7 +8782,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse
     __pyx_r = __pyx_n_u_ns;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":526
+    /* "pandas/_libs/tslibs/timedeltas.pyx":521
  *     unit : an unit string
  *     """
  *     if unit is None:             # <<<<<<<<<<<<<<
@@ -8734,17 +8791,17 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":528
+  /* "pandas/_libs/tslibs/timedeltas.pyx":523
  *     if unit is None:
  *         return 'ns'
  *     elif unit == 'M':             # <<<<<<<<<<<<<<
  *         return unit
  *     try:
  */
-  __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 528, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_unit, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 523, __pyx_L1_error)
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":529
+    /* "pandas/_libs/tslibs/timedeltas.pyx":524
  *         return 'ns'
  *     elif unit == 'M':
  *         return unit             # <<<<<<<<<<<<<<
@@ -8756,7 +8813,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse
     __pyx_r = __pyx_v_unit;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":528
+    /* "pandas/_libs/tslibs/timedeltas.pyx":523
  *     if unit is None:
  *         return 'ns'
  *     elif unit == 'M':             # <<<<<<<<<<<<<<
@@ -8765,7 +8822,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":530
+  /* "pandas/_libs/tslibs/timedeltas.pyx":525
  *     elif unit == 'M':
  *         return unit
  *     try:             # <<<<<<<<<<<<<<
@@ -8781,7 +8838,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse
     __Pyx_XGOTREF(__pyx_t_5);
     /*try:*/ {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":531
+      /* "pandas/_libs/tslibs/timedeltas.pyx":526
  *         return unit
  *     try:
  *         return timedelta_abbrevs[unit.lower()]             # <<<<<<<<<<<<<<
@@ -8791,9 +8848,9 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse
       __Pyx_XDECREF(__pyx_r);
       if (unlikely(__pyx_v_6pandas_5_libs_6tslibs_10timedeltas_timedelta_abbrevs == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 531, __pyx_L4_error)
+        __PYX_ERR(0, 526, __pyx_L4_error)
       }
-      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_unit, __pyx_n_s_lower); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 531, __pyx_L4_error)
+      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_unit, __pyx_n_s_lower); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 526, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_7);
       __pyx_t_8 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_7))) {
@@ -8807,17 +8864,17 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse
       }
       __pyx_t_6 = (__pyx_t_8) ? __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_8) : __Pyx_PyObject_CallNoArg(__pyx_t_7);
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 531, __pyx_L4_error)
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 526, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_7 = __Pyx_PyDict_GetItem(__pyx_v_6pandas_5_libs_6tslibs_10timedeltas_timedelta_abbrevs, __pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 531, __pyx_L4_error)
+      __pyx_t_7 = __Pyx_PyDict_GetItem(__pyx_v_6pandas_5_libs_6tslibs_10timedeltas_timedelta_abbrevs, __pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 526, __pyx_L4_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __pyx_r = __pyx_t_7;
       __pyx_t_7 = 0;
       goto __pyx_L8_try_return;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":530
+      /* "pandas/_libs/tslibs/timedeltas.pyx":525
  *     elif unit == 'M':
  *         return unit
  *     try:             # <<<<<<<<<<<<<<
@@ -8830,7 +8887,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":532
+    /* "pandas/_libs/tslibs/timedeltas.pyx":527
  *     try:
  *         return timedelta_abbrevs[unit.lower()]
  *     except (KeyError, AttributeError):             # <<<<<<<<<<<<<<
@@ -8840,46 +8897,46 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse
     __pyx_t_9 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_KeyError) || __Pyx_PyErr_ExceptionMatches(__pyx_builtin_AttributeError);
     if (__pyx_t_9) {
       __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.parse_timedelta_unit", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_7, &__pyx_t_6, &__pyx_t_8) < 0) __PYX_ERR(0, 532, __pyx_L6_except_error)
+      if (__Pyx_GetException(&__pyx_t_7, &__pyx_t_6, &__pyx_t_8) < 0) __PYX_ERR(0, 527, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_8);
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":534
+      /* "pandas/_libs/tslibs/timedeltas.pyx":529
  *     except (KeyError, AttributeError):
  *         raise ValueError("invalid unit abbreviation: {unit}"
  *                          .format(unit=unit))             # <<<<<<<<<<<<<<
  * 
  * # ----------------------------------------------------------------------
  */
-      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_invalid_unit_abbreviation_unit, __pyx_n_s_format); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 534, __pyx_L6_except_error)
+      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_invalid_unit_abbreviation_unit, __pyx_n_s_format); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 529, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_11 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 534, __pyx_L6_except_error)
+      __pyx_t_11 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 529, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_11);
-      if (PyDict_SetItem(__pyx_t_11, __pyx_n_s_unit, __pyx_v_unit) < 0) __PYX_ERR(0, 534, __pyx_L6_except_error)
-      __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_empty_tuple, __pyx_t_11); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 534, __pyx_L6_except_error)
+      if (PyDict_SetItem(__pyx_t_11, __pyx_n_s_unit, __pyx_v_unit) < 0) __PYX_ERR(0, 529, __pyx_L6_except_error)
+      __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_empty_tuple, __pyx_t_11); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 529, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_12);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":533
+      /* "pandas/_libs/tslibs/timedeltas.pyx":528
  *         return timedelta_abbrevs[unit.lower()]
  *     except (KeyError, AttributeError):
  *         raise ValueError("invalid unit abbreviation: {unit}"             # <<<<<<<<<<<<<<
  *                          .format(unit=unit))
  * 
  */
-      __pyx_t_11 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_12); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 533, __pyx_L6_except_error)
+      __pyx_t_11 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_12); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 528, __pyx_L6_except_error)
       __Pyx_GOTREF(__pyx_t_11);
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
       __Pyx_Raise(__pyx_t_11, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-      __PYX_ERR(0, 533, __pyx_L6_except_error)
+      __PYX_ERR(0, 528, __pyx_L6_except_error)
     }
     goto __pyx_L6_except_error;
     __pyx_L6_except_error:;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":530
+    /* "pandas/_libs/tslibs/timedeltas.pyx":525
  *     elif unit == 'M':
  *         return unit
  *     try:             # <<<<<<<<<<<<<<
@@ -8899,7 +8956,7 @@ static CYTHON_INLINE PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse
     goto __pyx_L0;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":520
+  /* "pandas/_libs/tslibs/timedeltas.pyx":515
  * 
  * 
  * cpdef inline object parse_timedelta_unit(object unit):             # <<<<<<<<<<<<<<
@@ -8946,7 +9003,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_8parse_timedelta_u
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("parse_timedelta_unit", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_unit(__pyx_v_unit, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 520, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_unit(__pyx_v_unit, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 515, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -8963,7 +9020,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_8parse_timedelta_u
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":539
+/* "pandas/_libs/tslibs/timedeltas.pyx":534
  * # Timedelta ops utilities
  * 
  * cdef bint _validate_ops_compat(other):             # <<<<<<<<<<<<<<
@@ -8981,7 +9038,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(PyOb
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_validate_ops_compat", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":541
+  /* "pandas/_libs/tslibs/timedeltas.pyx":536
  * cdef bint _validate_ops_compat(other):
  *     # return True if we are compat with operating
  *     if checknull_with_nat(other):             # <<<<<<<<<<<<<<
@@ -8991,7 +9048,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(PyOb
   __pyx_t_1 = (__pyx_f_6pandas_5_libs_6tslibs_7nattype_checknull_with_nat(__pyx_v_other) != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":542
+    /* "pandas/_libs/tslibs/timedeltas.pyx":537
  *     # return True if we are compat with operating
  *     if checknull_with_nat(other):
  *         return True             # <<<<<<<<<<<<<<
@@ -9001,7 +9058,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(PyOb
     __pyx_r = 1;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":541
+    /* "pandas/_libs/tslibs/timedeltas.pyx":536
  * cdef bint _validate_ops_compat(other):
  *     # return True if we are compat with operating
  *     if checknull_with_nat(other):             # <<<<<<<<<<<<<<
@@ -9010,7 +9067,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(PyOb
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":543
+  /* "pandas/_libs/tslibs/timedeltas.pyx":538
  *     if checknull_with_nat(other):
  *         return True
  *     elif PyDelta_Check(other) or is_timedelta64_object(other):             # <<<<<<<<<<<<<<
@@ -9028,7 +9085,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(PyOb
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":544
+    /* "pandas/_libs/tslibs/timedeltas.pyx":539
  *         return True
  *     elif PyDelta_Check(other) or is_timedelta64_object(other):
  *         return True             # <<<<<<<<<<<<<<
@@ -9038,7 +9095,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(PyOb
     __pyx_r = 1;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":543
+    /* "pandas/_libs/tslibs/timedeltas.pyx":538
  *     if checknull_with_nat(other):
  *         return True
  *     elif PyDelta_Check(other) or is_timedelta64_object(other):             # <<<<<<<<<<<<<<
@@ -9047,7 +9104,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(PyOb
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":545
+  /* "pandas/_libs/tslibs/timedeltas.pyx":540
  *     elif PyDelta_Check(other) or is_timedelta64_object(other):
  *         return True
  *     elif isinstance(other, str):             # <<<<<<<<<<<<<<
@@ -9058,7 +9115,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(PyOb
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":546
+    /* "pandas/_libs/tslibs/timedeltas.pyx":541
  *         return True
  *     elif isinstance(other, str):
  *         return True             # <<<<<<<<<<<<<<
@@ -9068,7 +9125,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(PyOb
     __pyx_r = 1;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":545
+    /* "pandas/_libs/tslibs/timedeltas.pyx":540
  *     elif PyDelta_Check(other) or is_timedelta64_object(other):
  *         return True
  *     elif isinstance(other, str):             # <<<<<<<<<<<<<<
@@ -9077,18 +9134,18 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(PyOb
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":547
+  /* "pandas/_libs/tslibs/timedeltas.pyx":542
  *     elif isinstance(other, str):
  *         return True
  *     elif hasattr(other, 'delta'):             # <<<<<<<<<<<<<<
  *         return True
  *     return False
  */
-  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_delta); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 547, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_delta); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 542, __pyx_L1_error)
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":548
+    /* "pandas/_libs/tslibs/timedeltas.pyx":543
  *         return True
  *     elif hasattr(other, 'delta'):
  *         return True             # <<<<<<<<<<<<<<
@@ -9098,7 +9155,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(PyOb
     __pyx_r = 1;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":547
+    /* "pandas/_libs/tslibs/timedeltas.pyx":542
  *     elif isinstance(other, str):
  *         return True
  *     elif hasattr(other, 'delta'):             # <<<<<<<<<<<<<<
@@ -9107,7 +9164,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(PyOb
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":549
+  /* "pandas/_libs/tslibs/timedeltas.pyx":544
  *     elif hasattr(other, 'delta'):
  *         return True
  *     return False             # <<<<<<<<<<<<<<
@@ -9117,7 +9174,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(PyOb
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":539
+  /* "pandas/_libs/tslibs/timedeltas.pyx":534
  * # Timedelta ops utilities
  * 
  * cdef bint _validate_ops_compat(other):             # <<<<<<<<<<<<<<
@@ -9134,7 +9191,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(PyOb
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":552
+/* "pandas/_libs/tslibs/timedeltas.pyx":547
  * 
  * 
  * def _op_unary_method(func, name):             # <<<<<<<<<<<<<<
@@ -9177,11 +9234,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_11_op_unary_method
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_name)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_op_unary_method", 1, 2, 2, 1); __PYX_ERR(0, 552, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_op_unary_method", 1, 2, 2, 1); __PYX_ERR(0, 547, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_op_unary_method") < 0)) __PYX_ERR(0, 552, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_op_unary_method") < 0)) __PYX_ERR(0, 547, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -9194,7 +9251,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_11_op_unary_method
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_op_unary_method", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 552, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_op_unary_method", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 547, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas._op_unary_method", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -9207,7 +9264,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_11_op_unary_method
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":553
+/* "pandas/_libs/tslibs/timedeltas.pyx":548
  * 
  * def _op_unary_method(func, name):
  *     def f(self):             # <<<<<<<<<<<<<<
@@ -9246,7 +9303,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_16_op_unary_method
   __pyx_outer_scope = (struct __pyx_obj_6pandas_5_libs_6tslibs_10timedeltas___pyx_scope_struct___op_unary_method *) __Pyx_CyFunction_GetClosure(__pyx_self);
   __pyx_cur_scope = __pyx_outer_scope;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":554
+  /* "pandas/_libs/tslibs/timedeltas.pyx":549
  * def _op_unary_method(func, name):
  *     def f(self):
  *         return Timedelta(func(self.value), unit='ns')             # <<<<<<<<<<<<<<
@@ -9254,10 +9311,10 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_16_op_unary_method
  *     return f
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 554, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 549, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely(!__pyx_cur_scope->__pyx_v_func)) { __Pyx_RaiseClosureNameError("func"); __PYX_ERR(0, 554, __pyx_L1_error) }
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 554, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_func)) { __Pyx_RaiseClosureNameError("func"); __PYX_ERR(0, 549, __pyx_L1_error) }
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 549, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_cur_scope->__pyx_v_func);
   __pyx_t_4 = __pyx_cur_scope->__pyx_v_func; __pyx_t_5 = NULL;
@@ -9273,18 +9330,18 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_16_op_unary_method
   __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 554, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 549, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 554, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 549, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 554, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 549, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_unit, __pyx_n_u_ns) < 0) __PYX_ERR(0, 554, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 554, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_unit, __pyx_n_u_ns) < 0) __PYX_ERR(0, 549, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 549, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -9293,7 +9350,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_16_op_unary_method
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":553
+  /* "pandas/_libs/tslibs/timedeltas.pyx":548
  * 
  * def _op_unary_method(func, name):
  *     def f(self):             # <<<<<<<<<<<<<<
@@ -9316,7 +9373,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_16_op_unary_method
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":552
+/* "pandas/_libs/tslibs/timedeltas.pyx":547
  * 
  * 
  * def _op_unary_method(func, name):             # <<<<<<<<<<<<<<
@@ -9338,7 +9395,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_op_unary_method
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_6pandas_5_libs_6tslibs_10timedeltas___pyx_scope_struct___op_unary_method *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 552, __pyx_L1_error)
+    __PYX_ERR(0, 547, __pyx_L1_error)
   } else {
     __Pyx_GOTREF(__pyx_cur_scope);
   }
@@ -9346,28 +9403,28 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_op_unary_method
   __Pyx_INCREF(__pyx_cur_scope->__pyx_v_func);
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_func);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":553
+  /* "pandas/_libs/tslibs/timedeltas.pyx":548
  * 
  * def _op_unary_method(func, name):
  *     def f(self):             # <<<<<<<<<<<<<<
  *         return Timedelta(func(self.value), unit='ns')
  *     f.__name__ = name
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_16_op_unary_method_1f, 0, __pyx_n_s_op_unary_method_locals_f, ((PyObject*)__pyx_cur_scope), __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 553, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_16_op_unary_method_1f, 0, __pyx_n_s_op_unary_method_locals_f, ((PyObject*)__pyx_cur_scope), __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 548, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_f = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":555
+  /* "pandas/_libs/tslibs/timedeltas.pyx":550
  *     def f(self):
  *         return Timedelta(func(self.value), unit='ns')
  *     f.__name__ = name             # <<<<<<<<<<<<<<
  *     return f
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_f, __pyx_n_s_name_2, __pyx_v_name) < 0) __PYX_ERR(0, 555, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_f, __pyx_n_s_name_2, __pyx_v_name) < 0) __PYX_ERR(0, 550, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":556
+  /* "pandas/_libs/tslibs/timedeltas.pyx":551
  *         return Timedelta(func(self.value), unit='ns')
  *     f.__name__ = name
  *     return f             # <<<<<<<<<<<<<<
@@ -9379,7 +9436,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_op_unary_method
   __pyx_r = __pyx_v_f;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":552
+  /* "pandas/_libs/tslibs/timedeltas.pyx":547
  * 
  * 
  * def _op_unary_method(func, name):             # <<<<<<<<<<<<<<
@@ -9400,7 +9457,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_op_unary_method
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":559
+/* "pandas/_libs/tslibs/timedeltas.pyx":554
  * 
  * 
  * def _binary_op_method_timedeltalike(op, name):             # <<<<<<<<<<<<<<
@@ -9443,11 +9500,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_13_binary_op_metho
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_name)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_binary_op_method_timedeltalike", 1, 2, 2, 1); __PYX_ERR(0, 559, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_binary_op_method_timedeltalike", 1, 2, 2, 1); __PYX_ERR(0, 554, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_binary_op_method_timedeltalike") < 0)) __PYX_ERR(0, 559, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_binary_op_method_timedeltalike") < 0)) __PYX_ERR(0, 554, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -9460,7 +9517,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_13_binary_op_metho
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_binary_op_method_timedeltalike", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 559, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_binary_op_method_timedeltalike", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 554, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas._binary_op_method_timedeltalike", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -9473,7 +9530,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_13_binary_op_metho
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":562
+/* "pandas/_libs/tslibs/timedeltas.pyx":557
  *     # define a binary operation that only works if the other argument is
  *     # timedelta like or an array of timedeltalike
  *     def f(self, other):             # <<<<<<<<<<<<<<
@@ -9516,11 +9573,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_other)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("f", 1, 2, 2, 1); __PYX_ERR(0, 562, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("f", 1, 2, 2, 1); __PYX_ERR(0, 557, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "f") < 0)) __PYX_ERR(0, 562, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "f") < 0)) __PYX_ERR(0, 557, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -9533,7 +9590,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("f", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 562, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("f", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 557, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas._binary_op_method_timedeltalike.f", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -9578,40 +9635,40 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
   __pyx_cur_scope = __pyx_outer_scope;
   __Pyx_INCREF(__pyx_v_other);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":563
+  /* "pandas/_libs/tslibs/timedeltas.pyx":558
  *     # timedelta like or an array of timedeltalike
  *     def f(self, other):
  *         if hasattr(other, '_typ'):             # <<<<<<<<<<<<<<
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):
  */
-  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_typ); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 563, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_typ); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 558, __pyx_L1_error)
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":565
+    /* "pandas/_libs/tslibs/timedeltas.pyx":560
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):             # <<<<<<<<<<<<<<
  *                 # Tick offset
  *                 return op(self, other.delta)
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_typ); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 565, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_typ); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 560, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_3, __pyx_n_u_dateoffset, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 565, __pyx_L1_error)
+    __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_3, __pyx_n_u_dateoffset, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 560, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_1) {
     } else {
       __pyx_t_2 = __pyx_t_1;
       goto __pyx_L5_bool_binop_done;
     }
-    __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_delta); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 565, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_delta); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 560, __pyx_L1_error)
     __pyx_t_4 = (__pyx_t_1 != 0);
     __pyx_t_2 = __pyx_t_4;
     __pyx_L5_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":567
+      /* "pandas/_libs/tslibs/timedeltas.pyx":562
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):
  *                 # Tick offset
  *                 return op(self, other.delta)             # <<<<<<<<<<<<<<
@@ -9619,8 +9676,8 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
  * 
  */
       __Pyx_XDECREF(__pyx_r);
-      if (unlikely(!__pyx_cur_scope->__pyx_v_op)) { __Pyx_RaiseClosureNameError("op"); __PYX_ERR(0, 567, __pyx_L1_error) }
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_delta); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 567, __pyx_L1_error)
+      if (unlikely(!__pyx_cur_scope->__pyx_v_op)) { __Pyx_RaiseClosureNameError("op"); __PYX_ERR(0, 562, __pyx_L1_error) }
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_delta); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 562, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_cur_scope->__pyx_v_op);
       __pyx_t_6 = __pyx_cur_scope->__pyx_v_op; __pyx_t_7 = NULL;
@@ -9638,7 +9695,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_6)) {
         PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_self, __pyx_t_5};
-        __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 567, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 562, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -9647,14 +9704,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
         PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_self, __pyx_t_5};
-        __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 567, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 562, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       } else
       #endif
       {
-        __pyx_t_9 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 567, __pyx_L1_error)
+        __pyx_t_9 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 562, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
         if (__pyx_t_7) {
           __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -9665,7 +9722,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
         __Pyx_GIVEREF(__pyx_t_5);
         PyTuple_SET_ITEM(__pyx_t_9, 1+__pyx_t_8, __pyx_t_5);
         __pyx_t_5 = 0;
-        __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 567, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 562, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       }
@@ -9674,7 +9731,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
       __pyx_t_3 = 0;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":565
+      /* "pandas/_libs/tslibs/timedeltas.pyx":560
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):             # <<<<<<<<<<<<<<
@@ -9683,7 +9740,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":568
+    /* "pandas/_libs/tslibs/timedeltas.pyx":563
  *                 # Tick offset
  *                 return op(self, other.delta)
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -9695,7 +9752,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":563
+    /* "pandas/_libs/tslibs/timedeltas.pyx":558
  *     # timedelta like or an array of timedeltalike
  *     def f(self, other):
  *         if hasattr(other, '_typ'):             # <<<<<<<<<<<<<<
@@ -9704,7 +9761,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":570
+  /* "pandas/_libs/tslibs/timedeltas.pyx":565
  *             return NotImplemented
  * 
  *         elif other is NaT:             # <<<<<<<<<<<<<<
@@ -9715,7 +9772,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
   __pyx_t_4 = (__pyx_t_2 != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":571
+    /* "pandas/_libs/tslibs/timedeltas.pyx":566
  * 
  *         elif other is NaT:
  *             return NaT             # <<<<<<<<<<<<<<
@@ -9727,7 +9784,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
     __pyx_r = ((PyObject *)__pyx_v_6pandas_5_libs_6tslibs_7nattype_c_NaT);
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":570
+    /* "pandas/_libs/tslibs/timedeltas.pyx":565
  *             return NotImplemented
  * 
  *         elif other is NaT:             # <<<<<<<<<<<<<<
@@ -9736,7 +9793,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":573
+  /* "pandas/_libs/tslibs/timedeltas.pyx":568
  *             return NaT
  * 
  *         elif is_timedelta64_object(other):             # <<<<<<<<<<<<<<
@@ -9748,7 +9805,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":578
+  /* "pandas/_libs/tslibs/timedeltas.pyx":573
  *             pass
  * 
  *         elif is_datetime64_object(other) or (             # <<<<<<<<<<<<<<
@@ -9762,7 +9819,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
     goto __pyx_L7_bool_binop_done;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":579
+  /* "pandas/_libs/tslibs/timedeltas.pyx":574
  * 
  *         elif is_datetime64_object(other) or (
  *            PyDateTime_Check(other) and not isinstance(other, _Timestamp)):             # <<<<<<<<<<<<<<
@@ -9780,7 +9837,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
   __pyx_t_4 = __pyx_t_1;
   __pyx_L7_bool_binop_done:;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":578
+  /* "pandas/_libs/tslibs/timedeltas.pyx":573
  *             pass
  * 
  *         elif is_datetime64_object(other) or (             # <<<<<<<<<<<<<<
@@ -9789,29 +9846,29 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
  */
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":583
+    /* "pandas/_libs/tslibs/timedeltas.pyx":578
  *             # *not* a Timestamp, as the Timestamp case will be
  *             # handled after `_validate_ops_compat` returns False below
  *             from pandas._libs.tslibs.timestamps import Timestamp             # <<<<<<<<<<<<<<
  *             return op(self, Timestamp(other))
  *             # We are implicitly requiring the canonical behavior to be
  */
-    __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 583, __pyx_L1_error)
+    __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 578, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_n_s_Timestamp);
     __Pyx_GIVEREF(__pyx_n_s_Timestamp);
     PyList_SET_ITEM(__pyx_t_3, 0, __pyx_n_s_Timestamp);
-    __pyx_t_6 = __Pyx_Import(__pyx_n_s_pandas__libs_tslibs_timestamps, __pyx_t_3, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 583, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_Import(__pyx_n_s_pandas__libs_tslibs_timestamps, __pyx_t_3, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 578, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_ImportFrom(__pyx_t_6, __pyx_n_s_Timestamp); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 583, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_ImportFrom(__pyx_t_6, __pyx_n_s_Timestamp); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 578, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_t_3);
     __pyx_v_Timestamp = __pyx_t_3;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":584
+    /* "pandas/_libs/tslibs/timedeltas.pyx":579
  *             # handled after `_validate_ops_compat` returns False below
  *             from pandas._libs.tslibs.timestamps import Timestamp
  *             return op(self, Timestamp(other))             # <<<<<<<<<<<<<<
@@ -9819,7 +9876,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
  *             # defined by Timestamp methods.
  */
     __Pyx_XDECREF(__pyx_r);
-    if (unlikely(!__pyx_cur_scope->__pyx_v_op)) { __Pyx_RaiseClosureNameError("op"); __PYX_ERR(0, 584, __pyx_L1_error) }
+    if (unlikely(!__pyx_cur_scope->__pyx_v_op)) { __Pyx_RaiseClosureNameError("op"); __PYX_ERR(0, 579, __pyx_L1_error) }
     __Pyx_INCREF(__pyx_v_Timestamp);
     __pyx_t_9 = __pyx_v_Timestamp; __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_9))) {
@@ -9833,7 +9890,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
     }
     __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_9, __pyx_t_5, __pyx_v_other) : __Pyx_PyObject_CallOneArg(__pyx_t_9, __pyx_v_other);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 584, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 579, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_INCREF(__pyx_cur_scope->__pyx_v_op);
@@ -9852,7 +9909,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_9)) {
       PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_v_self, __pyx_t_3};
-      __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 584, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 579, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -9861,14 +9918,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_9)) {
       PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_v_self, __pyx_t_3};
-      __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 584, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_9, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 579, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     } else
     #endif
     {
-      __pyx_t_7 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 584, __pyx_L1_error)
+      __pyx_t_7 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 579, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       if (__pyx_t_5) {
         __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -9879,7 +9936,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_8, __pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_7, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 584, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_7, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 579, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     }
@@ -9888,7 +9945,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":578
+    /* "pandas/_libs/tslibs/timedeltas.pyx":573
  *             pass
  * 
  *         elif is_datetime64_object(other) or (             # <<<<<<<<<<<<<<
@@ -9897,43 +9954,43 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":588
+  /* "pandas/_libs/tslibs/timedeltas.pyx":583
  *             # defined by Timestamp methods.
  * 
  *         elif hasattr(other, 'dtype'):             # <<<<<<<<<<<<<<
  *             # nd-array like
  *             if other.dtype.kind in ['m', 'M']:
  */
-  __pyx_t_4 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_dtype); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 588, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_dtype); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 583, __pyx_L1_error)
   __pyx_t_1 = (__pyx_t_4 != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":590
+    /* "pandas/_libs/tslibs/timedeltas.pyx":585
  *         elif hasattr(other, 'dtype'):
  *             # nd-array like
  *             if other.dtype.kind in ['m', 'M']:             # <<<<<<<<<<<<<<
  *                 return op(self.to_timedelta64(), other)
  *             elif other.dtype.kind == 'O':
  */
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 590, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 585, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_kind); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 590, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_kind); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 585, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_4 = (__Pyx_PyUnicode_Equals(__pyx_t_9, __pyx_n_u_m, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 590, __pyx_L1_error)
+    __pyx_t_4 = (__Pyx_PyUnicode_Equals(__pyx_t_9, __pyx_n_u_m, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 585, __pyx_L1_error)
     if (!__pyx_t_4) {
     } else {
       __pyx_t_1 = __pyx_t_4;
       goto __pyx_L11_bool_binop_done;
     }
-    __pyx_t_4 = (__Pyx_PyUnicode_Equals(__pyx_t_9, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 590, __pyx_L1_error)
+    __pyx_t_4 = (__Pyx_PyUnicode_Equals(__pyx_t_9, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 585, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_4;
     __pyx_L11_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __pyx_t_4 = (__pyx_t_1 != 0);
     if (__pyx_t_4) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":591
+      /* "pandas/_libs/tslibs/timedeltas.pyx":586
  *             # nd-array like
  *             if other.dtype.kind in ['m', 'M']:
  *                 return op(self.to_timedelta64(), other)             # <<<<<<<<<<<<<<
@@ -9941,8 +9998,8 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
  *                 return np.array([op(self, x) for x in other])
  */
       __Pyx_XDECREF(__pyx_r);
-      if (unlikely(!__pyx_cur_scope->__pyx_v_op)) { __Pyx_RaiseClosureNameError("op"); __PYX_ERR(0, 591, __pyx_L1_error) }
-      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_to_timedelta64); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 591, __pyx_L1_error)
+      if (unlikely(!__pyx_cur_scope->__pyx_v_op)) { __Pyx_RaiseClosureNameError("op"); __PYX_ERR(0, 586, __pyx_L1_error) }
+      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_to_timedelta64); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 586, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __pyx_t_3 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_7))) {
@@ -9956,7 +10013,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
       }
       __pyx_t_6 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_7);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 591, __pyx_L1_error)
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 586, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_INCREF(__pyx_cur_scope->__pyx_v_op);
@@ -9975,7 +10032,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_7)) {
         PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_t_6, __pyx_v_other};
-        __pyx_t_9 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 591, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 586, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -9984,14 +10041,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
         PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_t_6, __pyx_v_other};
-        __pyx_t_9 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 591, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 586, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       } else
       #endif
       {
-        __pyx_t_5 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 591, __pyx_L1_error)
+        __pyx_t_5 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 586, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         if (__pyx_t_3) {
           __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -10002,7 +10059,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
         __Pyx_GIVEREF(__pyx_v_other);
         PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_8, __pyx_v_other);
         __pyx_t_6 = 0;
-        __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_5, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 591, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_5, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 586, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       }
@@ -10011,7 +10068,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
       __pyx_t_9 = 0;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":590
+      /* "pandas/_libs/tslibs/timedeltas.pyx":585
  *         elif hasattr(other, 'dtype'):
  *             # nd-array like
  *             if other.dtype.kind in ['m', 'M']:             # <<<<<<<<<<<<<<
@@ -10020,23 +10077,23 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":592
+    /* "pandas/_libs/tslibs/timedeltas.pyx":587
  *             if other.dtype.kind in ['m', 'M']:
  *                 return op(self.to_timedelta64(), other)
  *             elif other.dtype.kind == 'O':             # <<<<<<<<<<<<<<
  *                 return np.array([op(self, x) for x in other])
  *             else:
  */
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 592, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 587, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_kind); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 592, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_kind); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 587, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_4 = (__Pyx_PyUnicode_Equals(__pyx_t_7, __pyx_n_u_O, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 592, __pyx_L1_error)
+    __pyx_t_4 = (__Pyx_PyUnicode_Equals(__pyx_t_7, __pyx_n_u_O, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 587, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     if (__pyx_t_4) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":593
+      /* "pandas/_libs/tslibs/timedeltas.pyx":588
  *                 return op(self.to_timedelta64(), other)
  *             elif other.dtype.kind == 'O':
  *                 return np.array([op(self, x) for x in other])             # <<<<<<<<<<<<<<
@@ -10044,38 +10101,38 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
  *                 return NotImplemented
  */
       __Pyx_XDECREF(__pyx_r);
-      __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_np); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 593, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_np); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 588, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_array); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 593, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_array); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 588, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       { /* enter inner scope */
-        __pyx_t_9 = PyList_New(0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 593, __pyx_L15_error)
+        __pyx_t_9 = PyList_New(0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 588, __pyx_L15_error)
         __Pyx_GOTREF(__pyx_t_9);
         if (likely(PyList_CheckExact(__pyx_v_other)) || PyTuple_CheckExact(__pyx_v_other)) {
           __pyx_t_6 = __pyx_v_other; __Pyx_INCREF(__pyx_t_6); __pyx_t_10 = 0;
           __pyx_t_11 = NULL;
         } else {
-          __pyx_t_10 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_v_other); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 593, __pyx_L15_error)
+          __pyx_t_10 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_v_other); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 588, __pyx_L15_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __pyx_t_11 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 593, __pyx_L15_error)
+          __pyx_t_11 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 588, __pyx_L15_error)
         }
         for (;;) {
           if (likely(!__pyx_t_11)) {
             if (likely(PyList_CheckExact(__pyx_t_6))) {
               if (__pyx_t_10 >= PyList_GET_SIZE(__pyx_t_6)) break;
               #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-              __pyx_t_3 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_10); __Pyx_INCREF(__pyx_t_3); __pyx_t_10++; if (unlikely(0 < 0)) __PYX_ERR(0, 593, __pyx_L15_error)
+              __pyx_t_3 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_10); __Pyx_INCREF(__pyx_t_3); __pyx_t_10++; if (unlikely(0 < 0)) __PYX_ERR(0, 588, __pyx_L15_error)
               #else
-              __pyx_t_3 = PySequence_ITEM(__pyx_t_6, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 593, __pyx_L15_error)
+              __pyx_t_3 = PySequence_ITEM(__pyx_t_6, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 588, __pyx_L15_error)
               __Pyx_GOTREF(__pyx_t_3);
               #endif
             } else {
               if (__pyx_t_10 >= PyTuple_GET_SIZE(__pyx_t_6)) break;
               #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-              __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_10); __Pyx_INCREF(__pyx_t_3); __pyx_t_10++; if (unlikely(0 < 0)) __PYX_ERR(0, 593, __pyx_L15_error)
+              __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_10); __Pyx_INCREF(__pyx_t_3); __pyx_t_10++; if (unlikely(0 < 0)) __PYX_ERR(0, 588, __pyx_L15_error)
               #else
-              __pyx_t_3 = PySequence_ITEM(__pyx_t_6, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 593, __pyx_L15_error)
+              __pyx_t_3 = PySequence_ITEM(__pyx_t_6, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 588, __pyx_L15_error)
               __Pyx_GOTREF(__pyx_t_3);
               #endif
             }
@@ -10085,7 +10142,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
               PyObject* exc_type = PyErr_Occurred();
               if (exc_type) {
                 if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                else __PYX_ERR(0, 593, __pyx_L15_error)
+                else __PYX_ERR(0, 588, __pyx_L15_error)
               }
               break;
             }
@@ -10093,7 +10150,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
           }
           __Pyx_XDECREF_SET(__pyx_7genexpr__pyx_v_x, __pyx_t_3);
           __pyx_t_3 = 0;
-          if (unlikely(!__pyx_cur_scope->__pyx_v_op)) { __Pyx_RaiseClosureNameError("op"); __PYX_ERR(0, 593, __pyx_L15_error) }
+          if (unlikely(!__pyx_cur_scope->__pyx_v_op)) { __Pyx_RaiseClosureNameError("op"); __PYX_ERR(0, 588, __pyx_L15_error) }
           __Pyx_INCREF(__pyx_cur_scope->__pyx_v_op);
           __pyx_t_12 = __pyx_cur_scope->__pyx_v_op; __pyx_t_13 = NULL;
           __pyx_t_8 = 0;
@@ -10110,7 +10167,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
           #if CYTHON_FAST_PYCALL
           if (PyFunction_Check(__pyx_t_12)) {
             PyObject *__pyx_temp[3] = {__pyx_t_13, __pyx_v_self, __pyx_7genexpr__pyx_v_x};
-            __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_12, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 593, __pyx_L15_error)
+            __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_12, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 588, __pyx_L15_error)
             __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
             __Pyx_GOTREF(__pyx_t_3);
           } else
@@ -10118,13 +10175,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
           #if CYTHON_FAST_PYCCALL
           if (__Pyx_PyFastCFunction_Check(__pyx_t_12)) {
             PyObject *__pyx_temp[3] = {__pyx_t_13, __pyx_v_self, __pyx_7genexpr__pyx_v_x};
-            __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_12, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 593, __pyx_L15_error)
+            __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_12, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 588, __pyx_L15_error)
             __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
             __Pyx_GOTREF(__pyx_t_3);
           } else
           #endif
           {
-            __pyx_t_14 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 593, __pyx_L15_error)
+            __pyx_t_14 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 588, __pyx_L15_error)
             __Pyx_GOTREF(__pyx_t_14);
             if (__pyx_t_13) {
               __Pyx_GIVEREF(__pyx_t_13); PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_t_13); __pyx_t_13 = NULL;
@@ -10135,12 +10192,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
             __Pyx_INCREF(__pyx_7genexpr__pyx_v_x);
             __Pyx_GIVEREF(__pyx_7genexpr__pyx_v_x);
             PyTuple_SET_ITEM(__pyx_t_14, 1+__pyx_t_8, __pyx_7genexpr__pyx_v_x);
-            __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_14, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 593, __pyx_L15_error)
+            __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_14, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 588, __pyx_L15_error)
             __Pyx_GOTREF(__pyx_t_3);
             __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
           }
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          if (unlikely(__Pyx_ListComp_Append(__pyx_t_9, (PyObject*)__pyx_t_3))) __PYX_ERR(0, 593, __pyx_L15_error)
+          if (unlikely(__Pyx_ListComp_Append(__pyx_t_9, (PyObject*)__pyx_t_3))) __PYX_ERR(0, 588, __pyx_L15_error)
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         }
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -10164,14 +10221,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
       __pyx_t_7 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_6, __pyx_t_9) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_9);
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 593, __pyx_L1_error)
+      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 588, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_r = __pyx_t_7;
       __pyx_t_7 = 0;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":592
+      /* "pandas/_libs/tslibs/timedeltas.pyx":587
  *             if other.dtype.kind in ['m', 'M']:
  *                 return op(self.to_timedelta64(), other)
  *             elif other.dtype.kind == 'O':             # <<<<<<<<<<<<<<
@@ -10180,7 +10237,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":595
+    /* "pandas/_libs/tslibs/timedeltas.pyx":590
  *                 return np.array([op(self, x) for x in other])
  *             else:
  *                 return NotImplemented             # <<<<<<<<<<<<<<
@@ -10194,7 +10251,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
       goto __pyx_L0;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":588
+    /* "pandas/_libs/tslibs/timedeltas.pyx":583
  *             # defined by Timestamp methods.
  * 
  *         elif hasattr(other, 'dtype'):             # <<<<<<<<<<<<<<
@@ -10203,7 +10260,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":597
+  /* "pandas/_libs/tslibs/timedeltas.pyx":592
  *                 return NotImplemented
  * 
  *         elif not _validate_ops_compat(other):             # <<<<<<<<<<<<<<
@@ -10213,7 +10270,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
   __pyx_t_4 = ((!(__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(__pyx_v_other) != 0)) != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":598
+    /* "pandas/_libs/tslibs/timedeltas.pyx":593
  * 
  *         elif not _validate_ops_compat(other):
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -10225,7 +10282,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":597
+    /* "pandas/_libs/tslibs/timedeltas.pyx":592
  *                 return NotImplemented
  * 
  *         elif not _validate_ops_compat(other):             # <<<<<<<<<<<<<<
@@ -10235,7 +10292,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
   }
   __pyx_L3:;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":600
+  /* "pandas/_libs/tslibs/timedeltas.pyx":595
  *             return NotImplemented
  * 
  *         try:             # <<<<<<<<<<<<<<
@@ -10251,14 +10308,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
     __Pyx_XGOTREF(__pyx_t_17);
     /*try:*/ {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":601
+      /* "pandas/_libs/tslibs/timedeltas.pyx":596
  * 
  *         try:
  *             other = Timedelta(other)             # <<<<<<<<<<<<<<
  *         except ValueError:
  *             # failed to parse as timedelta
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 601, __pyx_L19_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 596, __pyx_L19_error)
       __Pyx_GOTREF(__pyx_t_5);
       __pyx_t_9 = NULL;
       if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_5))) {
@@ -10272,13 +10329,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
       }
       __pyx_t_7 = (__pyx_t_9) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_9, __pyx_v_other) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_other);
       __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 601, __pyx_L19_error)
+      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 596, __pyx_L19_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF_SET(__pyx_v_other, __pyx_t_7);
       __pyx_t_7 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":600
+      /* "pandas/_libs/tslibs/timedeltas.pyx":595
  *             return NotImplemented
  * 
  *         try:             # <<<<<<<<<<<<<<
@@ -10300,7 +10357,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":602
+    /* "pandas/_libs/tslibs/timedeltas.pyx":597
  *         try:
  *             other = Timedelta(other)
  *         except ValueError:             # <<<<<<<<<<<<<<
@@ -10310,12 +10367,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
     __pyx_t_8 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_ValueError);
     if (__pyx_t_8) {
       __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas._binary_op_method_timedeltalike.f", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_7, &__pyx_t_5, &__pyx_t_9) < 0) __PYX_ERR(0, 602, __pyx_L21_except_error)
+      if (__Pyx_GetException(&__pyx_t_7, &__pyx_t_5, &__pyx_t_9) < 0) __PYX_ERR(0, 597, __pyx_L21_except_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GOTREF(__pyx_t_9);
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":604
+      /* "pandas/_libs/tslibs/timedeltas.pyx":599
  *         except ValueError:
  *             # failed to parse as timedelta
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -10333,7 +10390,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
     goto __pyx_L21_except_error;
     __pyx_L21_except_error:;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":600
+    /* "pandas/_libs/tslibs/timedeltas.pyx":595
  *             return NotImplemented
  * 
  *         try:             # <<<<<<<<<<<<<<
@@ -10354,7 +10411,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
     __pyx_L24_try_end:;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":606
+  /* "pandas/_libs/tslibs/timedeltas.pyx":601
  *             return NotImplemented
  * 
  *         if other is NaT:             # <<<<<<<<<<<<<<
@@ -10365,7 +10422,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
   __pyx_t_1 = (__pyx_t_4 != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":608
+    /* "pandas/_libs/tslibs/timedeltas.pyx":603
  *         if other is NaT:
  *             # e.g. if original other was timedelta64('NaT')
  *             return NaT             # <<<<<<<<<<<<<<
@@ -10377,7 +10434,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
     __pyx_r = ((PyObject *)__pyx_v_6pandas_5_libs_6tslibs_7nattype_c_NaT);
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":606
+    /* "pandas/_libs/tslibs/timedeltas.pyx":601
  *             return NotImplemented
  * 
  *         if other is NaT:             # <<<<<<<<<<<<<<
@@ -10386,7 +10443,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":609
+  /* "pandas/_libs/tslibs/timedeltas.pyx":604
  *             # e.g. if original other was timedelta64('NaT')
  *             return NaT
  *         return Timedelta(op(self.value, other.value), unit='ns')             # <<<<<<<<<<<<<<
@@ -10394,12 +10451,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
  *     f.__name__ = name
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 609, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 604, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  if (unlikely(!__pyx_cur_scope->__pyx_v_op)) { __Pyx_RaiseClosureNameError("op"); __PYX_ERR(0, 609, __pyx_L1_error) }
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 609, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_op)) { __Pyx_RaiseClosureNameError("op"); __PYX_ERR(0, 604, __pyx_L1_error) }
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 604, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 609, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 604, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_INCREF(__pyx_cur_scope->__pyx_v_op);
   __pyx_t_3 = __pyx_cur_scope->__pyx_v_op; __pyx_t_12 = NULL;
@@ -10417,7 +10474,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_12, __pyx_t_7, __pyx_t_6};
-    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 609, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 604, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -10427,7 +10484,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_12, __pyx_t_7, __pyx_t_6};
-    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 609, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 604, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -10435,7 +10492,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
   } else
   #endif
   {
-    __pyx_t_14 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 609, __pyx_L1_error)
+    __pyx_t_14 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 604, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_14);
     if (__pyx_t_12) {
       __Pyx_GIVEREF(__pyx_t_12); PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_t_12); __pyx_t_12 = NULL;
@@ -10446,20 +10503,20 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
     PyTuple_SET_ITEM(__pyx_t_14, 1+__pyx_t_8, __pyx_t_6);
     __pyx_t_7 = 0;
     __pyx_t_6 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_14, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 609, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_14, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 604, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 609, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 604, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_5);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_5);
   __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 609, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 604, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_unit, __pyx_n_u_ns) < 0) __PYX_ERR(0, 609, __pyx_L1_error)
-  __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 609, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_unit, __pyx_n_u_ns) < 0) __PYX_ERR(0, 604, __pyx_L1_error)
+  __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 604, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_14);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -10468,7 +10525,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
   __pyx_t_14 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":562
+  /* "pandas/_libs/tslibs/timedeltas.pyx":557
  *     # define a binary operation that only works if the other argument is
  *     # timedelta like or an array of timedeltalike
  *     def f(self, other):             # <<<<<<<<<<<<<<
@@ -10497,7 +10554,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_metho
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":559
+/* "pandas/_libs/tslibs/timedeltas.pyx":554
  * 
  * 
  * def _binary_op_method_timedeltalike(op, name):             # <<<<<<<<<<<<<<
@@ -10519,7 +10576,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_12_binary_op_metho
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_6pandas_5_libs_6tslibs_10timedeltas___pyx_scope_struct_1__binary_op_method_timedeltalike *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 559, __pyx_L1_error)
+    __PYX_ERR(0, 554, __pyx_L1_error)
   } else {
     __Pyx_GOTREF(__pyx_cur_scope);
   }
@@ -10527,28 +10584,28 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_12_binary_op_metho
   __Pyx_INCREF(__pyx_cur_scope->__pyx_v_op);
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_op);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":562
+  /* "pandas/_libs/tslibs/timedeltas.pyx":557
  *     # define a binary operation that only works if the other argument is
  *     # timedelta like or an array of timedeltalike
  *     def f(self, other):             # <<<<<<<<<<<<<<
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_method_timedeltalike_1f, 0, __pyx_n_s_binary_op_method_timedeltalike, ((PyObject*)__pyx_cur_scope), __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 562, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_31_binary_op_method_timedeltalike_1f, 0, __pyx_n_s_binary_op_method_timedeltalike, ((PyObject*)__pyx_cur_scope), __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 557, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_f = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":611
+  /* "pandas/_libs/tslibs/timedeltas.pyx":606
  *         return Timedelta(op(self.value, other.value), unit='ns')
  * 
  *     f.__name__ = name             # <<<<<<<<<<<<<<
  *     return f
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_f, __pyx_n_s_name_2, __pyx_v_name) < 0) __PYX_ERR(0, 611, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_f, __pyx_n_s_name_2, __pyx_v_name) < 0) __PYX_ERR(0, 606, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":612
+  /* "pandas/_libs/tslibs/timedeltas.pyx":607
  * 
  *     f.__name__ = name
  *     return f             # <<<<<<<<<<<<<<
@@ -10560,7 +10617,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_12_binary_op_metho
   __pyx_r = __pyx_v_f;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":559
+  /* "pandas/_libs/tslibs/timedeltas.pyx":554
  * 
  * 
  * def _binary_op_method_timedeltalike(op, name):             # <<<<<<<<<<<<<<
@@ -10581,7 +10638,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_12_binary_op_metho
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":618
+/* "pandas/_libs/tslibs/timedeltas.pyx":613
  * # Timedelta Construction
  * 
  * cdef inline int64_t parse_iso_format_string(object ts) except? -1:             # <<<<<<<<<<<<<<
@@ -10622,7 +10679,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("parse_iso_format_string", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":641
+  /* "pandas/_libs/tslibs/timedeltas.pyx":636
  *     cdef:
  *         unicode c
  *         int64_t result = 0, r             # <<<<<<<<<<<<<<
@@ -10631,7 +10688,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
   __pyx_v_result = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":642
+  /* "pandas/_libs/tslibs/timedeltas.pyx":637
  *         unicode c
  *         int64_t result = 0, r
  *         int p = 0             # <<<<<<<<<<<<<<
@@ -10640,7 +10697,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
   __pyx_v_p = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":643
+  /* "pandas/_libs/tslibs/timedeltas.pyx":638
  *         int64_t result = 0, r
  *         int p = 0
  *         object dec_unit = 'ms', err_msg             # <<<<<<<<<<<<<<
@@ -10650,7 +10707,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   __Pyx_INCREF(__pyx_n_u_ms);
   __pyx_v_dec_unit = __pyx_n_u_ms;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":644
+  /* "pandas/_libs/tslibs/timedeltas.pyx":639
  *         int p = 0
  *         object dec_unit = 'ms', err_msg
  *         bint have_dot = 0, have_value = 0, neg = 0             # <<<<<<<<<<<<<<
@@ -10661,30 +10718,30 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   __pyx_v_have_value = 0;
   __pyx_v_neg = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":645
+  /* "pandas/_libs/tslibs/timedeltas.pyx":640
  *         object dec_unit = 'ms', err_msg
  *         bint have_dot = 0, have_value = 0, neg = 0
  *         list number = [], unit = []             # <<<<<<<<<<<<<<
  * 
  *     err_msg = "Invalid ISO 8601 Duration format - {}".format(ts)
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 645, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 640, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_number = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 645, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 640, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_unit = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":647
+  /* "pandas/_libs/tslibs/timedeltas.pyx":642
  *         list number = [], unit = []
  * 
  *     err_msg = "Invalid ISO 8601 Duration format - {}".format(ts)             # <<<<<<<<<<<<<<
  * 
  *     for c in ts:
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Invalid_ISO_8601_Duration_format, __pyx_n_s_format); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 647, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Invalid_ISO_8601_Duration_format, __pyx_n_s_format); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 642, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -10698,13 +10755,13 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_ts) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_ts);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 647, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 642, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_err_msg = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":649
+  /* "pandas/_libs/tslibs/timedeltas.pyx":644
  *     err_msg = "Invalid ISO 8601 Duration format - {}".format(ts)
  * 
  *     for c in ts:             # <<<<<<<<<<<<<<
@@ -10715,26 +10772,26 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
     __pyx_t_1 = __pyx_v_ts; __Pyx_INCREF(__pyx_t_1); __pyx_t_4 = 0;
     __pyx_t_5 = NULL;
   } else {
-    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_ts); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 649, __pyx_L1_error)
+    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_ts); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 644, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 649, __pyx_L1_error)
+    __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 644, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_5)) {
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 649, __pyx_L1_error)
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 644, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 649, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 644, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       } else {
         if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 649, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 644, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 649, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 644, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       }
@@ -10744,37 +10801,37 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 649, __pyx_L1_error)
+          else __PYX_ERR(0, 644, __pyx_L1_error)
         }
         break;
       }
       __Pyx_GOTREF(__pyx_t_2);
     }
-    if (!(likely(PyUnicode_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 649, __pyx_L1_error)
+    if (!(likely(PyUnicode_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 644, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_c, ((PyObject*)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":651
+    /* "pandas/_libs/tslibs/timedeltas.pyx":646
  *     for c in ts:
  *         # number (ascii codes)
  *         if ord(c) >= 48 and ord(c) <= 57:             # <<<<<<<<<<<<<<
  * 
  *             have_value = 1
  */
-    __pyx_t_7 = __Pyx_PyObject_Ord(__pyx_v_c); if (unlikely(__pyx_t_7 == ((long)(long)(Py_UCS4)-1))) __PYX_ERR(0, 651, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_Ord(__pyx_v_c); if (unlikely(__pyx_t_7 == ((long)(long)(Py_UCS4)-1))) __PYX_ERR(0, 646, __pyx_L1_error)
     __pyx_t_8 = ((__pyx_t_7 >= 48) != 0);
     if (__pyx_t_8) {
     } else {
       __pyx_t_6 = __pyx_t_8;
       goto __pyx_L6_bool_binop_done;
     }
-    __pyx_t_7 = __Pyx_PyObject_Ord(__pyx_v_c); if (unlikely(__pyx_t_7 == ((long)(long)(Py_UCS4)-1))) __PYX_ERR(0, 651, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_Ord(__pyx_v_c); if (unlikely(__pyx_t_7 == ((long)(long)(Py_UCS4)-1))) __PYX_ERR(0, 646, __pyx_L1_error)
     __pyx_t_8 = ((__pyx_t_7 <= 57) != 0);
     __pyx_t_6 = __pyx_t_8;
     __pyx_L6_bool_binop_done:;
     if (__pyx_t_6) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":653
+      /* "pandas/_libs/tslibs/timedeltas.pyx":648
  *         if ord(c) >= 48 and ord(c) <= 57:
  * 
  *             have_value = 1             # <<<<<<<<<<<<<<
@@ -10783,7 +10840,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
       __pyx_v_have_value = 1;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":654
+      /* "pandas/_libs/tslibs/timedeltas.pyx":649
  * 
  *             have_value = 1
  *             if have_dot:             # <<<<<<<<<<<<<<
@@ -10793,7 +10850,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       __pyx_t_6 = (__pyx_v_have_dot != 0);
       if (__pyx_t_6) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":655
+        /* "pandas/_libs/tslibs/timedeltas.pyx":650
  *             have_value = 1
  *             if have_dot:
  *                 if p == 3 and dec_unit != 'ns':             # <<<<<<<<<<<<<<
@@ -10806,31 +10863,31 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
           __pyx_t_6 = __pyx_t_8;
           goto __pyx_L10_bool_binop_done;
         }
-        __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_dec_unit, __pyx_n_u_ns, Py_NE)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 655, __pyx_L1_error)
+        __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_dec_unit, __pyx_n_u_ns, Py_NE)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 650, __pyx_L1_error)
         __pyx_t_6 = __pyx_t_8;
         __pyx_L10_bool_binop_done:;
         if (__pyx_t_6) {
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":656
+          /* "pandas/_libs/tslibs/timedeltas.pyx":651
  *             if have_dot:
  *                 if p == 3 and dec_unit != 'ns':
  *                     unit.append(dec_unit)             # <<<<<<<<<<<<<<
  *                     if dec_unit == 'ms':
  *                         dec_unit = 'us'
  */
-          __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_unit, __pyx_v_dec_unit); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 656, __pyx_L1_error)
+          __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_unit, __pyx_v_dec_unit); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 651, __pyx_L1_error)
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":657
+          /* "pandas/_libs/tslibs/timedeltas.pyx":652
  *                 if p == 3 and dec_unit != 'ns':
  *                     unit.append(dec_unit)
  *                     if dec_unit == 'ms':             # <<<<<<<<<<<<<<
  *                         dec_unit = 'us'
  *                     elif dec_unit == 'us':
  */
-          __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_dec_unit, __pyx_n_u_ms, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 657, __pyx_L1_error)
+          __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_dec_unit, __pyx_n_u_ms, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 652, __pyx_L1_error)
           if (__pyx_t_6) {
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":658
+            /* "pandas/_libs/tslibs/timedeltas.pyx":653
  *                     unit.append(dec_unit)
  *                     if dec_unit == 'ms':
  *                         dec_unit = 'us'             # <<<<<<<<<<<<<<
@@ -10840,7 +10897,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
             __Pyx_INCREF(__pyx_n_u_us);
             __Pyx_DECREF_SET(__pyx_v_dec_unit, __pyx_n_u_us);
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":657
+            /* "pandas/_libs/tslibs/timedeltas.pyx":652
  *                 if p == 3 and dec_unit != 'ns':
  *                     unit.append(dec_unit)
  *                     if dec_unit == 'ms':             # <<<<<<<<<<<<<<
@@ -10850,17 +10907,17 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
             goto __pyx_L12;
           }
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":659
+          /* "pandas/_libs/tslibs/timedeltas.pyx":654
  *                     if dec_unit == 'ms':
  *                         dec_unit = 'us'
  *                     elif dec_unit == 'us':             # <<<<<<<<<<<<<<
  *                         dec_unit = 'ns'
  *                     p = 0
  */
-          __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_dec_unit, __pyx_n_u_us, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 659, __pyx_L1_error)
+          __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_dec_unit, __pyx_n_u_us, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 654, __pyx_L1_error)
           if (__pyx_t_6) {
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":660
+            /* "pandas/_libs/tslibs/timedeltas.pyx":655
  *                         dec_unit = 'us'
  *                     elif dec_unit == 'us':
  *                         dec_unit = 'ns'             # <<<<<<<<<<<<<<
@@ -10870,7 +10927,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
             __Pyx_INCREF(__pyx_n_u_ns);
             __Pyx_DECREF_SET(__pyx_v_dec_unit, __pyx_n_u_ns);
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":659
+            /* "pandas/_libs/tslibs/timedeltas.pyx":654
  *                     if dec_unit == 'ms':
  *                         dec_unit = 'us'
  *                     elif dec_unit == 'us':             # <<<<<<<<<<<<<<
@@ -10880,7 +10937,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
           }
           __pyx_L12:;
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":661
+          /* "pandas/_libs/tslibs/timedeltas.pyx":656
  *                     elif dec_unit == 'us':
  *                         dec_unit = 'ns'
  *                     p = 0             # <<<<<<<<<<<<<<
@@ -10889,7 +10946,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
           __pyx_v_p = 0;
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":655
+          /* "pandas/_libs/tslibs/timedeltas.pyx":650
  *             have_value = 1
  *             if have_dot:
  *                 if p == 3 and dec_unit != 'ns':             # <<<<<<<<<<<<<<
@@ -10898,7 +10955,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
         }
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":662
+        /* "pandas/_libs/tslibs/timedeltas.pyx":657
  *                         dec_unit = 'ns'
  *                     p = 0
  *                 p += 1             # <<<<<<<<<<<<<<
@@ -10907,7 +10964,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
         __pyx_v_p = (__pyx_v_p + 1);
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":654
+        /* "pandas/_libs/tslibs/timedeltas.pyx":649
  * 
  *             have_value = 1
  *             if have_dot:             # <<<<<<<<<<<<<<
@@ -10916,27 +10973,27 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":664
+      /* "pandas/_libs/tslibs/timedeltas.pyx":659
  *                 p += 1
  * 
  *             if not len(unit):             # <<<<<<<<<<<<<<
  *                 number.append(c)
  *             else:
  */
-      __pyx_t_10 = PyList_GET_SIZE(__pyx_v_unit); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 664, __pyx_L1_error)
+      __pyx_t_10 = PyList_GET_SIZE(__pyx_v_unit); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 659, __pyx_L1_error)
       __pyx_t_6 = ((!(__pyx_t_10 != 0)) != 0);
       if (__pyx_t_6) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":665
+        /* "pandas/_libs/tslibs/timedeltas.pyx":660
  * 
  *             if not len(unit):
  *                 number.append(c)             # <<<<<<<<<<<<<<
  *             else:
  *                 # if in days, pop trailing T
  */
-        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_number, __pyx_v_c); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 665, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_number, __pyx_v_c); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 660, __pyx_L1_error)
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":664
+        /* "pandas/_libs/tslibs/timedeltas.pyx":659
  *                 p += 1
  * 
  *             if not len(unit):             # <<<<<<<<<<<<<<
@@ -10946,7 +11003,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
         goto __pyx_L13;
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":668
+      /* "pandas/_libs/tslibs/timedeltas.pyx":663
  *             else:
  *                 # if in days, pop trailing T
  *                 if unit[-1] == 'T':             # <<<<<<<<<<<<<<
@@ -10954,24 +11011,24 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  *                 elif 'H' in unit or 'M' in unit:
  */
       /*else*/ {
-        __pyx_t_2 = __Pyx_GetItemInt_List(__pyx_v_unit, -1L, long, 1, __Pyx_PyInt_From_long, 1, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 668, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_GetItemInt_List(__pyx_v_unit, -1L, long, 1, __Pyx_PyInt_From_long, 1, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 663, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_t_2, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 668, __pyx_L1_error)
+        __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_t_2, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 663, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         if (__pyx_t_6) {
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":669
+          /* "pandas/_libs/tslibs/timedeltas.pyx":664
  *                 # if in days, pop trailing T
  *                 if unit[-1] == 'T':
  *                     unit.pop()             # <<<<<<<<<<<<<<
  *                 elif 'H' in unit or 'M' in unit:
  *                     if len(number) > 2:
  */
-          __pyx_t_2 = __Pyx_PyList_Pop(__pyx_v_unit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 669, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyList_Pop(__pyx_v_unit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 664, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":668
+          /* "pandas/_libs/tslibs/timedeltas.pyx":663
  *             else:
  *                 # if in days, pop trailing T
  *                 if unit[-1] == 'T':             # <<<<<<<<<<<<<<
@@ -10981,51 +11038,51 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
           goto __pyx_L14;
         }
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":670
+        /* "pandas/_libs/tslibs/timedeltas.pyx":665
  *                 if unit[-1] == 'T':
  *                     unit.pop()
  *                 elif 'H' in unit or 'M' in unit:             # <<<<<<<<<<<<<<
  *                     if len(number) > 2:
  *                         raise ValueError(err_msg)
  */
-        __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_n_u_H, __pyx_v_unit, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 670, __pyx_L1_error)
+        __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_n_u_H, __pyx_v_unit, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 665, __pyx_L1_error)
         __pyx_t_11 = (__pyx_t_8 != 0);
         if (!__pyx_t_11) {
         } else {
           __pyx_t_6 = __pyx_t_11;
           goto __pyx_L15_bool_binop_done;
         }
-        __pyx_t_11 = (__Pyx_PySequence_ContainsTF(__pyx_n_u_M, __pyx_v_unit, Py_EQ)); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 670, __pyx_L1_error)
+        __pyx_t_11 = (__Pyx_PySequence_ContainsTF(__pyx_n_u_M, __pyx_v_unit, Py_EQ)); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 665, __pyx_L1_error)
         __pyx_t_8 = (__pyx_t_11 != 0);
         __pyx_t_6 = __pyx_t_8;
         __pyx_L15_bool_binop_done:;
         if (__pyx_t_6) {
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":671
+          /* "pandas/_libs/tslibs/timedeltas.pyx":666
  *                     unit.pop()
  *                 elif 'H' in unit or 'M' in unit:
  *                     if len(number) > 2:             # <<<<<<<<<<<<<<
  *                         raise ValueError(err_msg)
  *                 r = timedelta_from_spec(number, '0', unit)
  */
-          __pyx_t_10 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 671, __pyx_L1_error)
+          __pyx_t_10 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 666, __pyx_L1_error)
           __pyx_t_6 = ((__pyx_t_10 > 2) != 0);
           if (unlikely(__pyx_t_6)) {
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":672
+            /* "pandas/_libs/tslibs/timedeltas.pyx":667
  *                 elif 'H' in unit or 'M' in unit:
  *                     if len(number) > 2:
  *                         raise ValueError(err_msg)             # <<<<<<<<<<<<<<
  *                 r = timedelta_from_spec(number, '0', unit)
  *                 result += timedelta_as_neg(r, neg)
  */
-            __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_v_err_msg); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 672, __pyx_L1_error)
+            __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_v_err_msg); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 667, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_2);
             __Pyx_Raise(__pyx_t_2, 0, 0, 0);
             __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-            __PYX_ERR(0, 672, __pyx_L1_error)
+            __PYX_ERR(0, 667, __pyx_L1_error)
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":671
+            /* "pandas/_libs/tslibs/timedeltas.pyx":666
  *                     unit.pop()
  *                 elif 'H' in unit or 'M' in unit:
  *                     if len(number) > 2:             # <<<<<<<<<<<<<<
@@ -11034,7 +11091,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
           }
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":670
+          /* "pandas/_libs/tslibs/timedeltas.pyx":665
  *                 if unit[-1] == 'T':
  *                     unit.pop()
  *                 elif 'H' in unit or 'M' in unit:             # <<<<<<<<<<<<<<
@@ -11044,20 +11101,20 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
         }
         __pyx_L14:;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":673
+        /* "pandas/_libs/tslibs/timedeltas.pyx":668
  *                     if len(number) > 2:
  *                         raise ValueError(err_msg)
  *                 r = timedelta_from_spec(number, '0', unit)             # <<<<<<<<<<<<<<
  *                 result += timedelta_as_neg(r, neg)
  * 
  */
-        __pyx_t_2 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(__pyx_v_number, __pyx_kp_u_0, __pyx_v_unit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 673, __pyx_L1_error)
+        __pyx_t_2 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(__pyx_v_number, __pyx_kp_u_0, __pyx_v_unit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 668, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_12 = __Pyx_PyInt_As_npy_int64(__pyx_t_2); if (unlikely((__pyx_t_12 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 673, __pyx_L1_error)
+        __pyx_t_12 = __Pyx_PyInt_As_npy_int64(__pyx_t_2); if (unlikely((__pyx_t_12 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 668, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_v_r = __pyx_t_12;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":674
+        /* "pandas/_libs/tslibs/timedeltas.pyx":669
  *                         raise ValueError(err_msg)
  *                 r = timedelta_from_spec(number, '0', unit)
  *                 result += timedelta_as_neg(r, neg)             # <<<<<<<<<<<<<<
@@ -11066,7 +11123,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
         __pyx_v_result = (__pyx_v_result + __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_as_neg(__pyx_v_r, __pyx_v_neg));
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":676
+        /* "pandas/_libs/tslibs/timedeltas.pyx":671
  *                 result += timedelta_as_neg(r, neg)
  * 
  *                 neg = 0             # <<<<<<<<<<<<<<
@@ -11075,16 +11132,16 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
         __pyx_v_neg = 0;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":677
+        /* "pandas/_libs/tslibs/timedeltas.pyx":672
  * 
  *                 neg = 0
  *                 unit, number = [], [c]             # <<<<<<<<<<<<<<
  *         else:
  *             if c == 'P':
  */
-        __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 677, __pyx_L1_error)
+        __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 672, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 677, __pyx_L1_error)
+        __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 672, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_v_c);
         __Pyx_GIVEREF(__pyx_v_c);
@@ -11096,7 +11153,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       }
       __pyx_L13:;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":651
+      /* "pandas/_libs/tslibs/timedeltas.pyx":646
  *     for c in ts:
  *         # number (ascii codes)
  *         if ord(c) >= 48 and ord(c) <= 57:             # <<<<<<<<<<<<<<
@@ -11106,7 +11163,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       goto __pyx_L5;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":679
+    /* "pandas/_libs/tslibs/timedeltas.pyx":674
  *                 unit, number = [], [c]
  *         else:
  *             if c == 'P':             # <<<<<<<<<<<<<<
@@ -11114,24 +11171,24 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  *             elif c == '-':
  */
     /*else*/ {
-      __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_n_u_P, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 679, __pyx_L1_error)
+      __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_n_u_P, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 674, __pyx_L1_error)
       __pyx_t_8 = (__pyx_t_6 != 0);
       if (__pyx_t_8) {
         goto __pyx_L18;
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":681
+      /* "pandas/_libs/tslibs/timedeltas.pyx":676
  *             if c == 'P':
  *                 pass  # ignore leading character
  *             elif c == '-':             # <<<<<<<<<<<<<<
  *                 if neg or have_value:
  *                     raise ValueError(err_msg)
  */
-      __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_kp_u__5, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 681, __pyx_L1_error)
+      __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_kp_u__5, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 676, __pyx_L1_error)
       __pyx_t_6 = (__pyx_t_8 != 0);
       if (__pyx_t_6) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":682
+        /* "pandas/_libs/tslibs/timedeltas.pyx":677
  *                 pass  # ignore leading character
  *             elif c == '-':
  *                 if neg or have_value:             # <<<<<<<<<<<<<<
@@ -11149,20 +11206,20 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
         __pyx_L20_bool_binop_done:;
         if (unlikely(__pyx_t_6)) {
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":683
+          /* "pandas/_libs/tslibs/timedeltas.pyx":678
  *             elif c == '-':
  *                 if neg or have_value:
  *                     raise ValueError(err_msg)             # <<<<<<<<<<<<<<
  *                 else:
  *                     neg = 1
  */
-          __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_v_err_msg); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 683, __pyx_L1_error)
+          __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_v_err_msg); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 678, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_Raise(__pyx_t_3, 0, 0, 0);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __PYX_ERR(0, 683, __pyx_L1_error)
+          __PYX_ERR(0, 678, __pyx_L1_error)
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":682
+          /* "pandas/_libs/tslibs/timedeltas.pyx":677
  *                 pass  # ignore leading character
  *             elif c == '-':
  *                 if neg or have_value:             # <<<<<<<<<<<<<<
@@ -11171,7 +11228,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
         }
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":685
+        /* "pandas/_libs/tslibs/timedeltas.pyx":680
  *                     raise ValueError(err_msg)
  *                 else:
  *                     neg = 1             # <<<<<<<<<<<<<<
@@ -11182,7 +11239,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
           __pyx_v_neg = 1;
         }
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":681
+        /* "pandas/_libs/tslibs/timedeltas.pyx":676
  *             if c == 'P':
  *                 pass  # ignore leading character
  *             elif c == '-':             # <<<<<<<<<<<<<<
@@ -11192,7 +11249,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
         goto __pyx_L18;
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":686
+      /* "pandas/_libs/tslibs/timedeltas.pyx":681
  *                 else:
  *                     neg = 1
  *             elif c in ['D', 'T', 'H', 'M']:             # <<<<<<<<<<<<<<
@@ -11201,28 +11258,28 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
       __Pyx_INCREF(__pyx_v_c);
       __pyx_t_13 = __pyx_v_c;
-      __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_t_13, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 686, __pyx_L1_error)
+      __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_t_13, __pyx_n_u_D, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 681, __pyx_L1_error)
       __pyx_t_11 = (__pyx_t_8 != 0);
       if (!__pyx_t_11) {
       } else {
         __pyx_t_6 = __pyx_t_11;
         goto __pyx_L22_bool_binop_done;
       }
-      __pyx_t_11 = (__Pyx_PyUnicode_Equals(__pyx_t_13, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 686, __pyx_L1_error)
+      __pyx_t_11 = (__Pyx_PyUnicode_Equals(__pyx_t_13, __pyx_n_u_T, Py_EQ)); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 681, __pyx_L1_error)
       __pyx_t_8 = (__pyx_t_11 != 0);
       if (!__pyx_t_8) {
       } else {
         __pyx_t_6 = __pyx_t_8;
         goto __pyx_L22_bool_binop_done;
       }
-      __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_t_13, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 686, __pyx_L1_error)
+      __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_t_13, __pyx_n_u_H, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 681, __pyx_L1_error)
       __pyx_t_11 = (__pyx_t_8 != 0);
       if (!__pyx_t_11) {
       } else {
         __pyx_t_6 = __pyx_t_11;
         goto __pyx_L22_bool_binop_done;
       }
-      __pyx_t_11 = (__Pyx_PyUnicode_Equals(__pyx_t_13, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 686, __pyx_L1_error)
+      __pyx_t_11 = (__Pyx_PyUnicode_Equals(__pyx_t_13, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 681, __pyx_L1_error)
       __pyx_t_8 = (__pyx_t_11 != 0);
       __pyx_t_6 = __pyx_t_8;
       __pyx_L22_bool_binop_done:;
@@ -11230,16 +11287,16 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
       __pyx_t_8 = (__pyx_t_6 != 0);
       if (__pyx_t_8) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":687
+        /* "pandas/_libs/tslibs/timedeltas.pyx":682
  *                     neg = 1
  *             elif c in ['D', 'T', 'H', 'M']:
  *                 unit.append(c)             # <<<<<<<<<<<<<<
  *             elif c == '.':
  *                 # append any seconds
  */
-        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_unit, __pyx_v_c); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 687, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_unit, __pyx_v_c); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 682, __pyx_L1_error)
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":686
+        /* "pandas/_libs/tslibs/timedeltas.pyx":681
  *                 else:
  *                     neg = 1
  *             elif c in ['D', 'T', 'H', 'M']:             # <<<<<<<<<<<<<<
@@ -11249,42 +11306,42 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
         goto __pyx_L18;
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":688
+      /* "pandas/_libs/tslibs/timedeltas.pyx":683
  *             elif c in ['D', 'T', 'H', 'M']:
  *                 unit.append(c)
  *             elif c == '.':             # <<<<<<<<<<<<<<
  *                 # append any seconds
  *                 if len(number):
  */
-      __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_kp_u__9, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 688, __pyx_L1_error)
+      __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_kp_u__9, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 683, __pyx_L1_error)
       __pyx_t_6 = (__pyx_t_8 != 0);
       if (__pyx_t_6) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":690
+        /* "pandas/_libs/tslibs/timedeltas.pyx":685
  *             elif c == '.':
  *                 # append any seconds
  *                 if len(number):             # <<<<<<<<<<<<<<
  *                     r = timedelta_from_spec(number, '0', 'S')
  *                     result += timedelta_as_neg(r, neg)
  */
-        __pyx_t_10 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 690, __pyx_L1_error)
+        __pyx_t_10 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 685, __pyx_L1_error)
         __pyx_t_6 = (__pyx_t_10 != 0);
         if (__pyx_t_6) {
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":691
+          /* "pandas/_libs/tslibs/timedeltas.pyx":686
  *                 # append any seconds
  *                 if len(number):
  *                     r = timedelta_from_spec(number, '0', 'S')             # <<<<<<<<<<<<<<
  *                     result += timedelta_as_neg(r, neg)
  *                     unit, number = [], []
  */
-          __pyx_t_3 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(__pyx_v_number, __pyx_kp_u_0, __pyx_n_u_S); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 691, __pyx_L1_error)
+          __pyx_t_3 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(__pyx_v_number, __pyx_kp_u_0, __pyx_n_u_S); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 686, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_12 = __Pyx_PyInt_As_npy_int64(__pyx_t_3); if (unlikely((__pyx_t_12 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 691, __pyx_L1_error)
+          __pyx_t_12 = __Pyx_PyInt_As_npy_int64(__pyx_t_3); if (unlikely((__pyx_t_12 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 686, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           __pyx_v_r = __pyx_t_12;
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":692
+          /* "pandas/_libs/tslibs/timedeltas.pyx":687
  *                 if len(number):
  *                     r = timedelta_from_spec(number, '0', 'S')
  *                     result += timedelta_as_neg(r, neg)             # <<<<<<<<<<<<<<
@@ -11293,23 +11350,23 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
           __pyx_v_result = (__pyx_v_result + __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_as_neg(__pyx_v_r, __pyx_v_neg));
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":693
+          /* "pandas/_libs/tslibs/timedeltas.pyx":688
  *                     r = timedelta_from_spec(number, '0', 'S')
  *                     result += timedelta_as_neg(r, neg)
  *                     unit, number = [], []             # <<<<<<<<<<<<<<
  *                 have_dot = 1
  *             elif c == 'S':
  */
-          __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 693, __pyx_L1_error)
+          __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 688, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 693, __pyx_L1_error)
+          __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 688, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF_SET(__pyx_v_unit, ((PyObject*)__pyx_t_3));
           __pyx_t_3 = 0;
           __Pyx_DECREF_SET(__pyx_v_number, ((PyObject*)__pyx_t_2));
           __pyx_t_2 = 0;
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":690
+          /* "pandas/_libs/tslibs/timedeltas.pyx":685
  *             elif c == '.':
  *                 # append any seconds
  *                 if len(number):             # <<<<<<<<<<<<<<
@@ -11318,7 +11375,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
         }
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":694
+        /* "pandas/_libs/tslibs/timedeltas.pyx":689
  *                     result += timedelta_as_neg(r, neg)
  *                     unit, number = [], []
  *                 have_dot = 1             # <<<<<<<<<<<<<<
@@ -11327,7 +11384,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
         __pyx_v_have_dot = 1;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":688
+        /* "pandas/_libs/tslibs/timedeltas.pyx":683
  *             elif c in ['D', 'T', 'H', 'M']:
  *                 unit.append(c)
  *             elif c == '.':             # <<<<<<<<<<<<<<
@@ -11337,18 +11394,18 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
         goto __pyx_L18;
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":695
+      /* "pandas/_libs/tslibs/timedeltas.pyx":690
  *                     unit, number = [], []
  *                 have_dot = 1
  *             elif c == 'S':             # <<<<<<<<<<<<<<
  *                 if have_dot:  # ms, us, or ns
  *                     if not len(number) or p > 3:
  */
-      __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 695, __pyx_L1_error)
+      __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_c, __pyx_n_u_S, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 690, __pyx_L1_error)
       __pyx_t_8 = (__pyx_t_6 != 0);
       if (likely(__pyx_t_8)) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":696
+        /* "pandas/_libs/tslibs/timedeltas.pyx":691
  *                 have_dot = 1
  *             elif c == 'S':
  *                 if have_dot:  # ms, us, or ns             # <<<<<<<<<<<<<<
@@ -11358,14 +11415,14 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
         __pyx_t_8 = (__pyx_v_have_dot != 0);
         if (__pyx_t_8) {
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":697
+          /* "pandas/_libs/tslibs/timedeltas.pyx":692
  *             elif c == 'S':
  *                 if have_dot:  # ms, us, or ns
  *                     if not len(number) or p > 3:             # <<<<<<<<<<<<<<
  *                         raise ValueError(err_msg)
  *                     # pad to 3 digits as required
  */
-          __pyx_t_10 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 697, __pyx_L1_error)
+          __pyx_t_10 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 692, __pyx_L1_error)
           __pyx_t_6 = ((!(__pyx_t_10 != 0)) != 0);
           if (!__pyx_t_6) {
           } else {
@@ -11377,20 +11434,20 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
           __pyx_L29_bool_binop_done:;
           if (unlikely(__pyx_t_8)) {
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":698
+            /* "pandas/_libs/tslibs/timedeltas.pyx":693
  *                 if have_dot:  # ms, us, or ns
  *                     if not len(number) or p > 3:
  *                         raise ValueError(err_msg)             # <<<<<<<<<<<<<<
  *                     # pad to 3 digits as required
  *                     pad = 3 - p
  */
-            __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_v_err_msg); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 698, __pyx_L1_error)
+            __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_v_err_msg); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 693, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_2);
             __Pyx_Raise(__pyx_t_2, 0, 0, 0);
             __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-            __PYX_ERR(0, 698, __pyx_L1_error)
+            __PYX_ERR(0, 693, __pyx_L1_error)
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":697
+            /* "pandas/_libs/tslibs/timedeltas.pyx":692
  *             elif c == 'S':
  *                 if have_dot:  # ms, us, or ns
  *                     if not len(number) or p > 3:             # <<<<<<<<<<<<<<
@@ -11399,19 +11456,19 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
           }
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":700
+          /* "pandas/_libs/tslibs/timedeltas.pyx":695
  *                         raise ValueError(err_msg)
  *                     # pad to 3 digits as required
  *                     pad = 3 - p             # <<<<<<<<<<<<<<
  *                     while pad > 0:
  *                         number.append('0')
  */
-          __pyx_t_2 = __Pyx_PyInt_From_long((3 - __pyx_v_p)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 700, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyInt_From_long((3 - __pyx_v_p)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 695, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_XDECREF_SET(__pyx_v_pad, __pyx_t_2);
           __pyx_t_2 = 0;
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":701
+          /* "pandas/_libs/tslibs/timedeltas.pyx":696
  *                     # pad to 3 digits as required
  *                     pad = 3 - p
  *                     while pad > 0:             # <<<<<<<<<<<<<<
@@ -11419,47 +11476,47 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  *                         pad -= 1
  */
           while (1) {
-            __pyx_t_2 = PyObject_RichCompare(__pyx_v_pad, __pyx_int_0, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 701, __pyx_L1_error)
-            __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 701, __pyx_L1_error)
+            __pyx_t_2 = PyObject_RichCompare(__pyx_v_pad, __pyx_int_0, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 696, __pyx_L1_error)
+            __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 696, __pyx_L1_error)
             __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
             if (!__pyx_t_8) break;
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":702
+            /* "pandas/_libs/tslibs/timedeltas.pyx":697
  *                     pad = 3 - p
  *                     while pad > 0:
  *                         number.append('0')             # <<<<<<<<<<<<<<
  *                         pad -= 1
  * 
  */
-            __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_number, __pyx_kp_u_0); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 702, __pyx_L1_error)
+            __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_number, __pyx_kp_u_0); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 697, __pyx_L1_error)
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":703
+            /* "pandas/_libs/tslibs/timedeltas.pyx":698
  *                     while pad > 0:
  *                         number.append('0')
  *                         pad -= 1             # <<<<<<<<<<<<<<
  * 
  *                     r = timedelta_from_spec(number, '0', dec_unit)
  */
-            __pyx_t_2 = __Pyx_PyInt_SubtractObjC(__pyx_v_pad, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 703, __pyx_L1_error)
+            __pyx_t_2 = __Pyx_PyInt_SubtractObjC(__pyx_v_pad, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 698, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_2);
             __Pyx_DECREF_SET(__pyx_v_pad, __pyx_t_2);
             __pyx_t_2 = 0;
           }
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":705
+          /* "pandas/_libs/tslibs/timedeltas.pyx":700
  *                         pad -= 1
  * 
  *                     r = timedelta_from_spec(number, '0', dec_unit)             # <<<<<<<<<<<<<<
  *                     result += timedelta_as_neg(r, neg)
  *                 else:  # seconds
  */
-          __pyx_t_2 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(__pyx_v_number, __pyx_kp_u_0, __pyx_v_dec_unit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 705, __pyx_L1_error)
+          __pyx_t_2 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(__pyx_v_number, __pyx_kp_u_0, __pyx_v_dec_unit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 700, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
-          __pyx_t_12 = __Pyx_PyInt_As_npy_int64(__pyx_t_2); if (unlikely((__pyx_t_12 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 705, __pyx_L1_error)
+          __pyx_t_12 = __Pyx_PyInt_As_npy_int64(__pyx_t_2); if (unlikely((__pyx_t_12 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 700, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __pyx_v_r = __pyx_t_12;
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":706
+          /* "pandas/_libs/tslibs/timedeltas.pyx":701
  * 
  *                     r = timedelta_from_spec(number, '0', dec_unit)
  *                     result += timedelta_as_neg(r, neg)             # <<<<<<<<<<<<<<
@@ -11468,7 +11525,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
           __pyx_v_result = (__pyx_v_result + __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_as_neg(__pyx_v_r, __pyx_v_neg));
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":696
+          /* "pandas/_libs/tslibs/timedeltas.pyx":691
  *                 have_dot = 1
  *             elif c == 'S':
  *                 if have_dot:  # ms, us, or ns             # <<<<<<<<<<<<<<
@@ -11478,7 +11535,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
           goto __pyx_L27;
         }
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":708
+        /* "pandas/_libs/tslibs/timedeltas.pyx":703
  *                     result += timedelta_as_neg(r, neg)
  *                 else:  # seconds
  *                     if len(number) <= 2:             # <<<<<<<<<<<<<<
@@ -11486,24 +11543,24 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  *                         result += timedelta_as_neg(r, neg)
  */
         /*else*/ {
-          __pyx_t_10 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 708, __pyx_L1_error)
+          __pyx_t_10 = PyList_GET_SIZE(__pyx_v_number); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 703, __pyx_L1_error)
           __pyx_t_8 = ((__pyx_t_10 <= 2) != 0);
           if (likely(__pyx_t_8)) {
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":709
+            /* "pandas/_libs/tslibs/timedeltas.pyx":704
  *                 else:  # seconds
  *                     if len(number) <= 2:
  *                         r = timedelta_from_spec(number, '0', 'S')             # <<<<<<<<<<<<<<
  *                         result += timedelta_as_neg(r, neg)
  *                     else:
  */
-            __pyx_t_2 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(__pyx_v_number, __pyx_kp_u_0, __pyx_n_u_S); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 709, __pyx_L1_error)
+            __pyx_t_2 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_from_spec(__pyx_v_number, __pyx_kp_u_0, __pyx_n_u_S); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 704, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_2);
-            __pyx_t_12 = __Pyx_PyInt_As_npy_int64(__pyx_t_2); if (unlikely((__pyx_t_12 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 709, __pyx_L1_error)
+            __pyx_t_12 = __Pyx_PyInt_As_npy_int64(__pyx_t_2); if (unlikely((__pyx_t_12 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 704, __pyx_L1_error)
             __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
             __pyx_v_r = __pyx_t_12;
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":710
+            /* "pandas/_libs/tslibs/timedeltas.pyx":705
  *                     if len(number) <= 2:
  *                         r = timedelta_from_spec(number, '0', 'S')
  *                         result += timedelta_as_neg(r, neg)             # <<<<<<<<<<<<<<
@@ -11512,7 +11569,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
             __pyx_v_result = (__pyx_v_result + __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_timedelta_as_neg(__pyx_v_r, __pyx_v_neg));
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":708
+            /* "pandas/_libs/tslibs/timedeltas.pyx":703
  *                     result += timedelta_as_neg(r, neg)
  *                 else:  # seconds
  *                     if len(number) <= 2:             # <<<<<<<<<<<<<<
@@ -11522,7 +11579,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
             goto __pyx_L33;
           }
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":712
+          /* "pandas/_libs/tslibs/timedeltas.pyx":707
  *                         result += timedelta_as_neg(r, neg)
  *                     else:
  *                         raise ValueError(err_msg)             # <<<<<<<<<<<<<<
@@ -11530,17 +11587,17 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  *                 raise ValueError(err_msg)
  */
           /*else*/ {
-            __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_v_err_msg); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 712, __pyx_L1_error)
+            __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_v_err_msg); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 707, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_2);
             __Pyx_Raise(__pyx_t_2, 0, 0, 0);
             __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-            __PYX_ERR(0, 712, __pyx_L1_error)
+            __PYX_ERR(0, 707, __pyx_L1_error)
           }
           __pyx_L33:;
         }
         __pyx_L27:;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":695
+        /* "pandas/_libs/tslibs/timedeltas.pyx":690
  *                     unit, number = [], []
  *                 have_dot = 1
  *             elif c == 'S':             # <<<<<<<<<<<<<<
@@ -11550,7 +11607,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
         goto __pyx_L18;
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":714
+      /* "pandas/_libs/tslibs/timedeltas.pyx":709
  *                         raise ValueError(err_msg)
  *             else:
  *                 raise ValueError(err_msg)             # <<<<<<<<<<<<<<
@@ -11558,17 +11615,17 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  *     if not have_value:
  */
       /*else*/ {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_v_err_msg); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 714, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_v_err_msg); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 709, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_Raise(__pyx_t_2, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __PYX_ERR(0, 714, __pyx_L1_error)
+        __PYX_ERR(0, 709, __pyx_L1_error)
       }
       __pyx_L18:;
     }
     __pyx_L5:;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":649
+    /* "pandas/_libs/tslibs/timedeltas.pyx":644
  *     err_msg = "Invalid ISO 8601 Duration format - {}".format(ts)
  * 
  *     for c in ts:             # <<<<<<<<<<<<<<
@@ -11578,7 +11635,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":716
+  /* "pandas/_libs/tslibs/timedeltas.pyx":711
  *                 raise ValueError(err_msg)
  * 
  *     if not have_value:             # <<<<<<<<<<<<<<
@@ -11588,20 +11645,20 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   __pyx_t_8 = ((!(__pyx_v_have_value != 0)) != 0);
   if (unlikely(__pyx_t_8)) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":718
+    /* "pandas/_libs/tslibs/timedeltas.pyx":713
  *     if not have_value:
  *         # Received string only - never parsed any values
  *         raise ValueError(err_msg)             # <<<<<<<<<<<<<<
  * 
  *     return result
  */
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_v_err_msg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 718, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_v_err_msg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 713, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 718, __pyx_L1_error)
+    __PYX_ERR(0, 713, __pyx_L1_error)
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":716
+    /* "pandas/_libs/tslibs/timedeltas.pyx":711
  *                 raise ValueError(err_msg)
  * 
  *     if not have_value:             # <<<<<<<<<<<<<<
@@ -11610,7 +11667,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":720
+  /* "pandas/_libs/tslibs/timedeltas.pyx":715
  *         raise ValueError(err_msg)
  * 
  *     return result             # <<<<<<<<<<<<<<
@@ -11620,7 +11677,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":618
+  /* "pandas/_libs/tslibs/timedeltas.pyx":613
  * # Timedelta Construction
  * 
  * cdef inline int64_t parse_iso_format_string(object ts) except? -1:             # <<<<<<<<<<<<<<
@@ -11647,7 +11704,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_10tim
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":723
+/* "pandas/_libs/tslibs/timedeltas.pyx":718
  * 
  * 
  * cdef _to_py_int_float(v):             # <<<<<<<<<<<<<<
@@ -11667,7 +11724,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__to_py_int_float(Py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_to_py_int_float", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":726
+  /* "pandas/_libs/tslibs/timedeltas.pyx":721
  *     # Note: This used to be defined inside Timedelta.__new__
  *     # but cython will not allow `cdef` functions to be defined dynamically.
  *     if is_integer_object(v):             # <<<<<<<<<<<<<<
@@ -11677,7 +11734,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__to_py_int_float(Py
   __pyx_t_1 = (__pyx_f_6pandas_5_libs_6tslibs_4util_is_integer_object(__pyx_v_v) != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":727
+    /* "pandas/_libs/tslibs/timedeltas.pyx":722
  *     # but cython will not allow `cdef` functions to be defined dynamically.
  *     if is_integer_object(v):
  *         return int(v)             # <<<<<<<<<<<<<<
@@ -11685,13 +11742,13 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__to_py_int_float(Py
  *         return float(v)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = __Pyx_PyNumber_Int(__pyx_v_v); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 727, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyNumber_Int(__pyx_v_v); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 722, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_r = __pyx_t_2;
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":726
+    /* "pandas/_libs/tslibs/timedeltas.pyx":721
  *     # Note: This used to be defined inside Timedelta.__new__
  *     # but cython will not allow `cdef` functions to be defined dynamically.
  *     if is_integer_object(v):             # <<<<<<<<<<<<<<
@@ -11700,7 +11757,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__to_py_int_float(Py
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":728
+  /* "pandas/_libs/tslibs/timedeltas.pyx":723
  *     if is_integer_object(v):
  *         return int(v)
  *     elif is_float_object(v):             # <<<<<<<<<<<<<<
@@ -11710,7 +11767,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__to_py_int_float(Py
   __pyx_t_1 = (__pyx_f_6pandas_5_libs_6tslibs_4util_is_float_object(__pyx_v_v) != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":729
+    /* "pandas/_libs/tslibs/timedeltas.pyx":724
  *         return int(v)
  *     elif is_float_object(v):
  *         return float(v)             # <<<<<<<<<<<<<<
@@ -11718,13 +11775,13 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__to_py_int_float(Py
  *                     "float.".format(typ=type(v)))
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = __Pyx_PyNumber_Float(__pyx_v_v); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 729, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyNumber_Float(__pyx_v_v); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 724, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_r = __pyx_t_2;
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":728
+    /* "pandas/_libs/tslibs/timedeltas.pyx":723
  *     if is_integer_object(v):
  *         return int(v)
  *     elif is_float_object(v):             # <<<<<<<<<<<<<<
@@ -11733,38 +11790,38 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__to_py_int_float(Py
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":731
+  /* "pandas/_libs/tslibs/timedeltas.pyx":726
  *         return float(v)
  *     raise TypeError("Invalid type {typ}. Must be int or "
  *                     "float.".format(typ=type(v)))             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Invalid_type_typ_Must_be_int_or, __pyx_n_s_format); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 731, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Invalid_type_typ_Must_be_int_or, __pyx_n_s_format); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 726, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 731, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 726, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_typ_2, ((PyObject *)Py_TYPE(__pyx_v_v))) < 0) __PYX_ERR(0, 731, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 731, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_typ_2, ((PyObject *)Py_TYPE(__pyx_v_v))) < 0) __PYX_ERR(0, 726, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 726, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":730
+  /* "pandas/_libs/tslibs/timedeltas.pyx":725
  *     elif is_float_object(v):
  *         return float(v)
  *     raise TypeError("Invalid type {typ}. Must be int or "             # <<<<<<<<<<<<<<
  *                     "float.".format(typ=type(v)))
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 730, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 725, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_Raise(__pyx_t_3, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __PYX_ERR(0, 730, __pyx_L1_error)
+  __PYX_ERR(0, 725, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":723
+  /* "pandas/_libs/tslibs/timedeltas.pyx":718
  * 
  * 
  * cdef _to_py_int_float(v):             # <<<<<<<<<<<<<<
@@ -11785,7 +11842,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__to_py_int_float(Py
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":748
+/* "pandas/_libs/tslibs/timedeltas.pyx":743
  *     __array_priority__ = 100
  * 
  *     def __hash__(_Timedelta self):             # <<<<<<<<<<<<<<
@@ -11819,7 +11876,7 @@ static Py_hash_t __pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta___has
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__hash__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":749
+  /* "pandas/_libs/tslibs/timedeltas.pyx":744
  * 
  *     def __hash__(_Timedelta self):
  *         if self._has_ns():             # <<<<<<<<<<<<<<
@@ -11829,21 +11886,21 @@ static Py_hash_t __pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta___has
   __pyx_t_1 = (((struct __pyx_vtabstruct_6pandas_5_libs_6tslibs_10timedeltas__Timedelta *)__pyx_v_self->__pyx_vtab)->_has_ns(__pyx_v_self, 0) != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":750
+    /* "pandas/_libs/tslibs/timedeltas.pyx":745
  *     def __hash__(_Timedelta self):
  *         if self._has_ns():
  *             return hash(self.value)             # <<<<<<<<<<<<<<
  *         else:
  *             return timedelta.__hash__(self)
  */
-    __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 750, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 745, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyObject_Hash(__pyx_t_2); if (unlikely(__pyx_t_3 == ((Py_hash_t)-1))) __PYX_ERR(0, 750, __pyx_L1_error)
+    __pyx_t_3 = PyObject_Hash(__pyx_t_2); if (unlikely(__pyx_t_3 == ((Py_hash_t)-1))) __PYX_ERR(0, 745, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_3;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":749
+    /* "pandas/_libs/tslibs/timedeltas.pyx":744
  * 
  *     def __hash__(_Timedelta self):
  *         if self._has_ns():             # <<<<<<<<<<<<<<
@@ -11852,7 +11909,7 @@ static Py_hash_t __pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta___has
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":752
+  /* "pandas/_libs/tslibs/timedeltas.pyx":747
  *             return hash(self.value)
  *         else:
  *             return timedelta.__hash__(self)             # <<<<<<<<<<<<<<
@@ -11860,7 +11917,7 @@ static Py_hash_t __pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta___has
  *     def __richcmp__(_Timedelta self, object other, int op):
  */
   /*else*/ {
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_7cpython_8datetime_timedelta), __pyx_n_s_hash); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 752, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_7cpython_8datetime_timedelta), __pyx_n_s_hash); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 747, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -11874,16 +11931,16 @@ static Py_hash_t __pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta___has
     }
     __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, ((PyObject *)__pyx_v_self)) : __Pyx_PyObject_CallOneArg(__pyx_t_4, ((PyObject *)__pyx_v_self));
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 752, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 747, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_3 = __Pyx_PyInt_AsHash_t(__pyx_t_2); if (unlikely((__pyx_t_3 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 752, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_AsHash_t(__pyx_t_2); if (unlikely((__pyx_t_3 == (Py_hash_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 747, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_3;
     goto __pyx_L0;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":748
+  /* "pandas/_libs/tslibs/timedeltas.pyx":743
  *     __array_priority__ = 100
  * 
  *     def __hash__(_Timedelta self):             # <<<<<<<<<<<<<<
@@ -11904,7 +11961,7 @@ static Py_hash_t __pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta___has
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":754
+/* "pandas/_libs/tslibs/timedeltas.pyx":749
  *             return timedelta.__hash__(self)
  * 
  *     def __richcmp__(_Timedelta self, object other, int op):             # <<<<<<<<<<<<<<
@@ -11944,7 +12001,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
   __Pyx_RefNannySetupContext("__richcmp__", 0);
   __Pyx_INCREF(__pyx_v_other);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":759
+  /* "pandas/_libs/tslibs/timedeltas.pyx":754
  *             int ndim
  * 
  *         if isinstance(other, _Timedelta):             # <<<<<<<<<<<<<<
@@ -11955,20 +12012,20 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":760
+    /* "pandas/_libs/tslibs/timedeltas.pyx":755
  * 
  *         if isinstance(other, _Timedelta):
  *             ots = other             # <<<<<<<<<<<<<<
  *         elif PyDelta_Check(other) or isinstance(other, Tick):
  *             ots = Timedelta(other)
  */
-    if (!(likely(((__pyx_v_other) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_other, __pyx_ptype_6pandas_5_libs_6tslibs_10timedeltas__Timedelta))))) __PYX_ERR(0, 760, __pyx_L1_error)
+    if (!(likely(((__pyx_v_other) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_other, __pyx_ptype_6pandas_5_libs_6tslibs_10timedeltas__Timedelta))))) __PYX_ERR(0, 755, __pyx_L1_error)
     __pyx_t_3 = __pyx_v_other;
     __Pyx_INCREF(__pyx_t_3);
     __pyx_v_ots = ((struct __pyx_obj_6pandas_5_libs_6tslibs_10timedeltas__Timedelta *)__pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":759
+    /* "pandas/_libs/tslibs/timedeltas.pyx":754
  *             int ndim
  * 
  *         if isinstance(other, _Timedelta):             # <<<<<<<<<<<<<<
@@ -11978,7 +12035,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":761
+  /* "pandas/_libs/tslibs/timedeltas.pyx":756
  *         if isinstance(other, _Timedelta):
  *             ots = other
  *         elif PyDelta_Check(other) or isinstance(other, Tick):             # <<<<<<<<<<<<<<
@@ -11991,23 +12048,23 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
     __pyx_t_2 = __pyx_t_1;
     goto __pyx_L4_bool_binop_done;
   }
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Tick); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 761, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Tick); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 756, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyObject_IsInstance(__pyx_v_other, __pyx_t_3); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 761, __pyx_L1_error)
+  __pyx_t_1 = PyObject_IsInstance(__pyx_v_other, __pyx_t_3); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 756, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_4 = (__pyx_t_1 != 0);
   __pyx_t_2 = __pyx_t_4;
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":762
+    /* "pandas/_libs/tslibs/timedeltas.pyx":757
  *             ots = other
  *         elif PyDelta_Check(other) or isinstance(other, Tick):
  *             ots = Timedelta(other)             # <<<<<<<<<<<<<<
  *         else:
  *             ndim = getattr(other, "ndim", -1)
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 762, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 757, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_5))) {
@@ -12021,14 +12078,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
     }
     __pyx_t_3 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_6, __pyx_v_other) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_other);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 762, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 757, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_6pandas_5_libs_6tslibs_10timedeltas__Timedelta))))) __PYX_ERR(0, 762, __pyx_L1_error)
+    if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_6pandas_5_libs_6tslibs_10timedeltas__Timedelta))))) __PYX_ERR(0, 757, __pyx_L1_error)
     __pyx_v_ots = ((struct __pyx_obj_6pandas_5_libs_6tslibs_10timedeltas__Timedelta *)__pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":761
+    /* "pandas/_libs/tslibs/timedeltas.pyx":756
  *         if isinstance(other, _Timedelta):
  *             ots = other
  *         elif PyDelta_Check(other) or isinstance(other, Tick):             # <<<<<<<<<<<<<<
@@ -12038,7 +12095,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":764
+  /* "pandas/_libs/tslibs/timedeltas.pyx":759
  *             ots = Timedelta(other)
  *         else:
  *             ndim = getattr(other, "ndim", -1)             # <<<<<<<<<<<<<<
@@ -12046,13 +12103,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
  *             if ndim != -1:
  */
   /*else*/ {
-    __pyx_t_3 = __Pyx_GetAttr3(__pyx_v_other, __pyx_n_u_ndim, __pyx_int_neg_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 764, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetAttr3(__pyx_v_other, __pyx_n_u_ndim, __pyx_int_neg_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 759, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 764, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 759, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_ndim = __pyx_t_7;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":766
+    /* "pandas/_libs/tslibs/timedeltas.pyx":761
  *             ndim = getattr(other, "ndim", -1)
  * 
  *             if ndim != -1:             # <<<<<<<<<<<<<<
@@ -12062,7 +12119,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
     __pyx_t_2 = ((__pyx_v_ndim != -1L) != 0);
     if (__pyx_t_2) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":767
+      /* "pandas/_libs/tslibs/timedeltas.pyx":762
  * 
  *             if ndim != -1:
  *                 if ndim == 0:             # <<<<<<<<<<<<<<
@@ -12072,7 +12129,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
       __pyx_t_2 = ((__pyx_v_ndim == 0) != 0);
       if (__pyx_t_2) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":768
+        /* "pandas/_libs/tslibs/timedeltas.pyx":763
  *             if ndim != -1:
  *                 if ndim == 0:
  *                     if is_timedelta64_object(other):             # <<<<<<<<<<<<<<
@@ -12082,14 +12139,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
         __pyx_t_2 = (__pyx_f_6pandas_5_libs_6tslibs_4util_is_timedelta64_object(__pyx_v_other) != 0);
         if (__pyx_t_2) {
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":769
+          /* "pandas/_libs/tslibs/timedeltas.pyx":764
  *                 if ndim == 0:
  *                     if is_timedelta64_object(other):
  *                         other = Timedelta(other)             # <<<<<<<<<<<<<<
  *                     else:
  *                         if op == Py_EQ:
  */
-          __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 769, __pyx_L1_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 764, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __pyx_t_6 = NULL;
           if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_5))) {
@@ -12103,13 +12160,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
           }
           __pyx_t_3 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_6, __pyx_v_other) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_other);
           __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-          if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 769, __pyx_L1_error)
+          if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 764, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_DECREF_SET(__pyx_v_other, __pyx_t_3);
           __pyx_t_3 = 0;
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":768
+          /* "pandas/_libs/tslibs/timedeltas.pyx":763
  *             if ndim != -1:
  *                 if ndim == 0:
  *                     if is_timedelta64_object(other):             # <<<<<<<<<<<<<<
@@ -12119,7 +12176,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
           goto __pyx_L8;
         }
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":771
+        /* "pandas/_libs/tslibs/timedeltas.pyx":766
  *                         other = Timedelta(other)
  *                     else:
  *                         if op == Py_EQ:             # <<<<<<<<<<<<<<
@@ -12130,7 +12187,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
           __pyx_t_2 = ((__pyx_v_op == Py_EQ) != 0);
           if (__pyx_t_2) {
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":772
+            /* "pandas/_libs/tslibs/timedeltas.pyx":767
  *                     else:
  *                         if op == Py_EQ:
  *                             return False             # <<<<<<<<<<<<<<
@@ -12142,7 +12199,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
             __pyx_r = Py_False;
             goto __pyx_L0;
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":771
+            /* "pandas/_libs/tslibs/timedeltas.pyx":766
  *                         other = Timedelta(other)
  *                     else:
  *                         if op == Py_EQ:             # <<<<<<<<<<<<<<
@@ -12151,7 +12208,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
  */
           }
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":773
+          /* "pandas/_libs/tslibs/timedeltas.pyx":768
  *                         if op == Py_EQ:
  *                             return False
  *                         elif op == Py_NE:             # <<<<<<<<<<<<<<
@@ -12161,7 +12218,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
           __pyx_t_2 = ((__pyx_v_op == Py_NE) != 0);
           if (__pyx_t_2) {
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":774
+            /* "pandas/_libs/tslibs/timedeltas.pyx":769
  *                             return False
  *                         elif op == Py_NE:
  *                             return True             # <<<<<<<<<<<<<<
@@ -12173,7 +12230,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
             __pyx_r = Py_True;
             goto __pyx_L0;
 
-            /* "pandas/_libs/tslibs/timedeltas.pyx":773
+            /* "pandas/_libs/tslibs/timedeltas.pyx":768
  *                         if op == Py_EQ:
  *                             return False
  *                         elif op == Py_NE:             # <<<<<<<<<<<<<<
@@ -12182,63 +12239,63 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
  */
           }
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":778
+          /* "pandas/_libs/tslibs/timedeltas.pyx":773
  *                         raise TypeError('Cannot compare type {cls} with '
  *                                         'type {other}'
  *                                         .format(cls=type(self).__name__,             # <<<<<<<<<<<<<<
  *                                                 other=type(other).__name__))
  *                 if util.is_array(other):
  */
-          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Cannot_compare_type_cls_with_typ, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 778, __pyx_L1_error)
+          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Cannot_compare_type_cls_with_typ, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 773, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_5 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 778, __pyx_L1_error)
+          __pyx_t_5 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 773, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 778, __pyx_L1_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 773, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
-          if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_cls, __pyx_t_6) < 0) __PYX_ERR(0, 778, __pyx_L1_error)
+          if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_cls, __pyx_t_6) < 0) __PYX_ERR(0, 773, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":779
+          /* "pandas/_libs/tslibs/timedeltas.pyx":774
  *                                         'type {other}'
  *                                         .format(cls=type(self).__name__,
  *                                                 other=type(other).__name__))             # <<<<<<<<<<<<<<
  *                 if util.is_array(other):
  *                     return PyObject_RichCompare(np.array([self]), other, op)
  */
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(__pyx_v_other)), __pyx_n_s_name_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 779, __pyx_L1_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(__pyx_v_other)), __pyx_n_s_name_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 774, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
-          if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_other, __pyx_t_6) < 0) __PYX_ERR(0, 778, __pyx_L1_error)
+          if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_other, __pyx_t_6) < 0) __PYX_ERR(0, 773, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":778
+          /* "pandas/_libs/tslibs/timedeltas.pyx":773
  *                         raise TypeError('Cannot compare type {cls} with '
  *                                         'type {other}'
  *                                         .format(cls=type(self).__name__,             # <<<<<<<<<<<<<<
  *                                                 other=type(other).__name__))
  *                 if util.is_array(other):
  */
-          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 778, __pyx_L1_error)
+          __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 773, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":776
+          /* "pandas/_libs/tslibs/timedeltas.pyx":771
  *                             return True
  *                         # only allow ==, != ops
  *                         raise TypeError('Cannot compare type {cls} with '             # <<<<<<<<<<<<<<
  *                                         'type {other}'
  *                                         .format(cls=type(self).__name__,
  */
-          __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 776, __pyx_L1_error)
+          __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 771, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_Raise(__pyx_t_5, 0, 0, 0);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-          __PYX_ERR(0, 776, __pyx_L1_error)
+          __PYX_ERR(0, 771, __pyx_L1_error)
         }
         __pyx_L8:;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":767
+        /* "pandas/_libs/tslibs/timedeltas.pyx":762
  * 
  *             if ndim != -1:
  *                 if ndim == 0:             # <<<<<<<<<<<<<<
@@ -12247,7 +12304,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
  */
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":780
+      /* "pandas/_libs/tslibs/timedeltas.pyx":775
  *                                         .format(cls=type(self).__name__,
  *                                                 other=type(other).__name__))
  *                 if util.is_array(other):             # <<<<<<<<<<<<<<
@@ -12257,7 +12314,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
       __pyx_t_2 = (__pyx_f_6pandas_5_libs_6tslibs_4util_is_array(__pyx_v_other) != 0);
       if (__pyx_t_2) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":781
+        /* "pandas/_libs/tslibs/timedeltas.pyx":776
  *                                                 other=type(other).__name__))
  *                 if util.is_array(other):
  *                     return PyObject_RichCompare(np.array([self]), other, op)             # <<<<<<<<<<<<<<
@@ -12265,12 +12322,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
  *             else:
  */
         __Pyx_XDECREF(__pyx_r);
-        __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 781, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 776, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_array); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 781, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_array); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 776, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        __pyx_t_6 = PyList_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 781, __pyx_L1_error)
+        __pyx_t_6 = PyList_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 776, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_INCREF(((PyObject *)__pyx_v_self));
         __Pyx_GIVEREF(((PyObject *)__pyx_v_self));
@@ -12288,17 +12345,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
         __pyx_t_5 = (__pyx_t_8) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_8, __pyx_t_6) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_6);
         __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 781, __pyx_L1_error)
+        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 776, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_3 = PyObject_RichCompare(__pyx_t_5, __pyx_v_other, __pyx_v_op); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 781, __pyx_L1_error)
+        __pyx_t_3 = PyObject_RichCompare(__pyx_t_5, __pyx_v_other, __pyx_v_op); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 776, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __pyx_r = __pyx_t_3;
         __pyx_t_3 = 0;
         goto __pyx_L0;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":780
+        /* "pandas/_libs/tslibs/timedeltas.pyx":775
  *                                         .format(cls=type(self).__name__,
  *                                                 other=type(other).__name__))
  *                 if util.is_array(other):             # <<<<<<<<<<<<<<
@@ -12307,7 +12364,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
  */
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":782
+      /* "pandas/_libs/tslibs/timedeltas.pyx":777
  *                 if util.is_array(other):
  *                     return PyObject_RichCompare(np.array([self]), other, op)
  *                 return PyObject_RichCompare(other, self, reverse_ops[op])             # <<<<<<<<<<<<<<
@@ -12315,13 +12372,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
  *                 if other is NaT:
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = PyObject_RichCompare(__pyx_v_other, ((PyObject *)__pyx_v_self), (__pyx_v_6pandas_5_libs_6tslibs_11np_datetime_reverse_ops[__pyx_v_op])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 782, __pyx_L1_error)
+      __pyx_t_3 = PyObject_RichCompare(__pyx_v_other, ((PyObject *)__pyx_v_self), (__pyx_v_6pandas_5_libs_6tslibs_11np_datetime_reverse_ops[__pyx_v_op])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 777, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_r = __pyx_t_3;
       __pyx_t_3 = 0;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":766
+      /* "pandas/_libs/tslibs/timedeltas.pyx":761
  *             ndim = getattr(other, "ndim", -1)
  * 
  *             if ndim != -1:             # <<<<<<<<<<<<<<
@@ -12330,7 +12387,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":784
+    /* "pandas/_libs/tslibs/timedeltas.pyx":779
  *                 return PyObject_RichCompare(other, self, reverse_ops[op])
  *             else:
  *                 if other is NaT:             # <<<<<<<<<<<<<<
@@ -12342,7 +12399,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
       __pyx_t_4 = (__pyx_t_2 != 0);
       if (__pyx_t_4) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":785
+        /* "pandas/_libs/tslibs/timedeltas.pyx":780
  *             else:
  *                 if other is NaT:
  *                     return PyObject_RichCompare(other, self, reverse_ops[op])             # <<<<<<<<<<<<<<
@@ -12350,13 +12407,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
  *                     return False
  */
         __Pyx_XDECREF(__pyx_r);
-        __pyx_t_3 = PyObject_RichCompare(__pyx_v_other, ((PyObject *)__pyx_v_self), (__pyx_v_6pandas_5_libs_6tslibs_11np_datetime_reverse_ops[__pyx_v_op])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 785, __pyx_L1_error)
+        __pyx_t_3 = PyObject_RichCompare(__pyx_v_other, ((PyObject *)__pyx_v_self), (__pyx_v_6pandas_5_libs_6tslibs_11np_datetime_reverse_ops[__pyx_v_op])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 780, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __pyx_r = __pyx_t_3;
         __pyx_t_3 = 0;
         goto __pyx_L0;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":784
+        /* "pandas/_libs/tslibs/timedeltas.pyx":779
  *                 return PyObject_RichCompare(other, self, reverse_ops[op])
  *             else:
  *                 if other is NaT:             # <<<<<<<<<<<<<<
@@ -12365,7 +12422,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
  */
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":786
+      /* "pandas/_libs/tslibs/timedeltas.pyx":781
  *                 if other is NaT:
  *                     return PyObject_RichCompare(other, self, reverse_ops[op])
  *                 elif op == Py_EQ:             # <<<<<<<<<<<<<<
@@ -12375,7 +12432,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
       __pyx_t_4 = ((__pyx_v_op == Py_EQ) != 0);
       if (__pyx_t_4) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":787
+        /* "pandas/_libs/tslibs/timedeltas.pyx":782
  *                     return PyObject_RichCompare(other, self, reverse_ops[op])
  *                 elif op == Py_EQ:
  *                     return False             # <<<<<<<<<<<<<<
@@ -12387,7 +12444,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
         __pyx_r = Py_False;
         goto __pyx_L0;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":786
+        /* "pandas/_libs/tslibs/timedeltas.pyx":781
  *                 if other is NaT:
  *                     return PyObject_RichCompare(other, self, reverse_ops[op])
  *                 elif op == Py_EQ:             # <<<<<<<<<<<<<<
@@ -12396,7 +12453,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
  */
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":788
+      /* "pandas/_libs/tslibs/timedeltas.pyx":783
  *                 elif op == Py_EQ:
  *                     return False
  *                 elif op == Py_NE:             # <<<<<<<<<<<<<<
@@ -12406,7 +12463,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
       __pyx_t_4 = ((__pyx_v_op == Py_NE) != 0);
       if (__pyx_t_4) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":789
+        /* "pandas/_libs/tslibs/timedeltas.pyx":784
  *                     return False
  *                 elif op == Py_NE:
  *                     return True             # <<<<<<<<<<<<<<
@@ -12418,7 +12475,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
         __pyx_r = Py_True;
         goto __pyx_L0;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":788
+        /* "pandas/_libs/tslibs/timedeltas.pyx":783
  *                 elif op == Py_EQ:
  *                     return False
  *                 elif op == Py_NE:             # <<<<<<<<<<<<<<
@@ -12427,64 +12484,64 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
  */
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":792
+      /* "pandas/_libs/tslibs/timedeltas.pyx":787
  *                 raise TypeError('Cannot compare type {cls} with '
  *                                 'type {other}'
  *                                 .format(cls=type(self).__name__,             # <<<<<<<<<<<<<<
  *                                         other=type(other).__name__))
  * 
  */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Cannot_compare_type_cls_with_typ, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 792, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Cannot_compare_type_cls_with_typ, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 787, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_5 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 792, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 787, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 792, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))), __pyx_n_s_name_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 787, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_cls, __pyx_t_6) < 0) __PYX_ERR(0, 792, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_cls, __pyx_t_6) < 0) __PYX_ERR(0, 787, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":793
+      /* "pandas/_libs/tslibs/timedeltas.pyx":788
  *                                 'type {other}'
  *                                 .format(cls=type(self).__name__,
  *                                         other=type(other).__name__))             # <<<<<<<<<<<<<<
  * 
  *         return cmp_scalar(self.value, ots.value, op)
  */
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(__pyx_v_other)), __pyx_n_s_name_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 793, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(__pyx_v_other)), __pyx_n_s_name_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 788, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_other, __pyx_t_6) < 0) __PYX_ERR(0, 792, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_other, __pyx_t_6) < 0) __PYX_ERR(0, 787, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":792
+      /* "pandas/_libs/tslibs/timedeltas.pyx":787
  *                 raise TypeError('Cannot compare type {cls} with '
  *                                 'type {other}'
  *                                 .format(cls=type(self).__name__,             # <<<<<<<<<<<<<<
  *                                         other=type(other).__name__))
  * 
  */
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 792, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 787, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":790
+      /* "pandas/_libs/tslibs/timedeltas.pyx":785
  *                 elif op == Py_NE:
  *                     return True
  *                 raise TypeError('Cannot compare type {cls} with '             # <<<<<<<<<<<<<<
  *                                 'type {other}'
  *                                 .format(cls=type(self).__name__,
  */
-      __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 790, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 785, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_Raise(__pyx_t_5, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __PYX_ERR(0, 790, __pyx_L1_error)
+      __PYX_ERR(0, 785, __pyx_L1_error)
     }
   }
   __pyx_L3:;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":795
+  /* "pandas/_libs/tslibs/timedeltas.pyx":790
  *                                         other=type(other).__name__))
  * 
  *         return cmp_scalar(self.value, ots.value, op)             # <<<<<<<<<<<<<<
@@ -12492,14 +12549,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
  *     cpdef bint _has_ns(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11np_datetime_cmp_scalar(__pyx_v_self->value, __pyx_v_ots->value, __pyx_v_op); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 795, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_PyBool_FromLong(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 795, __pyx_L1_error)
+  __pyx_t_4 = __pyx_f_6pandas_5_libs_6tslibs_11np_datetime_cmp_scalar(__pyx_v_self->value, __pyx_v_ots->value, __pyx_v_op); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 790, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyBool_FromLong(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 790, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_r = __pyx_t_5;
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":754
+  /* "pandas/_libs/tslibs/timedeltas.pyx":749
  *             return timedelta.__hash__(self)
  * 
  *     def __richcmp__(_Timedelta self, object other, int op):             # <<<<<<<<<<<<<<
@@ -12523,7 +12580,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2__ri
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":797
+/* "pandas/_libs/tslibs/timedeltas.pyx":792
  *         return cmp_scalar(self.value, ots.value, op)
  * 
  *     cpdef bint _has_ns(self):             # <<<<<<<<<<<<<<
@@ -12553,7 +12610,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta__has_ns(stru
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_has_ns); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 797, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_has_ns); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 792, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_5_has_ns)) {
         __Pyx_INCREF(__pyx_t_1);
@@ -12569,10 +12626,10 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta__has_ns(stru
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 797, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 792, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 797, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 792, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_5;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -12591,7 +12648,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta__has_ns(stru
     #endif
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":798
+  /* "pandas/_libs/tslibs/timedeltas.pyx":793
  * 
  *     cpdef bint _has_ns(self):
  *         return self.value % 1000 != 0             # <<<<<<<<<<<<<<
@@ -12601,7 +12658,7 @@ static int __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta__has_ns(stru
   __pyx_r = (__Pyx_mod___pyx_t_5numpy_int64_t(__pyx_v_self->value, 0x3E8) != 0);
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":797
+  /* "pandas/_libs/tslibs/timedeltas.pyx":792
  *         return cmp_scalar(self.value, ots.value, op)
  * 
  *     cpdef bint _has_ns(self):             # <<<<<<<<<<<<<<
@@ -12644,7 +12701,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_4_has
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_has_ns", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta__has_ns(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 797, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta__has_ns(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 792, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -12661,7 +12718,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_4_has
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":800
+/* "pandas/_libs/tslibs/timedeltas.pyx":795
  *         return self.value % 1000 != 0
  * 
  *     def _ensure_components(_Timedelta self):             # <<<<<<<<<<<<<<
@@ -12696,7 +12753,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_6_ens
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_ensure_components", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":804
+  /* "pandas/_libs/tslibs/timedeltas.pyx":799
  *         compute the components
  *         """
  *         if self.is_populated:             # <<<<<<<<<<<<<<
@@ -12706,7 +12763,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_6_ens
   __pyx_t_1 = (__pyx_v_self->is_populated != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":805
+    /* "pandas/_libs/tslibs/timedeltas.pyx":800
  *         """
  *         if self.is_populated:
  *             return             # <<<<<<<<<<<<<<
@@ -12717,7 +12774,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_6_ens
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":804
+    /* "pandas/_libs/tslibs/timedeltas.pyx":799
  *         compute the components
  *         """
  *         if self.is_populated:             # <<<<<<<<<<<<<<
@@ -12726,7 +12783,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_6_ens
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":810
+  /* "pandas/_libs/tslibs/timedeltas.pyx":805
  *             pandas_timedeltastruct tds
  * 
  *         td64_to_tdstruct(self.value, &tds)             # <<<<<<<<<<<<<<
@@ -12735,7 +12792,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_6_ens
  */
   __pyx_f_6pandas_5_libs_6tslibs_11np_datetime_td64_to_tdstruct(__pyx_v_self->value, (&__pyx_v_tds));
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":811
+  /* "pandas/_libs/tslibs/timedeltas.pyx":806
  * 
  *         td64_to_tdstruct(self.value, &tds)
  *         self._d = tds.days             # <<<<<<<<<<<<<<
@@ -12745,7 +12802,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_6_ens
   __pyx_t_2 = __pyx_v_tds.days;
   __pyx_v_self->_d = __pyx_t_2;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":812
+  /* "pandas/_libs/tslibs/timedeltas.pyx":807
  *         td64_to_tdstruct(self.value, &tds)
  *         self._d = tds.days
  *         self._h = tds.hrs             # <<<<<<<<<<<<<<
@@ -12755,7 +12812,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_6_ens
   __pyx_t_3 = __pyx_v_tds.hrs;
   __pyx_v_self->_h = __pyx_t_3;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":813
+  /* "pandas/_libs/tslibs/timedeltas.pyx":808
  *         self._d = tds.days
  *         self._h = tds.hrs
  *         self._m = tds.min             # <<<<<<<<<<<<<<
@@ -12765,7 +12822,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_6_ens
   __pyx_t_3 = __pyx_v_tds.min;
   __pyx_v_self->_m = __pyx_t_3;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":814
+  /* "pandas/_libs/tslibs/timedeltas.pyx":809
  *         self._h = tds.hrs
  *         self._m = tds.min
  *         self._s = tds.sec             # <<<<<<<<<<<<<<
@@ -12775,7 +12832,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_6_ens
   __pyx_t_3 = __pyx_v_tds.sec;
   __pyx_v_self->_s = __pyx_t_3;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":815
+  /* "pandas/_libs/tslibs/timedeltas.pyx":810
  *         self._m = tds.min
  *         self._s = tds.sec
  *         self._ms = tds.ms             # <<<<<<<<<<<<<<
@@ -12785,7 +12842,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_6_ens
   __pyx_t_3 = __pyx_v_tds.ms;
   __pyx_v_self->_ms = __pyx_t_3;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":816
+  /* "pandas/_libs/tslibs/timedeltas.pyx":811
  *         self._s = tds.sec
  *         self._ms = tds.ms
  *         self._us = tds.us             # <<<<<<<<<<<<<<
@@ -12795,7 +12852,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_6_ens
   __pyx_t_3 = __pyx_v_tds.us;
   __pyx_v_self->_us = __pyx_t_3;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":817
+  /* "pandas/_libs/tslibs/timedeltas.pyx":812
  *         self._ms = tds.ms
  *         self._us = tds.us
  *         self._ns = tds.ns             # <<<<<<<<<<<<<<
@@ -12805,31 +12862,31 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_6_ens
   __pyx_t_3 = __pyx_v_tds.ns;
   __pyx_v_self->_ns = __pyx_t_3;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":818
+  /* "pandas/_libs/tslibs/timedeltas.pyx":813
  *         self._us = tds.us
  *         self._ns = tds.ns
  *         self._seconds = tds.seconds             # <<<<<<<<<<<<<<
  *         self._microseconds = tds.microseconds
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_npy_int32(__pyx_v_tds.seconds); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 818, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_npy_int32(__pyx_v_tds.seconds); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 813, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_seconds_2, __pyx_t_4) < 0) __PYX_ERR(0, 818, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_seconds_2, __pyx_t_4) < 0) __PYX_ERR(0, 813, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":819
+  /* "pandas/_libs/tslibs/timedeltas.pyx":814
  *         self._ns = tds.ns
  *         self._seconds = tds.seconds
  *         self._microseconds = tds.microseconds             # <<<<<<<<<<<<<<
  * 
  *         self.is_populated = 1
  */
-  __pyx_t_4 = __Pyx_PyInt_From_npy_int32(__pyx_v_tds.microseconds); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 819, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_npy_int32(__pyx_v_tds.microseconds); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 814, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_microseconds_2, __pyx_t_4) < 0) __PYX_ERR(0, 819, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_microseconds_2, __pyx_t_4) < 0) __PYX_ERR(0, 814, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":821
+  /* "pandas/_libs/tslibs/timedeltas.pyx":816
  *         self._microseconds = tds.microseconds
  * 
  *         self.is_populated = 1             # <<<<<<<<<<<<<<
@@ -12838,7 +12895,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_6_ens
  */
   __pyx_v_self->is_populated = 1;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":800
+  /* "pandas/_libs/tslibs/timedeltas.pyx":795
  *         return self.value % 1000 != 0
  * 
  *     def _ensure_components(_Timedelta self):             # <<<<<<<<<<<<<<
@@ -12859,7 +12916,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_6_ens
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":823
+/* "pandas/_libs/tslibs/timedeltas.pyx":818
  *         self.is_populated = 1
  * 
  *     cpdef timedelta to_pytimedelta(_Timedelta self):             # <<<<<<<<<<<<<<
@@ -12888,7 +12945,7 @@ static PyDateTime_Delta *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelt
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_to_pytimedelta); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 823, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_to_pytimedelta); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 818, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_9to_pytimedelta)) {
         __Pyx_XDECREF(((PyObject *)__pyx_r));
@@ -12905,10 +12962,10 @@ static PyDateTime_Delta *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelt
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 823, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 818, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_7cpython_8datetime_timedelta))))) __PYX_ERR(0, 823, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_7cpython_8datetime_timedelta))))) __PYX_ERR(0, 818, __pyx_L1_error)
         __pyx_r = ((PyDateTime_Delta *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -12927,7 +12984,7 @@ static PyDateTime_Delta *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelt
     #endif
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":842
+  /* "pandas/_libs/tslibs/timedeltas.pyx":837
  *         Any nanosecond resolution will be lost.
  *         """
  *         return timedelta(microseconds=int(self.value) / 1000)             # <<<<<<<<<<<<<<
@@ -12935,26 +12992,26 @@ static PyDateTime_Delta *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelt
  *     def to_timedelta64(self):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 842, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 837, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 842, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 837, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyInt_Type)), __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 842, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyInt_Type)), __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 837, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_TrueDivideObjC(__pyx_t_3, __pyx_int_1000, 0x3E8, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 842, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_TrueDivideObjC(__pyx_t_3, __pyx_int_1000, 0x3E8, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 837, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_microseconds, __pyx_t_2) < 0) __PYX_ERR(0, 842, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_microseconds, __pyx_t_2) < 0) __PYX_ERR(0, 837, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_7cpython_8datetime_timedelta), __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 842, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_7cpython_8datetime_timedelta), __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 837, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = ((PyDateTime_Delta *)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":823
+  /* "pandas/_libs/tslibs/timedeltas.pyx":818
  *         self.is_populated = 1
  * 
  *     cpdef timedelta to_pytimedelta(_Timedelta self):             # <<<<<<<<<<<<<<
@@ -12999,7 +13056,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_8to_p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("to_pytimedelta", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_to_pytimedelta(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 823, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_to_pytimedelta(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 818, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -13016,7 +13073,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_8to_p
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":844
+/* "pandas/_libs/tslibs/timedeltas.pyx":839
  *         return timedelta(microseconds=int(self.value) / 1000)
  * 
  *     def to_timedelta64(self):             # <<<<<<<<<<<<<<
@@ -13052,7 +13109,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10to_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("to_timedelta64", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":848
+  /* "pandas/_libs/tslibs/timedeltas.pyx":843
  *         Return a numpy.timedelta64 object with 'ns' precision.
  *         """
  *         return np.timedelta64(self.value, 'ns')             # <<<<<<<<<<<<<<
@@ -13060,12 +13117,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10to_
  *     def to_numpy(self, dtype=None, copy=False):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 848, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 843, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_timedelta64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 848, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_timedelta64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 843, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 848, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 843, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -13082,7 +13139,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10to_
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_t_2, __pyx_n_u_ns};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 848, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 843, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -13091,14 +13148,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10to_
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_t_2, __pyx_n_u_ns};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 848, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 843, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 848, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 843, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -13109,7 +13166,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10to_
     __Pyx_GIVEREF(__pyx_n_u_ns);
     PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_n_u_ns);
     __pyx_t_2 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 848, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 843, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
@@ -13118,7 +13175,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10to_
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":844
+  /* "pandas/_libs/tslibs/timedeltas.pyx":839
  *         return timedelta(microseconds=int(self.value) / 1000)
  * 
  *     def to_timedelta64(self):             # <<<<<<<<<<<<<<
@@ -13141,7 +13198,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10to_
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":850
+/* "pandas/_libs/tslibs/timedeltas.pyx":845
  *         return np.timedelta64(self.value, 'ns')
  * 
  *     def to_numpy(self, dtype=None, copy=False):             # <<<<<<<<<<<<<<
@@ -13192,7 +13249,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_13to_
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "to_numpy") < 0)) __PYX_ERR(0, 850, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "to_numpy") < 0)) __PYX_ERR(0, 845, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -13209,7 +13266,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_13to_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("to_numpy", 0, 0, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 850, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("to_numpy", 0, 0, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 845, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas._Timedelta.to_numpy", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -13233,7 +13290,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_12to_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("to_numpy", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":868
+  /* "pandas/_libs/tslibs/timedeltas.pyx":863
  *         Series.to_numpy : Similar method for Series.
  *         """
  *         return self.to_timedelta64()             # <<<<<<<<<<<<<<
@@ -13241,7 +13298,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_12to_
  *     def total_seconds(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_to_timedelta64); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 868, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_to_timedelta64); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 863, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -13255,14 +13312,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_12to_
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 868, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 863, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":850
+  /* "pandas/_libs/tslibs/timedeltas.pyx":845
  *         return np.timedelta64(self.value, 'ns')
  * 
  *     def to_numpy(self, dtype=None, copy=False):             # <<<<<<<<<<<<<<
@@ -13283,7 +13340,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_12to_
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":870
+/* "pandas/_libs/tslibs/timedeltas.pyx":865
  *         return self.to_timedelta64()
  * 
  *     def total_seconds(self):             # <<<<<<<<<<<<<<
@@ -13314,7 +13371,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_14tot
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("total_seconds", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":874
+  /* "pandas/_libs/tslibs/timedeltas.pyx":869
  *         Total duration of timedelta in seconds (to ns precision).
  *         """
  *         return self.value / 1e9             # <<<<<<<<<<<<<<
@@ -13322,13 +13379,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_14tot
  *     def view(self, dtype):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble((((double)__pyx_v_self->value) / 1e9)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 874, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble((((double)__pyx_v_self->value) / 1e9)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 869, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":870
+  /* "pandas/_libs/tslibs/timedeltas.pyx":865
  *         return self.to_timedelta64()
  * 
  *     def total_seconds(self):             # <<<<<<<<<<<<<<
@@ -13347,7 +13404,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_14tot
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":876
+/* "pandas/_libs/tslibs/timedeltas.pyx":871
  *         return self.value / 1e9
  * 
  *     def view(self, dtype):             # <<<<<<<<<<<<<<
@@ -13382,7 +13439,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_16vie
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("view", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":880
+  /* "pandas/_libs/tslibs/timedeltas.pyx":875
  *         Array view compatibility.
  *         """
  *         return np.timedelta64(self.value).view(dtype)             # <<<<<<<<<<<<<<
@@ -13390,12 +13447,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_16vie
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 880, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 875, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_timedelta64); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 880, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_timedelta64); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 875, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 880, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 875, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -13410,10 +13467,10 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_16vie
   __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 880, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 875, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_view); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 880, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_view); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 875, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -13428,14 +13485,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_16vie
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_2, __pyx_v_dtype) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_dtype);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 880, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 875, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":876
+  /* "pandas/_libs/tslibs/timedeltas.pyx":871
  *         return self.value / 1e9
  * 
  *     def view(self, dtype):             # <<<<<<<<<<<<<<
@@ -13458,7 +13515,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_16vie
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":883
+/* "pandas/_libs/tslibs/timedeltas.pyx":878
  * 
  *     @property
  *     def components(self):             # <<<<<<<<<<<<<<
@@ -13499,14 +13556,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10com
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":887
+  /* "pandas/_libs/tslibs/timedeltas.pyx":882
  *         Return a components namedtuple-like.
  *         """
  *         self._ensure_components()             # <<<<<<<<<<<<<<
  *         # return the named tuple
  *         return Components(self._d, self._h, self._m, self._s,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_ensure_components); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 887, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_ensure_components); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 882, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -13520,12 +13577,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10com
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 887, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 882, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":889
+  /* "pandas/_libs/tslibs/timedeltas.pyx":884
  *         self._ensure_components()
  *         # return the named tuple
  *         return Components(self._d, self._h, self._m, self._s,             # <<<<<<<<<<<<<<
@@ -13533,29 +13590,29 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10com
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Components); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 889, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Components); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 884, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_d); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 889, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_d); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 884, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_h); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 889, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_h); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 884, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_m); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 889, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_m); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 884, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_s); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 889, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_s); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 884, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":890
+  /* "pandas/_libs/tslibs/timedeltas.pyx":885
  *         # return the named tuple
  *         return Components(self._d, self._h, self._m, self._s,
  *                           self._ms, self._us, self._ns)             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_7 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_ms); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 890, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_ms); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 885, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_us); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 890, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_us); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 885, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_9 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_ns); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 890, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_ns); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 885, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __pyx_t_10 = NULL;
   __pyx_t_11 = 0;
@@ -13572,7 +13629,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10com
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[8] = {__pyx_t_10, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_6, __pyx_t_7, __pyx_t_8, __pyx_t_9};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_11, 7+__pyx_t_11); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 889, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_11, 7+__pyx_t_11); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -13587,7 +13644,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10com
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[8] = {__pyx_t_10, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_6, __pyx_t_7, __pyx_t_8, __pyx_t_9};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_11, 7+__pyx_t_11); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 889, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_11, 7+__pyx_t_11); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -13600,7 +13657,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10com
   } else
   #endif
   {
-    __pyx_t_12 = PyTuple_New(7+__pyx_t_11); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 889, __pyx_L1_error)
+    __pyx_t_12 = PyTuple_New(7+__pyx_t_11); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
     if (__pyx_t_10) {
       __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_t_10); __pyx_t_10 = NULL;
@@ -13626,7 +13683,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10com
     __pyx_t_7 = 0;
     __pyx_t_8 = 0;
     __pyx_t_9 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_12, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 889, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_12, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 884, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
   }
@@ -13635,7 +13692,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10com
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":883
+  /* "pandas/_libs/tslibs/timedeltas.pyx":878
  * 
  *     @property
  *     def components(self):             # <<<<<<<<<<<<<<
@@ -13664,7 +13721,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10com
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":893
+/* "pandas/_libs/tslibs/timedeltas.pyx":888
  * 
  *     @property
  *     def delta(self):             # <<<<<<<<<<<<<<
@@ -13694,7 +13751,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_5delt
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":920
+  /* "pandas/_libs/tslibs/timedeltas.pyx":915
  *         42
  *         """
  *         return self.value             # <<<<<<<<<<<<<<
@@ -13702,13 +13759,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_5delt
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 920, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 915, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":893
+  /* "pandas/_libs/tslibs/timedeltas.pyx":888
  * 
  *     @property
  *     def delta(self):             # <<<<<<<<<<<<<<
@@ -13727,7 +13784,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_5delt
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":923
+/* "pandas/_libs/tslibs/timedeltas.pyx":918
  * 
  *     @property
  *     def asm8(self):             # <<<<<<<<<<<<<<
@@ -13761,7 +13818,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_4asm8
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":955
+  /* "pandas/_libs/tslibs/timedeltas.pyx":950
  *         numpy.timedelta64(42,'ns')
  *         """
  *         return np.int64(self.value).view('m8[ns]')             # <<<<<<<<<<<<<<
@@ -13769,12 +13826,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_4asm8
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 955, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 950, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int64); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 955, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int64); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 950, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 955, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 950, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -13789,10 +13846,10 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_4asm8
   __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 955, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 950, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_view); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 955, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_view); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 950, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -13807,14 +13864,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_4asm8
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_2, __pyx_kp_u_m8_ns) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_kp_u_m8_ns);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 955, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 950, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":923
+  /* "pandas/_libs/tslibs/timedeltas.pyx":918
  * 
  *     @property
  *     def asm8(self):             # <<<<<<<<<<<<<<
@@ -13837,7 +13894,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_4asm8
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":958
+/* "pandas/_libs/tslibs/timedeltas.pyx":953
  * 
  *     @property
  *     def resolution_string(self):             # <<<<<<<<<<<<<<
@@ -13870,14 +13927,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":999
+  /* "pandas/_libs/tslibs/timedeltas.pyx":994
  *         'U'
  *         """
  *         self._ensure_components()             # <<<<<<<<<<<<<<
  *         if self._ns:
  *             return "N"
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_ensure_components); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 999, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_ensure_components); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 994, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -13891,12 +13948,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 999, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 994, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1000
+  /* "pandas/_libs/tslibs/timedeltas.pyx":995
  *         """
  *         self._ensure_components()
  *         if self._ns:             # <<<<<<<<<<<<<<
@@ -13906,7 +13963,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
   __pyx_t_4 = (__pyx_v_self->_ns != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1001
+    /* "pandas/_libs/tslibs/timedeltas.pyx":996
  *         self._ensure_components()
  *         if self._ns:
  *             return "N"             # <<<<<<<<<<<<<<
@@ -13918,7 +13975,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
     __pyx_r = __pyx_n_u_N;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1000
+    /* "pandas/_libs/tslibs/timedeltas.pyx":995
  *         """
  *         self._ensure_components()
  *         if self._ns:             # <<<<<<<<<<<<<<
@@ -13927,7 +13984,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1002
+  /* "pandas/_libs/tslibs/timedeltas.pyx":997
  *         if self._ns:
  *             return "N"
  *         elif self._us:             # <<<<<<<<<<<<<<
@@ -13937,7 +13994,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
   __pyx_t_4 = (__pyx_v_self->_us != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1003
+    /* "pandas/_libs/tslibs/timedeltas.pyx":998
  *             return "N"
  *         elif self._us:
  *             return "U"             # <<<<<<<<<<<<<<
@@ -13949,7 +14006,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
     __pyx_r = __pyx_n_u_U;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1002
+    /* "pandas/_libs/tslibs/timedeltas.pyx":997
  *         if self._ns:
  *             return "N"
  *         elif self._us:             # <<<<<<<<<<<<<<
@@ -13958,7 +14015,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1004
+  /* "pandas/_libs/tslibs/timedeltas.pyx":999
  *         elif self._us:
  *             return "U"
  *         elif self._ms:             # <<<<<<<<<<<<<<
@@ -13968,7 +14025,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
   __pyx_t_4 = (__pyx_v_self->_ms != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1005
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1000
  *             return "U"
  *         elif self._ms:
  *             return "L"             # <<<<<<<<<<<<<<
@@ -13980,7 +14037,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
     __pyx_r = __pyx_n_u_L;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1004
+    /* "pandas/_libs/tslibs/timedeltas.pyx":999
  *         elif self._us:
  *             return "U"
  *         elif self._ms:             # <<<<<<<<<<<<<<
@@ -13989,7 +14046,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1006
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1001
  *         elif self._ms:
  *             return "L"
  *         elif self._s:             # <<<<<<<<<<<<<<
@@ -13999,7 +14056,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
   __pyx_t_4 = (__pyx_v_self->_s != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1007
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1002
  *             return "L"
  *         elif self._s:
  *             return "S"             # <<<<<<<<<<<<<<
@@ -14011,7 +14068,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
     __pyx_r = __pyx_n_u_S;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1006
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1001
  *         elif self._ms:
  *             return "L"
  *         elif self._s:             # <<<<<<<<<<<<<<
@@ -14020,7 +14077,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1008
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1003
  *         elif self._s:
  *             return "S"
  *         elif self._m:             # <<<<<<<<<<<<<<
@@ -14030,7 +14087,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
   __pyx_t_4 = (__pyx_v_self->_m != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1009
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1004
  *             return "S"
  *         elif self._m:
  *             return "T"             # <<<<<<<<<<<<<<
@@ -14042,7 +14099,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
     __pyx_r = __pyx_n_u_T;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1008
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1003
  *         elif self._s:
  *             return "S"
  *         elif self._m:             # <<<<<<<<<<<<<<
@@ -14051,7 +14108,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1010
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1005
  *         elif self._m:
  *             return "T"
  *         elif self._h:             # <<<<<<<<<<<<<<
@@ -14061,7 +14118,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
   __pyx_t_4 = (__pyx_v_self->_h != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1011
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1006
  *             return "T"
  *         elif self._h:
  *             return "H"             # <<<<<<<<<<<<<<
@@ -14073,7 +14130,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
     __pyx_r = __pyx_n_u_H;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1010
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1005
  *         elif self._m:
  *             return "T"
  *         elif self._h:             # <<<<<<<<<<<<<<
@@ -14082,7 +14139,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1013
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1008
  *             return "H"
  *         else:
  *             return "D"             # <<<<<<<<<<<<<<
@@ -14096,7 +14153,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
     goto __pyx_L0;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":958
+  /* "pandas/_libs/tslibs/timedeltas.pyx":953
  * 
  *     @property
  *     def resolution_string(self):             # <<<<<<<<<<<<<<
@@ -14117,7 +14174,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_17res
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1016
+/* "pandas/_libs/tslibs/timedeltas.pyx":1011
  * 
  *     @property
  *     def resolution(self):             # <<<<<<<<<<<<<<
@@ -14148,32 +14205,32 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10res
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1058
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1053
  *         """
  *         # See GH#21344
  *         warnings.warn("Timedelta.resolution is deprecated, in a future "             # <<<<<<<<<<<<<<
  *                       "version will behave like the standard library "
  *                       "datetime.timedelta.resolution attribute.  "
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_warnings); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1058, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_warnings); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1053, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_warn); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1058, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_warn); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1053, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1062
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1057
  *                       "datetime.timedelta.resolution attribute.  "
  *                       "Use Timedelta.resolution_string instead.",
  *                       FutureWarning)             # <<<<<<<<<<<<<<
  *         return self.resolution_string
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__19, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1058, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__19, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1053, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1063
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1058
  *                       "Use Timedelta.resolution_string instead.",
  *                       FutureWarning)
  *         return self.resolution_string             # <<<<<<<<<<<<<<
@@ -14181,13 +14238,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10res
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_resolution_string); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1063, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_resolution_string); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1058, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1016
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1011
  * 
  *     @property
  *     def resolution(self):             # <<<<<<<<<<<<<<
@@ -14207,7 +14264,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_10res
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1066
+/* "pandas/_libs/tslibs/timedeltas.pyx":1061
  * 
  *     @property
  *     def nanoseconds(self):             # <<<<<<<<<<<<<<
@@ -14239,14 +14296,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_11nan
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1095
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1090
  *         42
  *         """
  *         self._ensure_components()             # <<<<<<<<<<<<<<
  *         return self._ns
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_ensure_components); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1095, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_ensure_components); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1090, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -14260,12 +14317,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_11nan
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1095, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1090, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1096
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1091
  *         """
  *         self._ensure_components()
  *         return self._ns             # <<<<<<<<<<<<<<
@@ -14273,13 +14330,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_11nan
  *     def _repr_base(self, format=None):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_ns); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1096, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_ns); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1091, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1066
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1061
  * 
  *     @property
  *     def nanoseconds(self):             # <<<<<<<<<<<<<<
@@ -14300,7 +14357,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_11nan
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1098
+/* "pandas/_libs/tslibs/timedeltas.pyx":1093
  *         return self._ns
  * 
  *     def _repr_base(self, format=None):             # <<<<<<<<<<<<<<
@@ -14341,7 +14398,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_19_re
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_repr_base") < 0)) __PYX_ERR(0, 1098, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_repr_base") < 0)) __PYX_ERR(0, 1093, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -14355,7 +14412,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_19_re
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_repr_base", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1098, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_repr_base", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1093, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas._Timedelta._repr_base", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -14386,14 +14443,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_repr_base", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1112
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1107
  *         cdef object sign, seconds_pretty, subs, fmt, comp_dict
  * 
  *         self._ensure_components()             # <<<<<<<<<<<<<<
  * 
  *         if self._d < 0:
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_ensure_components); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1112, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_ensure_components); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -14407,12 +14464,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1112, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1114
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1109
  *         self._ensure_components()
  * 
  *         if self._d < 0:             # <<<<<<<<<<<<<<
@@ -14422,7 +14479,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
   __pyx_t_4 = ((__pyx_v_self->_d < 0) != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1115
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1110
  * 
  *         if self._d < 0:
  *             sign = " +"             # <<<<<<<<<<<<<<
@@ -14432,7 +14489,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
     __Pyx_INCREF(__pyx_kp_u__20);
     __pyx_v_sign = __pyx_kp_u__20;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1114
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1109
  *         self._ensure_components()
  * 
  *         if self._d < 0:             # <<<<<<<<<<<<<<
@@ -14442,7 +14499,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1117
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1112
  *             sign = " +"
  *         else:
  *             sign = " "             # <<<<<<<<<<<<<<
@@ -14455,17 +14512,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
   }
   __pyx_L3:;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1119
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1114
  *             sign = " "
  * 
  *         if format == 'all':             # <<<<<<<<<<<<<<
  *             fmt = ("{days} days{sign}{hours:02}:{minutes:02}:{seconds:02}."
  *                    "{milliseconds:03}{microseconds:03}{nanoseconds:03}")
  */
-  __pyx_t_4 = (__Pyx_PyUnicode_Equals(__pyx_v_format, __pyx_n_u_all, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 1119, __pyx_L1_error)
+  __pyx_t_4 = (__Pyx_PyUnicode_Equals(__pyx_v_format, __pyx_n_u_all, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 1114, __pyx_L1_error)
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1120
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1115
  * 
  *         if format == 'all':
  *             fmt = ("{days} days{sign}{hours:02}:{minutes:02}:{seconds:02}."             # <<<<<<<<<<<<<<
@@ -14475,7 +14532,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
     __Pyx_INCREF(__pyx_kp_u_days_days_sign_hours_02_minutes);
     __pyx_v_fmt = __pyx_kp_u_days_days_sign_hours_02_minutes;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1119
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1114
  *             sign = " "
  * 
  *         if format == 'all':             # <<<<<<<<<<<<<<
@@ -14485,7 +14542,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
     goto __pyx_L4;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1124
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1119
  *         else:
  *             # if we have a partial day
  *             subs = (self._h or self._m or self._s or             # <<<<<<<<<<<<<<
@@ -14495,7 +14552,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
   /*else*/ {
     if (!__pyx_v_self->_h) {
     } else {
-      __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_h); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1124, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_h); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1119, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_1 = __pyx_t_2;
       __pyx_t_2 = 0;
@@ -14503,7 +14560,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
     }
     if (!__pyx_v_self->_m) {
     } else {
-      __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_m); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1124, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_m); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1119, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_1 = __pyx_t_2;
       __pyx_t_2 = 0;
@@ -14511,14 +14568,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
     }
     if (!__pyx_v_self->_s) {
     } else {
-      __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_s); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1124, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_s); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1119, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_1 = __pyx_t_2;
       __pyx_t_2 = 0;
       goto __pyx_L5_bool_binop_done;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1125
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1120
  *             # if we have a partial day
  *             subs = (self._h or self._m or self._s or
  *                     self._ms or self._us or self._ns)             # <<<<<<<<<<<<<<
@@ -14527,7 +14584,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
  */
     if (!__pyx_v_self->_ms) {
     } else {
-      __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_ms); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1125, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_ms); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1120, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_1 = __pyx_t_2;
       __pyx_t_2 = 0;
@@ -14535,13 +14592,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
     }
     if (!__pyx_v_self->_us) {
     } else {
-      __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_us); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1125, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_us); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1120, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_1 = __pyx_t_2;
       __pyx_t_2 = 0;
       goto __pyx_L5_bool_binop_done;
     }
-    __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_ns); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1125, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_ns); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1120, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_1 = __pyx_t_2;
     __pyx_t_2 = 0;
@@ -14549,7 +14606,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
     __pyx_v_subs = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1128
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1123
  * 
  *             # by default not showing nano
  *             if self._ms or self._us or self._ns:             # <<<<<<<<<<<<<<
@@ -14573,7 +14630,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
     __pyx_L12_bool_binop_done:;
     if (__pyx_t_4) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1129
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1124
  *             # by default not showing nano
  *             if self._ms or self._us or self._ns:
  *                 seconds_fmt = "{seconds:02}.{milliseconds:03}{microseconds:03}"             # <<<<<<<<<<<<<<
@@ -14583,7 +14640,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
       __Pyx_INCREF(__pyx_kp_u_seconds_02_milliseconds_03_micr);
       __pyx_v_seconds_fmt = __pyx_kp_u_seconds_02_milliseconds_03_micr;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1128
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1123
  * 
  *             # by default not showing nano
  *             if self._ms or self._us or self._ns:             # <<<<<<<<<<<<<<
@@ -14593,7 +14650,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
       goto __pyx_L11;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1131
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1126
  *                 seconds_fmt = "{seconds:02}.{milliseconds:03}{microseconds:03}"
  *             else:
  *                 seconds_fmt = "{seconds:02}"             # <<<<<<<<<<<<<<
@@ -14606,14 +14663,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
     }
     __pyx_L11:;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1133
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1128
  *                 seconds_fmt = "{seconds:02}"
  * 
  *             if format == 'sub_day' and not self._d:             # <<<<<<<<<<<<<<
  *                 fmt = "{hours:02}:{minutes:02}:" + seconds_fmt
  *             elif subs or format == 'long':
  */
-    __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_format, __pyx_n_u_sub_day, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 1133, __pyx_L1_error)
+    __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_format, __pyx_n_u_sub_day, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 1128, __pyx_L1_error)
     if (__pyx_t_5) {
     } else {
       __pyx_t_4 = __pyx_t_5;
@@ -14624,19 +14681,19 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
     __pyx_L16_bool_binop_done:;
     if (__pyx_t_4) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1134
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1129
  * 
  *             if format == 'sub_day' and not self._d:
  *                 fmt = "{hours:02}:{minutes:02}:" + seconds_fmt             # <<<<<<<<<<<<<<
  *             elif subs or format == 'long':
  *                 fmt = "{days} days{sign}{hours:02}:{minutes:02}:" + seconds_fmt
  */
-      __pyx_t_1 = __Pyx_PyUnicode_Concat(__pyx_kp_u_hours_02_minutes_02, __pyx_v_seconds_fmt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1134, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyUnicode_Concat(__pyx_kp_u_hours_02_minutes_02, __pyx_v_seconds_fmt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1129, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_v_fmt = __pyx_t_1;
       __pyx_t_1 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1133
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1128
  *                 seconds_fmt = "{seconds:02}"
  * 
  *             if format == 'sub_day' and not self._d:             # <<<<<<<<<<<<<<
@@ -14646,37 +14703,37 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
       goto __pyx_L15;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1135
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1130
  *             if format == 'sub_day' and not self._d:
  *                 fmt = "{hours:02}:{minutes:02}:" + seconds_fmt
  *             elif subs or format == 'long':             # <<<<<<<<<<<<<<
  *                 fmt = "{days} days{sign}{hours:02}:{minutes:02}:" + seconds_fmt
  *             else:
  */
-    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_subs); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 1135, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_subs); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 1130, __pyx_L1_error)
     if (!__pyx_t_5) {
     } else {
       __pyx_t_4 = __pyx_t_5;
       goto __pyx_L18_bool_binop_done;
     }
-    __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_format, __pyx_n_u_long, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 1135, __pyx_L1_error)
+    __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_format, __pyx_n_u_long, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 1130, __pyx_L1_error)
     __pyx_t_4 = __pyx_t_5;
     __pyx_L18_bool_binop_done:;
     if (__pyx_t_4) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1136
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1131
  *                 fmt = "{hours:02}:{minutes:02}:" + seconds_fmt
  *             elif subs or format == 'long':
  *                 fmt = "{days} days{sign}{hours:02}:{minutes:02}:" + seconds_fmt             # <<<<<<<<<<<<<<
  *             else:
  *                 fmt = "{days} days"
  */
-      __pyx_t_1 = __Pyx_PyUnicode_Concat(__pyx_kp_u_days_days_sign_hours_02_minutes_2, __pyx_v_seconds_fmt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1136, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyUnicode_Concat(__pyx_kp_u_days_days_sign_hours_02_minutes_2, __pyx_v_seconds_fmt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1131, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_v_fmt = __pyx_t_1;
       __pyx_t_1 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1135
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1130
  *             if format == 'sub_day' and not self._d:
  *                 fmt = "{hours:02}:{minutes:02}:" + seconds_fmt
  *             elif subs or format == 'long':             # <<<<<<<<<<<<<<
@@ -14686,7 +14743,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
       goto __pyx_L15;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1138
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1133
  *                 fmt = "{days} days{sign}{hours:02}:{minutes:02}:" + seconds_fmt
  *             else:
  *                 fmt = "{days} days"             # <<<<<<<<<<<<<<
@@ -14701,16 +14758,16 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
   }
   __pyx_L4:;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1140
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1135
  *                 fmt = "{days} days"
  * 
  *         comp_dict = self.components._asdict()             # <<<<<<<<<<<<<<
  *         comp_dict['sign'] = sign
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_components); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1140, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_components); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asdict); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1140, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asdict); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -14725,22 +14782,22 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1140, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_comp_dict = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1141
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1136
  * 
  *         comp_dict = self.components._asdict()
  *         comp_dict['sign'] = sign             # <<<<<<<<<<<<<<
  * 
  *         return fmt.format(**comp_dict)
  */
-  if (unlikely(PyObject_SetItem(__pyx_v_comp_dict, __pyx_n_u_sign, __pyx_v_sign) < 0)) __PYX_ERR(0, 1141, __pyx_L1_error)
+  if (unlikely(PyObject_SetItem(__pyx_v_comp_dict, __pyx_n_u_sign, __pyx_v_sign) < 0)) __PYX_ERR(0, 1136, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1143
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1138
  *         comp_dict['sign'] = sign
  * 
  *         return fmt.format(**comp_dict)             # <<<<<<<<<<<<<<
@@ -14748,20 +14805,20 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
  *     def __repr__(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_fmt, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1143, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_fmt, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (unlikely(__pyx_v_comp_dict == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "argument after ** must be a mapping, not NoneType");
-    __PYX_ERR(0, 1143, __pyx_L1_error)
+    __PYX_ERR(0, 1138, __pyx_L1_error)
   }
   if (likely(PyDict_CheckExact(__pyx_v_comp_dict))) {
-    __pyx_t_3 = PyDict_Copy(__pyx_v_comp_dict); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1143, __pyx_L1_error)
+    __pyx_t_3 = PyDict_Copy(__pyx_v_comp_dict); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1138, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   } else {
-    __pyx_t_3 = PyObject_CallFunctionObjArgs((PyObject*)&PyDict_Type, __pyx_v_comp_dict, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1143, __pyx_L1_error)
+    __pyx_t_3 = PyObject_CallFunctionObjArgs((PyObject*)&PyDict_Type, __pyx_v_comp_dict, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1138, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1143, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -14769,7 +14826,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1098
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1093
  *         return self._ns
  * 
  *     def _repr_base(self, format=None):             # <<<<<<<<<<<<<<
@@ -14795,7 +14852,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_18_re
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1145
+/* "pandas/_libs/tslibs/timedeltas.pyx":1140
  *         return fmt.format(**comp_dict)
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -14829,7 +14886,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_20__r
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__repr__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1146
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1141
  * 
  *     def __repr__(self):
  *         return "Timedelta('{val}')".format(val=self._repr_base(format='long'))             # <<<<<<<<<<<<<<
@@ -14837,22 +14894,22 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_20__r
  *     def __str__(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Timedelta_val, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1146, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Timedelta_val, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1146, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_repr_base); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1146, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_repr_base); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1146, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_format, __pyx_n_u_long) < 0) __PYX_ERR(0, 1146, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1146, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_format, __pyx_n_u_long) < 0) __PYX_ERR(0, 1141, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_val, __pyx_t_5) < 0) __PYX_ERR(0, 1146, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_val, __pyx_t_5) < 0) __PYX_ERR(0, 1141, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1146, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -14860,7 +14917,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_20__r
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1145
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1140
  *         return fmt.format(**comp_dict)
  * 
  *     def __repr__(self):             # <<<<<<<<<<<<<<
@@ -14883,7 +14940,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_20__r
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1148
+/* "pandas/_libs/tslibs/timedeltas.pyx":1143
  *         return "Timedelta('{val}')".format(val=self._repr_base(format='long'))
  * 
  *     def __str__(self):             # <<<<<<<<<<<<<<
@@ -14915,7 +14972,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_22__s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__str__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1149
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1144
  * 
  *     def __str__(self):
  *         return self._repr_base(format='long')             # <<<<<<<<<<<<<<
@@ -14923,12 +14980,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_22__s
  *     def __bool__(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_repr_base); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1149, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_repr_base); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1149, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_format, __pyx_n_u_long) < 0) __PYX_ERR(0, 1149, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1149, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_format, __pyx_n_u_long) < 0) __PYX_ERR(0, 1144, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -14936,7 +14993,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_22__s
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1148
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1143
  *         return "Timedelta('{val}')".format(val=self._repr_base(format='long'))
  * 
  *     def __str__(self):             # <<<<<<<<<<<<<<
@@ -14957,7 +15014,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_22__s
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1151
+/* "pandas/_libs/tslibs/timedeltas.pyx":1146
  *         return self._repr_base(format='long')
  * 
  *     def __bool__(self):             # <<<<<<<<<<<<<<
@@ -14983,7 +15040,7 @@ static int __pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_24__bool__(
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__bool__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1152
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1147
  * 
  *     def __bool__(self):
  *         return self.value != 0             # <<<<<<<<<<<<<<
@@ -14993,7 +15050,7 @@ static int __pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_24__bool__(
   __pyx_r = (__pyx_v_self->value != 0);
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1151
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1146
  *         return self._repr_base(format='long')
  * 
  *     def __bool__(self):             # <<<<<<<<<<<<<<
@@ -15007,7 +15064,7 @@ static int __pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_24__bool__(
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1154
+/* "pandas/_libs/tslibs/timedeltas.pyx":1149
  *         return self.value != 0
  * 
  *     def isoformat(self):             # <<<<<<<<<<<<<<
@@ -15017,7 +15074,7 @@ static int __pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_24__bool__(
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_27isoformat(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_26isoformat[] = "\n        Format Timedelta as ISO 8601 Duration like\n        ``P[n]Y[n]M[n]DT[n]H[n]M[n]S``, where the ``[n]`` s are replaced by the\n        values. See https://en.wikipedia.org/wiki/ISO_8601#Durations.\n\n        .. versionadded:: 0.20.0\n\n        Returns\n        -------\n        formatted : str\n\n        See Also\n        --------\n        Timestamp.isoformat\n\n        Notes\n        -----\n        The longest component is days, whose value may be larger than\n        365.\n        Every component is always included, even if its value is 0.\n        Pandas uses nanosecond precision, so up to 9 decimal places may\n        be included in the seconds component.\n        Trailing 0's are removed from the seconds component after the decimal.\n        We do not 0 pad components, so it's `...T5H...`, not `...T05H...`\n\n        Examples\n        --------\n        >>> td = pd.Timedelta(days=6, minutes=50, seconds=3,\n        ...                   milliseconds=10, microseconds=10, nanoseconds=12)\n        >>> td.isoformat()\n        'P6DT0H50M3.010010012S'\n        >>> pd.Timedelta(hours=1, seconds=10).isoformat()\n        'P0DT0H0M10S'\n        >>> pd.Timedelta(hours=1, seconds=10).isoformat()\n        'P0DT0H0M10S'\n        >>> pd.Timedelta(days=500.5).isoformat()\n        'P500DT12H0MS'\n        ";
+static char __pyx_doc_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_26isoformat[] = "\n        Format Timedelta as ISO 8601 Duration like\n        ``P[n]Y[n]M[n]DT[n]H[n]M[n]S``, where the ``[n]`` s are replaced by the\n        values. See https://en.wikipedia.org/wiki/ISO_8601#Durations\n\n        .. versionadded:: 0.20.0\n\n        Returns\n        -------\n        formatted : str\n\n        See Also\n        --------\n        Timestamp.isoformat\n\n        Notes\n        -----\n        The longest component is days, whose value may be larger than\n        365.\n        Every component is always included, even if its value is 0.\n        Pandas uses nanosecond precision, so up to 9 decimal places may\n        be included in the seconds component.\n        Trailing 0's are removed from the seconds component after the decimal.\n        We do not 0 pad components, so it's `...T5H...`, not `...T05H...`\n\n        Examples\n        --------\n        >>> td = pd.Timedelta(days=6, minutes=50, seconds=3,\n        ...                   milliseconds=10, microseconds=10, nanoseconds=12)\n        >>> td.isoformat()\n        'P6DT0H50M3.010010012S'\n        >>> pd.Timedelta(hours=1, seconds=10).isoformat()\n        'P0DT0H0M10S'\n        >>> pd.Timedelta(hours=1, seconds=10).isoformat()\n        'P0DT0H0M10S'\n        >>> pd.Timedelta(days=500.5).isoformat()\n        'P500DT12H0MS'\n        ";
 static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_27isoformat(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -15049,58 +15106,58 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_26iso
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("isoformat", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1193
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1188
  *         'P500DT12H0MS'
  *         """
  *         components = self.components             # <<<<<<<<<<<<<<
  *         seconds = '{}.{:0>3}{:0>3}{:0>3}'.format(components.seconds,
  *                                                  components.milliseconds,
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_components); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1193, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_components); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_components = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1194
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1189
  *         """
  *         components = self.components
  *         seconds = '{}.{:0>3}{:0>3}{:0>3}'.format(components.seconds,             # <<<<<<<<<<<<<<
  *                                                  components.milliseconds,
  *                                                  components.microseconds,
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_0_3_0_3_0_3, __pyx_n_s_format); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1194, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_0_3_0_3_0_3, __pyx_n_s_format); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1189, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_components, __pyx_n_s_seconds); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1194, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_components, __pyx_n_s_seconds); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1189, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1195
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1190
  *         components = self.components
  *         seconds = '{}.{:0>3}{:0>3}{:0>3}'.format(components.seconds,
  *                                                  components.milliseconds,             # <<<<<<<<<<<<<<
  *                                                  components.microseconds,
  *                                                  components.nanoseconds)
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_components, __pyx_n_s_milliseconds); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1195, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_components, __pyx_n_s_milliseconds); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1190, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1196
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1191
  *         seconds = '{}.{:0>3}{:0>3}{:0>3}'.format(components.seconds,
  *                                                  components.milliseconds,
  *                                                  components.microseconds,             # <<<<<<<<<<<<<<
  *                                                  components.nanoseconds)
  *         # Trim unnecessary 0s, 1.000000000 -> 1
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_components, __pyx_n_s_microseconds); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1196, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_components, __pyx_n_s_microseconds); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1191, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1197
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1192
  *                                                  components.milliseconds,
  *                                                  components.microseconds,
  *                                                  components.nanoseconds)             # <<<<<<<<<<<<<<
  *         # Trim unnecessary 0s, 1.000000000 -> 1
  *         seconds = seconds.rstrip('0').rstrip('.')
  */
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_components, __pyx_n_s_nanoseconds); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1197, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_components, __pyx_n_s_nanoseconds); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1192, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = NULL;
   __pyx_t_8 = 0;
@@ -15117,7 +15174,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_26iso
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[5] = {__pyx_t_7, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_6};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 4+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1194, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 4+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1189, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -15129,7 +15186,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_26iso
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[5] = {__pyx_t_7, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_6};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 4+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1194, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 4+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1189, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -15139,7 +15196,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_26iso
   } else
   #endif
   {
-    __pyx_t_9 = PyTuple_New(4+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1194, __pyx_L1_error)
+    __pyx_t_9 = PyTuple_New(4+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1189, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -15156,7 +15213,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_26iso
     __pyx_t_4 = 0;
     __pyx_t_5 = 0;
     __pyx_t_6 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_9, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1194, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_9, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1189, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
@@ -15164,14 +15221,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_26iso
   __pyx_v_seconds = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1199
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1194
  *                                                  components.nanoseconds)
  *         # Trim unnecessary 0s, 1.000000000 -> 1
  *         seconds = seconds.rstrip('0').rstrip('.')             # <<<<<<<<<<<<<<
  *         tpl = ('P{td.days}DT{td.hours}H{td.minutes}M{seconds}S'
  *                .format(td=components, seconds=seconds))
  */
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_seconds, __pyx_n_s_rstrip); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1199, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_seconds, __pyx_n_s_rstrip); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __pyx_t_6 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_9))) {
@@ -15185,10 +15242,10 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_26iso
   }
   __pyx_t_2 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_9, __pyx_t_6, __pyx_kp_u_0) : __Pyx_PyObject_CallOneArg(__pyx_t_9, __pyx_kp_u_0);
   __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1199, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_rstrip); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1199, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_rstrip); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -15203,33 +15260,33 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_26iso
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_9, __pyx_t_2, __pyx_kp_u__9) : __Pyx_PyObject_CallOneArg(__pyx_t_9, __pyx_kp_u__9);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1199, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __Pyx_DECREF_SET(__pyx_v_seconds, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1201
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1196
  *         seconds = seconds.rstrip('0').rstrip('.')
  *         tpl = ('P{td.days}DT{td.hours}H{td.minutes}M{seconds}S'
  *                .format(td=components, seconds=seconds))             # <<<<<<<<<<<<<<
  *         return tpl
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_P_td_days_DT_td_hours_H_td_minut, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1201, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_P_td_days_DT_td_hours_H_td_minut, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1196, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_9 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1201, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1196, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  if (PyDict_SetItem(__pyx_t_9, __pyx_n_s_td, __pyx_v_components) < 0) __PYX_ERR(0, 1201, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_9, __pyx_n_s_seconds, __pyx_v_seconds) < 0) __PYX_ERR(0, 1201, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1201, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_9, __pyx_n_s_td, __pyx_v_components) < 0) __PYX_ERR(0, 1196, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_9, __pyx_n_s_seconds, __pyx_v_seconds) < 0) __PYX_ERR(0, 1196, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1196, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __pyx_v_tpl = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1202
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1197
  *         tpl = ('P{td.days}DT{td.hours}H{td.minutes}M{seconds}S'
  *                .format(td=components, seconds=seconds))
  *         return tpl             # <<<<<<<<<<<<<<
@@ -15241,7 +15298,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_26iso
   __pyx_r = __pyx_v_tpl;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1154
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1149
  *         return self.value != 0
  * 
  *     def isoformat(self):             # <<<<<<<<<<<<<<
@@ -15270,7 +15327,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_26iso
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":740
+/* "pandas/_libs/tslibs/timedeltas.pyx":735
  * cdef class _Timedelta(timedelta):
  *     cdef readonly:
  *         int64_t value      # nanoseconds             # <<<<<<<<<<<<<<
@@ -15300,7 +15357,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_5valu
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 740, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 735, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15317,7 +15374,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_5valu
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":741
+/* "pandas/_libs/tslibs/timedeltas.pyx":736
  *     cdef readonly:
  *         int64_t value      # nanoseconds
  *         object freq        # frequency reference             # <<<<<<<<<<<<<<
@@ -15354,7 +15411,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_4freq
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":742
+/* "pandas/_libs/tslibs/timedeltas.pyx":737
  *         int64_t value      # nanoseconds
  *         object freq        # frequency reference
  *         bint is_populated  # are my components populated             # <<<<<<<<<<<<<<
@@ -15384,7 +15441,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_12is_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->is_populated); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 742, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(__pyx_v_self->is_populated); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 737, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15401,7 +15458,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_12is_
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":743
+/* "pandas/_libs/tslibs/timedeltas.pyx":738
  *         object freq        # frequency reference
  *         bint is_populated  # are my components populated
  *         int64_t _d, _h, _m, _s, _ms, _us, _ns             # <<<<<<<<<<<<<<
@@ -15431,7 +15488,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2_d__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_d); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 743, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_d); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 738, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15470,7 +15527,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2_h__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_h); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 743, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_h); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 738, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15509,7 +15566,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2_m__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_m); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 743, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_m); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 738, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15548,7 +15605,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_2_s__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_s); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 743, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_s); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 738, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15587,7 +15644,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_3_ms_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_ms); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 743, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_ms); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 738, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15626,7 +15683,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_3_us_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_us); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 743, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_us); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 738, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15665,7 +15722,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_3_ns_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_ns); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 743, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_self->_ns); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 738, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16034,7 +16091,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_30__s
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1362
+/* "pandas/_libs/tslibs/timedeltas.pyx":1357
  *     # TODO: Can some of these be defined in the cython class?
  * 
  *     __inv__ = _op_unary_method(lambda x: -x, '__inv__')             # <<<<<<<<<<<<<<
@@ -16065,7 +16122,7 @@ static PyObject *__pyx_lambda_funcdef_6pandas_5_libs_6tslibs_10timedeltas_9Timed
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("lambda", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyNumber_Negative(__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1362, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Negative(__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1357, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16082,7 +16139,7 @@ static PyObject *__pyx_lambda_funcdef_6pandas_5_libs_6tslibs_10timedeltas_9Timed
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1363
+/* "pandas/_libs/tslibs/timedeltas.pyx":1358
  * 
  *     __inv__ = _op_unary_method(lambda x: -x, '__inv__')
  *     __neg__ = _op_unary_method(lambda x: -x, '__neg__')             # <<<<<<<<<<<<<<
@@ -16113,7 +16170,7 @@ static PyObject *__pyx_lambda_funcdef_6pandas_5_libs_6tslibs_10timedeltas_9Timed
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("lambda1", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyNumber_Negative(__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1363, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Negative(__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1358, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16130,7 +16187,7 @@ static PyObject *__pyx_lambda_funcdef_6pandas_5_libs_6tslibs_10timedeltas_9Timed
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1364
+/* "pandas/_libs/tslibs/timedeltas.pyx":1359
  *     __inv__ = _op_unary_method(lambda x: -x, '__inv__')
  *     __neg__ = _op_unary_method(lambda x: -x, '__neg__')
  *     __pos__ = _op_unary_method(lambda x: x, '__pos__')             # <<<<<<<<<<<<<<
@@ -16168,7 +16225,7 @@ static PyObject *__pyx_lambda_funcdef_6pandas_5_libs_6tslibs_10timedeltas_9Timed
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1365
+/* "pandas/_libs/tslibs/timedeltas.pyx":1360
  *     __neg__ = _op_unary_method(lambda x: -x, '__neg__')
  *     __pos__ = _op_unary_method(lambda x: x, '__pos__')
  *     __abs__ = _op_unary_method(lambda x: abs(x), '__abs__')             # <<<<<<<<<<<<<<
@@ -16199,7 +16256,7 @@ static PyObject *__pyx_lambda_funcdef_6pandas_5_libs_6tslibs_10timedeltas_9Timed
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("lambda3", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyNumber_Absolute(__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1365, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyNumber_Absolute(__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1360, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16216,7 +16273,7 @@ static PyObject *__pyx_lambda_funcdef_6pandas_5_libs_6tslibs_10timedeltas_9Timed
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1367
+/* "pandas/_libs/tslibs/timedeltas.pyx":1362
  *     __abs__ = _op_unary_method(lambda x: abs(x), '__abs__')
  * 
  *     __add__ = _binary_op_method_timedeltalike(lambda x, y: x + y, '__add__')             # <<<<<<<<<<<<<<
@@ -16259,11 +16316,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_36lambd
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_y)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("lambda4", 1, 2, 2, 1); __PYX_ERR(0, 1367, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("lambda4", 1, 2, 2, 1); __PYX_ERR(0, 1362, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "lambda4") < 0)) __PYX_ERR(0, 1367, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "lambda4") < 0)) __PYX_ERR(0, 1362, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -16276,7 +16333,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_36lambd
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("lambda4", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1367, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("lambda4", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1362, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.lambda4", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -16298,7 +16355,7 @@ static PyObject *__pyx_lambda_funcdef_6pandas_5_libs_6tslibs_10timedeltas_9Timed
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("lambda4", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyNumber_Add(__pyx_v_x, __pyx_v_y); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1367, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Add(__pyx_v_x, __pyx_v_y); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1362, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16315,7 +16372,7 @@ static PyObject *__pyx_lambda_funcdef_6pandas_5_libs_6tslibs_10timedeltas_9Timed
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1368
+/* "pandas/_libs/tslibs/timedeltas.pyx":1363
  * 
  *     __add__ = _binary_op_method_timedeltalike(lambda x, y: x + y, '__add__')
  *     __radd__ = _binary_op_method_timedeltalike(lambda x, y: x + y, '__radd__')             # <<<<<<<<<<<<<<
@@ -16358,11 +16415,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_37lambd
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_y)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("lambda5", 1, 2, 2, 1); __PYX_ERR(0, 1368, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("lambda5", 1, 2, 2, 1); __PYX_ERR(0, 1363, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "lambda5") < 0)) __PYX_ERR(0, 1368, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "lambda5") < 0)) __PYX_ERR(0, 1363, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -16375,7 +16432,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_37lambd
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("lambda5", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1368, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("lambda5", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1363, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.lambda5", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -16397,7 +16454,7 @@ static PyObject *__pyx_lambda_funcdef_6pandas_5_libs_6tslibs_10timedeltas_9Timed
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("lambda5", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyNumber_Add(__pyx_v_x, __pyx_v_y); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1368, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Add(__pyx_v_x, __pyx_v_y); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1363, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16414,7 +16471,7 @@ static PyObject *__pyx_lambda_funcdef_6pandas_5_libs_6tslibs_10timedeltas_9Timed
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1369
+/* "pandas/_libs/tslibs/timedeltas.pyx":1364
  *     __add__ = _binary_op_method_timedeltalike(lambda x, y: x + y, '__add__')
  *     __radd__ = _binary_op_method_timedeltalike(lambda x, y: x + y, '__radd__')
  *     __sub__ = _binary_op_method_timedeltalike(lambda x, y: x - y, '__sub__')             # <<<<<<<<<<<<<<
@@ -16457,11 +16514,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_38lambd
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_y)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("lambda6", 1, 2, 2, 1); __PYX_ERR(0, 1369, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("lambda6", 1, 2, 2, 1); __PYX_ERR(0, 1364, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "lambda6") < 0)) __PYX_ERR(0, 1369, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "lambda6") < 0)) __PYX_ERR(0, 1364, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -16474,7 +16531,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_38lambd
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("lambda6", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1369, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("lambda6", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1364, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.lambda6", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -16496,7 +16553,7 @@ static PyObject *__pyx_lambda_funcdef_6pandas_5_libs_6tslibs_10timedeltas_9Timed
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("lambda6", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyNumber_Subtract(__pyx_v_x, __pyx_v_y); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1369, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Subtract(__pyx_v_x, __pyx_v_y); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1364, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16513,7 +16570,7 @@ static PyObject *__pyx_lambda_funcdef_6pandas_5_libs_6tslibs_10timedeltas_9Timed
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1370
+/* "pandas/_libs/tslibs/timedeltas.pyx":1365
  *     __radd__ = _binary_op_method_timedeltalike(lambda x, y: x + y, '__radd__')
  *     __sub__ = _binary_op_method_timedeltalike(lambda x, y: x - y, '__sub__')
  *     __rsub__ = _binary_op_method_timedeltalike(lambda x, y: y - x, '__rsub__')             # <<<<<<<<<<<<<<
@@ -16556,11 +16613,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_39lambd
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_y)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("lambda7", 1, 2, 2, 1); __PYX_ERR(0, 1370, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("lambda7", 1, 2, 2, 1); __PYX_ERR(0, 1365, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "lambda7") < 0)) __PYX_ERR(0, 1370, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "lambda7") < 0)) __PYX_ERR(0, 1365, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -16573,7 +16630,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_39lambd
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("lambda7", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1370, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("lambda7", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1365, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.lambda7", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -16595,7 +16652,7 @@ static PyObject *__pyx_lambda_funcdef_6pandas_5_libs_6tslibs_10timedeltas_9Timed
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("lambda7", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyNumber_Subtract(__pyx_v_y, __pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1370, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Subtract(__pyx_v_y, __pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1365, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16612,7 +16669,7 @@ static PyObject *__pyx_lambda_funcdef_6pandas_5_libs_6tslibs_10timedeltas_9Timed
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1237
+/* "pandas/_libs/tslibs/timedeltas.pyx":1232
  *     """
  * 
  *     def __new__(cls, object value=_no_input, unit=None, **kwargs):             # <<<<<<<<<<<<<<
@@ -16630,7 +16687,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_16__defaults__(CYT
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__defaults__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1237, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__Pyx_CyFunction_Defaults(__pyx_defaults, __pyx_self)->__pyx_arg_value);
   __Pyx_GIVEREF(__Pyx_CyFunction_Defaults(__pyx_defaults, __pyx_self)->__pyx_arg_value);
@@ -16638,7 +16695,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_16__defaults__(CYT
   __Pyx_INCREF(((PyObject *)Py_None));
   __Pyx_GIVEREF(((PyObject *)Py_None));
   PyTuple_SET_ITEM(__pyx_t_1, 1, ((PyObject *)Py_None));
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1237, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
@@ -16716,7 +16773,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_1__new_
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "__new__") < 0)) __PYX_ERR(0, 1237, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, __pyx_v_kwargs, values, pos_args, "__new__") < 0)) __PYX_ERR(0, 1232, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -16735,7 +16792,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_1__new_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__new__", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1237, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__new__", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1232, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_DECREF(__pyx_v_kwargs); __pyx_v_kwargs = 0;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.__new__", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -16787,45 +16844,45 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
   __Pyx_INCREF(__pyx_v_unit);
   __Pyx_INCREF(__pyx_v_kwargs);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1240
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1235
  *         cdef _Timedelta td_base
  * 
  *         if value is _no_input:             # <<<<<<<<<<<<<<
  *             if not len(kwargs):
  *                 raise ValueError("cannot construct a Timedelta without a "
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_no_input); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1240, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_no_input); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1235, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = (__pyx_v_value == __pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1241
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1236
  * 
  *         if value is _no_input:
  *             if not len(kwargs):             # <<<<<<<<<<<<<<
  *                 raise ValueError("cannot construct a Timedelta without a "
  *                                  "value/unit or descriptive keywords "
  */
-    __pyx_t_4 = PyDict_Size(__pyx_v_kwargs); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 1241, __pyx_L1_error)
+    __pyx_t_4 = PyDict_Size(__pyx_v_kwargs); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 1236, __pyx_L1_error)
     __pyx_t_3 = ((!(__pyx_t_4 != 0)) != 0);
     if (unlikely(__pyx_t_3)) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1242
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1237
  *         if value is _no_input:
  *             if not len(kwargs):
  *                 raise ValueError("cannot construct a Timedelta without a "             # <<<<<<<<<<<<<<
  *                                  "value/unit or descriptive keywords "
  *                                  "(days,seconds....)")
  */
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__21, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1242, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__21, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1237, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_Raise(__pyx_t_1, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __PYX_ERR(0, 1242, __pyx_L1_error)
+      __PYX_ERR(0, 1237, __pyx_L1_error)
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1241
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1236
  * 
  *         if value is _no_input:
  *             if not len(kwargs):             # <<<<<<<<<<<<<<
@@ -16834,7 +16891,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1246
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1241
  *                                  "(days,seconds....)")
  * 
  *             kwargs = {key: _to_py_int_float(kwargs[key]) for key in kwargs}             # <<<<<<<<<<<<<<
@@ -16842,10 +16899,10 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
  *             nano = np.timedelta64(kwargs.pop('nanoseconds', 0), 'ns')
  */
     { /* enter inner scope */
-      __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1246, __pyx_L7_error)
+      __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1241, __pyx_L7_error)
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_t_4 = 0;
-      __pyx_t_8 = __Pyx_dict_iterator(__pyx_v_kwargs, 1, ((PyObject *)NULL), (&__pyx_t_6), (&__pyx_t_7)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1246, __pyx_L7_error)
+      __pyx_t_8 = __Pyx_dict_iterator(__pyx_v_kwargs, 1, ((PyObject *)NULL), (&__pyx_t_6), (&__pyx_t_7)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1241, __pyx_L7_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_XDECREF(__pyx_t_5);
       __pyx_t_5 = __pyx_t_8;
@@ -16853,16 +16910,16 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
       while (1) {
         __pyx_t_9 = __Pyx_dict_iter_next(__pyx_t_5, __pyx_t_6, &__pyx_t_4, &__pyx_t_8, NULL, NULL, __pyx_t_7);
         if (unlikely(__pyx_t_9 == 0)) break;
-        if (unlikely(__pyx_t_9 == -1)) __PYX_ERR(0, 1246, __pyx_L7_error)
+        if (unlikely(__pyx_t_9 == -1)) __PYX_ERR(0, 1241, __pyx_L7_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_XDECREF_SET(__pyx_8genexpr1__pyx_v_key, __pyx_t_8);
         __pyx_t_8 = 0;
-        __pyx_t_8 = __Pyx_PyDict_GetItem(__pyx_v_kwargs, __pyx_8genexpr1__pyx_v_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1246, __pyx_L7_error)
+        __pyx_t_8 = __Pyx_PyDict_GetItem(__pyx_v_kwargs, __pyx_8genexpr1__pyx_v_key); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1241, __pyx_L7_error)
         __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_10 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__to_py_int_float(__pyx_t_8); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1246, __pyx_L7_error)
+        __pyx_t_10 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__to_py_int_float(__pyx_t_8); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1241, __pyx_L7_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        if (unlikely(PyDict_SetItem(__pyx_t_1, (PyObject*)__pyx_8genexpr1__pyx_v_key, (PyObject*)__pyx_t_10))) __PYX_ERR(0, 1246, __pyx_L7_error)
+        if (unlikely(PyDict_SetItem(__pyx_t_1, (PyObject*)__pyx_8genexpr1__pyx_v_key, (PyObject*)__pyx_t_10))) __PYX_ERR(0, 1241, __pyx_L7_error)
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       }
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -16876,19 +16933,19 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     __Pyx_DECREF_SET(__pyx_v_kwargs, ((PyObject*)__pyx_t_1));
     __pyx_t_1 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1248
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1243
  *             kwargs = {key: _to_py_int_float(kwargs[key]) for key in kwargs}
  * 
  *             nano = np.timedelta64(kwargs.pop('nanoseconds', 0), 'ns')             # <<<<<<<<<<<<<<
  *             try:
  *                 value = nano + convert_to_timedelta64(timedelta(**kwargs),
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1248, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1243, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_timedelta64); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1248, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_timedelta64); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1243, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_n_u_nanoseconds, __pyx_int_0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1248, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_n_u_nanoseconds, __pyx_int_0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1243, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_8 = NULL;
     __pyx_t_7 = 0;
@@ -16905,7 +16962,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_10)) {
       PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_t_5, __pyx_n_u_ns};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1248, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1243, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -16914,14 +16971,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_10)) {
       PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_t_5, __pyx_n_u_ns};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1248, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1243, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     } else
     #endif
     {
-      __pyx_t_11 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1248, __pyx_L1_error)
+      __pyx_t_11 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1243, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
       if (__pyx_t_8) {
         __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_8); __pyx_t_8 = NULL;
@@ -16932,7 +16989,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
       __Pyx_GIVEREF(__pyx_n_u_ns);
       PyTuple_SET_ITEM(__pyx_t_11, 1+__pyx_t_7, __pyx_n_u_ns);
       __pyx_t_5 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_11, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1248, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_11, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1243, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     }
@@ -16940,7 +16997,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     __pyx_v_nano = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1249
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1244
  * 
  *             nano = np.timedelta64(kwargs.pop('nanoseconds', 0), 'ns')
  *             try:             # <<<<<<<<<<<<<<
@@ -16956,25 +17013,25 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
       __Pyx_XGOTREF(__pyx_t_14);
       /*try:*/ {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":1250
+        /* "pandas/_libs/tslibs/timedeltas.pyx":1245
  *             nano = np.timedelta64(kwargs.pop('nanoseconds', 0), 'ns')
  *             try:
  *                 value = nano + convert_to_timedelta64(timedelta(**kwargs),             # <<<<<<<<<<<<<<
  *                                                       'ns')
  *             except TypeError as e:
  */
-        __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_7cpython_8datetime_timedelta), __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1250, __pyx_L11_error)
+        __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_7cpython_8datetime_timedelta), __pyx_empty_tuple, __pyx_v_kwargs); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1245, __pyx_L11_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_10 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_convert_to_timedelta64(__pyx_t_1, __pyx_n_u_ns); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1250, __pyx_L11_error)
+        __pyx_t_10 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_convert_to_timedelta64(__pyx_t_1, __pyx_n_u_ns); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1245, __pyx_L11_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_1 = PyNumber_Add(__pyx_v_nano, __pyx_t_10); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1250, __pyx_L11_error)
+        __pyx_t_1 = PyNumber_Add(__pyx_v_nano, __pyx_t_10); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1245, __pyx_L11_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_DECREF_SET(__pyx_v_value, __pyx_t_1);
         __pyx_t_1 = 0;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":1249
+        /* "pandas/_libs/tslibs/timedeltas.pyx":1244
  * 
  *             nano = np.timedelta64(kwargs.pop('nanoseconds', 0), 'ns')
  *             try:             # <<<<<<<<<<<<<<
@@ -16993,7 +17050,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1252
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1247
  *                 value = nano + convert_to_timedelta64(timedelta(**kwargs),
  *                                                       'ns')
  *             except TypeError as e:             # <<<<<<<<<<<<<<
@@ -17003,7 +17060,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
       __pyx_t_7 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_TypeError);
       if (__pyx_t_7) {
         __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.__new__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-        if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_10, &__pyx_t_11) < 0) __PYX_ERR(0, 1252, __pyx_L13_except_error)
+        if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_10, &__pyx_t_11) < 0) __PYX_ERR(0, 1247, __pyx_L13_except_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_GOTREF(__pyx_t_11);
@@ -17011,21 +17068,21 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
         __pyx_v_e = __pyx_t_10;
         /*try:*/ {
 
-          /* "pandas/_libs/tslibs/timedeltas.pyx":1253
+          /* "pandas/_libs/tslibs/timedeltas.pyx":1248
  *                                                       'ns')
  *             except TypeError as e:
  *                 raise ValueError("cannot construct a Timedelta from the "             # <<<<<<<<<<<<<<
  *                                  "passed arguments, allowed keywords are "
  *                                  "[weeks, days, hours, minutes, seconds, "
  */
-          __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1253, __pyx_L22_error)
+          __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1248, __pyx_L22_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_Raise(__pyx_t_5, 0, 0, 0);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-          __PYX_ERR(0, 1253, __pyx_L22_error)
+          __PYX_ERR(0, 1248, __pyx_L22_error)
         }
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":1252
+        /* "pandas/_libs/tslibs/timedeltas.pyx":1247
  *                 value = nano + convert_to_timedelta64(timedelta(**kwargs),
  *                                                       'ns')
  *             except TypeError as e:             # <<<<<<<<<<<<<<
@@ -17072,7 +17129,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
       goto __pyx_L13_except_error;
       __pyx_L13_except_error:;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1249
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1244
  * 
  *             nano = np.timedelta64(kwargs.pop('nanoseconds', 0), 'ns')
  *             try:             # <<<<<<<<<<<<<<
@@ -17087,7 +17144,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
       __pyx_L16_try_end:;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1240
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1235
  *         cdef _Timedelta td_base
  * 
  *         if value is _no_input:             # <<<<<<<<<<<<<<
@@ -17096,7 +17153,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1258
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1253
  *                                  "milliseconds, microseconds, nanoseconds]")
  * 
  *         if unit in {'Y', 'y', 'M'}:             # <<<<<<<<<<<<<<
@@ -17105,63 +17162,63 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
  */
   __Pyx_INCREF(__pyx_v_unit);
   __pyx_t_11 = __pyx_v_unit;
-  __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_11, __pyx_n_u_Y, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1258, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_11, __pyx_n_u_Y, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1253, __pyx_L1_error)
   if (!__pyx_t_2) {
   } else {
     __pyx_t_3 = __pyx_t_2;
     goto __pyx_L29_bool_binop_done;
   }
-  __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_11, __pyx_n_u_y, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1258, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_11, __pyx_n_u_y, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1253, __pyx_L1_error)
   if (!__pyx_t_2) {
   } else {
     __pyx_t_3 = __pyx_t_2;
     goto __pyx_L29_bool_binop_done;
   }
-  __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_11, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1258, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_11, __pyx_n_u_M, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1253, __pyx_L1_error)
   __pyx_t_3 = __pyx_t_2;
   __pyx_L29_bool_binop_done:;
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
   __pyx_t_2 = (__pyx_t_3 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1259
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1254
  * 
  *         if unit in {'Y', 'y', 'M'}:
  *             warnings.warn("M and Y units are deprecated and "             # <<<<<<<<<<<<<<
  *                           "will be removed in a future version.",
  *                           FutureWarning, stacklevel=1)
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_warnings); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1259, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_warnings); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1254, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
-    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_warn); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1259, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_warn); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1254, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1261
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1256
  *             warnings.warn("M and Y units are deprecated and "
  *                           "will be removed in a future version.",
  *                           FutureWarning, stacklevel=1)             # <<<<<<<<<<<<<<
  * 
  *         if isinstance(value, Timedelta):
  */
-    __pyx_t_11 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1261, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1256, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
-    if (PyDict_SetItem(__pyx_t_11, __pyx_n_s_stacklevel, __pyx_int_1) < 0) __PYX_ERR(0, 1261, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_11, __pyx_n_s_stacklevel, __pyx_int_1) < 0) __PYX_ERR(0, 1256, __pyx_L1_error)
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1259
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1254
  * 
  *         if unit in {'Y', 'y', 'M'}:
  *             warnings.warn("M and Y units are deprecated and "             # <<<<<<<<<<<<<<
  *                           "will be removed in a future version.",
  *                           FutureWarning, stacklevel=1)
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_tuple__23, __pyx_t_11); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1259, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_tuple__23, __pyx_t_11); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1254, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1258
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1253
  *                                  "milliseconds, microseconds, nanoseconds]")
  * 
  *         if unit in {'Y', 'y', 'M'}:             # <<<<<<<<<<<<<<
@@ -17170,33 +17227,33 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1263
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1258
  *                           FutureWarning, stacklevel=1)
  * 
  *         if isinstance(value, Timedelta):             # <<<<<<<<<<<<<<
  *             value = value.value
  *         elif isinstance(value, str):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1263, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_IsInstance(__pyx_v_value, __pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 1263, __pyx_L1_error)
+  __pyx_t_2 = PyObject_IsInstance(__pyx_v_value, __pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 1258, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1264
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1259
  * 
  *         if isinstance(value, Timedelta):
  *             value = value.value             # <<<<<<<<<<<<<<
  *         elif isinstance(value, str):
  *             if len(value) > 0 and value[0] == 'P':
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1264, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1259, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_value, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1263
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1258
  *                           FutureWarning, stacklevel=1)
  * 
  *         if isinstance(value, Timedelta):             # <<<<<<<<<<<<<<
@@ -17206,7 +17263,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     goto __pyx_L32;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1265
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1260
  *         if isinstance(value, Timedelta):
  *             value = value.value
  *         elif isinstance(value, str):             # <<<<<<<<<<<<<<
@@ -17217,42 +17274,42 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
   __pyx_t_2 = (__pyx_t_3 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1266
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1261
  *             value = value.value
  *         elif isinstance(value, str):
  *             if len(value) > 0 and value[0] == 'P':             # <<<<<<<<<<<<<<
  *                 value = parse_iso_format_string(value)
  *             else:
  */
-    __pyx_t_6 = PyObject_Length(__pyx_v_value); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 1266, __pyx_L1_error)
+    __pyx_t_6 = PyObject_Length(__pyx_v_value); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 1261, __pyx_L1_error)
     __pyx_t_3 = ((__pyx_t_6 > 0) != 0);
     if (__pyx_t_3) {
     } else {
       __pyx_t_2 = __pyx_t_3;
       goto __pyx_L34_bool_binop_done;
     }
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_value, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1266, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_value, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1261, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_t_1, __pyx_n_u_P, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 1266, __pyx_L1_error)
+    __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_t_1, __pyx_n_u_P, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 1261, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_2 = __pyx_t_3;
     __pyx_L34_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1267
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1262
  *         elif isinstance(value, str):
  *             if len(value) > 0 and value[0] == 'P':
  *                 value = parse_iso_format_string(value)             # <<<<<<<<<<<<<<
  *             else:
  *                 value = parse_timedelta_string(value)
  */
-      __pyx_t_22 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_iso_format_string(__pyx_v_value); if (unlikely(__pyx_t_22 == ((__pyx_t_5numpy_int64_t)-1LL) && PyErr_Occurred())) __PYX_ERR(0, 1267, __pyx_L1_error)
-      __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_t_22); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1267, __pyx_L1_error)
+      __pyx_t_22 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_iso_format_string(__pyx_v_value); if (unlikely(__pyx_t_22 == ((__pyx_t_5numpy_int64_t)-1LL) && PyErr_Occurred())) __PYX_ERR(0, 1262, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_t_22); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1262, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF_SET(__pyx_v_value, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1266
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1261
  *             value = value.value
  *         elif isinstance(value, str):
  *             if len(value) > 0 and value[0] == 'P':             # <<<<<<<<<<<<<<
@@ -17262,7 +17319,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
       goto __pyx_L33;
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1269
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1264
  *                 value = parse_iso_format_string(value)
  *             else:
  *                 value = parse_timedelta_string(value)             # <<<<<<<<<<<<<<
@@ -17270,25 +17327,23 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
  *         elif PyDelta_Check(value):
  */
     /*else*/ {
-      if (!(likely(PyUnicode_CheckExact(__pyx_v_value))||((__pyx_v_value) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_v_value)->tp_name), 0))) __PYX_ERR(0, 1269, __pyx_L1_error)
-      __pyx_t_22 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_string(((PyObject*)__pyx_v_value)); if (unlikely(__pyx_t_22 == ((__pyx_t_5numpy_int64_t)-1LL) && PyErr_Occurred())) __PYX_ERR(0, 1269, __pyx_L1_error)
-      __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_t_22); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1269, __pyx_L1_error)
+      __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_string(__pyx_v_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1264, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF_SET(__pyx_v_value, __pyx_t_1);
       __pyx_t_1 = 0;
     }
     __pyx_L33:;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1270
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1265
  *             else:
  *                 value = parse_timedelta_string(value)
  *             value = np.timedelta64(value)             # <<<<<<<<<<<<<<
  *         elif PyDelta_Check(value):
  *             value = convert_to_timedelta64(value, 'ns')
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_np); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1270, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_np); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1265, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
-    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_timedelta64); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1270, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_timedelta64); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1265, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     __pyx_t_11 = NULL;
@@ -17303,13 +17358,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     }
     __pyx_t_1 = (__pyx_t_11) ? __Pyx_PyObject_Call2Args(__pyx_t_10, __pyx_t_11, __pyx_v_value) : __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_v_value);
     __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1270, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1265, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF_SET(__pyx_v_value, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1265
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1260
  *         if isinstance(value, Timedelta):
  *             value = value.value
  *         elif isinstance(value, str):             # <<<<<<<<<<<<<<
@@ -17319,7 +17374,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     goto __pyx_L32;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1271
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1266
  *                 value = parse_timedelta_string(value)
  *             value = np.timedelta64(value)
  *         elif PyDelta_Check(value):             # <<<<<<<<<<<<<<
@@ -17329,19 +17384,19 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
   __pyx_t_2 = (PyDelta_Check(__pyx_v_value) != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1272
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1267
  *             value = np.timedelta64(value)
  *         elif PyDelta_Check(value):
  *             value = convert_to_timedelta64(value, 'ns')             # <<<<<<<<<<<<<<
  *         elif is_timedelta64_object(value):
  *             if unit is not None:
  */
-    __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_convert_to_timedelta64(__pyx_v_value, __pyx_n_u_ns); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1272, __pyx_L1_error)
+    __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_convert_to_timedelta64(__pyx_v_value, __pyx_n_u_ns); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1267, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_value, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1271
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1266
  *                 value = parse_timedelta_string(value)
  *             value = np.timedelta64(value)
  *         elif PyDelta_Check(value):             # <<<<<<<<<<<<<<
@@ -17351,7 +17406,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     goto __pyx_L32;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1273
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1268
  *         elif PyDelta_Check(value):
  *             value = convert_to_timedelta64(value, 'ns')
  *         elif is_timedelta64_object(value):             # <<<<<<<<<<<<<<
@@ -17361,7 +17416,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
   __pyx_t_2 = (__pyx_f_6pandas_5_libs_6tslibs_4util_is_timedelta64_object(__pyx_v_value) != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1274
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1269
  *             value = convert_to_timedelta64(value, 'ns')
  *         elif is_timedelta64_object(value):
  *             if unit is not None:             # <<<<<<<<<<<<<<
@@ -17372,16 +17427,16 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     __pyx_t_3 = (__pyx_t_2 != 0);
     if (__pyx_t_3) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1275
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1270
  *         elif is_timedelta64_object(value):
  *             if unit is not None:
  *                 value = value.astype('timedelta64[{0}]'.format(unit))             # <<<<<<<<<<<<<<
  *             value = value.astype('timedelta64[ns]')
  *         elif hasattr(value, 'delta'):
  */
-      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_astype); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1275, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_astype); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1270, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_timedelta64_0, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1275, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_timedelta64_0, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1270, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __pyx_t_8 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -17395,7 +17450,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
       }
       __pyx_t_11 = (__pyx_t_8) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_8, __pyx_v_unit) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_unit);
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-      if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1275, __pyx_L1_error)
+      if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1270, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_5 = NULL;
@@ -17411,13 +17466,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
       __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_10, __pyx_t_5, __pyx_t_11) : __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_t_11);
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1275, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1270, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_DECREF_SET(__pyx_v_value, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1274
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1269
  *             value = convert_to_timedelta64(value, 'ns')
  *         elif is_timedelta64_object(value):
  *             if unit is not None:             # <<<<<<<<<<<<<<
@@ -17426,14 +17481,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1276
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1271
  *             if unit is not None:
  *                 value = value.astype('timedelta64[{0}]'.format(unit))
  *             value = value.astype('timedelta64[ns]')             # <<<<<<<<<<<<<<
  *         elif hasattr(value, 'delta'):
  *             value = np.timedelta64(delta_to_nanoseconds(value.delta), 'ns')
  */
-    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_astype); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1276, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_astype); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1271, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __pyx_t_11 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_10))) {
@@ -17447,13 +17502,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     }
     __pyx_t_1 = (__pyx_t_11) ? __Pyx_PyObject_Call2Args(__pyx_t_10, __pyx_t_11, __pyx_kp_u_timedelta64_ns) : __Pyx_PyObject_CallOneArg(__pyx_t_10, __pyx_kp_u_timedelta64_ns);
     __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1276, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1271, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF_SET(__pyx_v_value, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1273
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1268
  *         elif PyDelta_Check(value):
  *             value = convert_to_timedelta64(value, 'ns')
  *         elif is_timedelta64_object(value):             # <<<<<<<<<<<<<<
@@ -17463,34 +17518,34 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     goto __pyx_L32;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1277
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1272
  *                 value = value.astype('timedelta64[{0}]'.format(unit))
  *             value = value.astype('timedelta64[ns]')
  *         elif hasattr(value, 'delta'):             # <<<<<<<<<<<<<<
  *             value = np.timedelta64(delta_to_nanoseconds(value.delta), 'ns')
  *         elif is_integer_object(value) or is_float_object(value):
  */
-  __pyx_t_3 = __Pyx_HasAttr(__pyx_v_value, __pyx_n_u_delta); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 1277, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_HasAttr(__pyx_v_value, __pyx_n_u_delta); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 1272, __pyx_L1_error)
   __pyx_t_2 = (__pyx_t_3 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1278
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1273
  *             value = value.astype('timedelta64[ns]')
  *         elif hasattr(value, 'delta'):
  *             value = np.timedelta64(delta_to_nanoseconds(value.delta), 'ns')             # <<<<<<<<<<<<<<
  *         elif is_integer_object(value) or is_float_object(value):
  *             # unit=None is de-facto 'ns'
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1278, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1273, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_timedelta64); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1278, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_timedelta64); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1273, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_delta); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1278, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_delta); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1273, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    __pyx_t_22 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_delta_to_nanoseconds(__pyx_t_10, 0); if (unlikely(__pyx_t_22 == ((__pyx_t_5numpy_int64_t)-1LL) && PyErr_Occurred())) __PYX_ERR(0, 1278, __pyx_L1_error)
+    __pyx_t_22 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_delta_to_nanoseconds(__pyx_t_10, 0); if (unlikely(__pyx_t_22 == ((__pyx_t_5numpy_int64_t)-1LL) && PyErr_Occurred())) __PYX_ERR(0, 1273, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    __pyx_t_10 = __Pyx_PyInt_From_npy_int64(__pyx_t_22); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1278, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyInt_From_npy_int64(__pyx_t_22); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1273, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __pyx_t_5 = NULL;
     __pyx_t_9 = 0;
@@ -17507,7 +17562,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_11)) {
       PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_t_10, __pyx_n_u_ns};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_11, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1278, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_11, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1273, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
@@ -17516,14 +17571,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_11)) {
       PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_t_10, __pyx_n_u_ns};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_11, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1278, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_11, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1273, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     } else
     #endif
     {
-      __pyx_t_8 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1278, __pyx_L1_error)
+      __pyx_t_8 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1273, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       if (__pyx_t_5) {
         __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -17534,7 +17589,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
       __Pyx_GIVEREF(__pyx_n_u_ns);
       PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_9, __pyx_n_u_ns);
       __pyx_t_10 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_11, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1278, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_11, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1273, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
@@ -17542,7 +17597,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     __Pyx_DECREF_SET(__pyx_v_value, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1277
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1272
  *                 value = value.astype('timedelta64[{0}]'.format(unit))
  *             value = value.astype('timedelta64[ns]')
  *         elif hasattr(value, 'delta'):             # <<<<<<<<<<<<<<
@@ -17552,7 +17607,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     goto __pyx_L32;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1279
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1274
  *         elif hasattr(value, 'delta'):
  *             value = np.timedelta64(delta_to_nanoseconds(value.delta), 'ns')
  *         elif is_integer_object(value) or is_float_object(value):             # <<<<<<<<<<<<<<
@@ -17570,31 +17625,31 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
   __pyx_L37_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1281
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1276
  *         elif is_integer_object(value) or is_float_object(value):
  *             # unit=None is de-facto 'ns'
  *             unit = parse_timedelta_unit(unit)             # <<<<<<<<<<<<<<
  *             value = convert_to_timedelta64(value, unit)
  *         elif checknull_with_nat(value):
  */
-    __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_unit(__pyx_v_unit, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1281, __pyx_L1_error)
+    __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_parse_timedelta_unit(__pyx_v_unit, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1276, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_unit, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1282
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1277
  *             # unit=None is de-facto 'ns'
  *             unit = parse_timedelta_unit(unit)
  *             value = convert_to_timedelta64(value, unit)             # <<<<<<<<<<<<<<
  *         elif checknull_with_nat(value):
  *             return NaT
  */
-    __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_convert_to_timedelta64(__pyx_v_value, __pyx_v_unit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1282, __pyx_L1_error)
+    __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas_convert_to_timedelta64(__pyx_v_value, __pyx_v_unit); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1277, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF_SET(__pyx_v_value, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1279
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1274
  *         elif hasattr(value, 'delta'):
  *             value = np.timedelta64(delta_to_nanoseconds(value.delta), 'ns')
  *         elif is_integer_object(value) or is_float_object(value):             # <<<<<<<<<<<<<<
@@ -17604,7 +17659,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     goto __pyx_L32;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1283
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1278
  *             unit = parse_timedelta_unit(unit)
  *             value = convert_to_timedelta64(value, unit)
  *         elif checknull_with_nat(value):             # <<<<<<<<<<<<<<
@@ -17614,7 +17669,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
   __pyx_t_2 = (__pyx_f_6pandas_5_libs_6tslibs_7nattype_checknull_with_nat(__pyx_v_value) != 0);
   if (likely(__pyx_t_2)) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1284
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1279
  *             value = convert_to_timedelta64(value, unit)
  *         elif checknull_with_nat(value):
  *             return NaT             # <<<<<<<<<<<<<<
@@ -17626,7 +17681,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     __pyx_r = ((PyObject *)__pyx_v_6pandas_5_libs_6tslibs_7nattype_c_NaT);
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1283
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1278
  *             unit = parse_timedelta_unit(unit)
  *             value = convert_to_timedelta64(value, unit)
  *         elif checknull_with_nat(value):             # <<<<<<<<<<<<<<
@@ -17635,7 +17690,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1286
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1281
  *             return NaT
  *         else:
  *             raise ValueError(             # <<<<<<<<<<<<<<
@@ -17644,43 +17699,43 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
  */
   /*else*/ {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1289
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1284
  *                 "Value must be Timedelta, string, integer, "
  *                 "float, timedelta or convertible, not {typ}"
  *                 .format(typ=type(value).__name__))             # <<<<<<<<<<<<<<
  * 
  *         if is_timedelta64_object(value):
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Value_must_be_Timedelta_string_i, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1289, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Value_must_be_Timedelta_string_i, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1284, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_11 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1289, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1284, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(__pyx_v_value)), __pyx_n_s_name_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1289, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(__pyx_v_value)), __pyx_n_s_name_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1284, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    if (PyDict_SetItem(__pyx_t_11, __pyx_n_s_typ_2, __pyx_t_8) < 0) __PYX_ERR(0, 1289, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_11, __pyx_n_s_typ_2, __pyx_t_8) < 0) __PYX_ERR(0, 1284, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_11); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1289, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_11); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1284, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1286
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1281
  *             return NaT
  *         else:
  *             raise ValueError(             # <<<<<<<<<<<<<<
  *                 "Value must be Timedelta, string, integer, "
  *                 "float, timedelta or convertible, not {typ}"
  */
-    __pyx_t_11 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_8); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1286, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_CallOneArg(__pyx_builtin_ValueError, __pyx_t_8); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1281, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_Raise(__pyx_t_11, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    __PYX_ERR(0, 1286, __pyx_L1_error)
+    __PYX_ERR(0, 1281, __pyx_L1_error)
   }
   __pyx_L32:;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1291
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1286
  *                 .format(typ=type(value).__name__))
  * 
  *         if is_timedelta64_object(value):             # <<<<<<<<<<<<<<
@@ -17690,14 +17745,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
   __pyx_t_2 = (__pyx_f_6pandas_5_libs_6tslibs_4util_is_timedelta64_object(__pyx_v_value) != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1292
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1287
  * 
  *         if is_timedelta64_object(value):
  *             value = value.view('i8')             # <<<<<<<<<<<<<<
  * 
  *         # nat
  */
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_view); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1292, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_view); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1287, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __pyx_t_1 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_8))) {
@@ -17711,13 +17766,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     }
     __pyx_t_11 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_8, __pyx_t_1, __pyx_n_u_i8) : __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_n_u_i8);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1292, __pyx_L1_error)
+    if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1287, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF_SET(__pyx_v_value, __pyx_t_11);
     __pyx_t_11 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1291
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1286
  *                 .format(typ=type(value).__name__))
  * 
  *         if is_timedelta64_object(value):             # <<<<<<<<<<<<<<
@@ -17726,22 +17781,22 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1295
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1290
  * 
  *         # nat
  *         if value == NPY_NAT:             # <<<<<<<<<<<<<<
  *             return NaT
  * 
  */
-  __pyx_t_11 = __Pyx_PyInt_From_npy_int64(__pyx_v_6pandas_5_libs_6tslibs_7nattype_NPY_NAT); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1295, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyInt_From_npy_int64(__pyx_v_6pandas_5_libs_6tslibs_7nattype_NPY_NAT); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1290, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
-  __pyx_t_8 = PyObject_RichCompare(__pyx_v_value, __pyx_t_11, Py_EQ); __Pyx_XGOTREF(__pyx_t_8); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1295, __pyx_L1_error)
+  __pyx_t_8 = PyObject_RichCompare(__pyx_v_value, __pyx_t_11, Py_EQ); __Pyx_XGOTREF(__pyx_t_8); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1290, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_8); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1295, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_8); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1290, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1296
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1291
  *         # nat
  *         if value == NPY_NAT:
  *             return NaT             # <<<<<<<<<<<<<<
@@ -17753,7 +17808,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
     __pyx_r = ((PyObject *)__pyx_v_6pandas_5_libs_6tslibs_7nattype_c_NaT);
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1295
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1290
  * 
  *         # nat
  *         if value == NPY_NAT:             # <<<<<<<<<<<<<<
@@ -17762,49 +17817,49 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1299
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1294
  * 
  *         # make timedelta happy
  *         td_base = _Timedelta.__new__(cls, microseconds=int(value) / 1000)             # <<<<<<<<<<<<<<
  *         td_base.value = value
  *         td_base.is_populated = 0
  */
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6pandas_5_libs_6tslibs_10timedeltas__Timedelta), __pyx_n_s_new); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1299, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_ptype_6pandas_5_libs_6tslibs_10timedeltas__Timedelta), __pyx_n_s_new); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_11 = PyTuple_New(1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1299, __pyx_L1_error)
+  __pyx_t_11 = PyTuple_New(1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 1294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_INCREF(__pyx_v_cls);
   __Pyx_GIVEREF(__pyx_v_cls);
   PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_v_cls);
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1299, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_10 = __Pyx_PyNumber_Int(__pyx_v_value); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1299, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyNumber_Int(__pyx_v_value); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 1294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_5 = __Pyx_PyInt_TrueDivideObjC(__pyx_t_10, __pyx_int_1000, 0x3E8, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1299, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_TrueDivideObjC(__pyx_t_10, __pyx_int_1000, 0x3E8, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_microseconds, __pyx_t_5) < 0) __PYX_ERR(0, 1299, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_microseconds, __pyx_t_5) < 0) __PYX_ERR(0, 1294, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_11, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1299, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_11, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_6pandas_5_libs_6tslibs_10timedeltas__Timedelta))))) __PYX_ERR(0, 1299, __pyx_L1_error)
+  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_ptype_6pandas_5_libs_6tslibs_10timedeltas__Timedelta))))) __PYX_ERR(0, 1294, __pyx_L1_error)
   __pyx_v_td_base = ((struct __pyx_obj_6pandas_5_libs_6tslibs_10timedeltas__Timedelta *)__pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1300
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1295
  *         # make timedelta happy
  *         td_base = _Timedelta.__new__(cls, microseconds=int(value) / 1000)
  *         td_base.value = value             # <<<<<<<<<<<<<<
  *         td_base.is_populated = 0
  *         return td_base
  */
-  __pyx_t_22 = __Pyx_PyInt_As_npy_int64(__pyx_v_value); if (unlikely((__pyx_t_22 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 1300, __pyx_L1_error)
+  __pyx_t_22 = __Pyx_PyInt_As_npy_int64(__pyx_v_value); if (unlikely((__pyx_t_22 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 1295, __pyx_L1_error)
   __pyx_v_td_base->value = __pyx_t_22;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1301
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1296
  *         td_base = _Timedelta.__new__(cls, microseconds=int(value) / 1000)
  *         td_base.value = value
  *         td_base.is_populated = 0             # <<<<<<<<<<<<<<
@@ -17813,7 +17868,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
  */
   __pyx_v_td_base->is_populated = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1302
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1297
  *         td_base.value = value
  *         td_base.is_populated = 0
  *         return td_base             # <<<<<<<<<<<<<<
@@ -17825,7 +17880,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
   __pyx_r = ((PyObject *)__pyx_v_td_base);
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1237
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1232
  *     """
  * 
  *     def __new__(cls, object value=_no_input, unit=None, **kwargs):             # <<<<<<<<<<<<<<
@@ -17855,7 +17910,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta___new__
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1304
+/* "pandas/_libs/tslibs/timedeltas.pyx":1299
  *         return td_base
  * 
  *     def __setstate__(self, state):             # <<<<<<<<<<<<<<
@@ -17898,11 +17953,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_3__sets
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_state)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__setstate__", 1, 2, 2, 1); __PYX_ERR(0, 1304, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__setstate__", 1, 2, 2, 1); __PYX_ERR(0, 1299, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__setstate__") < 0)) __PYX_ERR(0, 1304, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__setstate__") < 0)) __PYX_ERR(0, 1299, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -17915,7 +17970,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_3__sets
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__setstate__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1304, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__setstate__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1299, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.__setstate__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -17937,7 +17992,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_2__sets
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__setstate__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1305
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1300
  * 
  *     def __setstate__(self, state):
  *         (value) = state             # <<<<<<<<<<<<<<
@@ -17947,16 +18002,16 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_2__sets
   __Pyx_INCREF(__pyx_v_state);
   __pyx_v_value = __pyx_v_state;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1306
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1301
  *     def __setstate__(self, state):
  *         (value) = state
  *         self.value = value             # <<<<<<<<<<<<<<
  * 
  *     def __reduce__(self):
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_value, __pyx_v_value) < 0) __PYX_ERR(0, 1306, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_value, __pyx_v_value) < 0) __PYX_ERR(0, 1301, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1304
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1299
  *         return td_base
  * 
  *     def __setstate__(self, state):             # <<<<<<<<<<<<<<
@@ -17977,7 +18032,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_2__sets
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1308
+/* "pandas/_libs/tslibs/timedeltas.pyx":1303
  *         self.value = value
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -18010,16 +18065,16 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_4__redu
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1309
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1304
  * 
  *     def __reduce__(self):
  *         object_state = self.value,             # <<<<<<<<<<<<<<
  *         return (Timedelta, object_state)
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1309, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1304, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1309, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1304, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
@@ -18027,7 +18082,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_4__redu
   __pyx_v_object_state = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1310
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1305
  *     def __reduce__(self):
  *         object_state = self.value,
  *         return (Timedelta, object_state)             # <<<<<<<<<<<<<<
@@ -18035,9 +18090,9 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_4__redu
  *     def _round(self, freq, rounder):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1310, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1305, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1310, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1305, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
@@ -18049,7 +18104,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_4__redu
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1308
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1303
  *         self.value = value
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -18070,7 +18125,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_4__redu
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1312
+/* "pandas/_libs/tslibs/timedeltas.pyx":1307
  *         return (Timedelta, object_state)
  * 
  *     def _round(self, freq, rounder):             # <<<<<<<<<<<<<<
@@ -18116,17 +18171,17 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_7_round
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_freq)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_round", 1, 3, 3, 1); __PYX_ERR(0, 1312, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_round", 1, 3, 3, 1); __PYX_ERR(0, 1307, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_rounder)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_round", 1, 3, 3, 2); __PYX_ERR(0, 1312, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_round", 1, 3, 3, 2); __PYX_ERR(0, 1307, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_round") < 0)) __PYX_ERR(0, 1312, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_round") < 0)) __PYX_ERR(0, 1307, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -18141,7 +18196,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_7_round
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_round", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1312, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_round", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1307, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta._round", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -18170,36 +18225,36 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_6_round
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_round", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1316
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1311
  *             int64_t result, unit
  * 
  *         unit = to_offset(freq).nanos             # <<<<<<<<<<<<<<
  *         result = unit * rounder(self.value / float(unit))
  *         return Timedelta(result, unit='ns')
  */
-  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_7offsets_to_offset(__pyx_v_freq); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1316, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6pandas_5_libs_6tslibs_7offsets_to_offset(__pyx_v_freq); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1311, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_nanos); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1316, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_nanos); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1311, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyInt_As_npy_int64(__pyx_t_2); if (unlikely((__pyx_t_3 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 1316, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_As_npy_int64(__pyx_t_2); if (unlikely((__pyx_t_3 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 1311, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_unit = __pyx_t_3;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1317
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1312
  * 
  *         unit = to_offset(freq).nanos
  *         result = unit * rounder(self.value / float(unit))             # <<<<<<<<<<<<<<
  *         return Timedelta(result, unit='ns')
  * 
  */
-  __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_unit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1317, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_npy_int64(__pyx_v_unit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1317, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyFloat_FromDouble(((double)__pyx_v_unit)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1317, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(((double)__pyx_v_unit)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_PyNumber_Divide(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1317, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyNumber_Divide(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -18217,18 +18272,18 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_6_round
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_4, __pyx_t_6) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_6);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1317, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1317, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Multiply(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyInt_As_npy_int64(__pyx_t_5); if (unlikely((__pyx_t_3 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 1317, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_As_npy_int64(__pyx_t_5); if (unlikely((__pyx_t_3 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 1312, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_result = __pyx_t_3;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1318
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1313
  *         unit = to_offset(freq).nanos
  *         result = unit * rounder(self.value / float(unit))
  *         return Timedelta(result, unit='ns')             # <<<<<<<<<<<<<<
@@ -18236,19 +18291,19 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_6_round
  *     def round(self, freq):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1318, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_result); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1318, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_result); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1318, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1318, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_unit, __pyx_n_u_ns) < 0) __PYX_ERR(0, 1318, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1318, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_unit, __pyx_n_u_ns) < 0) __PYX_ERR(0, 1313, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -18257,7 +18312,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_6_round
   __pyx_t_6 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1312
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1307
  *         return (Timedelta, object_state)
  * 
  *     def _round(self, freq, rounder):             # <<<<<<<<<<<<<<
@@ -18280,17 +18335,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_6_round
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1320
+/* "pandas/_libs/tslibs/timedeltas.pyx":1315
  *         return Timedelta(result, unit='ns')
  * 
  *     def round(self, freq):             # <<<<<<<<<<<<<<
  *         """
- *         Round the Timedelta to the specified resolution.
+ *         Round the Timedelta to the specified resolution
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_9round(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_8round[] = "\n        Round the Timedelta to the specified resolution.\n\n        Parameters\n        ----------\n        freq : a freq string indicating the rounding resolution\n\n        Returns\n        -------\n        a new Timedelta rounded to the given resolution of `freq`\n\n        Raises\n        ------\n        ValueError if the freq cannot be converted\n        ";
+static char __pyx_doc_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_8round[] = "\n        Round the Timedelta to the specified resolution\n\n        Parameters\n        ----------\n        freq : a freq string indicating the rounding resolution\n\n        Returns\n        -------\n        a new Timedelta rounded to the given resolution of `freq`\n\n        Raises\n        ------\n        ValueError if the freq cannot be converted\n        ";
 static PyMethodDef __pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_9round = {"round", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_9round, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_8round};
 static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_9round(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
@@ -18324,11 +18379,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_9round(
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_freq)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("round", 1, 2, 2, 1); __PYX_ERR(0, 1320, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("round", 1, 2, 2, 1); __PYX_ERR(0, 1315, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "round") < 0)) __PYX_ERR(0, 1320, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "round") < 0)) __PYX_ERR(0, 1315, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -18341,7 +18396,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_9round(
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("round", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1320, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("round", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1315, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.round", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -18368,7 +18423,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_8round(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("round", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1336
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1331
  *         ValueError if the freq cannot be converted
  *         """
  *         return self._round(freq, np.round)             # <<<<<<<<<<<<<<
@@ -18376,11 +18431,11 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_8round(
  *     def floor(self, freq):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_round_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1336, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_round_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1331, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1336, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1331, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_round); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1336, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_round); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1331, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -18398,7 +18453,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_8round(
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_freq, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1336, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1331, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -18407,14 +18462,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_8round(
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_freq, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1336, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1331, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1336, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1331, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_3) {
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -18425,7 +18480,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_8round(
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1336, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1331, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
@@ -18434,12 +18489,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_8round(
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1320
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1315
  *         return Timedelta(result, unit='ns')
  * 
  *     def round(self, freq):             # <<<<<<<<<<<<<<
  *         """
- *         Round the Timedelta to the specified resolution.
+ *         Round the Timedelta to the specified resolution
  */
 
   /* function exit code */
@@ -18457,17 +18512,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_8round(
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1338
+/* "pandas/_libs/tslibs/timedeltas.pyx":1333
  *         return self._round(freq, np.round)
  * 
  *     def floor(self, freq):             # <<<<<<<<<<<<<<
  *         """
- *         return a new Timedelta floored to this resolution.
+ *         return a new Timedelta floored to this resolution
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_11floor(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_10floor[] = "\n        return a new Timedelta floored to this resolution.\n\n        Parameters\n        ----------\n        freq : a freq string indicating the flooring resolution\n        ";
+static char __pyx_doc_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_10floor[] = "\n        return a new Timedelta floored to this resolution\n\n        Parameters\n        ----------\n        freq : a freq string indicating the flooring resolution\n        ";
 static PyMethodDef __pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_11floor = {"floor", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_11floor, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_10floor};
 static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_11floor(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
@@ -18501,11 +18556,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_11floor
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_freq)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("floor", 1, 2, 2, 1); __PYX_ERR(0, 1338, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("floor", 1, 2, 2, 1); __PYX_ERR(0, 1333, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "floor") < 0)) __PYX_ERR(0, 1338, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "floor") < 0)) __PYX_ERR(0, 1333, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -18518,7 +18573,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_11floor
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("floor", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1338, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("floor", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1333, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.floor", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -18545,7 +18600,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_10floor
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("floor", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1346
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1341
  *         freq : a freq string indicating the flooring resolution
  *         """
  *         return self._round(freq, np.floor)             # <<<<<<<<<<<<<<
@@ -18553,11 +18608,11 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_10floor
  *     def ceil(self, freq):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_round_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1346, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_round_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1341, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1346, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1341, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_floor); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1346, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_floor); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1341, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -18575,7 +18630,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_10floor
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_freq, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1346, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1341, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -18584,14 +18639,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_10floor
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_freq, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1346, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1341, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1346, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1341, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_3) {
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -18602,7 +18657,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_10floor
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1346, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1341, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
@@ -18611,12 +18666,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_10floor
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1338
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1333
  *         return self._round(freq, np.round)
  * 
  *     def floor(self, freq):             # <<<<<<<<<<<<<<
  *         """
- *         return a new Timedelta floored to this resolution.
+ *         return a new Timedelta floored to this resolution
  */
 
   /* function exit code */
@@ -18634,17 +18689,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_10floor
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1348
+/* "pandas/_libs/tslibs/timedeltas.pyx":1343
  *         return self._round(freq, np.floor)
  * 
  *     def ceil(self, freq):             # <<<<<<<<<<<<<<
  *         """
- *         return a new Timedelta ceiled to this resolution.
+ *         return a new Timedelta ceiled to this resolution
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_13ceil(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_12ceil[] = "\n        return a new Timedelta ceiled to this resolution.\n\n        Parameters\n        ----------\n        freq : a freq string indicating the ceiling resolution\n        ";
+static char __pyx_doc_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_12ceil[] = "\n        return a new Timedelta ceiled to this resolution\n\n        Parameters\n        ----------\n        freq : a freq string indicating the ceiling resolution\n        ";
 static PyMethodDef __pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_13ceil = {"ceil", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_13ceil, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_12ceil};
 static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_13ceil(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
@@ -18678,11 +18733,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_13ceil(
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_freq)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("ceil", 1, 2, 2, 1); __PYX_ERR(0, 1348, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("ceil", 1, 2, 2, 1); __PYX_ERR(0, 1343, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ceil") < 0)) __PYX_ERR(0, 1348, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ceil") < 0)) __PYX_ERR(0, 1343, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -18695,7 +18750,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_13ceil(
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("ceil", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1348, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("ceil", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1343, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.ceil", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -18722,7 +18777,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_12ceil(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("ceil", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1356
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1351
  *         freq : a freq string indicating the ceiling resolution
  *         """
  *         return self._round(freq, np.ceil)             # <<<<<<<<<<<<<<
@@ -18730,11 +18785,11 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_12ceil(
  *     # ----------------------------------------------------------------
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_round_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1356, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_round_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1351, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1356, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1351, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_ceil); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1356, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_ceil); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1351, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -18752,7 +18807,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_12ceil(
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_freq, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1356, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1351, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -18761,14 +18816,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_12ceil(
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_freq, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1356, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1351, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1356, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1351, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_3) {
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -18779,7 +18834,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_12ceil(
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1356, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1351, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
@@ -18788,12 +18843,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_12ceil(
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1348
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1343
  *         return self._round(freq, np.floor)
  * 
  *     def ceil(self, freq):             # <<<<<<<<<<<<<<
  *         """
- *         return a new Timedelta ceiled to this resolution.
+ *         return a new Timedelta ceiled to this resolution
  */
 
   /* function exit code */
@@ -18811,7 +18866,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_12ceil(
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1372
+/* "pandas/_libs/tslibs/timedeltas.pyx":1367
  *     __rsub__ = _binary_op_method_timedeltalike(lambda x, y: y - x, '__rsub__')
  * 
  *     def __mul__(self, other):             # <<<<<<<<<<<<<<
@@ -18854,11 +18909,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_15__mul
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_other)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__mul__", 1, 2, 2, 1); __PYX_ERR(0, 1372, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__mul__", 1, 2, 2, 1); __PYX_ERR(0, 1367, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__mul__") < 0)) __PYX_ERR(0, 1372, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__mul__") < 0)) __PYX_ERR(0, 1367, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -18871,7 +18926,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_15__mul
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__mul__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1372, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__mul__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1367, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.__mul__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -18899,40 +18954,40 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__mul__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1373
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1368
  * 
  *     def __mul__(self, other):
  *         if hasattr(other, '_typ'):             # <<<<<<<<<<<<<<
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):
  */
-  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_typ); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1373, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_typ); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1368, __pyx_L1_error)
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1375
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1370
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):             # <<<<<<<<<<<<<<
  *                 # Tick offset; this op will raise TypeError
  *                 return other.delta * self
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_typ); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1375, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_typ); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1370, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_3, __pyx_n_u_dateoffset, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 1375, __pyx_L1_error)
+    __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_3, __pyx_n_u_dateoffset, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 1370, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_1) {
     } else {
       __pyx_t_2 = __pyx_t_1;
       goto __pyx_L5_bool_binop_done;
     }
-    __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_delta); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1375, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_delta); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1370, __pyx_L1_error)
     __pyx_t_4 = (__pyx_t_1 != 0);
     __pyx_t_2 = __pyx_t_4;
     __pyx_L5_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1377
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1372
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):
  *                 # Tick offset; this op will raise TypeError
  *                 return other.delta * self             # <<<<<<<<<<<<<<
@@ -18940,16 +18995,16 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
  * 
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_delta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1377, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_delta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1372, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_5 = PyNumber_Multiply(__pyx_t_3, __pyx_v_self); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1377, __pyx_L1_error)
+      __pyx_t_5 = PyNumber_Multiply(__pyx_t_3, __pyx_v_self); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1372, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_r = __pyx_t_5;
       __pyx_t_5 = 0;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1375
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1370
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):             # <<<<<<<<<<<<<<
@@ -18958,7 +19013,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1378
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1373
  *                 # Tick offset; this op will raise TypeError
  *                 return other.delta * self
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -18970,7 +19025,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1373
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1368
  * 
  *     def __mul__(self, other):
  *         if hasattr(other, '_typ'):             # <<<<<<<<<<<<<<
@@ -18979,7 +19034,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1380
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1375
  *             return NotImplemented
  * 
  *         elif util.is_nan(other):             # <<<<<<<<<<<<<<
@@ -18989,7 +19044,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
   __pyx_t_2 = (__pyx_f_6pandas_5_libs_6tslibs_4util_is_nan(__pyx_v_other) != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1384
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1379
  *             #  otherwise get caught by the hasattr(other, "dtype") branch
  *             #  incorrectly return a np.timedelta64 object.
  *             return NaT             # <<<<<<<<<<<<<<
@@ -19001,7 +19056,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
     __pyx_r = ((PyObject *)__pyx_v_6pandas_5_libs_6tslibs_7nattype_c_NaT);
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1380
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1375
  *             return NotImplemented
  * 
  *         elif util.is_nan(other):             # <<<<<<<<<<<<<<
@@ -19010,18 +19065,18 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1386
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1381
  *             return NaT
  * 
  *         elif hasattr(other, 'dtype'):             # <<<<<<<<<<<<<<
  *             # ndarray-like
  *             return other * self.to_timedelta64()
  */
-  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_dtype); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 1386, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_dtype); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 1381, __pyx_L1_error)
   __pyx_t_4 = (__pyx_t_2 != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1388
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1383
  *         elif hasattr(other, 'dtype'):
  *             # ndarray-like
  *             return other * self.to_timedelta64()             # <<<<<<<<<<<<<<
@@ -19029,7 +19084,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
  *         elif other is NaT:
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_to_timedelta64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1388, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_to_timedelta64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1383, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -19043,17 +19098,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
     }
     __pyx_t_5 = (__pyx_t_6) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_6) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1388, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1383, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyNumber_Multiply(__pyx_v_other, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1388, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Multiply(__pyx_v_other, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1383, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_r = __pyx_t_3;
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1386
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1381
  *             return NaT
  * 
  *         elif hasattr(other, 'dtype'):             # <<<<<<<<<<<<<<
@@ -19062,7 +19117,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1390
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1385
  *             return other * self.to_timedelta64()
  * 
  *         elif other is NaT:             # <<<<<<<<<<<<<<
@@ -19073,20 +19128,20 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
   __pyx_t_2 = (__pyx_t_4 != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1391
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1386
  * 
  *         elif other is NaT:
  *             raise TypeError('Cannot multiply Timedelta with NaT')             # <<<<<<<<<<<<<<
  * 
  *         elif not (is_integer_object(other) or is_float_object(other)):
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__24, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1391, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__24, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1386, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __PYX_ERR(0, 1391, __pyx_L1_error)
+    __PYX_ERR(0, 1386, __pyx_L1_error)
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1390
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1385
  *             return other * self.to_timedelta64()
  * 
  *         elif other is NaT:             # <<<<<<<<<<<<<<
@@ -19095,7 +19150,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1393
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1388
  *             raise TypeError('Cannot multiply Timedelta with NaT')
  * 
  *         elif not (is_integer_object(other) or is_float_object(other)):             # <<<<<<<<<<<<<<
@@ -19114,7 +19169,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
   __pyx_t_4 = ((!__pyx_t_2) != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1395
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1390
  *         elif not (is_integer_object(other) or is_float_object(other)):
  *             # only integers and floats allowed
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -19126,7 +19181,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1393
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1388
  *             raise TypeError('Cannot multiply Timedelta with NaT')
  * 
  *         elif not (is_integer_object(other) or is_float_object(other)):             # <<<<<<<<<<<<<<
@@ -19135,7 +19190,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1397
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1392
  *             return NotImplemented
  * 
  *         return Timedelta(other * self.value, unit='ns')             # <<<<<<<<<<<<<<
@@ -19143,22 +19198,22 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
  *     __rmul__ = __mul__
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1397, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1397, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyNumber_Multiply(__pyx_v_other, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1397, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Multiply(__pyx_v_other, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1397, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_6);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_6);
   __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1397, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_unit, __pyx_n_u_ns) < 0) __PYX_ERR(0, 1397, __pyx_L1_error)
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1397, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_unit, __pyx_n_u_ns) < 0) __PYX_ERR(0, 1392, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -19167,7 +19222,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
   __pyx_t_7 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1372
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1367
  *     __rsub__ = _binary_op_method_timedeltalike(lambda x, y: y - x, '__rsub__')
  * 
  *     def __mul__(self, other):             # <<<<<<<<<<<<<<
@@ -19189,7 +19244,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_14__mul
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1401
+/* "pandas/_libs/tslibs/timedeltas.pyx":1396
  *     __rmul__ = __mul__
  * 
  *     def __truediv__(self, other):             # <<<<<<<<<<<<<<
@@ -19232,11 +19287,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_17__tru
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_other)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__truediv__", 1, 2, 2, 1); __PYX_ERR(0, 1401, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__truediv__", 1, 2, 2, 1); __PYX_ERR(0, 1396, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__truediv__") < 0)) __PYX_ERR(0, 1401, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__truediv__") < 0)) __PYX_ERR(0, 1396, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -19249,7 +19304,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_17__tru
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__truediv__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1401, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__truediv__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1396, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.__truediv__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -19278,40 +19333,40 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
   __Pyx_RefNannySetupContext("__truediv__", 0);
   __Pyx_INCREF(__pyx_v_other);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1402
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1397
  * 
  *     def __truediv__(self, other):
  *         if hasattr(other, '_typ'):             # <<<<<<<<<<<<<<
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):
  */
-  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_typ); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1402, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_typ); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1397, __pyx_L1_error)
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1404
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1399
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):             # <<<<<<<<<<<<<<
  *                 # Tick offset
  *                 return self / other.delta
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_typ); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1404, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_typ); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1399, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_3, __pyx_n_u_dateoffset, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 1404, __pyx_L1_error)
+    __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_3, __pyx_n_u_dateoffset, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 1399, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_1) {
     } else {
       __pyx_t_2 = __pyx_t_1;
       goto __pyx_L5_bool_binop_done;
     }
-    __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_delta); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1404, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_delta); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1399, __pyx_L1_error)
     __pyx_t_4 = (__pyx_t_1 != 0);
     __pyx_t_2 = __pyx_t_4;
     __pyx_L5_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1406
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1401
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):
  *                 # Tick offset
  *                 return self / other.delta             # <<<<<<<<<<<<<<
@@ -19319,16 +19374,16 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
  * 
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_delta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1406, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_delta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1401, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_v_self, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1406, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_v_self, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1401, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_r = __pyx_t_5;
       __pyx_t_5 = 0;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1404
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1399
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):             # <<<<<<<<<<<<<<
@@ -19337,7 +19392,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1407
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1402
  *                 # Tick offset
  *                 return self / other.delta
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -19349,7 +19404,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1402
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1397
  * 
  *     def __truediv__(self, other):
  *         if hasattr(other, '_typ'):             # <<<<<<<<<<<<<<
@@ -19358,7 +19413,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1409
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1404
  *             return NotImplemented
  * 
  *         elif is_timedelta64_object(other):             # <<<<<<<<<<<<<<
@@ -19370,7 +19425,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1413
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1408
  *             pass
  * 
  *         elif util.is_nan(other):             # <<<<<<<<<<<<<<
@@ -19380,7 +19435,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
   __pyx_t_2 = (__pyx_f_6pandas_5_libs_6tslibs_4util_is_nan(__pyx_v_other) != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1417
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1412
  *             #  otherwise get caught by the hasattr(other, "dtype") branch
  *             #  incorrectly return a np.timedelta64 object.
  *             return NaT             # <<<<<<<<<<<<<<
@@ -19392,7 +19447,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
     __pyx_r = ((PyObject *)__pyx_v_6pandas_5_libs_6tslibs_7nattype_c_NaT);
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1413
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1408
  *             pass
  * 
  *         elif util.is_nan(other):             # <<<<<<<<<<<<<<
@@ -19401,18 +19456,18 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1419
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1414
  *             return NaT
  * 
  *         elif hasattr(other, 'dtype'):             # <<<<<<<<<<<<<<
  *             return self.to_timedelta64() / other
  * 
  */
-  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_dtype); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 1419, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_dtype); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 1414, __pyx_L1_error)
   __pyx_t_4 = (__pyx_t_2 != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1420
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1415
  * 
  *         elif hasattr(other, 'dtype'):
  *             return self.to_timedelta64() / other             # <<<<<<<<<<<<<<
@@ -19420,7 +19475,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
  *         elif is_integer_object(other) or is_float_object(other):
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_to_timedelta64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1420, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_to_timedelta64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1415, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -19434,17 +19489,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
     }
     __pyx_t_5 = (__pyx_t_6) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_6) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1420, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1415, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_t_5, __pyx_v_other); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1420, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_t_5, __pyx_v_other); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1415, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_r = __pyx_t_3;
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1419
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1414
  *             return NaT
  * 
  *         elif hasattr(other, 'dtype'):             # <<<<<<<<<<<<<<
@@ -19453,7 +19508,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1422
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1417
  *             return self.to_timedelta64() / other
  * 
  *         elif is_integer_object(other) or is_float_object(other):             # <<<<<<<<<<<<<<
@@ -19471,7 +19526,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
   __pyx_L7_bool_binop_done:;
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1424
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1419
  *         elif is_integer_object(other) or is_float_object(other):
  *             # integers or floats
  *             return Timedelta(self.value / other, unit='ns')             # <<<<<<<<<<<<<<
@@ -19479,22 +19534,22 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
  *         elif not _validate_ops_compat(other):
  */
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1424, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1419, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1424, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1419, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyNumber_Divide(__pyx_t_5, __pyx_v_other); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1424, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyNumber_Divide(__pyx_t_5, __pyx_v_other); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1419, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1424, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1419, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_6);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_6);
     __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1424, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1419, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_unit, __pyx_n_u_ns) < 0) __PYX_ERR(0, 1424, __pyx_L1_error)
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1424, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_unit, __pyx_n_u_ns) < 0) __PYX_ERR(0, 1419, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1419, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -19503,7 +19558,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
     __pyx_t_7 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1422
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1417
  *             return self.to_timedelta64() / other
  * 
  *         elif is_integer_object(other) or is_float_object(other):             # <<<<<<<<<<<<<<
@@ -19512,7 +19567,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1426
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1421
  *             return Timedelta(self.value / other, unit='ns')
  * 
  *         elif not _validate_ops_compat(other):             # <<<<<<<<<<<<<<
@@ -19522,7 +19577,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
   __pyx_t_4 = ((!(__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(__pyx_v_other) != 0)) != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1427
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1422
  * 
  *         elif not _validate_ops_compat(other):
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -19534,7 +19589,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1426
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1421
  *             return Timedelta(self.value / other, unit='ns')
  * 
  *         elif not _validate_ops_compat(other):             # <<<<<<<<<<<<<<
@@ -19544,14 +19599,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
   }
   __pyx_L3:;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1429
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1424
  *             return NotImplemented
  * 
  *         other = Timedelta(other)             # <<<<<<<<<<<<<<
  *         if other is NaT:
  *             return np.nan
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1429, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1424, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_6))) {
@@ -19565,13 +19620,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
   }
   __pyx_t_7 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_5, __pyx_v_other) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_other);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1429, __pyx_L1_error)
+  if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1424, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF_SET(__pyx_v_other, __pyx_t_7);
   __pyx_t_7 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1430
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1425
  * 
  *         other = Timedelta(other)
  *         if other is NaT:             # <<<<<<<<<<<<<<
@@ -19582,7 +19637,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
   __pyx_t_2 = (__pyx_t_4 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1431
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1426
  *         other = Timedelta(other)
  *         if other is NaT:
  *             return np.nan             # <<<<<<<<<<<<<<
@@ -19590,16 +19645,16 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
  * 
  */
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1431, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1426, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_nan); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1431, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_nan); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1426, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_r = __pyx_t_6;
     __pyx_t_6 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1430
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1425
  * 
  *         other = Timedelta(other)
  *         if other is NaT:             # <<<<<<<<<<<<<<
@@ -19608,7 +19663,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1432
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1427
  *         if other is NaT:
  *             return np.nan
  *         return self.value / float(other.value)             # <<<<<<<<<<<<<<
@@ -19616,14 +19671,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
  *     def __rtruediv__(self, other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1432, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1427, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_value); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1432, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_value); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1427, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_5 = __Pyx_PyNumber_Float(__pyx_t_7); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1432, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyNumber_Float(__pyx_t_7); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1427, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyNumber_Divide(__pyx_t_6, __pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1432, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyNumber_Divide(__pyx_t_6, __pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1427, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -19631,7 +19686,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
   __pyx_t_7 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1401
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1396
  *     __rmul__ = __mul__
  * 
  *     def __truediv__(self, other):             # <<<<<<<<<<<<<<
@@ -19654,7 +19709,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_16__tru
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1434
+/* "pandas/_libs/tslibs/timedeltas.pyx":1429
  *         return self.value / float(other.value)
  * 
  *     def __rtruediv__(self, other):             # <<<<<<<<<<<<<<
@@ -19697,11 +19752,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_19__rtr
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_other)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__rtruediv__", 1, 2, 2, 1); __PYX_ERR(0, 1434, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__rtruediv__", 1, 2, 2, 1); __PYX_ERR(0, 1429, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__rtruediv__") < 0)) __PYX_ERR(0, 1434, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__rtruediv__") < 0)) __PYX_ERR(0, 1429, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -19714,7 +19769,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_19__rtr
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__rtruediv__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1434, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__rtruediv__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1429, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.__rtruediv__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -19742,40 +19797,40 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
   __Pyx_RefNannySetupContext("__rtruediv__", 0);
   __Pyx_INCREF(__pyx_v_other);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1435
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1430
  * 
  *     def __rtruediv__(self, other):
  *         if hasattr(other, '_typ'):             # <<<<<<<<<<<<<<
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):
  */
-  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_typ); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1435, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_typ); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1430, __pyx_L1_error)
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1437
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1432
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):             # <<<<<<<<<<<<<<
  *                 # Tick offset
  *                 return other.delta / self
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_typ); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1437, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_typ); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1432, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_3, __pyx_n_u_dateoffset, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 1437, __pyx_L1_error)
+    __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_3, __pyx_n_u_dateoffset, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 1432, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_1) {
     } else {
       __pyx_t_2 = __pyx_t_1;
       goto __pyx_L5_bool_binop_done;
     }
-    __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_delta); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1437, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_delta); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1432, __pyx_L1_error)
     __pyx_t_4 = (__pyx_t_1 != 0);
     __pyx_t_2 = __pyx_t_4;
     __pyx_L5_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1439
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1434
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):
  *                 # Tick offset
  *                 return other.delta / self             # <<<<<<<<<<<<<<
@@ -19783,16 +19838,16 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
  * 
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_delta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1439, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_delta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1434, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_v_self); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1439, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyNumber_Divide(__pyx_t_3, __pyx_v_self); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1434, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_r = __pyx_t_5;
       __pyx_t_5 = 0;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1437
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1432
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):             # <<<<<<<<<<<<<<
@@ -19801,7 +19856,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1440
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1435
  *                 # Tick offset
  *                 return other.delta / self
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -19813,7 +19868,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1435
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1430
  * 
  *     def __rtruediv__(self, other):
  *         if hasattr(other, '_typ'):             # <<<<<<<<<<<<<<
@@ -19822,7 +19877,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1442
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1437
  *             return NotImplemented
  * 
  *         elif is_timedelta64_object(other):             # <<<<<<<<<<<<<<
@@ -19834,18 +19889,18 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1446
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1441
  *             pass
  * 
  *         elif hasattr(other, 'dtype'):             # <<<<<<<<<<<<<<
  *             return other / self.to_timedelta64()
  * 
  */
-  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_dtype); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 1446, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_dtype); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 1441, __pyx_L1_error)
   __pyx_t_4 = (__pyx_t_2 != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1447
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1442
  * 
  *         elif hasattr(other, 'dtype'):
  *             return other / self.to_timedelta64()             # <<<<<<<<<<<<<<
@@ -19853,7 +19908,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
  *         elif not _validate_ops_compat(other):
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_to_timedelta64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1447, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_to_timedelta64); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1442, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -19867,17 +19922,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
     }
     __pyx_t_5 = (__pyx_t_6) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_6) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1447, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1442, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_v_other, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1447, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_v_other, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1442, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_r = __pyx_t_3;
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1446
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1441
  *             pass
  * 
  *         elif hasattr(other, 'dtype'):             # <<<<<<<<<<<<<<
@@ -19886,7 +19941,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1449
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1444
  *             return other / self.to_timedelta64()
  * 
  *         elif not _validate_ops_compat(other):             # <<<<<<<<<<<<<<
@@ -19896,7 +19951,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
   __pyx_t_4 = ((!(__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(__pyx_v_other) != 0)) != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1450
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1445
  * 
  *         elif not _validate_ops_compat(other):
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -19908,7 +19963,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1449
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1444
  *             return other / self.to_timedelta64()
  * 
  *         elif not _validate_ops_compat(other):             # <<<<<<<<<<<<<<
@@ -19918,14 +19973,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
   }
   __pyx_L3:;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1452
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1447
  *             return NotImplemented
  * 
  *         other = Timedelta(other)             # <<<<<<<<<<<<<<
  *         if other is NaT:
  *             return NaT
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1452, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1447, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_6 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_5))) {
@@ -19939,13 +19994,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
   }
   __pyx_t_3 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_6, __pyx_v_other) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_other);
   __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1452, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1447, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF_SET(__pyx_v_other, __pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1453
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1448
  * 
  *         other = Timedelta(other)
  *         if other is NaT:             # <<<<<<<<<<<<<<
@@ -19956,7 +20011,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
   __pyx_t_2 = (__pyx_t_4 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1454
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1449
  *         other = Timedelta(other)
  *         if other is NaT:
  *             return NaT             # <<<<<<<<<<<<<<
@@ -19968,7 +20023,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
     __pyx_r = ((PyObject *)__pyx_v_6pandas_5_libs_6tslibs_7nattype_c_NaT);
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1453
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1448
  * 
  *         other = Timedelta(other)
  *         if other is NaT:             # <<<<<<<<<<<<<<
@@ -19977,7 +20032,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1455
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1450
  *         if other is NaT:
  *             return NaT
  *         return float(other.value) / self.value             # <<<<<<<<<<<<<<
@@ -19985,14 +20040,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
  *     def __floordiv__(self, other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1455, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1450, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyNumber_Float(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1455, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyNumber_Float(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1450, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1455, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1450, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_6 = __Pyx_PyNumber_Divide(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1455, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyNumber_Divide(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1450, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -20000,7 +20055,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
   __pyx_t_6 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1434
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1429
  *         return self.value / float(other.value)
  * 
  *     def __rtruediv__(self, other):             # <<<<<<<<<<<<<<
@@ -20022,7 +20077,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_18__rtr
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1457
+/* "pandas/_libs/tslibs/timedeltas.pyx":1452
  *         return float(other.value) / self.value
  * 
  *     def __floordiv__(self, other):             # <<<<<<<<<<<<<<
@@ -20065,11 +20120,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_21__flo
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_other)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__floordiv__", 1, 2, 2, 1); __PYX_ERR(0, 1457, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__floordiv__", 1, 2, 2, 1); __PYX_ERR(0, 1452, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__floordiv__") < 0)) __PYX_ERR(0, 1457, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__floordiv__") < 0)) __PYX_ERR(0, 1452, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -20082,7 +20137,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_21__flo
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__floordiv__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1457, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__floordiv__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1452, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.__floordiv__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -20112,40 +20167,40 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
   __Pyx_RefNannySetupContext("__floordiv__", 0);
   __Pyx_INCREF(__pyx_v_other);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1460
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1455
  *         # numpy does not implement floordiv for timedelta64 dtype, so we cannot
  *         # just defer
  *         if hasattr(other, '_typ'):             # <<<<<<<<<<<<<<
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):
  */
-  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_typ); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1460, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_typ); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1455, __pyx_L1_error)
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1462
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1457
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):             # <<<<<<<<<<<<<<
  *                 # Tick offset
  *                 return self // other.delta
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_typ); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1462, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_typ); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1457, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_3, __pyx_n_u_dateoffset, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 1462, __pyx_L1_error)
+    __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_3, __pyx_n_u_dateoffset, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 1457, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_1) {
     } else {
       __pyx_t_2 = __pyx_t_1;
       goto __pyx_L5_bool_binop_done;
     }
-    __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_delta); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1462, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_delta); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1457, __pyx_L1_error)
     __pyx_t_4 = (__pyx_t_1 != 0);
     __pyx_t_2 = __pyx_t_4;
     __pyx_L5_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1464
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1459
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):
  *                 # Tick offset
  *                 return self // other.delta             # <<<<<<<<<<<<<<
@@ -20153,16 +20208,16 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
  * 
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_delta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1464, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_delta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1459, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_5 = PyNumber_FloorDivide(__pyx_v_self, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1464, __pyx_L1_error)
+      __pyx_t_5 = PyNumber_FloorDivide(__pyx_v_self, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1459, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_r = __pyx_t_5;
       __pyx_t_5 = 0;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1462
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1457
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):             # <<<<<<<<<<<<<<
@@ -20171,7 +20226,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1465
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1460
  *                 # Tick offset
  *                 return self // other.delta
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -20183,7 +20238,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1460
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1455
  *         # numpy does not implement floordiv for timedelta64 dtype, so we cannot
  *         # just defer
  *         if hasattr(other, '_typ'):             # <<<<<<<<<<<<<<
@@ -20192,7 +20247,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1467
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1462
  *             return NotImplemented
  * 
  *         elif is_timedelta64_object(other):             # <<<<<<<<<<<<<<
@@ -20204,34 +20259,34 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1471
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1466
  *             pass
  * 
  *         elif hasattr(other, 'dtype'):             # <<<<<<<<<<<<<<
  *             if other.dtype.kind == 'm':
  *                 # also timedelta-like
  */
-  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_dtype); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 1471, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_dtype); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 1466, __pyx_L1_error)
   __pyx_t_4 = (__pyx_t_2 != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1472
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1467
  * 
  *         elif hasattr(other, 'dtype'):
  *             if other.dtype.kind == 'm':             # <<<<<<<<<<<<<<
  *                 # also timedelta-like
  *                 return _broadcast_floordiv_td64(self.value, other, _floordiv)
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1472, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1467, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_kind); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1472, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_kind); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1467, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_4 = (__Pyx_PyUnicode_Equals(__pyx_t_3, __pyx_n_u_m, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 1472, __pyx_L1_error)
+    __pyx_t_4 = (__Pyx_PyUnicode_Equals(__pyx_t_3, __pyx_n_u_m, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 1467, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_4) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1474
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1469
  *             if other.dtype.kind == 'm':
  *                 # also timedelta-like
  *                 return _broadcast_floordiv_td64(self.value, other, _floordiv)             # <<<<<<<<<<<<<<
@@ -20239,17 +20294,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
  *                 if other.ndim == 0:
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1474, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1469, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_6 = __Pyx_PyInt_As_npy_int64(__pyx_t_3); if (unlikely((__pyx_t_6 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 1474, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyInt_As_npy_int64(__pyx_t_3); if (unlikely((__pyx_t_6 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 1469, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv_td64(__pyx_t_6, __pyx_v_other, __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__floordiv); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1474, __pyx_L1_error)
+      __pyx_t_3 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv_td64(__pyx_t_6, __pyx_v_other, __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__floordiv); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1469, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_r = __pyx_t_3;
       __pyx_t_3 = 0;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1472
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1467
  * 
  *         elif hasattr(other, 'dtype'):
  *             if other.dtype.kind == 'm':             # <<<<<<<<<<<<<<
@@ -20258,54 +20313,54 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1475
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1470
  *                 # also timedelta-like
  *                 return _broadcast_floordiv_td64(self.value, other, _floordiv)
  *             elif other.dtype.kind in ['i', 'u', 'f']:             # <<<<<<<<<<<<<<
  *                 if other.ndim == 0:
  *                     return Timedelta(self.value // other)
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1475, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1470, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_kind); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1475, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_kind); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1470, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_5, __pyx_n_u_i, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1475, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_5, __pyx_n_u_i, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1470, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_4 = __pyx_t_2;
       goto __pyx_L8_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_5, __pyx_n_u_u, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1475, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_5, __pyx_n_u_u, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1470, __pyx_L1_error)
     if (!__pyx_t_2) {
     } else {
       __pyx_t_4 = __pyx_t_2;
       goto __pyx_L8_bool_binop_done;
     }
-    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_5, __pyx_n_u_f, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1475, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_t_5, __pyx_n_u_f, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1470, __pyx_L1_error)
     __pyx_t_4 = __pyx_t_2;
     __pyx_L8_bool_binop_done:;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_2 = (__pyx_t_4 != 0);
     if (__pyx_t_2) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1476
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1471
  *                 return _broadcast_floordiv_td64(self.value, other, _floordiv)
  *             elif other.dtype.kind in ['i', 'u', 'f']:
  *                 if other.ndim == 0:             # <<<<<<<<<<<<<<
  *                     return Timedelta(self.value // other)
  *                 else:
  */
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_ndim); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1476, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_ndim); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1471, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_3 = __Pyx_PyInt_EqObjC(__pyx_t_5, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1476, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyInt_EqObjC(__pyx_t_5, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1471, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1476, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 1471, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       if (__pyx_t_2) {
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":1477
+        /* "pandas/_libs/tslibs/timedeltas.pyx":1472
  *             elif other.dtype.kind in ['i', 'u', 'f']:
  *                 if other.ndim == 0:
  *                     return Timedelta(self.value // other)             # <<<<<<<<<<<<<<
@@ -20313,11 +20368,11 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
  *                     return self.to_timedelta64() // other
  */
         __Pyx_XDECREF(__pyx_r);
-        __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1477, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1472, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1477, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1472, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_8 = PyNumber_FloorDivide(__pyx_t_7, __pyx_v_other); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1477, __pyx_L1_error)
+        __pyx_t_8 = PyNumber_FloorDivide(__pyx_t_7, __pyx_v_other); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1472, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         __pyx_t_7 = NULL;
@@ -20333,14 +20388,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
         __pyx_t_3 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_7, __pyx_t_8) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_8);
         __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1477, __pyx_L1_error)
+        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1472, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __pyx_r = __pyx_t_3;
         __pyx_t_3 = 0;
         goto __pyx_L0;
 
-        /* "pandas/_libs/tslibs/timedeltas.pyx":1476
+        /* "pandas/_libs/tslibs/timedeltas.pyx":1471
  *                 return _broadcast_floordiv_td64(self.value, other, _floordiv)
  *             elif other.dtype.kind in ['i', 'u', 'f']:
  *                 if other.ndim == 0:             # <<<<<<<<<<<<<<
@@ -20349,7 +20404,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
  */
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1479
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1474
  *                     return Timedelta(self.value // other)
  *                 else:
  *                     return self.to_timedelta64() // other             # <<<<<<<<<<<<<<
@@ -20358,7 +20413,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
  */
       /*else*/ {
         __Pyx_XDECREF(__pyx_r);
-        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_to_timedelta64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1479, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_to_timedelta64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1474, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         __pyx_t_8 = NULL;
         if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -20372,10 +20427,10 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
         }
         __pyx_t_3 = (__pyx_t_8) ? __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_8) : __Pyx_PyObject_CallNoArg(__pyx_t_5);
         __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1479, __pyx_L1_error)
+        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1474, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_5 = PyNumber_FloorDivide(__pyx_t_3, __pyx_v_other); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1479, __pyx_L1_error)
+        __pyx_t_5 = PyNumber_FloorDivide(__pyx_t_3, __pyx_v_other); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1474, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_r = __pyx_t_5;
@@ -20383,7 +20438,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
         goto __pyx_L0;
       }
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1475
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1470
  *                 # also timedelta-like
  *                 return _broadcast_floordiv_td64(self.value, other, _floordiv)
  *             elif other.dtype.kind in ['i', 'u', 'f']:             # <<<<<<<<<<<<<<
@@ -20392,42 +20447,42 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1482
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1477
  * 
  *             raise TypeError('Invalid dtype {dtype} for '
  *                             '{op}'.format(dtype=other.dtype,             # <<<<<<<<<<<<<<
  *                                           op='__floordiv__'))
  * 
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Invalid_dtype_dtype_for_op, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1482, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Invalid_dtype_dtype_for_op, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1482, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1482, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_8) < 0) __PYX_ERR(0, 1482, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_8) < 0) __PYX_ERR(0, 1477, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_op, __pyx_n_u_floordiv) < 0) __PYX_ERR(0, 1482, __pyx_L1_error)
-    __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1482, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_op, __pyx_n_u_floordiv) < 0) __PYX_ERR(0, 1477, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1481
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1476
  *                     return self.to_timedelta64() // other
  * 
  *             raise TypeError('Invalid dtype {dtype} for '             # <<<<<<<<<<<<<<
  *                             '{op}'.format(dtype=other.dtype,
  *                                           op='__floordiv__'))
  */
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1481, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1476, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __PYX_ERR(0, 1481, __pyx_L1_error)
+    __PYX_ERR(0, 1476, __pyx_L1_error)
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1471
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1466
  *             pass
  * 
  *         elif hasattr(other, 'dtype'):             # <<<<<<<<<<<<<<
@@ -20436,7 +20491,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1485
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1480
  *                                           op='__floordiv__'))
  * 
  *         elif is_integer_object(other) or is_float_object(other):             # <<<<<<<<<<<<<<
@@ -20454,7 +20509,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
   __pyx_L12_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1486
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1481
  * 
  *         elif is_integer_object(other) or is_float_object(other):
  *             return Timedelta(self.value // other, unit='ns')             # <<<<<<<<<<<<<<
@@ -20462,22 +20517,22 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
  *         elif not _validate_ops_compat(other):
  */
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1486, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1481, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1486, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1481, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_5 = PyNumber_FloorDivide(__pyx_t_8, __pyx_v_other); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1486, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_FloorDivide(__pyx_t_8, __pyx_v_other); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1481, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = PyTuple_New(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1486, __pyx_L1_error)
+    __pyx_t_8 = PyTuple_New(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1481, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1486, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1481, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_unit, __pyx_n_u_ns) < 0) __PYX_ERR(0, 1486, __pyx_L1_error)
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, __pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1486, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_unit, __pyx_n_u_ns) < 0) __PYX_ERR(0, 1481, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, __pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1481, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -20486,7 +20541,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
     __pyx_t_7 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1485
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1480
  *                                           op='__floordiv__'))
  * 
  *         elif is_integer_object(other) or is_float_object(other):             # <<<<<<<<<<<<<<
@@ -20495,7 +20550,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1488
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1483
  *             return Timedelta(self.value // other, unit='ns')
  * 
  *         elif not _validate_ops_compat(other):             # <<<<<<<<<<<<<<
@@ -20505,7 +20560,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
   __pyx_t_2 = ((!(__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(__pyx_v_other) != 0)) != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1489
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1484
  * 
  *         elif not _validate_ops_compat(other):
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -20517,7 +20572,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1488
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1483
  *             return Timedelta(self.value // other, unit='ns')
  * 
  *         elif not _validate_ops_compat(other):             # <<<<<<<<<<<<<<
@@ -20527,14 +20582,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
   }
   __pyx_L3:;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1491
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1486
  *             return NotImplemented
  * 
  *         other = Timedelta(other)             # <<<<<<<<<<<<<<
  *         if other is NaT:
  *             return np.nan
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1491, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1486, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_8 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_5))) {
@@ -20548,13 +20603,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
   }
   __pyx_t_7 = (__pyx_t_8) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_8, __pyx_v_other) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_other);
   __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-  if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1491, __pyx_L1_error)
+  if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1486, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF_SET(__pyx_v_other, __pyx_t_7);
   __pyx_t_7 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1492
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1487
  * 
  *         other = Timedelta(other)
  *         if other is NaT:             # <<<<<<<<<<<<<<
@@ -20565,7 +20620,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
   __pyx_t_4 = (__pyx_t_2 != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1493
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1488
  *         other = Timedelta(other)
  *         if other is NaT:
  *             return np.nan             # <<<<<<<<<<<<<<
@@ -20573,16 +20628,16 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
  * 
  */
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1493, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1488, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_nan); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1493, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_nan); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1488, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_r = __pyx_t_5;
     __pyx_t_5 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1492
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1487
  * 
  *         other = Timedelta(other)
  *         if other is NaT:             # <<<<<<<<<<<<<<
@@ -20591,7 +20646,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1494
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1489
  *         if other is NaT:
  *             return np.nan
  *         return self.value // other.value             # <<<<<<<<<<<<<<
@@ -20599,11 +20654,11 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
  *     def __rfloordiv__(self, other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1494, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1489, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_value); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1494, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_value); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1489, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = PyNumber_FloorDivide(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1494, __pyx_L1_error)
+  __pyx_t_8 = PyNumber_FloorDivide(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1489, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -20611,7 +20666,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
   __pyx_t_8 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1457
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1452
  *         return float(other.value) / self.value
  * 
  *     def __floordiv__(self, other):             # <<<<<<<<<<<<<<
@@ -20634,7 +20689,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_20__flo
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1496
+/* "pandas/_libs/tslibs/timedeltas.pyx":1491
  *         return self.value // other.value
  * 
  *     def __rfloordiv__(self, other):             # <<<<<<<<<<<<<<
@@ -20677,11 +20732,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_23__rfl
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_other)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__rfloordiv__", 1, 2, 2, 1); __PYX_ERR(0, 1496, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__rfloordiv__", 1, 2, 2, 1); __PYX_ERR(0, 1491, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__rfloordiv__") < 0)) __PYX_ERR(0, 1496, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__rfloordiv__") < 0)) __PYX_ERR(0, 1491, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -20694,7 +20749,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_23__rfl
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__rfloordiv__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1496, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__rfloordiv__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1491, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.__rfloordiv__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -20726,40 +20781,40 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
   __Pyx_RefNannySetupContext("__rfloordiv__", 0);
   __Pyx_INCREF(__pyx_v_other);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1499
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1494
  *         # numpy does not implement floordiv for timedelta64 dtype, so we cannot
  *         # just defer
  *         if hasattr(other, '_typ'):             # <<<<<<<<<<<<<<
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):
  */
-  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_typ); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1499, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_typ); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1494, __pyx_L1_error)
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1501
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1496
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):             # <<<<<<<<<<<<<<
  *                 # Tick offset
  *                 return other.delta // self
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_typ); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1501, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_typ); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1496, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_3, __pyx_n_u_dateoffset, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 1501, __pyx_L1_error)
+    __pyx_t_1 = (__Pyx_PyUnicode_Equals(__pyx_t_3, __pyx_n_u_dateoffset, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 1496, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_1) {
     } else {
       __pyx_t_2 = __pyx_t_1;
       goto __pyx_L5_bool_binop_done;
     }
-    __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_delta); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1501, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_delta); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 1496, __pyx_L1_error)
     __pyx_t_4 = (__pyx_t_1 != 0);
     __pyx_t_2 = __pyx_t_4;
     __pyx_L5_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1503
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1498
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):
  *                 # Tick offset
  *                 return other.delta // self             # <<<<<<<<<<<<<<
@@ -20767,16 +20822,16 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
  * 
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_delta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1503, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_delta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1498, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_5 = PyNumber_FloorDivide(__pyx_t_3, __pyx_v_self); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1503, __pyx_L1_error)
+      __pyx_t_5 = PyNumber_FloorDivide(__pyx_t_3, __pyx_v_self); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1498, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_r = __pyx_t_5;
       __pyx_t_5 = 0;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1501
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1496
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  *             if other._typ == 'dateoffset' and hasattr(other, 'delta'):             # <<<<<<<<<<<<<<
@@ -20785,7 +20840,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1504
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1499
  *                 # Tick offset
  *                 return other.delta // self
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -20797,7 +20852,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1499
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1494
  *         # numpy does not implement floordiv for timedelta64 dtype, so we cannot
  *         # just defer
  *         if hasattr(other, '_typ'):             # <<<<<<<<<<<<<<
@@ -20806,7 +20861,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1506
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1501
  *             return NotImplemented
  * 
  *         elif is_timedelta64_object(other):             # <<<<<<<<<<<<<<
@@ -20818,34 +20873,34 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1510
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1505
  *             pass
  * 
  *         elif hasattr(other, 'dtype'):             # <<<<<<<<<<<<<<
  *             if other.dtype.kind == 'm':
  *                 # also timedelta-like
  */
-  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_dtype); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 1510, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_dtype); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 1505, __pyx_L1_error)
   __pyx_t_4 = (__pyx_t_2 != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1511
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1506
  * 
  *         elif hasattr(other, 'dtype'):
  *             if other.dtype.kind == 'm':             # <<<<<<<<<<<<<<
  *                 # also timedelta-like
  *                 return _broadcast_floordiv_td64(self.value, other, _rfloordiv)
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1511, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1506, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_kind); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1511, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_kind); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1506, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_4 = (__Pyx_PyUnicode_Equals(__pyx_t_3, __pyx_n_u_m, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 1511, __pyx_L1_error)
+    __pyx_t_4 = (__Pyx_PyUnicode_Equals(__pyx_t_3, __pyx_n_u_m, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 1506, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_4) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1513
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1508
  *             if other.dtype.kind == 'm':
  *                 # also timedelta-like
  *                 return _broadcast_floordiv_td64(self.value, other, _rfloordiv)             # <<<<<<<<<<<<<<
@@ -20853,17 +20908,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
  *                 # Backwards compatibility
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1513, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1508, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_6 = __Pyx_PyInt_As_npy_int64(__pyx_t_3); if (unlikely((__pyx_t_6 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 1513, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyInt_As_npy_int64(__pyx_t_3); if (unlikely((__pyx_t_6 == ((npy_int64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 1508, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv_td64(__pyx_t_6, __pyx_v_other, __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__rfloordiv); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1513, __pyx_L1_error)
+      __pyx_t_3 = __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv_td64(__pyx_t_6, __pyx_v_other, __pyx_f_6pandas_5_libs_6tslibs_10timedeltas__rfloordiv); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1508, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_r = __pyx_t_3;
       __pyx_t_3 = 0;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1511
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1506
  * 
  *         elif hasattr(other, 'dtype'):
  *             if other.dtype.kind == 'm':             # <<<<<<<<<<<<<<
@@ -20872,32 +20927,32 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1514
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1509
  *                 # also timedelta-like
  *                 return _broadcast_floordiv_td64(self.value, other, _rfloordiv)
  *             elif other.dtype.kind == 'i':             # <<<<<<<<<<<<<<
  *                 # Backwards compatibility
  *                 # GH-19761
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1514, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1509, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_kind); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1514, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_kind); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1509, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_4 = (__Pyx_PyUnicode_Equals(__pyx_t_5, __pyx_n_u_i, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 1514, __pyx_L1_error)
+    __pyx_t_4 = (__Pyx_PyUnicode_Equals(__pyx_t_5, __pyx_n_u_i, Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 1509, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (__pyx_t_4) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1517
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1512
  *                 # Backwards compatibility
  *                 # GH-19761
  *                 msg = textwrap.dedent("""\             # <<<<<<<<<<<<<<
  *                 Floor division between integer array and Timedelta is
  *                 deprecated. Use 'array // timedelta.value' instead.
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_textwrap); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1517, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_textwrap); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1512, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_dedent); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1517, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_dedent); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1512, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_3 = NULL;
@@ -20912,22 +20967,22 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
       }
       __pyx_t_5 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_7, __pyx_t_3, __pyx_kp_u_Floor_division_between_integer) : __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_kp_u_Floor_division_between_integer);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1517, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1512, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_v_msg = __pyx_t_5;
       __pyx_t_5 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1524
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1519
  *                 '(array - pd.Timestamp("1970-01-01")) // pd.Timedelta("1s")'.
  *                 """)
  *                 warnings.warn(msg, FutureWarning)             # <<<<<<<<<<<<<<
  *                 return other // self.value
  *             raise TypeError('Invalid dtype {dtype} for '
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_warnings); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1524, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_warnings); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1519, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_warn); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1524, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_warn); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1519, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_7 = NULL;
@@ -20945,7 +21000,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_msg, __pyx_builtin_FutureWarning};
-        __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1524, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1519, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_GOTREF(__pyx_t_5);
       } else
@@ -20953,13 +21008,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_msg, __pyx_builtin_FutureWarning};
-        __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1524, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1519, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_GOTREF(__pyx_t_5);
       } else
       #endif
       {
-        __pyx_t_9 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1524, __pyx_L1_error)
+        __pyx_t_9 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1519, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
         if (__pyx_t_7) {
           __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -20970,14 +21025,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
         __Pyx_INCREF(__pyx_builtin_FutureWarning);
         __Pyx_GIVEREF(__pyx_builtin_FutureWarning);
         PyTuple_SET_ITEM(__pyx_t_9, 1+__pyx_t_8, __pyx_builtin_FutureWarning);
-        __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1524, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_9, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1519, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1525
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1520
  *                 """)
  *                 warnings.warn(msg, FutureWarning)
  *                 return other // self.value             # <<<<<<<<<<<<<<
@@ -20985,16 +21040,16 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
  *                             '{op}'.format(dtype=other.dtype,
  */
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1525, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1520, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_3 = PyNumber_FloorDivide(__pyx_v_other, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1525, __pyx_L1_error)
+      __pyx_t_3 = PyNumber_FloorDivide(__pyx_v_other, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1520, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_r = __pyx_t_3;
       __pyx_t_3 = 0;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1514
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1509
  *                 # also timedelta-like
  *                 return _broadcast_floordiv_td64(self.value, other, _rfloordiv)
  *             elif other.dtype.kind == 'i':             # <<<<<<<<<<<<<<
@@ -21003,42 +21058,42 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1527
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1522
  *                 return other // self.value
  *             raise TypeError('Invalid dtype {dtype} for '
  *                             '{op}'.format(dtype=other.dtype,             # <<<<<<<<<<<<<<
  *                                           op='__floordiv__'))
  * 
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Invalid_dtype_dtype_for_op, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1527, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Invalid_dtype_dtype_for_op, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1522, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1527, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1522, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1527, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1522, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_t_9) < 0) __PYX_ERR(0, 1527, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_t_9) < 0) __PYX_ERR(0, 1522, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_op, __pyx_n_u_floordiv) < 0) __PYX_ERR(0, 1527, __pyx_L1_error)
-    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1527, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_op, __pyx_n_u_floordiv) < 0) __PYX_ERR(0, 1522, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1522, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1526
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1521
  *                 warnings.warn(msg, FutureWarning)
  *                 return other // self.value
  *             raise TypeError('Invalid dtype {dtype} for '             # <<<<<<<<<<<<<<
  *                             '{op}'.format(dtype=other.dtype,
  *                                           op='__floordiv__'))
  */
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1526, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1521, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_Raise(__pyx_t_5, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __PYX_ERR(0, 1526, __pyx_L1_error)
+    __PYX_ERR(0, 1521, __pyx_L1_error)
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1510
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1505
  *             pass
  * 
  *         elif hasattr(other, 'dtype'):             # <<<<<<<<<<<<<<
@@ -21047,7 +21102,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1530
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1525
  *                                           op='__floordiv__'))
  * 
  *         elif is_float_object(other) and util.is_nan(other):             # <<<<<<<<<<<<<<
@@ -21065,7 +21120,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
   __pyx_L8_bool_binop_done:;
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1532
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1527
  *         elif is_float_object(other) and util.is_nan(other):
  *             # i.e. np.nan
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -21077,7 +21132,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1530
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1525
  *                                           op='__floordiv__'))
  * 
  *         elif is_float_object(other) and util.is_nan(other):             # <<<<<<<<<<<<<<
@@ -21086,7 +21141,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1534
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1529
  *             return NotImplemented
  * 
  *         elif not _validate_ops_compat(other):             # <<<<<<<<<<<<<<
@@ -21096,7 +21151,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
   __pyx_t_4 = ((!(__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__validate_ops_compat(__pyx_v_other) != 0)) != 0);
   if (__pyx_t_4) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1535
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1530
  * 
  *         elif not _validate_ops_compat(other):
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -21108,7 +21163,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1534
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1529
  *             return NotImplemented
  * 
  *         elif not _validate_ops_compat(other):             # <<<<<<<<<<<<<<
@@ -21118,14 +21173,14 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
   }
   __pyx_L3:;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1537
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1532
  *             return NotImplemented
  * 
  *         other = Timedelta(other)             # <<<<<<<<<<<<<<
  *         if other is NaT:
  *             return np.nan
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1537, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1532, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_9))) {
@@ -21139,13 +21194,13 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
   }
   __pyx_t_5 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_9, __pyx_t_3, __pyx_v_other) : __Pyx_PyObject_CallOneArg(__pyx_t_9, __pyx_v_other);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1537, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1532, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __Pyx_DECREF_SET(__pyx_v_other, __pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1538
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1533
  * 
  *         other = Timedelta(other)
  *         if other is NaT:             # <<<<<<<<<<<<<<
@@ -21156,7 +21211,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
   __pyx_t_2 = (__pyx_t_4 != 0);
   if (__pyx_t_2) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1539
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1534
  *         other = Timedelta(other)
  *         if other is NaT:
  *             return np.nan             # <<<<<<<<<<<<<<
@@ -21164,16 +21219,16 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
  * 
  */
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1539, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1534, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_nan); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1539, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_nan); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1534, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_r = __pyx_t_9;
     __pyx_t_9 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1538
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1533
  * 
  *         other = Timedelta(other)
  *         if other is NaT:             # <<<<<<<<<<<<<<
@@ -21182,7 +21237,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1540
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1535
  *         if other is NaT:
  *             return np.nan
  *         return other.value // self.value             # <<<<<<<<<<<<<<
@@ -21190,11 +21245,11 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
  *     def __mod__(self, other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_value); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1540, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_value); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1535, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1540, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1535, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = PyNumber_FloorDivide(__pyx_t_9, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1540, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_FloorDivide(__pyx_t_9, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1535, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -21202,7 +21257,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1496
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1491
  *         return self.value // other.value
  * 
  *     def __rfloordiv__(self, other):             # <<<<<<<<<<<<<<
@@ -21226,7 +21281,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_22__rfl
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1542
+/* "pandas/_libs/tslibs/timedeltas.pyx":1537
  *         return other.value // self.value
  * 
  *     def __mod__(self, other):             # <<<<<<<<<<<<<<
@@ -21269,11 +21324,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_25__mod
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_other)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__mod__", 1, 2, 2, 1); __PYX_ERR(0, 1542, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__mod__", 1, 2, 2, 1); __PYX_ERR(0, 1537, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__mod__") < 0)) __PYX_ERR(0, 1542, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__mod__") < 0)) __PYX_ERR(0, 1537, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -21286,7 +21341,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_25__mod
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__mod__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1542, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__mod__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1537, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.__mod__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -21310,7 +21365,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_24__mod
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__mod__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1544
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1539
  *     def __mod__(self, other):
  *         # Naive implementation, room for optimization
  *         return self.__divmod__(other)[1]             # <<<<<<<<<<<<<<
@@ -21318,7 +21373,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_24__mod
  *     def __rmod__(self, other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_divmod); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1544, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_divmod); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1539, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -21332,17 +21387,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_24__mod
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_other) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_other);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1544, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1539, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1544, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1539, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1542
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1537
  *         return other.value // self.value
  * 
  *     def __mod__(self, other):             # <<<<<<<<<<<<<<
@@ -21363,7 +21418,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_24__mod
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1546
+/* "pandas/_libs/tslibs/timedeltas.pyx":1541
  *         return self.__divmod__(other)[1]
  * 
  *     def __rmod__(self, other):             # <<<<<<<<<<<<<<
@@ -21406,11 +21461,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_27__rmo
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_other)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__rmod__", 1, 2, 2, 1); __PYX_ERR(0, 1546, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__rmod__", 1, 2, 2, 1); __PYX_ERR(0, 1541, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__rmod__") < 0)) __PYX_ERR(0, 1546, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__rmod__") < 0)) __PYX_ERR(0, 1541, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -21423,7 +21478,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_27__rmo
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__rmod__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1546, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__rmod__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1541, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.__rmod__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -21450,67 +21505,67 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_26__rmo
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__rmod__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1548
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1543
  *     def __rmod__(self, other):
  *         # Naive implementation, room for optimization
  *         if hasattr(other, 'dtype') and other.dtype.kind == 'i':             # <<<<<<<<<<<<<<
  *             # TODO: Remove this check with backwards-compat shim
  *             # for integer / Timedelta is removed.
  */
-  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_dtype); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 1548, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_dtype); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 1543, __pyx_L1_error)
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
   } else {
     __pyx_t_1 = __pyx_t_3;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1548, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1543, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_kind); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1548, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_kind); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1543, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_t_5, __pyx_n_u_i, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 1548, __pyx_L1_error)
+  __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_t_5, __pyx_n_u_i, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 1543, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_1 = __pyx_t_3;
   __pyx_L4_bool_binop_done:;
   if (unlikely(__pyx_t_1)) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1552
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1547
  *             # for integer / Timedelta is removed.
  *             raise TypeError("Invalid type {dtype} for "
  *                             "{op}".format(dtype=other.dtype, op='__mod__'))             # <<<<<<<<<<<<<<
  *         return self.__rdivmod__(other)[1]
  * 
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Invalid_type_dtype_for_op, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1552, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Invalid_type_dtype_for_op, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1547, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1552, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1547, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1552, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1547, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_6) < 0) __PYX_ERR(0, 1552, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_6) < 0) __PYX_ERR(0, 1547, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_op, __pyx_n_u_mod) < 0) __PYX_ERR(0, 1552, __pyx_L1_error)
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1552, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_op, __pyx_n_u_mod) < 0) __PYX_ERR(0, 1547, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1547, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1551
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1546
  *             # TODO: Remove this check with backwards-compat shim
  *             # for integer / Timedelta is removed.
  *             raise TypeError("Invalid type {dtype} for "             # <<<<<<<<<<<<<<
  *                             "{op}".format(dtype=other.dtype, op='__mod__'))
  *         return self.__rdivmod__(other)[1]
  */
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1551, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1546, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 1551, __pyx_L1_error)
+    __PYX_ERR(0, 1546, __pyx_L1_error)
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1548
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1543
  *     def __rmod__(self, other):
  *         # Naive implementation, room for optimization
  *         if hasattr(other, 'dtype') and other.dtype.kind == 'i':             # <<<<<<<<<<<<<<
@@ -21519,7 +21574,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_26__rmo
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1553
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1548
  *             raise TypeError("Invalid type {dtype} for "
  *                             "{op}".format(dtype=other.dtype, op='__mod__'))
  *         return self.__rdivmod__(other)[1]             # <<<<<<<<<<<<<<
@@ -21527,7 +21582,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_26__rmo
  *     def __divmod__(self, other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_rdivmod); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1553, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_rdivmod); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1548, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -21541,17 +21596,17 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_26__rmo
   }
   __pyx_t_4 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_5, __pyx_v_other) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_other);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1553, __pyx_L1_error)
+  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1548, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_4, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1553, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_4, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1548, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = __pyx_t_6;
   __pyx_t_6 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1546
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1541
  *         return self.__divmod__(other)[1]
  * 
  *     def __rmod__(self, other):             # <<<<<<<<<<<<<<
@@ -21572,7 +21627,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_26__rmo
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1555
+/* "pandas/_libs/tslibs/timedeltas.pyx":1550
  *         return self.__rdivmod__(other)[1]
  * 
  *     def __divmod__(self, other):             # <<<<<<<<<<<<<<
@@ -21615,11 +21670,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_29__div
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_other)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__divmod__", 1, 2, 2, 1); __PYX_ERR(0, 1555, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__divmod__", 1, 2, 2, 1); __PYX_ERR(0, 1550, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__divmod__") < 0)) __PYX_ERR(0, 1555, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__divmod__") < 0)) __PYX_ERR(0, 1550, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -21632,7 +21687,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_29__div
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__divmod__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1555, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__divmod__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1550, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.__divmod__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -21656,19 +21711,19 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_28__div
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__divmod__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1557
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1552
  *     def __divmod__(self, other):
  *         # Naive implementation, room for optimization
  *         div = self // other             # <<<<<<<<<<<<<<
  *         return div, self - div * other
  * 
  */
-  __pyx_t_1 = PyNumber_FloorDivide(__pyx_v_self, __pyx_v_other); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1557, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_FloorDivide(__pyx_v_self, __pyx_v_other); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1552, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_div = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1558
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1553
  *         # Naive implementation, room for optimization
  *         div = self // other
  *         return div, self - div * other             # <<<<<<<<<<<<<<
@@ -21676,12 +21731,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_28__div
  *     def __rdivmod__(self, other):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyNumber_Multiply(__pyx_v_div, __pyx_v_other); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1558, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_v_div, __pyx_v_other); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1553, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Subtract(__pyx_v_self, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1558, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Subtract(__pyx_v_self, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1553, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1558, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1553, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_div);
   __Pyx_GIVEREF(__pyx_v_div);
@@ -21693,7 +21748,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_28__div
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1555
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1550
  *         return self.__rdivmod__(other)[1]
  * 
  *     def __divmod__(self, other):             # <<<<<<<<<<<<<<
@@ -21714,7 +21769,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_28__div
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1560
+/* "pandas/_libs/tslibs/timedeltas.pyx":1555
  *         return div, self - div * other
  * 
  *     def __rdivmod__(self, other):             # <<<<<<<<<<<<<<
@@ -21757,11 +21812,11 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_31__rdi
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_other)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__rdivmod__", 1, 2, 2, 1); __PYX_ERR(0, 1560, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__rdivmod__", 1, 2, 2, 1); __PYX_ERR(0, 1555, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__rdivmod__") < 0)) __PYX_ERR(0, 1560, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__rdivmod__") < 0)) __PYX_ERR(0, 1555, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -21774,7 +21829,7 @@ static PyObject *__pyx_pw_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_31__rdi
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__rdivmod__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1560, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__rdivmod__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1555, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pandas._libs.tslibs.timedeltas.Timedelta.__rdivmod__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -21802,67 +21857,67 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_30__rdi
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__rdivmod__", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1562
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1557
  *     def __rdivmod__(self, other):
  *         # Naive implementation, room for optimization
  *         if hasattr(other, 'dtype') and other.dtype.kind == 'i':             # <<<<<<<<<<<<<<
  *             # TODO: Remove this check with backwards-compat shim
  *             # for integer / Timedelta is removed.
  */
-  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_dtype); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 1562, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_other, __pyx_n_u_dtype); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 1557, __pyx_L1_error)
   __pyx_t_3 = (__pyx_t_2 != 0);
   if (__pyx_t_3) {
   } else {
     __pyx_t_1 = __pyx_t_3;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1562, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1557, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_kind); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1562, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_kind); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1557, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_t_5, __pyx_n_u_i, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 1562, __pyx_L1_error)
+  __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_t_5, __pyx_n_u_i, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 1557, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_1 = __pyx_t_3;
   __pyx_L4_bool_binop_done:;
   if (unlikely(__pyx_t_1)) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1566
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1561
  *             # for integer / Timedelta is removed.
  *             raise TypeError("Invalid type {dtype} for "
  *                             "{op}".format(dtype=other.dtype, op='__mod__'))             # <<<<<<<<<<<<<<
  *         div = other // self
  *         return div, other - div * self
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Invalid_type_dtype_for_op, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1566, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_u_Invalid_type_dtype_for_op, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1561, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1566, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1561, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1566, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_dtype); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1561, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_6) < 0) __PYX_ERR(0, 1566, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_6) < 0) __PYX_ERR(0, 1561, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_op, __pyx_n_u_mod) < 0) __PYX_ERR(0, 1566, __pyx_L1_error)
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1566, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_op, __pyx_n_u_mod) < 0) __PYX_ERR(0, 1561, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1561, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1565
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1560
  *             # TODO: Remove this check with backwards-compat shim
  *             # for integer / Timedelta is removed.
  *             raise TypeError("Invalid type {dtype} for "             # <<<<<<<<<<<<<<
  *                             "{op}".format(dtype=other.dtype, op='__mod__'))
  *         div = other // self
  */
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1565, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1560, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 1565, __pyx_L1_error)
+    __PYX_ERR(0, 1560, __pyx_L1_error)
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1562
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1557
  *     def __rdivmod__(self, other):
  *         # Naive implementation, room for optimization
  *         if hasattr(other, 'dtype') and other.dtype.kind == 'i':             # <<<<<<<<<<<<<<
@@ -21871,19 +21926,19 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_30__rdi
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1567
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1562
  *             raise TypeError("Invalid type {dtype} for "
  *                             "{op}".format(dtype=other.dtype, op='__mod__'))
  *         div = other // self             # <<<<<<<<<<<<<<
  *         return div, other - div * self
  * 
  */
-  __pyx_t_4 = PyNumber_FloorDivide(__pyx_v_other, __pyx_v_self); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1567, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_FloorDivide(__pyx_v_other, __pyx_v_self); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1562, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_div = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1568
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1563
  *                             "{op}".format(dtype=other.dtype, op='__mod__'))
  *         div = other // self
  *         return div, other - div * self             # <<<<<<<<<<<<<<
@@ -21891,12 +21946,12 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_30__rdi
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = PyNumber_Multiply(__pyx_v_div, __pyx_v_self); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1568, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(__pyx_v_div, __pyx_v_self); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1563, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = PyNumber_Subtract(__pyx_v_other, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1568, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Subtract(__pyx_v_other, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1563, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1568, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1563, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_INCREF(__pyx_v_div);
   __Pyx_GIVEREF(__pyx_v_div);
@@ -21908,7 +21963,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_30__rdi
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1560
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1555
  *         return div, self - div * other
  * 
  *     def __rdivmod__(self, other):             # <<<<<<<<<<<<<<
@@ -21930,7 +21985,7 @@ static PyObject *__pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_30__rdi
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1571
+/* "pandas/_libs/tslibs/timedeltas.pyx":1566
  * 
  * 
  * cdef _floordiv(int64_t value, right):             # <<<<<<<<<<<<<<
@@ -21948,7 +22003,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__floordiv(__pyx_t_5
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_floordiv", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1572
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1567
  * 
  * cdef _floordiv(int64_t value, right):
  *     return value // right             # <<<<<<<<<<<<<<
@@ -21956,16 +22011,16 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__floordiv(__pyx_t_5
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1572, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1567, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_FloorDivide(__pyx_t_1, __pyx_v_right); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1572, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_FloorDivide(__pyx_t_1, __pyx_v_right); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1567, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1571
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1566
  * 
  * 
  * cdef _floordiv(int64_t value, right):             # <<<<<<<<<<<<<<
@@ -21985,7 +22040,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__floordiv(__pyx_t_5
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1575
+/* "pandas/_libs/tslibs/timedeltas.pyx":1570
  * 
  * 
  * cdef _rfloordiv(int64_t value, right):             # <<<<<<<<<<<<<<
@@ -22003,7 +22058,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__rfloordiv(__pyx_t_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_rfloordiv", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1577
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1572
  * cdef _rfloordiv(int64_t value, right):
  *     # analogous to referencing operator.div, but there is no operator.rfloordiv
  *     return right // value             # <<<<<<<<<<<<<<
@@ -22011,16 +22066,16 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__rfloordiv(__pyx_t_
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1577, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_npy_int64(__pyx_v_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1572, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_FloorDivide(__pyx_v_right, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1577, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_FloorDivide(__pyx_v_right, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1572, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1575
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1570
  * 
  * 
  * cdef _rfloordiv(int64_t value, right):             # <<<<<<<<<<<<<<
@@ -22040,7 +22095,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__rfloordiv(__pyx_t_
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/timedeltas.pyx":1580
+/* "pandas/_libs/tslibs/timedeltas.pyx":1575
  * 
  * 
  * cdef _broadcast_floordiv_td64(int64_t value, object other,             # <<<<<<<<<<<<<<
@@ -22065,27 +22120,27 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_broadcast_floordiv_td64", 0);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1598
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1593
  *     # assumes other.dtype.kind == 'm', i.e. other is timedelta-like
  *     cdef:
  *         int ndim = getattr(other, 'ndim', -1)             # <<<<<<<<<<<<<<
  * 
  *     # We need to watch out for np.timedelta64('NaT').
  */
-  __pyx_t_1 = __Pyx_GetAttr3(__pyx_v_other, __pyx_n_u_ndim, __pyx_int_neg_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1598, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetAttr3(__pyx_v_other, __pyx_n_u_ndim, __pyx_int_neg_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1593, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1598, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 1593, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_ndim = __pyx_t_2;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1601
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1596
  * 
  *     # We need to watch out for np.timedelta64('NaT').
  *     mask = other.view('i8') == NPY_NAT             # <<<<<<<<<<<<<<
  * 
  *     if ndim == 0:
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_view); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1601, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_view); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1596, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -22099,18 +22154,18 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv
   }
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_n_u_i8) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_n_u_i8);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1601, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1596, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_npy_int64(__pyx_v_6pandas_5_libs_6tslibs_7nattype_NPY_NAT); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1601, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_npy_int64(__pyx_v_6pandas_5_libs_6tslibs_7nattype_NPY_NAT); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1596, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1601, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1596, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_mask = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1603
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1598
  *     mask = other.view('i8') == NPY_NAT
  * 
  *     if ndim == 0:             # <<<<<<<<<<<<<<
@@ -22120,17 +22175,17 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv
   __pyx_t_5 = ((__pyx_v_ndim == 0) != 0);
   if (__pyx_t_5) {
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1604
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1599
  * 
  *     if ndim == 0:
  *         if mask:             # <<<<<<<<<<<<<<
  *             return np.nan
  * 
  */
-    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_mask); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 1604, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_mask); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 1599, __pyx_L1_error)
     if (__pyx_t_5) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1605
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1600
  *     if ndim == 0:
  *         if mask:
  *             return np.nan             # <<<<<<<<<<<<<<
@@ -22138,16 +22193,16 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv
  *         return operation(value, other.astype('m8[ns]').astype('i8'))
  */
       __Pyx_XDECREF(__pyx_r);
-      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1605, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1600, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_nan); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1605, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_nan); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1600, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_r = __pyx_t_3;
       __pyx_t_3 = 0;
       goto __pyx_L0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1604
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1599
  * 
  *     if ndim == 0:
  *         if mask:             # <<<<<<<<<<<<<<
@@ -22156,7 +22211,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1607
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1602
  *             return np.nan
  * 
  *         return operation(value, other.astype('m8[ns]').astype('i8'))             # <<<<<<<<<<<<<<
@@ -22164,7 +22219,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv
  *     else:
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_astype); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1607, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_astype); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1602, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -22178,10 +22233,10 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv
     }
     __pyx_t_4 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_6, __pyx_kp_u_m8_ns) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_kp_u_m8_ns);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1607, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1602, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_astype); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1607, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_astype); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1602, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_4 = NULL;
@@ -22196,17 +22251,17 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv
     }
     __pyx_t_3 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_4, __pyx_n_u_i8) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_n_u_i8);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1607, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1602, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __pyx_v_operation(__pyx_v_value, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1607, __pyx_L1_error)
+    __pyx_t_1 = __pyx_v_operation(__pyx_v_value, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1602, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_r = __pyx_t_1;
     __pyx_t_1 = 0;
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1603
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1598
  *     mask = other.view('i8') == NPY_NAT
  * 
  *     if ndim == 0:             # <<<<<<<<<<<<<<
@@ -22215,7 +22270,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv
  */
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1610
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1605
  * 
  *     else:
  *         res = operation(value, other.astype('m8[ns]').astype('i8'))             # <<<<<<<<<<<<<<
@@ -22223,7 +22278,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv
  *         if mask.any():
  */
   /*else*/ {
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1610, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_other, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1605, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -22237,10 +22292,10 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv
     }
     __pyx_t_3 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_6, __pyx_kp_u_m8_ns) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_kp_u_m8_ns);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1610, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1605, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1610, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1605, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -22255,23 +22310,23 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv
     }
     __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_3, __pyx_n_u_i8) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_n_u_i8);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1610, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1605, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __pyx_v_operation(__pyx_v_value, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1610, __pyx_L1_error)
+    __pyx_t_4 = __pyx_v_operation(__pyx_v_value, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1605, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_res = __pyx_t_4;
     __pyx_t_4 = 0;
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1612
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1607
  *         res = operation(value, other.astype('m8[ns]').astype('i8'))
  * 
  *         if mask.any():             # <<<<<<<<<<<<<<
  *             res = res.astype('f8')
  *             res[mask] = np.nan
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_mask, __pyx_n_s_any); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1612, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_mask, __pyx_n_s_any); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1607, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_3 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -22285,21 +22340,21 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv
     }
     __pyx_t_4 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1612, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1607, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 1612, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 1607, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (__pyx_t_5) {
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1613
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1608
  * 
  *         if mask.any():
  *             res = res.astype('f8')             # <<<<<<<<<<<<<<
  *             res[mask] = np.nan
  *         return res
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_res, __pyx_n_s_astype); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1613, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_res, __pyx_n_s_astype); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1608, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_t_3 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -22313,28 +22368,28 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv
       }
       __pyx_t_4 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_3, __pyx_n_u_f8) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_n_u_f8);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1613, __pyx_L1_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1608, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF_SET(__pyx_v_res, __pyx_t_4);
       __pyx_t_4 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1614
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1609
  *         if mask.any():
  *             res = res.astype('f8')
  *             res[mask] = np.nan             # <<<<<<<<<<<<<<
  *         return res
  * 
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1614, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1609, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_nan); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1614, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_nan); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1609, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(PyObject_SetItem(__pyx_v_res, __pyx_v_mask, __pyx_t_1) < 0)) __PYX_ERR(0, 1614, __pyx_L1_error)
+      if (unlikely(PyObject_SetItem(__pyx_v_res, __pyx_v_mask, __pyx_t_1) < 0)) __PYX_ERR(0, 1609, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "pandas/_libs/tslibs/timedeltas.pyx":1612
+      /* "pandas/_libs/tslibs/timedeltas.pyx":1607
  *         res = operation(value, other.astype('m8[ns]').astype('i8'))
  * 
  *         if mask.any():             # <<<<<<<<<<<<<<
@@ -22343,7 +22398,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv
  */
     }
 
-    /* "pandas/_libs/tslibs/timedeltas.pyx":1615
+    /* "pandas/_libs/tslibs/timedeltas.pyx":1610
  *             res = res.astype('f8')
  *             res[mask] = np.nan
  *         return res             # <<<<<<<<<<<<<<
@@ -22356,7 +22411,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas__broadcast_floordiv
     goto __pyx_L0;
   }
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1580
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1575
  * 
  * 
  * cdef _broadcast_floordiv_td64(int64_t value, object other,             # <<<<<<<<<<<<<<
@@ -22859,7 +22914,7 @@ static PyObject *__pyx_f_6pandas_5_libs_6tslibs_10timedeltas___pyx_unpickle__Tim
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":258
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":258
  *         # experimental exception made for __getbuffer__ and __releasebuffer__
  *         # -- the details of this may change.
  *         def __getbuffer__(ndarray self, Py_buffer* info, int flags):             # <<<<<<<<<<<<<<
@@ -22911,7 +22966,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_v_info->obj = Py_None; __Pyx_INCREF(Py_None);
   __Pyx_GIVEREF(__pyx_v_info->obj);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":265
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":265
  * 
  *             cdef int i, ndim
  *             cdef int endian_detector = 1             # <<<<<<<<<<<<<<
@@ -22920,7 +22975,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_endian_detector = 1;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":266
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":266
  *             cdef int i, ndim
  *             cdef int endian_detector = 1
  *             cdef bint little_endian = ((<char*>&endian_detector)[0] != 0)             # <<<<<<<<<<<<<<
@@ -22929,7 +22984,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_little_endian = ((((char *)(&__pyx_v_endian_detector))[0]) != 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":268
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":268
  *             cdef bint little_endian = ((<char*>&endian_detector)[0] != 0)
  * 
  *             ndim = PyArray_NDIM(self)             # <<<<<<<<<<<<<<
@@ -22938,7 +22993,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_ndim = PyArray_NDIM(__pyx_v_self);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":270
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":270
  *             ndim = PyArray_NDIM(self)
  * 
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)             # <<<<<<<<<<<<<<
@@ -22952,7 +23007,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     goto __pyx_L4_bool_binop_done;
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":271
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":271
  * 
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_ARRAY_C_CONTIGUOUS)):             # <<<<<<<<<<<<<<
@@ -22963,7 +23018,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_t_1 = __pyx_t_2;
   __pyx_L4_bool_binop_done:;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":270
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":270
  *             ndim = PyArray_NDIM(self)
  * 
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)             # <<<<<<<<<<<<<<
@@ -22972,7 +23027,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   if (unlikely(__pyx_t_1)) {
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":272
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":272
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_ARRAY_C_CONTIGUOUS)):
  *                 raise ValueError(u"ndarray is not C contiguous")             # <<<<<<<<<<<<<<
@@ -22985,7 +23040,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(2, 272, __pyx_L1_error)
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":270
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":270
  *             ndim = PyArray_NDIM(self)
  * 
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)             # <<<<<<<<<<<<<<
@@ -22994,7 +23049,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":274
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":274
  *                 raise ValueError(u"ndarray is not C contiguous")
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)             # <<<<<<<<<<<<<<
@@ -23008,7 +23063,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     goto __pyx_L7_bool_binop_done;
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":275
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":275
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_ARRAY_F_CONTIGUOUS)):             # <<<<<<<<<<<<<<
@@ -23019,7 +23074,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_t_1 = __pyx_t_2;
   __pyx_L7_bool_binop_done:;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":274
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":274
  *                 raise ValueError(u"ndarray is not C contiguous")
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)             # <<<<<<<<<<<<<<
@@ -23028,7 +23083,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   if (unlikely(__pyx_t_1)) {
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":276
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":276
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_ARRAY_F_CONTIGUOUS)):
  *                 raise ValueError(u"ndarray is not Fortran contiguous")             # <<<<<<<<<<<<<<
@@ -23041,7 +23096,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __PYX_ERR(2, 276, __pyx_L1_error)
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":274
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":274
  *                 raise ValueError(u"ndarray is not C contiguous")
  * 
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)             # <<<<<<<<<<<<<<
@@ -23050,7 +23105,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":278
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":278
  *                 raise ValueError(u"ndarray is not Fortran contiguous")
  * 
  *             info.buf = PyArray_DATA(self)             # <<<<<<<<<<<<<<
@@ -23059,7 +23114,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_info->buf = PyArray_DATA(__pyx_v_self);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":279
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":279
  * 
  *             info.buf = PyArray_DATA(self)
  *             info.ndim = ndim             # <<<<<<<<<<<<<<
@@ -23068,7 +23123,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_info->ndim = __pyx_v_ndim;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":280
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":280
  *             info.buf = PyArray_DATA(self)
  *             info.ndim = ndim
  *             if sizeof(npy_intp) != sizeof(Py_ssize_t):             # <<<<<<<<<<<<<<
@@ -23078,7 +23133,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_t_1 = (((sizeof(npy_intp)) != (sizeof(Py_ssize_t))) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":283
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":283
  *                 # Allocate new buffer for strides and shape info.
  *                 # This is allocated as one block, strides first.
  *                 info.strides = <Py_ssize_t*>PyObject_Malloc(sizeof(Py_ssize_t) * 2 * <size_t>ndim)             # <<<<<<<<<<<<<<
@@ -23087,7 +23142,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     __pyx_v_info->strides = ((Py_ssize_t *)PyObject_Malloc((((sizeof(Py_ssize_t)) * 2) * ((size_t)__pyx_v_ndim))));
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":284
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":284
  *                 # This is allocated as one block, strides first.
  *                 info.strides = <Py_ssize_t*>PyObject_Malloc(sizeof(Py_ssize_t) * 2 * <size_t>ndim)
  *                 info.shape = info.strides + ndim             # <<<<<<<<<<<<<<
@@ -23096,7 +23151,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     __pyx_v_info->shape = (__pyx_v_info->strides + __pyx_v_ndim);
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":285
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":285
  *                 info.strides = <Py_ssize_t*>PyObject_Malloc(sizeof(Py_ssize_t) * 2 * <size_t>ndim)
  *                 info.shape = info.strides + ndim
  *                 for i in range(ndim):             # <<<<<<<<<<<<<<
@@ -23108,7 +23163,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_5; __pyx_t_6+=1) {
       __pyx_v_i = __pyx_t_6;
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":286
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":286
  *                 info.shape = info.strides + ndim
  *                 for i in range(ndim):
  *                     info.strides[i] = PyArray_STRIDES(self)[i]             # <<<<<<<<<<<<<<
@@ -23117,7 +23172,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
       (__pyx_v_info->strides[__pyx_v_i]) = (PyArray_STRIDES(__pyx_v_self)[__pyx_v_i]);
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":287
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":287
  *                 for i in range(ndim):
  *                     info.strides[i] = PyArray_STRIDES(self)[i]
  *                     info.shape[i] = PyArray_DIMS(self)[i]             # <<<<<<<<<<<<<<
@@ -23127,7 +23182,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       (__pyx_v_info->shape[__pyx_v_i]) = (PyArray_DIMS(__pyx_v_self)[__pyx_v_i]);
     }
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":280
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":280
  *             info.buf = PyArray_DATA(self)
  *             info.ndim = ndim
  *             if sizeof(npy_intp) != sizeof(Py_ssize_t):             # <<<<<<<<<<<<<<
@@ -23137,7 +23192,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     goto __pyx_L9;
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":289
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":289
  *                     info.shape[i] = PyArray_DIMS(self)[i]
  *             else:
  *                 info.strides = <Py_ssize_t*>PyArray_STRIDES(self)             # <<<<<<<<<<<<<<
@@ -23147,7 +23202,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   /*else*/ {
     __pyx_v_info->strides = ((Py_ssize_t *)PyArray_STRIDES(__pyx_v_self));
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":290
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":290
  *             else:
  *                 info.strides = <Py_ssize_t*>PyArray_STRIDES(self)
  *                 info.shape = <Py_ssize_t*>PyArray_DIMS(self)             # <<<<<<<<<<<<<<
@@ -23158,7 +23213,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   }
   __pyx_L9:;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":291
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":291
  *                 info.strides = <Py_ssize_t*>PyArray_STRIDES(self)
  *                 info.shape = <Py_ssize_t*>PyArray_DIMS(self)
  *             info.suboffsets = NULL             # <<<<<<<<<<<<<<
@@ -23167,7 +23222,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_info->suboffsets = NULL;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":292
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":292
  *                 info.shape = <Py_ssize_t*>PyArray_DIMS(self)
  *             info.suboffsets = NULL
  *             info.itemsize = PyArray_ITEMSIZE(self)             # <<<<<<<<<<<<<<
@@ -23176,7 +23231,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_info->itemsize = PyArray_ITEMSIZE(__pyx_v_self);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":293
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":293
  *             info.suboffsets = NULL
  *             info.itemsize = PyArray_ITEMSIZE(self)
  *             info.readonly = not PyArray_ISWRITEABLE(self)             # <<<<<<<<<<<<<<
@@ -23185,7 +23240,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_info->readonly = (!(PyArray_ISWRITEABLE(__pyx_v_self) != 0));
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":296
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":296
  * 
  *             cdef int t
  *             cdef char* f = NULL             # <<<<<<<<<<<<<<
@@ -23194,7 +23249,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   __pyx_v_f = NULL;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":297
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":297
  *             cdef int t
  *             cdef char* f = NULL
  *             cdef dtype descr = <dtype>PyArray_DESCR(self)             # <<<<<<<<<<<<<<
@@ -23207,7 +23262,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_v_descr = ((PyArray_Descr *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":300
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":300
  *             cdef int offset
  * 
  *             info.obj = self             # <<<<<<<<<<<<<<
@@ -23220,7 +23275,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __Pyx_DECREF(__pyx_v_info->obj);
   __pyx_v_info->obj = ((PyObject *)__pyx_v_self);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":302
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":302
  *             info.obj = self
  * 
  *             if not PyDataType_HASFIELDS(descr):             # <<<<<<<<<<<<<<
@@ -23230,7 +23285,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   __pyx_t_1 = ((!(PyDataType_HASFIELDS(__pyx_v_descr) != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":303
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":303
  * 
  *             if not PyDataType_HASFIELDS(descr):
  *                 t = descr.type_num             # <<<<<<<<<<<<<<
@@ -23240,7 +23295,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     __pyx_t_4 = __pyx_v_descr->type_num;
     __pyx_v_t = __pyx_t_4;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":304
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":304
  *             if not PyDataType_HASFIELDS(descr):
  *                 t = descr.type_num
  *                 if ((descr.byteorder == c'>' and little_endian) or             # <<<<<<<<<<<<<<
@@ -23260,7 +23315,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     }
     __pyx_L15_next_or:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":305
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":305
  *                 t = descr.type_num
  *                 if ((descr.byteorder == c'>' and little_endian) or
  *                     (descr.byteorder == c'<' and not little_endian)):             # <<<<<<<<<<<<<<
@@ -23277,7 +23332,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     __pyx_t_1 = __pyx_t_2;
     __pyx_L14_bool_binop_done:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":304
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":304
  *             if not PyDataType_HASFIELDS(descr):
  *                 t = descr.type_num
  *                 if ((descr.byteorder == c'>' and little_endian) or             # <<<<<<<<<<<<<<
@@ -23286,7 +23341,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     if (unlikely(__pyx_t_1)) {
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":306
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":306
  *                 if ((descr.byteorder == c'>' and little_endian) or
  *                     (descr.byteorder == c'<' and not little_endian)):
  *                     raise ValueError(u"Non-native byte order not supported")             # <<<<<<<<<<<<<<
@@ -23299,7 +23354,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __PYX_ERR(2, 306, __pyx_L1_error)
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":304
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":304
  *             if not PyDataType_HASFIELDS(descr):
  *                 t = descr.type_num
  *                 if ((descr.byteorder == c'>' and little_endian) or             # <<<<<<<<<<<<<<
@@ -23308,7 +23363,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     }
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":307
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":307
  *                     (descr.byteorder == c'<' and not little_endian)):
  *                     raise ValueError(u"Non-native byte order not supported")
  *                 if   t == NPY_BYTE:        f = "b"             # <<<<<<<<<<<<<<
@@ -23321,7 +23376,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_UBYTE:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":308
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":308
  *                     raise ValueError(u"Non-native byte order not supported")
  *                 if   t == NPY_BYTE:        f = "b"
  *                 elif t == NPY_UBYTE:       f = "B"             # <<<<<<<<<<<<<<
@@ -23332,7 +23387,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_SHORT:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":309
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":309
  *                 if   t == NPY_BYTE:        f = "b"
  *                 elif t == NPY_UBYTE:       f = "B"
  *                 elif t == NPY_SHORT:       f = "h"             # <<<<<<<<<<<<<<
@@ -23343,7 +23398,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_USHORT:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":310
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":310
  *                 elif t == NPY_UBYTE:       f = "B"
  *                 elif t == NPY_SHORT:       f = "h"
  *                 elif t == NPY_USHORT:      f = "H"             # <<<<<<<<<<<<<<
@@ -23354,7 +23409,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_INT:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":311
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":311
  *                 elif t == NPY_SHORT:       f = "h"
  *                 elif t == NPY_USHORT:      f = "H"
  *                 elif t == NPY_INT:         f = "i"             # <<<<<<<<<<<<<<
@@ -23365,7 +23420,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_UINT:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":312
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":312
  *                 elif t == NPY_USHORT:      f = "H"
  *                 elif t == NPY_INT:         f = "i"
  *                 elif t == NPY_UINT:        f = "I"             # <<<<<<<<<<<<<<
@@ -23376,7 +23431,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_LONG:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":313
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":313
  *                 elif t == NPY_INT:         f = "i"
  *                 elif t == NPY_UINT:        f = "I"
  *                 elif t == NPY_LONG:        f = "l"             # <<<<<<<<<<<<<<
@@ -23387,7 +23442,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_ULONG:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":314
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":314
  *                 elif t == NPY_UINT:        f = "I"
  *                 elif t == NPY_LONG:        f = "l"
  *                 elif t == NPY_ULONG:       f = "L"             # <<<<<<<<<<<<<<
@@ -23398,7 +23453,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_LONGLONG:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":315
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":315
  *                 elif t == NPY_LONG:        f = "l"
  *                 elif t == NPY_ULONG:       f = "L"
  *                 elif t == NPY_LONGLONG:    f = "q"             # <<<<<<<<<<<<<<
@@ -23409,7 +23464,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_ULONGLONG:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":316
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":316
  *                 elif t == NPY_ULONG:       f = "L"
  *                 elif t == NPY_LONGLONG:    f = "q"
  *                 elif t == NPY_ULONGLONG:   f = "Q"             # <<<<<<<<<<<<<<
@@ -23420,7 +23475,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_FLOAT:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":317
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":317
  *                 elif t == NPY_LONGLONG:    f = "q"
  *                 elif t == NPY_ULONGLONG:   f = "Q"
  *                 elif t == NPY_FLOAT:       f = "f"             # <<<<<<<<<<<<<<
@@ -23431,7 +23486,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_DOUBLE:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":318
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":318
  *                 elif t == NPY_ULONGLONG:   f = "Q"
  *                 elif t == NPY_FLOAT:       f = "f"
  *                 elif t == NPY_DOUBLE:      f = "d"             # <<<<<<<<<<<<<<
@@ -23442,7 +23497,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_LONGDOUBLE:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":319
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":319
  *                 elif t == NPY_FLOAT:       f = "f"
  *                 elif t == NPY_DOUBLE:      f = "d"
  *                 elif t == NPY_LONGDOUBLE:  f = "g"             # <<<<<<<<<<<<<<
@@ -23453,7 +23508,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_CFLOAT:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":320
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":320
  *                 elif t == NPY_DOUBLE:      f = "d"
  *                 elif t == NPY_LONGDOUBLE:  f = "g"
  *                 elif t == NPY_CFLOAT:      f = "Zf"             # <<<<<<<<<<<<<<
@@ -23464,7 +23519,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_CDOUBLE:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":321
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":321
  *                 elif t == NPY_LONGDOUBLE:  f = "g"
  *                 elif t == NPY_CFLOAT:      f = "Zf"
  *                 elif t == NPY_CDOUBLE:     f = "Zd"             # <<<<<<<<<<<<<<
@@ -23475,7 +23530,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_CLONGDOUBLE:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":322
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":322
  *                 elif t == NPY_CFLOAT:      f = "Zf"
  *                 elif t == NPY_CDOUBLE:     f = "Zd"
  *                 elif t == NPY_CLONGDOUBLE: f = "Zg"             # <<<<<<<<<<<<<<
@@ -23486,7 +23541,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       case NPY_OBJECT:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":323
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":323
  *                 elif t == NPY_CDOUBLE:     f = "Zd"
  *                 elif t == NPY_CLONGDOUBLE: f = "Zg"
  *                 elif t == NPY_OBJECT:      f = "O"             # <<<<<<<<<<<<<<
@@ -23497,7 +23552,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
       default:
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":325
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":325
  *                 elif t == NPY_OBJECT:      f = "O"
  *                 else:
  *                     raise ValueError(u"unknown dtype code in numpy.pxd (%d)" % t)             # <<<<<<<<<<<<<<
@@ -23518,7 +23573,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
       break;
     }
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":326
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":326
  *                 else:
  *                     raise ValueError(u"unknown dtype code in numpy.pxd (%d)" % t)
  *                 info.format = f             # <<<<<<<<<<<<<<
@@ -23527,7 +23582,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     __pyx_v_info->format = __pyx_v_f;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":327
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":327
  *                     raise ValueError(u"unknown dtype code in numpy.pxd (%d)" % t)
  *                 info.format = f
  *                 return             # <<<<<<<<<<<<<<
@@ -23537,7 +23592,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     __pyx_r = 0;
     goto __pyx_L0;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":302
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":302
  *             info.obj = self
  * 
  *             if not PyDataType_HASFIELDS(descr):             # <<<<<<<<<<<<<<
@@ -23546,7 +23601,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":329
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":329
  *                 return
  *             else:
  *                 info.format = <char*>PyObject_Malloc(_buffer_format_string_len)             # <<<<<<<<<<<<<<
@@ -23556,7 +23611,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   /*else*/ {
     __pyx_v_info->format = ((char *)PyObject_Malloc(0xFF));
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":330
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":330
  *             else:
  *                 info.format = <char*>PyObject_Malloc(_buffer_format_string_len)
  *                 info.format[0] = c'^' # Native data types, manual alignment             # <<<<<<<<<<<<<<
@@ -23565,7 +23620,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     (__pyx_v_info->format[0]) = '^';
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":331
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":331
  *                 info.format = <char*>PyObject_Malloc(_buffer_format_string_len)
  *                 info.format[0] = c'^' # Native data types, manual alignment
  *                 offset = 0             # <<<<<<<<<<<<<<
@@ -23574,7 +23629,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
  */
     __pyx_v_offset = 0;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":332
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":332
  *                 info.format[0] = c'^' # Native data types, manual alignment
  *                 offset = 0
  *                 f = _util_dtypestring(descr, info.format + 1,             # <<<<<<<<<<<<<<
@@ -23584,7 +23639,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     __pyx_t_9 = __pyx_f_5numpy__util_dtypestring(__pyx_v_descr, (__pyx_v_info->format + 1), (__pyx_v_info->format + 0xFF), (&__pyx_v_offset)); if (unlikely(__pyx_t_9 == ((char *)NULL))) __PYX_ERR(2, 332, __pyx_L1_error)
     __pyx_v_f = __pyx_t_9;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":335
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":335
  *                                       info.format + _buffer_format_string_len,
  *                                       &offset)
  *                 f[0] = c'\0' # Terminate format string             # <<<<<<<<<<<<<<
@@ -23594,7 +23649,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
     (__pyx_v_f[0]) = '\x00';
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":258
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":258
  *         # experimental exception made for __getbuffer__ and __releasebuffer__
  *         # -- the details of this may change.
  *         def __getbuffer__(ndarray self, Py_buffer* info, int flags):             # <<<<<<<<<<<<<<
@@ -23626,7 +23681,7 @@ static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, P
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":337
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":337
  *                 f[0] = c'\0' # Terminate format string
  * 
  *         def __releasebuffer__(ndarray self, Py_buffer* info):             # <<<<<<<<<<<<<<
@@ -23650,7 +23705,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__releasebuffer__", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":338
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":338
  * 
  *         def __releasebuffer__(ndarray self, Py_buffer* info):
  *             if PyArray_HASFIELDS(self):             # <<<<<<<<<<<<<<
@@ -23660,7 +23715,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
   __pyx_t_1 = (PyArray_HASFIELDS(__pyx_v_self) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":339
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":339
  *         def __releasebuffer__(ndarray self, Py_buffer* info):
  *             if PyArray_HASFIELDS(self):
  *                 PyObject_Free(info.format)             # <<<<<<<<<<<<<<
@@ -23669,7 +23724,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
  */
     PyObject_Free(__pyx_v_info->format);
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":338
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":338
  * 
  *         def __releasebuffer__(ndarray self, Py_buffer* info):
  *             if PyArray_HASFIELDS(self):             # <<<<<<<<<<<<<<
@@ -23678,7 +23733,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
  */
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":340
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":340
  *             if PyArray_HASFIELDS(self):
  *                 PyObject_Free(info.format)
  *             if sizeof(npy_intp) != sizeof(Py_ssize_t):             # <<<<<<<<<<<<<<
@@ -23688,7 +23743,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
   __pyx_t_1 = (((sizeof(npy_intp)) != (sizeof(Py_ssize_t))) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":341
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":341
  *                 PyObject_Free(info.format)
  *             if sizeof(npy_intp) != sizeof(Py_ssize_t):
  *                 PyObject_Free(info.strides)             # <<<<<<<<<<<<<<
@@ -23697,7 +23752,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
  */
     PyObject_Free(__pyx_v_info->strides);
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":340
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":340
  *             if PyArray_HASFIELDS(self):
  *                 PyObject_Free(info.format)
  *             if sizeof(npy_intp) != sizeof(Py_ssize_t):             # <<<<<<<<<<<<<<
@@ -23706,7 +23761,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
  */
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":337
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":337
  *                 f[0] = c'\0' # Terminate format string
  * 
  *         def __releasebuffer__(ndarray self, Py_buffer* info):             # <<<<<<<<<<<<<<
@@ -23718,7 +23773,7 @@ static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_s
   __Pyx_RefNannyFinishContext();
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":820
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":820
  * ctypedef npy_cdouble     complex_t
  * 
  * cdef inline object PyArray_MultiIterNew1(a):             # <<<<<<<<<<<<<<
@@ -23735,7 +23790,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew1", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":821
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":821
  * 
  * cdef inline object PyArray_MultiIterNew1(a):
  *     return PyArray_MultiIterNew(1, <void*>a)             # <<<<<<<<<<<<<<
@@ -23749,7 +23804,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":820
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":820
  * ctypedef npy_cdouble     complex_t
  * 
  * cdef inline object PyArray_MultiIterNew1(a):             # <<<<<<<<<<<<<<
@@ -23768,7 +23823,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":823
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":823
  *     return PyArray_MultiIterNew(1, <void*>a)
  * 
  * cdef inline object PyArray_MultiIterNew2(a, b):             # <<<<<<<<<<<<<<
@@ -23785,7 +23840,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew2", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":824
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":824
  * 
  * cdef inline object PyArray_MultiIterNew2(a, b):
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)             # <<<<<<<<<<<<<<
@@ -23799,7 +23854,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":823
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":823
  *     return PyArray_MultiIterNew(1, <void*>a)
  * 
  * cdef inline object PyArray_MultiIterNew2(a, b):             # <<<<<<<<<<<<<<
@@ -23818,7 +23873,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":826
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":826
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
  * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):             # <<<<<<<<<<<<<<
@@ -23835,7 +23890,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew3", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":827
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":827
  * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)             # <<<<<<<<<<<<<<
@@ -23849,7 +23904,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":826
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":826
  *     return PyArray_MultiIterNew(2, <void*>a, <void*>b)
  * 
  * cdef inline object PyArray_MultiIterNew3(a, b, c):             # <<<<<<<<<<<<<<
@@ -23868,7 +23923,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":829
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":829
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
  * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):             # <<<<<<<<<<<<<<
@@ -23885,7 +23940,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew4", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":830
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":830
  * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)             # <<<<<<<<<<<<<<
@@ -23899,7 +23954,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":829
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":829
  *     return PyArray_MultiIterNew(3, <void*>a, <void*>b, <void*> c)
  * 
  * cdef inline object PyArray_MultiIterNew4(a, b, c, d):             # <<<<<<<<<<<<<<
@@ -23918,7 +23973,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":832
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":832
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
  * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):             # <<<<<<<<<<<<<<
@@ -23935,7 +23990,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("PyArray_MultiIterNew5", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":833
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":833
  * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)             # <<<<<<<<<<<<<<
@@ -23949,7 +24004,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":832
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":832
  *     return PyArray_MultiIterNew(4, <void*>a, <void*>b, <void*>c, <void*> d)
  * 
  * cdef inline object PyArray_MultiIterNew5(a, b, c, d, e):             # <<<<<<<<<<<<<<
@@ -23968,7 +24023,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":835
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":835
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
  * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):             # <<<<<<<<<<<<<<
@@ -23982,7 +24037,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("PyDataType_SHAPE", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":836
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":836
  * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):             # <<<<<<<<<<<<<<
@@ -23992,7 +24047,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   __pyx_t_1 = (PyDataType_HASSUBARRAY(__pyx_v_d) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":837
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":837
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):
  *         return <tuple>d.subarray.shape             # <<<<<<<<<<<<<<
@@ -24004,7 +24059,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
     __pyx_r = ((PyObject*)__pyx_v_d->subarray->shape);
     goto __pyx_L0;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":836
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":836
  * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):
  *     if PyDataType_HASSUBARRAY(d):             # <<<<<<<<<<<<<<
@@ -24013,7 +24068,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
  */
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":839
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":839
  *         return <tuple>d.subarray.shape
  *     else:
  *         return ()             # <<<<<<<<<<<<<<
@@ -24027,7 +24082,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
     goto __pyx_L0;
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":835
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":835
  *     return PyArray_MultiIterNew(5, <void*>a, <void*>b, <void*>c, <void*> d, <void*> e)
  * 
  * cdef inline tuple PyDataType_SHAPE(dtype d):             # <<<<<<<<<<<<<<
@@ -24042,7 +24097,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":841
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":841
  *         return ()
  * 
  * cdef inline char* _util_dtypestring(dtype descr, char* f, char* end, int* offset) except NULL:             # <<<<<<<<<<<<<<
@@ -24074,7 +24129,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_util_dtypestring", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":846
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":846
  * 
  *     cdef dtype child
  *     cdef int endian_detector = 1             # <<<<<<<<<<<<<<
@@ -24083,7 +24138,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
   __pyx_v_endian_detector = 1;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":847
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":847
  *     cdef dtype child
  *     cdef int endian_detector = 1
  *     cdef bint little_endian = ((<char*>&endian_detector)[0] != 0)             # <<<<<<<<<<<<<<
@@ -24092,7 +24147,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
   __pyx_v_little_endian = ((((char *)(&__pyx_v_endian_detector))[0]) != 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":850
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":850
  *     cdef tuple fields
  * 
  *     for childname in descr.names:             # <<<<<<<<<<<<<<
@@ -24115,7 +24170,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __Pyx_XDECREF_SET(__pyx_v_childname, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":851
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":851
  * 
  *     for childname in descr.names:
  *         fields = descr.fields[childname]             # <<<<<<<<<<<<<<
@@ -24132,7 +24187,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __Pyx_XDECREF_SET(__pyx_v_fields, ((PyObject*)__pyx_t_3));
     __pyx_t_3 = 0;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":852
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":852
  *     for childname in descr.names:
  *         fields = descr.fields[childname]
  *         child, new_offset = fields             # <<<<<<<<<<<<<<
@@ -24167,7 +24222,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __Pyx_XDECREF_SET(__pyx_v_new_offset, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":854
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":854
  *         child, new_offset = fields
  * 
  *         if (end - f) - <int>(new_offset - offset[0]) < 15:             # <<<<<<<<<<<<<<
@@ -24184,7 +24239,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __pyx_t_6 = ((((__pyx_v_end - __pyx_v_f) - ((int)__pyx_t_5)) < 15) != 0);
     if (unlikely(__pyx_t_6)) {
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":855
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":855
  * 
  *         if (end - f) - <int>(new_offset - offset[0]) < 15:
  *             raise RuntimeError(u"Format string allocated too short, see comment in numpy.pxd")             # <<<<<<<<<<<<<<
@@ -24197,7 +24252,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __PYX_ERR(2, 855, __pyx_L1_error)
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":854
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":854
  *         child, new_offset = fields
  * 
  *         if (end - f) - <int>(new_offset - offset[0]) < 15:             # <<<<<<<<<<<<<<
@@ -24206,7 +24261,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
     }
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":857
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":857
  *             raise RuntimeError(u"Format string allocated too short, see comment in numpy.pxd")
  * 
  *         if ((child.byteorder == c'>' and little_endian) or             # <<<<<<<<<<<<<<
@@ -24226,7 +24281,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     }
     __pyx_L8_next_or:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":858
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":858
  * 
  *         if ((child.byteorder == c'>' and little_endian) or
  *             (child.byteorder == c'<' and not little_endian)):             # <<<<<<<<<<<<<<
@@ -24243,7 +24298,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __pyx_t_6 = __pyx_t_7;
     __pyx_L7_bool_binop_done:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":857
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":857
  *             raise RuntimeError(u"Format string allocated too short, see comment in numpy.pxd")
  * 
  *         if ((child.byteorder == c'>' and little_endian) or             # <<<<<<<<<<<<<<
@@ -24252,7 +24307,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
     if (unlikely(__pyx_t_6)) {
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":859
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":859
  *         if ((child.byteorder == c'>' and little_endian) or
  *             (child.byteorder == c'<' and not little_endian)):
  *             raise ValueError(u"Non-native byte order not supported")             # <<<<<<<<<<<<<<
@@ -24265,7 +24320,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __PYX_ERR(2, 859, __pyx_L1_error)
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":857
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":857
  *             raise RuntimeError(u"Format string allocated too short, see comment in numpy.pxd")
  * 
  *         if ((child.byteorder == c'>' and little_endian) or             # <<<<<<<<<<<<<<
@@ -24274,7 +24329,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
     }
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":869
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":869
  * 
  *         # Output padding bytes
  *         while offset[0] < new_offset:             # <<<<<<<<<<<<<<
@@ -24290,7 +24345,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       if (!__pyx_t_6) break;
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":870
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":870
  *         # Output padding bytes
  *         while offset[0] < new_offset:
  *             f[0] = 120 # "x"; pad byte             # <<<<<<<<<<<<<<
@@ -24299,7 +24354,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
       (__pyx_v_f[0]) = 0x78;
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":871
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":871
  *         while offset[0] < new_offset:
  *             f[0] = 120 # "x"; pad byte
  *             f += 1             # <<<<<<<<<<<<<<
@@ -24308,7 +24363,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
       __pyx_v_f = (__pyx_v_f + 1);
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":872
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":872
  *             f[0] = 120 # "x"; pad byte
  *             f += 1
  *             offset[0] += 1             # <<<<<<<<<<<<<<
@@ -24319,7 +24374,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       (__pyx_v_offset[__pyx_t_8]) = ((__pyx_v_offset[__pyx_t_8]) + 1);
     }
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":874
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":874
  *             offset[0] += 1
  * 
  *         offset[0] += child.itemsize             # <<<<<<<<<<<<<<
@@ -24329,7 +24384,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __pyx_t_8 = 0;
     (__pyx_v_offset[__pyx_t_8]) = ((__pyx_v_offset[__pyx_t_8]) + __pyx_v_child->elsize);
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":876
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":876
  *         offset[0] += child.itemsize
  * 
  *         if not PyDataType_HASFIELDS(child):             # <<<<<<<<<<<<<<
@@ -24339,7 +24394,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     __pyx_t_6 = ((!(PyDataType_HASFIELDS(__pyx_v_child) != 0)) != 0);
     if (__pyx_t_6) {
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":877
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":877
  * 
  *         if not PyDataType_HASFIELDS(child):
  *             t = child.type_num             # <<<<<<<<<<<<<<
@@ -24351,7 +24406,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       __Pyx_XDECREF_SET(__pyx_v_t, __pyx_t_4);
       __pyx_t_4 = 0;
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":878
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":878
  *         if not PyDataType_HASFIELDS(child):
  *             t = child.type_num
  *             if end - f < 5:             # <<<<<<<<<<<<<<
@@ -24361,7 +24416,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       __pyx_t_6 = (((__pyx_v_end - __pyx_v_f) < 5) != 0);
       if (unlikely(__pyx_t_6)) {
 
-        /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":879
+        /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":879
  *             t = child.type_num
  *             if end - f < 5:
  *                 raise RuntimeError(u"Format string allocated too short.")             # <<<<<<<<<<<<<<
@@ -24374,7 +24429,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __PYX_ERR(2, 879, __pyx_L1_error)
 
-        /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":878
+        /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":878
  *         if not PyDataType_HASFIELDS(child):
  *             t = child.type_num
  *             if end - f < 5:             # <<<<<<<<<<<<<<
@@ -24383,7 +24438,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":882
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":882
  * 
  *             # Until ticket #99 is fixed, use integers to avoid warnings
  *             if   t == NPY_BYTE:        f[0] =  98 #"b"             # <<<<<<<<<<<<<<
@@ -24401,7 +24456,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":883
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":883
  *             # Until ticket #99 is fixed, use integers to avoid warnings
  *             if   t == NPY_BYTE:        f[0] =  98 #"b"
  *             elif t == NPY_UBYTE:       f[0] =  66 #"B"             # <<<<<<<<<<<<<<
@@ -24419,7 +24474,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":884
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":884
  *             if   t == NPY_BYTE:        f[0] =  98 #"b"
  *             elif t == NPY_UBYTE:       f[0] =  66 #"B"
  *             elif t == NPY_SHORT:       f[0] = 104 #"h"             # <<<<<<<<<<<<<<
@@ -24437,7 +24492,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":885
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":885
  *             elif t == NPY_UBYTE:       f[0] =  66 #"B"
  *             elif t == NPY_SHORT:       f[0] = 104 #"h"
  *             elif t == NPY_USHORT:      f[0] =  72 #"H"             # <<<<<<<<<<<<<<
@@ -24455,7 +24510,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":886
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":886
  *             elif t == NPY_SHORT:       f[0] = 104 #"h"
  *             elif t == NPY_USHORT:      f[0] =  72 #"H"
  *             elif t == NPY_INT:         f[0] = 105 #"i"             # <<<<<<<<<<<<<<
@@ -24473,7 +24528,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":887
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":887
  *             elif t == NPY_USHORT:      f[0] =  72 #"H"
  *             elif t == NPY_INT:         f[0] = 105 #"i"
  *             elif t == NPY_UINT:        f[0] =  73 #"I"             # <<<<<<<<<<<<<<
@@ -24491,7 +24546,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":888
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":888
  *             elif t == NPY_INT:         f[0] = 105 #"i"
  *             elif t == NPY_UINT:        f[0] =  73 #"I"
  *             elif t == NPY_LONG:        f[0] = 108 #"l"             # <<<<<<<<<<<<<<
@@ -24509,7 +24564,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":889
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":889
  *             elif t == NPY_UINT:        f[0] =  73 #"I"
  *             elif t == NPY_LONG:        f[0] = 108 #"l"
  *             elif t == NPY_ULONG:       f[0] = 76  #"L"             # <<<<<<<<<<<<<<
@@ -24527,7 +24582,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":890
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":890
  *             elif t == NPY_LONG:        f[0] = 108 #"l"
  *             elif t == NPY_ULONG:       f[0] = 76  #"L"
  *             elif t == NPY_LONGLONG:    f[0] = 113 #"q"             # <<<<<<<<<<<<<<
@@ -24545,7 +24600,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":891
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":891
  *             elif t == NPY_ULONG:       f[0] = 76  #"L"
  *             elif t == NPY_LONGLONG:    f[0] = 113 #"q"
  *             elif t == NPY_ULONGLONG:   f[0] = 81  #"Q"             # <<<<<<<<<<<<<<
@@ -24563,7 +24618,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":892
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":892
  *             elif t == NPY_LONGLONG:    f[0] = 113 #"q"
  *             elif t == NPY_ULONGLONG:   f[0] = 81  #"Q"
  *             elif t == NPY_FLOAT:       f[0] = 102 #"f"             # <<<<<<<<<<<<<<
@@ -24581,7 +24636,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":893
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":893
  *             elif t == NPY_ULONGLONG:   f[0] = 81  #"Q"
  *             elif t == NPY_FLOAT:       f[0] = 102 #"f"
  *             elif t == NPY_DOUBLE:      f[0] = 100 #"d"             # <<<<<<<<<<<<<<
@@ -24599,7 +24654,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":894
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":894
  *             elif t == NPY_FLOAT:       f[0] = 102 #"f"
  *             elif t == NPY_DOUBLE:      f[0] = 100 #"d"
  *             elif t == NPY_LONGDOUBLE:  f[0] = 103 #"g"             # <<<<<<<<<<<<<<
@@ -24617,7 +24672,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":895
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":895
  *             elif t == NPY_DOUBLE:      f[0] = 100 #"d"
  *             elif t == NPY_LONGDOUBLE:  f[0] = 103 #"g"
  *             elif t == NPY_CFLOAT:      f[0] = 90; f[1] = 102; f += 1 # Zf             # <<<<<<<<<<<<<<
@@ -24637,7 +24692,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":896
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":896
  *             elif t == NPY_LONGDOUBLE:  f[0] = 103 #"g"
  *             elif t == NPY_CFLOAT:      f[0] = 90; f[1] = 102; f += 1 # Zf
  *             elif t == NPY_CDOUBLE:     f[0] = 90; f[1] = 100; f += 1 # Zd             # <<<<<<<<<<<<<<
@@ -24657,7 +24712,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":897
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":897
  *             elif t == NPY_CFLOAT:      f[0] = 90; f[1] = 102; f += 1 # Zf
  *             elif t == NPY_CDOUBLE:     f[0] = 90; f[1] = 100; f += 1 # Zd
  *             elif t == NPY_CLONGDOUBLE: f[0] = 90; f[1] = 103; f += 1 # Zg             # <<<<<<<<<<<<<<
@@ -24677,7 +24732,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":898
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":898
  *             elif t == NPY_CDOUBLE:     f[0] = 90; f[1] = 100; f += 1 # Zd
  *             elif t == NPY_CLONGDOUBLE: f[0] = 90; f[1] = 103; f += 1 # Zg
  *             elif t == NPY_OBJECT:      f[0] = 79 #"O"             # <<<<<<<<<<<<<<
@@ -24695,7 +24750,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
         goto __pyx_L15;
       }
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":900
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":900
  *             elif t == NPY_OBJECT:      f[0] = 79 #"O"
  *             else:
  *                 raise ValueError(u"unknown dtype code in numpy.pxd (%d)" % t)             # <<<<<<<<<<<<<<
@@ -24714,7 +24769,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       }
       __pyx_L15:;
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":901
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":901
  *             else:
  *                 raise ValueError(u"unknown dtype code in numpy.pxd (%d)" % t)
  *             f += 1             # <<<<<<<<<<<<<<
@@ -24723,7 +24778,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
  */
       __pyx_v_f = (__pyx_v_f + 1);
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":876
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":876
  *         offset[0] += child.itemsize
  * 
  *         if not PyDataType_HASFIELDS(child):             # <<<<<<<<<<<<<<
@@ -24733,7 +24788,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
       goto __pyx_L13;
     }
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":905
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":905
  *             # Cython ignores struct boundary information ("T{...}"),
  *             # so don't output it
  *             f = _util_dtypestring(child, f, end, offset)             # <<<<<<<<<<<<<<
@@ -24746,7 +24801,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
     }
     __pyx_L13:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":850
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":850
  *     cdef tuple fields
  * 
  *     for childname in descr.names:             # <<<<<<<<<<<<<<
@@ -24756,7 +24811,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":906
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":906
  *             # so don't output it
  *             f = _util_dtypestring(child, f, end, offset)
  *     return f             # <<<<<<<<<<<<<<
@@ -24766,7 +24821,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
   __pyx_r = __pyx_v_f;
   goto __pyx_L0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":841
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":841
  *         return ()
  * 
  * cdef inline char* _util_dtypestring(dtype descr, char* f, char* end, int* offset) except NULL:             # <<<<<<<<<<<<<<
@@ -24791,7 +24846,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1021
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1021
  *     int _import_umath() except -1
  * 
  * cdef inline void set_array_base(ndarray arr, object base):             # <<<<<<<<<<<<<<
@@ -24803,7 +24858,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("set_array_base", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1022
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1022
  * 
  * cdef inline void set_array_base(ndarray arr, object base):
  *     Py_INCREF(base) # important to do this before stealing the reference below!             # <<<<<<<<<<<<<<
@@ -24812,7 +24867,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
  */
   Py_INCREF(__pyx_v_base);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1023
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1023
  * cdef inline void set_array_base(ndarray arr, object base):
  *     Py_INCREF(base) # important to do this before stealing the reference below!
  *     PyArray_SetBaseObject(arr, base)             # <<<<<<<<<<<<<<
@@ -24821,7 +24876,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
  */
   (void)(PyArray_SetBaseObject(__pyx_v_arr, __pyx_v_base));
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1021
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1021
  *     int _import_umath() except -1
  * 
  * cdef inline void set_array_base(ndarray arr, object base):             # <<<<<<<<<<<<<<
@@ -24833,7 +24888,7 @@ static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_a
   __Pyx_RefNannyFinishContext();
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1025
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1025
  *     PyArray_SetBaseObject(arr, base)
  * 
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
@@ -24848,7 +24903,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("get_array_base", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1026
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1026
  * 
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)             # <<<<<<<<<<<<<<
@@ -24857,7 +24912,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
  */
   __pyx_v_base = PyArray_BASE(__pyx_v_arr);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1027
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1027
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)
  *     if base is NULL:             # <<<<<<<<<<<<<<
@@ -24867,7 +24922,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   __pyx_t_1 = ((__pyx_v_base == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1028
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1028
  *     base = PyArray_BASE(arr)
  *     if base is NULL:
  *         return None             # <<<<<<<<<<<<<<
@@ -24878,7 +24933,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1027
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1027
  * cdef inline object get_array_base(ndarray arr):
  *     base = PyArray_BASE(arr)
  *     if base is NULL:             # <<<<<<<<<<<<<<
@@ -24887,7 +24942,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
  */
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1029
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1029
  *     if base is NULL:
  *         return None
  *     return <object>base             # <<<<<<<<<<<<<<
@@ -24899,7 +24954,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   __pyx_r = ((PyObject *)__pyx_v_base);
   goto __pyx_L0;
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1025
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1025
  *     PyArray_SetBaseObject(arr, base)
  * 
  * cdef inline object get_array_base(ndarray arr):             # <<<<<<<<<<<<<<
@@ -24914,7 +24969,7 @@ static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__py
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1033
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1033
  * # Versions of the import_* functions which are more suitable for
  * # Cython code.
  * cdef inline int import_array() except -1:             # <<<<<<<<<<<<<<
@@ -24938,7 +24993,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("import_array", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1034
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1034
  * # Cython code.
  * cdef inline int import_array() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -24954,7 +25009,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1035
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1035
  * cdef inline int import_array() except -1:
  *     try:
  *         _import_array()             # <<<<<<<<<<<<<<
@@ -24963,7 +25018,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
  */
       __pyx_t_4 = _import_array(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(2, 1035, __pyx_L3_error)
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1034
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1034
  * # Cython code.
  * cdef inline int import_array() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -24977,7 +25032,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     goto __pyx_L8_try_end;
     __pyx_L3_error:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1036
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1036
  *     try:
  *         _import_array()
  *     except Exception:             # <<<<<<<<<<<<<<
@@ -24992,7 +25047,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1037
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1037
  *         _import_array()
  *     except Exception:
  *         raise ImportError("numpy.core.multiarray failed to import")             # <<<<<<<<<<<<<<
@@ -25008,7 +25063,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1034
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1034
  * # Cython code.
  * cdef inline int import_array() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -25023,7 +25078,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
     __pyx_L8_try_end:;
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1033
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1033
  * # Versions of the import_* functions which are more suitable for
  * # Cython code.
  * cdef inline int import_array() except -1:             # <<<<<<<<<<<<<<
@@ -25046,7 +25101,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1039
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1039
  *         raise ImportError("numpy.core.multiarray failed to import")
  * 
  * cdef inline int import_umath() except -1:             # <<<<<<<<<<<<<<
@@ -25070,7 +25125,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("import_umath", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1040
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1040
  * 
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -25086,7 +25141,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1041
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1041
  * cdef inline int import_umath() except -1:
  *     try:
  *         _import_umath()             # <<<<<<<<<<<<<<
@@ -25095,7 +25150,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
  */
       __pyx_t_4 = _import_umath(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(2, 1041, __pyx_L3_error)
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1040
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1040
  * 
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -25109,7 +25164,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     goto __pyx_L8_try_end;
     __pyx_L3_error:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1042
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1042
  *     try:
  *         _import_umath()
  *     except Exception:             # <<<<<<<<<<<<<<
@@ -25124,7 +25179,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1043
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1043
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
@@ -25140,7 +25195,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1040
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1040
  * 
  * cdef inline int import_umath() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -25155,7 +25210,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
     __pyx_L8_try_end:;
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1039
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1039
  *         raise ImportError("numpy.core.multiarray failed to import")
  * 
  * cdef inline int import_umath() except -1:             # <<<<<<<<<<<<<<
@@ -25178,7 +25233,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
   return __pyx_r;
 }
 
-/* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1045
+/* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1045
  *         raise ImportError("numpy.core.umath failed to import")
  * 
  * cdef inline int import_ufunc() except -1:             # <<<<<<<<<<<<<<
@@ -25202,7 +25257,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("import_ufunc", 0);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1046
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1046
  * 
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -25218,7 +25273,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     __Pyx_XGOTREF(__pyx_t_3);
     /*try:*/ {
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1047
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1047
  * cdef inline int import_ufunc() except -1:
  *     try:
  *         _import_umath()             # <<<<<<<<<<<<<<
@@ -25227,7 +25282,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
  */
       __pyx_t_4 = _import_umath(); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(2, 1047, __pyx_L3_error)
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1046
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1046
  * 
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -25241,7 +25296,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     goto __pyx_L8_try_end;
     __pyx_L3_error:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1048
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1048
  *     try:
  *         _import_umath()
  *     except Exception:             # <<<<<<<<<<<<<<
@@ -25255,7 +25310,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GOTREF(__pyx_t_7);
 
-      /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1049
+      /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1049
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
@@ -25269,7 +25324,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1046
+    /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1046
  * 
  * cdef inline int import_ufunc() except -1:
  *     try:             # <<<<<<<<<<<<<<
@@ -25284,7 +25339,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
     __pyx_L8_try_end:;
   }
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1045
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1045
  *         raise ImportError("numpy.core.umath failed to import")
  * 
  * cdef inline int import_ufunc() except -1:             # <<<<<<<<<<<<<<
@@ -26311,7 +26366,7 @@ static CYTHON_INLINE int __pyx_f_7cpython_8datetime_timedelta_microseconds(PyObj
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":49
+/* "pandas/_libs/tslibs/util.pxd":54
  * 
  * 
  * cdef inline int64_t get_nat():             # <<<<<<<<<<<<<<
@@ -26324,7 +26379,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_4util
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_nat", 0);
 
-  /* "pandas/_libs/tslibs/util.pxd":50
+  /* "pandas/_libs/tslibs/util.pxd":55
  * 
  * cdef inline int64_t get_nat():
  *     return NPY_MIN_INT64             # <<<<<<<<<<<<<<
@@ -26334,7 +26389,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_4util
   __pyx_r = NPY_MIN_INT64;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":49
+  /* "pandas/_libs/tslibs/util.pxd":54
  * 
  * 
  * cdef inline int64_t get_nat():             # <<<<<<<<<<<<<<
@@ -26348,7 +26403,7 @@ static CYTHON_INLINE __pyx_t_5numpy_int64_t __pyx_f_6pandas_5_libs_6tslibs_4util
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":56
+/* "pandas/_libs/tslibs/util.pxd":61
  * # Type Checking
  * 
  * cdef inline bint is_integer_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -26361,7 +26416,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_integer_object(
   int __pyx_t_1;
   int __pyx_t_2;
 
-  /* "pandas/_libs/tslibs/util.pxd":74
+  /* "pandas/_libs/tslibs/util.pxd":79
  *     This counts np.timedelta64 objects as integers.
  *     """
  *     return (not PyBool_Check(obj) and PyArray_IsIntegerScalar(obj)             # <<<<<<<<<<<<<<
@@ -26375,7 +26430,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_integer_object(
     goto __pyx_L3_bool_binop_done;
   }
 
-  /* "pandas/_libs/tslibs/util.pxd":75
+  /* "pandas/_libs/tslibs/util.pxd":80
  *     """
  *     return (not PyBool_Check(obj) and PyArray_IsIntegerScalar(obj)
  *             and not is_timedelta64_object(obj))             # <<<<<<<<<<<<<<
@@ -26394,7 +26449,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_integer_object(
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":56
+  /* "pandas/_libs/tslibs/util.pxd":61
  * # Type Checking
  * 
  * cdef inline bint is_integer_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -26407,7 +26462,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_integer_object(
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":78
+/* "pandas/_libs/tslibs/util.pxd":83
  * 
  * 
  * cdef inline bint is_float_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -26420,7 +26475,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_float_object(Py
   int __pyx_t_1;
   int __pyx_t_2;
 
-  /* "pandas/_libs/tslibs/util.pxd":90
+  /* "pandas/_libs/tslibs/util.pxd":95
  *     is_float : bool
  *     """
  *     return (PyFloat_Check(obj) or             # <<<<<<<<<<<<<<
@@ -26434,7 +26489,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_float_object(Py
     goto __pyx_L3_bool_binop_done;
   }
 
-  /* "pandas/_libs/tslibs/util.pxd":91
+  /* "pandas/_libs/tslibs/util.pxd":96
  *     """
  *     return (PyFloat_Check(obj) or
  *             (PyObject_TypeCheck(obj, &PyFloatingArrType_Type)))             # <<<<<<<<<<<<<<
@@ -26447,7 +26502,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_float_object(Py
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":78
+  /* "pandas/_libs/tslibs/util.pxd":83
  * 
  * 
  * cdef inline bint is_float_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -26460,7 +26515,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_float_object(Py
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":94
+/* "pandas/_libs/tslibs/util.pxd":99
  * 
  * 
  * cdef inline bint is_complex_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -26473,7 +26528,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_complex_object(
   int __pyx_t_1;
   int __pyx_t_2;
 
-  /* "pandas/_libs/tslibs/util.pxd":106
+  /* "pandas/_libs/tslibs/util.pxd":111
  *     is_complex : bool
  *     """
  *     return (PyComplex_Check(obj) or             # <<<<<<<<<<<<<<
@@ -26487,7 +26542,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_complex_object(
     goto __pyx_L3_bool_binop_done;
   }
 
-  /* "pandas/_libs/tslibs/util.pxd":107
+  /* "pandas/_libs/tslibs/util.pxd":112
  *     """
  *     return (PyComplex_Check(obj) or
  *             PyObject_TypeCheck(obj, &PyComplexFloatingArrType_Type))             # <<<<<<<<<<<<<<
@@ -26500,7 +26555,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_complex_object(
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":94
+  /* "pandas/_libs/tslibs/util.pxd":99
  * 
  * 
  * cdef inline bint is_complex_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -26513,7 +26568,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_complex_object(
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":110
+/* "pandas/_libs/tslibs/util.pxd":115
  * 
  * 
  * cdef inline bint is_bool_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -26526,7 +26581,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_bool_object(PyO
   int __pyx_t_1;
   int __pyx_t_2;
 
-  /* "pandas/_libs/tslibs/util.pxd":122
+  /* "pandas/_libs/tslibs/util.pxd":127
  *     is_bool : bool
  *     """
  *     return (PyBool_Check(obj) or             # <<<<<<<<<<<<<<
@@ -26540,7 +26595,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_bool_object(PyO
     goto __pyx_L3_bool_binop_done;
   }
 
-  /* "pandas/_libs/tslibs/util.pxd":123
+  /* "pandas/_libs/tslibs/util.pxd":128
  *     """
  *     return (PyBool_Check(obj) or
  *             PyObject_TypeCheck(obj, &PyBoolArrType_Type))             # <<<<<<<<<<<<<<
@@ -26553,7 +26608,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_bool_object(PyO
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":110
+  /* "pandas/_libs/tslibs/util.pxd":115
  * 
  * 
  * cdef inline bint is_bool_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -26566,7 +26621,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_bool_object(PyO
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":126
+/* "pandas/_libs/tslibs/util.pxd":131
  * 
  * 
  * cdef inline bint is_timedelta64_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -26577,7 +26632,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_bool_object(PyO
 static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_timedelta64_object(PyObject *__pyx_v_obj) {
   int __pyx_r;
 
-  /* "pandas/_libs/tslibs/util.pxd":138
+  /* "pandas/_libs/tslibs/util.pxd":143
  *     is_timedelta64 : bool
  *     """
  *     return PyObject_TypeCheck(obj, &PyTimedeltaArrType_Type)             # <<<<<<<<<<<<<<
@@ -26587,7 +26642,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_timedelta64_obj
   __pyx_r = PyObject_TypeCheck(__pyx_v_obj, (&PyTimedeltaArrType_Type));
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":126
+  /* "pandas/_libs/tslibs/util.pxd":131
  * 
  * 
  * cdef inline bint is_timedelta64_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -26600,7 +26655,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_timedelta64_obj
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":141
+/* "pandas/_libs/tslibs/util.pxd":146
  * 
  * 
  * cdef inline bint is_datetime64_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -26611,7 +26666,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_timedelta64_obj
 static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_datetime64_object(PyObject *__pyx_v_obj) {
   int __pyx_r;
 
-  /* "pandas/_libs/tslibs/util.pxd":153
+  /* "pandas/_libs/tslibs/util.pxd":158
  *     is_datetime64 : bool
  *     """
  *     return PyObject_TypeCheck(obj, &PyDatetimeArrType_Type)             # <<<<<<<<<<<<<<
@@ -26621,7 +26676,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_datetime64_obje
   __pyx_r = PyObject_TypeCheck(__pyx_v_obj, (&PyDatetimeArrType_Type));
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":141
+  /* "pandas/_libs/tslibs/util.pxd":146
  * 
  * 
  * cdef inline bint is_datetime64_object(object obj) nogil:             # <<<<<<<<<<<<<<
@@ -26634,7 +26689,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_datetime64_obje
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":156
+/* "pandas/_libs/tslibs/util.pxd":161
  * 
  * 
  * cdef inline bint is_array(object val):             # <<<<<<<<<<<<<<
@@ -26647,7 +26702,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_array(PyObject 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("is_array", 0);
 
-  /* "pandas/_libs/tslibs/util.pxd":168
+  /* "pandas/_libs/tslibs/util.pxd":173
  *     is_ndarray : bool
  *     """
  *     return PyArray_Check(val)             # <<<<<<<<<<<<<<
@@ -26657,7 +26712,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_array(PyObject 
   __pyx_r = PyArray_Check(__pyx_v_val);
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":156
+  /* "pandas/_libs/tslibs/util.pxd":161
  * 
  * 
  * cdef inline bint is_array(object val):             # <<<<<<<<<<<<<<
@@ -26671,7 +26726,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_array(PyObject 
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":171
+/* "pandas/_libs/tslibs/util.pxd":176
  * 
  * 
  * cdef inline bint is_period_object(object val):             # <<<<<<<<<<<<<<
@@ -26690,23 +26745,23 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_period_object(P
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("is_period_object", 0);
 
-  /* "pandas/_libs/tslibs/util.pxd":183
+  /* "pandas/_libs/tslibs/util.pxd":188
  *     is_period : bool
  *     """
  *     return getattr(val, '_typ', '_typ') == 'period'             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_1 = __Pyx_GetAttr3(__pyx_v_val, __pyx_n_u_typ, __pyx_n_u_typ); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 183, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetAttr3(__pyx_v_val, __pyx_n_u_typ, __pyx_n_u_typ); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_n_u_period, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 183, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_n_u_period, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 188, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(4, 183, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(4, 188, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_3;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":171
+  /* "pandas/_libs/tslibs/util.pxd":176
  * 
  * 
  * cdef inline bint is_period_object(object val):             # <<<<<<<<<<<<<<
@@ -26725,7 +26780,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_period_object(P
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":186
+/* "pandas/_libs/tslibs/util.pxd":191
  * 
  * 
  * cdef inline bint is_offset_object(object val):             # <<<<<<<<<<<<<<
@@ -26744,23 +26799,23 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_offset_object(P
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("is_offset_object", 0);
 
-  /* "pandas/_libs/tslibs/util.pxd":198
+  /* "pandas/_libs/tslibs/util.pxd":203
  *     is_date_offset : bool
  *     """
  *     return getattr(val, '_typ', None) == "dateoffset"             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_1 = __Pyx_GetAttr3(__pyx_v_val, __pyx_n_u_typ, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 198, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetAttr3(__pyx_v_val, __pyx_n_u_typ, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_n_u_dateoffset, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 198, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_n_u_dateoffset, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(4, 203, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(4, 198, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(4, 203, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_3;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":186
+  /* "pandas/_libs/tslibs/util.pxd":191
  * 
  * 
  * cdef inline bint is_offset_object(object val):             # <<<<<<<<<<<<<<
@@ -26779,7 +26834,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_offset_object(P
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":201
+/* "pandas/_libs/tslibs/util.pxd":206
  * 
  * 
  * cdef inline bint is_nan(object val):             # <<<<<<<<<<<<<<
@@ -26800,7 +26855,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_nan(PyObject *_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("is_nan", 0);
 
-  /* "pandas/_libs/tslibs/util.pxd":215
+  /* "pandas/_libs/tslibs/util.pxd":220
  *     """
  *     cdef float64_t fval
  *     if is_float_object(val):             # <<<<<<<<<<<<<<
@@ -26810,17 +26865,17 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_nan(PyObject *_
   __pyx_t_1 = (__pyx_f_6pandas_5_libs_6tslibs_4util_is_float_object(__pyx_v_val) != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/util.pxd":216
+    /* "pandas/_libs/tslibs/util.pxd":221
  *     cdef float64_t fval
  *     if is_float_object(val):
  *         fval = val             # <<<<<<<<<<<<<<
  *         return fval != fval
  *     return is_complex_object(val) and val != val
  */
-    __pyx_t_2 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_2 == ((npy_float64)-1)) && PyErr_Occurred())) __PYX_ERR(4, 216, __pyx_L1_error)
+    __pyx_t_2 = __pyx_PyFloat_AsDouble(__pyx_v_val); if (unlikely((__pyx_t_2 == ((npy_float64)-1)) && PyErr_Occurred())) __PYX_ERR(4, 221, __pyx_L1_error)
     __pyx_v_fval = __pyx_t_2;
 
-    /* "pandas/_libs/tslibs/util.pxd":217
+    /* "pandas/_libs/tslibs/util.pxd":222
  *     if is_float_object(val):
  *         fval = val
  *         return fval != fval             # <<<<<<<<<<<<<<
@@ -26830,7 +26885,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_nan(PyObject *_
     __pyx_r = (__pyx_v_fval != __pyx_v_fval);
     goto __pyx_L0;
 
-    /* "pandas/_libs/tslibs/util.pxd":215
+    /* "pandas/_libs/tslibs/util.pxd":220
  *     """
  *     cdef float64_t fval
  *     if is_float_object(val):             # <<<<<<<<<<<<<<
@@ -26839,7 +26894,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_nan(PyObject *_
  */
   }
 
-  /* "pandas/_libs/tslibs/util.pxd":218
+  /* "pandas/_libs/tslibs/util.pxd":223
  *         fval = val
  *         return fval != fval
  *     return is_complex_object(val) and val != val             # <<<<<<<<<<<<<<
@@ -26852,15 +26907,15 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_nan(PyObject *_
     __pyx_t_1 = __pyx_t_3;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_4 = PyObject_RichCompare(__pyx_v_val, __pyx_v_val, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(4, 218, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(4, 218, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_v_val, __pyx_v_val, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(4, 223, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(4, 223, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_1 = __pyx_t_3;
   __pyx_L4_bool_binop_done:;
   __pyx_r = __pyx_t_1;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":201
+  /* "pandas/_libs/tslibs/util.pxd":206
  * 
  * 
  * cdef inline bint is_nan(object val):             # <<<<<<<<<<<<<<
@@ -26878,7 +26933,7 @@ static CYTHON_INLINE int __pyx_f_6pandas_5_libs_6tslibs_4util_is_nan(PyObject *_
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":221
+/* "pandas/_libs/tslibs/util.pxd":226
  * 
  * 
  * cdef inline const char* get_c_string_buf_and_size(object py_string,             # <<<<<<<<<<<<<<
@@ -26897,7 +26952,7 @@ static CYTHON_INLINE char const *__pyx_f_6pandas_5_libs_6tslibs_4util_get_c_stri
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_c_string_buf_and_size", 0);
 
-  /* "pandas/_libs/tslibs/util.pxd":244
+  /* "pandas/_libs/tslibs/util.pxd":249
  *         const char *buf
  * 
  *     if PyUnicode_Check(py_string):             # <<<<<<<<<<<<<<
@@ -26907,17 +26962,17 @@ static CYTHON_INLINE char const *__pyx_f_6pandas_5_libs_6tslibs_4util_get_c_stri
   __pyx_t_1 = (PyUnicode_Check(__pyx_v_py_string) != 0);
   if (__pyx_t_1) {
 
-    /* "pandas/_libs/tslibs/util.pxd":245
+    /* "pandas/_libs/tslibs/util.pxd":250
  * 
  *     if PyUnicode_Check(py_string):
  *         buf = PyUnicode_AsUTF8AndSize(py_string, length)             # <<<<<<<<<<<<<<
  *     else:
  *         PyBytes_AsStringAndSize(py_string, <char**>&buf, length)
  */
-    __pyx_t_2 = PyUnicode_AsUTF8AndSize(__pyx_v_py_string, __pyx_v_length); if (unlikely(__pyx_t_2 == ((char const *)NULL))) __PYX_ERR(4, 245, __pyx_L1_error)
+    __pyx_t_2 = PyUnicode_AsUTF8AndSize(__pyx_v_py_string, __pyx_v_length); if (unlikely(__pyx_t_2 == ((char const *)NULL))) __PYX_ERR(4, 250, __pyx_L1_error)
     __pyx_v_buf = __pyx_t_2;
 
-    /* "pandas/_libs/tslibs/util.pxd":244
+    /* "pandas/_libs/tslibs/util.pxd":249
  *         const char *buf
  * 
  *     if PyUnicode_Check(py_string):             # <<<<<<<<<<<<<<
@@ -26927,7 +26982,7 @@ static CYTHON_INLINE char const *__pyx_f_6pandas_5_libs_6tslibs_4util_get_c_stri
     goto __pyx_L3;
   }
 
-  /* "pandas/_libs/tslibs/util.pxd":247
+  /* "pandas/_libs/tslibs/util.pxd":252
  *         buf = PyUnicode_AsUTF8AndSize(py_string, length)
  *     else:
  *         PyBytes_AsStringAndSize(py_string, <char**>&buf, length)             # <<<<<<<<<<<<<<
@@ -26935,11 +26990,11 @@ static CYTHON_INLINE char const *__pyx_f_6pandas_5_libs_6tslibs_4util_get_c_stri
  * 
  */
   /*else*/ {
-    __pyx_t_1 = PyBytes_AsStringAndSize(__pyx_v_py_string, ((char **)(&__pyx_v_buf)), __pyx_v_length); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(4, 247, __pyx_L1_error)
+    __pyx_t_1 = PyBytes_AsStringAndSize(__pyx_v_py_string, ((char **)(&__pyx_v_buf)), __pyx_v_length); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(4, 252, __pyx_L1_error)
   }
   __pyx_L3:;
 
-  /* "pandas/_libs/tslibs/util.pxd":248
+  /* "pandas/_libs/tslibs/util.pxd":253
  *     else:
  *         PyBytes_AsStringAndSize(py_string, <char**>&buf, length)
  *     return buf             # <<<<<<<<<<<<<<
@@ -26949,7 +27004,7 @@ static CYTHON_INLINE char const *__pyx_f_6pandas_5_libs_6tslibs_4util_get_c_stri
   __pyx_r = __pyx_v_buf;
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":221
+  /* "pandas/_libs/tslibs/util.pxd":226
  * 
  * 
  * cdef inline const char* get_c_string_buf_and_size(object py_string,             # <<<<<<<<<<<<<<
@@ -26966,7 +27021,7 @@ static CYTHON_INLINE char const *__pyx_f_6pandas_5_libs_6tslibs_4util_get_c_stri
   return __pyx_r;
 }
 
-/* "pandas/_libs/tslibs/util.pxd":251
+/* "pandas/_libs/tslibs/util.pxd":256
  * 
  * 
  * cdef inline const char* get_c_string(object py_string):             # <<<<<<<<<<<<<<
@@ -26978,7 +27033,7 @@ static CYTHON_INLINE char const *__pyx_f_6pandas_5_libs_6tslibs_4util_get_c_stri
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_c_string", 0);
 
-  /* "pandas/_libs/tslibs/util.pxd":252
+  /* "pandas/_libs/tslibs/util.pxd":257
  * 
  * cdef inline const char* get_c_string(object py_string):
  *     return get_c_string_buf_and_size(py_string, NULL)             # <<<<<<<<<<<<<<
@@ -26986,7 +27041,7 @@ static CYTHON_INLINE char const *__pyx_f_6pandas_5_libs_6tslibs_4util_get_c_stri
   __pyx_r = __pyx_f_6pandas_5_libs_6tslibs_4util_get_c_string_buf_and_size(__pyx_v_py_string, NULL);
   goto __pyx_L0;
 
-  /* "pandas/_libs/tslibs/util.pxd":251
+  /* "pandas/_libs/tslibs/util.pxd":256
  * 
  * 
  * cdef inline const char* get_c_string(object py_string):             # <<<<<<<<<<<<<<
@@ -41364,11 +41419,11 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_Timedelta___setstate, __pyx_k_Timedelta___setstate, sizeof(__pyx_k_Timedelta___setstate), 0, 0, 1, 1},
   {&__pyx_n_s_Timedelta___truediv, __pyx_k_Timedelta___truediv, sizeof(__pyx_k_Timedelta___truediv), 0, 0, 1, 1},
   {&__pyx_n_s_Timedelta__round, __pyx_k_Timedelta__round, sizeof(__pyx_k_Timedelta__round), 0, 0, 1, 1},
-  {&__pyx_kp_u_Timedelta_asm8___get___line_923, __pyx_k_Timedelta_asm8___get___line_923, sizeof(__pyx_k_Timedelta_asm8___get___line_923), 0, 1, 0, 0},
+  {&__pyx_kp_u_Timedelta_asm8___get___line_918, __pyx_k_Timedelta_asm8___get___line_918, sizeof(__pyx_k_Timedelta_asm8___get___line_918), 0, 1, 0, 0},
   {&__pyx_n_s_Timedelta_ceil, __pyx_k_Timedelta_ceil, sizeof(__pyx_k_Timedelta_ceil), 0, 0, 1, 1},
-  {&__pyx_kp_u_Timedelta_delta___get___line_89, __pyx_k_Timedelta_delta___get___line_89, sizeof(__pyx_k_Timedelta_delta___get___line_89), 0, 1, 0, 0},
+  {&__pyx_kp_u_Timedelta_delta___get___line_88, __pyx_k_Timedelta_delta___get___line_88, sizeof(__pyx_k_Timedelta_delta___get___line_88), 0, 1, 0, 0},
   {&__pyx_n_s_Timedelta_floor, __pyx_k_Timedelta_floor, sizeof(__pyx_k_Timedelta_floor), 0, 0, 1, 1},
-  {&__pyx_kp_u_Timedelta_isoformat_line_1154, __pyx_k_Timedelta_isoformat_line_1154, sizeof(__pyx_k_Timedelta_isoformat_line_1154), 0, 1, 0, 0},
+  {&__pyx_kp_u_Timedelta_isoformat_line_1149, __pyx_k_Timedelta_isoformat_line_1149, sizeof(__pyx_k_Timedelta_isoformat_line_1149), 0, 1, 0, 0},
   {&__pyx_n_s_Timedelta_lambda, __pyx_k_Timedelta_lambda, sizeof(__pyx_k_Timedelta_lambda), 0, 0, 1, 1},
   {&__pyx_kp_u_Timedelta_nanoseconds___get___l, __pyx_k_Timedelta_nanoseconds___get___l, sizeof(__pyx_k_Timedelta_nanoseconds___get___l), 0, 1, 0, 0},
   {&__pyx_kp_u_Timedelta_resolution___get___li, __pyx_k_Timedelta_resolution___get___li, sizeof(__pyx_k_Timedelta_resolution___get___li), 0, 1, 0, 0},
@@ -41679,11 +41734,11 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 116, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(0, 146, __pyx_L1_error)
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 201, __pyx_L1_error)
-  __pyx_builtin_round = __Pyx_GetBuiltinName(__pyx_n_s_round); if (!__pyx_builtin_round) __PYX_ERR(0, 313, __pyx_L1_error)
-  __pyx_builtin_KeyError = __Pyx_GetBuiltinName(__pyx_n_s_KeyError); if (!__pyx_builtin_KeyError) __PYX_ERR(0, 513, __pyx_L1_error)
-  __pyx_builtin_AttributeError = __Pyx_GetBuiltinName(__pyx_n_s_AttributeError); if (!__pyx_builtin_AttributeError) __PYX_ERR(0, 532, __pyx_L1_error)
-  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_n_s_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 568, __pyx_L1_error)
-  __pyx_builtin_FutureWarning = __Pyx_GetBuiltinName(__pyx_n_s_FutureWarning); if (!__pyx_builtin_FutureWarning) __PYX_ERR(0, 1062, __pyx_L1_error)
+  __pyx_builtin_round = __Pyx_GetBuiltinName(__pyx_n_s_round); if (!__pyx_builtin_round) __PYX_ERR(0, 308, __pyx_L1_error)
+  __pyx_builtin_KeyError = __Pyx_GetBuiltinName(__pyx_n_s_KeyError); if (!__pyx_builtin_KeyError) __PYX_ERR(0, 508, __pyx_L1_error)
+  __pyx_builtin_AttributeError = __Pyx_GetBuiltinName(__pyx_n_s_AttributeError); if (!__pyx_builtin_AttributeError) __PYX_ERR(0, 527, __pyx_L1_error)
+  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_n_s_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 563, __pyx_L1_error)
+  __pyx_builtin_FutureWarning = __Pyx_GetBuiltinName(__pyx_n_s_FutureWarning); if (!__pyx_builtin_FutureWarning) __PYX_ERR(0, 1057, __pyx_L1_error)
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(2, 855, __pyx_L1_error)
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(2, 1037, __pyx_L1_error)
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(1, 148, __pyx_L1_error)
@@ -41711,152 +41766,152 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":353
+  /* "pandas/_libs/tslibs/timedeltas.pyx":348
  * 
  *             if neg or have_value or have_hhmmss:
  *                 raise ValueError("only leading negative signs are allowed")             # <<<<<<<<<<<<<<
  * 
  *             neg = 1
  */
-  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_u_only_leading_negative_signs_are); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 353, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_u_only_leading_negative_signs_are); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 348, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":414
+  /* "pandas/_libs/tslibs/timedeltas.pyx":409
  *                 # hh:mm:ss (so current_unit is 'm')
  *                 if current_unit != 'm':
  *                     raise ValueError("expected hh:mm:ss format before .")             # <<<<<<<<<<<<<<
  *                 m = 1000000000L
  *                 r = <int64_t>int(''.join(number)) * m
  */
-  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_u_expected_hh_mm_ss_format_before); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 414, __pyx_L1_error)
+  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_u_expected_hh_mm_ss_format_before); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 409, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":441
+  /* "pandas/_libs/tslibs/timedeltas.pyx":436
  *         if ((len(number) or len(frac)) and not len(unit)
  *                 and current_unit is None):
  *             raise ValueError("no units specified")             # <<<<<<<<<<<<<<
  * 
  *         if len(frac) > 0 and len(frac) <= 3:
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_u_no_units_specified); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_u_no_units_specified); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 436, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":457
+  /* "pandas/_libs/tslibs/timedeltas.pyx":452
  *     elif current_unit is not None:
  *         if current_unit != 'm':
  *             raise ValueError("expected hh:mm:ss format")             # <<<<<<<<<<<<<<
  *         m = 1000000000L
  *         r = <int64_t>int(''.join(number)) * m
  */
-  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_u_expected_hh_mm_ss_format); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 457, __pyx_L1_error)
+  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_u_expected_hh_mm_ss_format); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 452, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":468
+  /* "pandas/_libs/tslibs/timedeltas.pyx":463
  *             result += timedelta_as_neg(r, neg)
  *         else:
  *             raise ValueError("unit abbreviation w/o a number")             # <<<<<<<<<<<<<<
  * 
  *     # treat as nanoseconds
  */
-  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_u_unit_abbreviation_w_o_a_number); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 468, __pyx_L1_error)
+  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_u_unit_abbreviation_w_o_a_number); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 463, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__13);
   __Pyx_GIVEREF(__pyx_tuple__13);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":474
+  /* "pandas/_libs/tslibs/timedeltas.pyx":469
  *     else:
  *         if have_value:
  *             raise ValueError("have leftover units")             # <<<<<<<<<<<<<<
  *         if len(number):
  *             r = timedelta_from_spec(number, frac, 'ns')
  */
-  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_u_have_leftover_units); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 474, __pyx_L1_error)
+  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_u_have_leftover_units); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 469, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":553
+  /* "pandas/_libs/tslibs/timedeltas.pyx":548
  * 
  * def _op_unary_method(func, name):
  *     def f(self):             # <<<<<<<<<<<<<<
  *         return Timedelta(func(self.value), unit='ns')
  *     f.__name__ = name
  */
-  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 553, __pyx_L1_error)
+  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 548, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__15);
   __Pyx_GIVEREF(__pyx_tuple__15);
-  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_f, 553, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 553, __pyx_L1_error)
+  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_f, 548, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 548, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":562
+  /* "pandas/_libs/tslibs/timedeltas.pyx":557
  *     # define a binary operation that only works if the other argument is
  *     # timedelta like or an array of timedeltalike
  *     def f(self, other):             # <<<<<<<<<<<<<<
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  */
-  __pyx_tuple__17 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_other, __pyx_n_s_Timestamp, __pyx_n_s_x); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 562, __pyx_L1_error)
+  __pyx_tuple__17 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_other, __pyx_n_s_Timestamp, __pyx_n_s_x); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 557, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__17);
   __Pyx_GIVEREF(__pyx_tuple__17);
-  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_f, 562, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 562, __pyx_L1_error)
+  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_f, 557, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 557, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1058
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1053
  *         """
  *         # See GH#21344
  *         warnings.warn("Timedelta.resolution is deprecated, in a future "             # <<<<<<<<<<<<<<
  *                       "version will behave like the standard library "
  *                       "datetime.timedelta.resolution attribute.  "
  */
-  __pyx_tuple__19 = PyTuple_Pack(2, __pyx_kp_u_Timedelta_resolution_is_deprecat, __pyx_builtin_FutureWarning); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 1058, __pyx_L1_error)
+  __pyx_tuple__19 = PyTuple_Pack(2, __pyx_kp_u_Timedelta_resolution_is_deprecat, __pyx_builtin_FutureWarning); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 1053, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__19);
   __Pyx_GIVEREF(__pyx_tuple__19);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1242
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1237
  *         if value is _no_input:
  *             if not len(kwargs):
  *                 raise ValueError("cannot construct a Timedelta without a "             # <<<<<<<<<<<<<<
  *                                  "value/unit or descriptive keywords "
  *                                  "(days,seconds....)")
  */
-  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_kp_u_cannot_construct_a_Timedelta_wit); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 1242, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_kp_u_cannot_construct_a_Timedelta_wit); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 1237, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1253
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1248
  *                                                       'ns')
  *             except TypeError as e:
  *                 raise ValueError("cannot construct a Timedelta from the "             # <<<<<<<<<<<<<<
  *                                  "passed arguments, allowed keywords are "
  *                                  "[weeks, days, hours, minutes, seconds, "
  */
-  __pyx_tuple__22 = PyTuple_Pack(1, __pyx_kp_u_cannot_construct_a_Timedelta_fro); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 1253, __pyx_L1_error)
+  __pyx_tuple__22 = PyTuple_Pack(1, __pyx_kp_u_cannot_construct_a_Timedelta_fro); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 1248, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__22);
   __Pyx_GIVEREF(__pyx_tuple__22);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1259
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1254
  * 
  *         if unit in {'Y', 'y', 'M'}:
  *             warnings.warn("M and Y units are deprecated and "             # <<<<<<<<<<<<<<
  *                           "will be removed in a future version.",
  *                           FutureWarning, stacklevel=1)
  */
-  __pyx_tuple__23 = PyTuple_Pack(2, __pyx_kp_u_M_and_Y_units_are_deprecated_and, __pyx_builtin_FutureWarning); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 1259, __pyx_L1_error)
+  __pyx_tuple__23 = PyTuple_Pack(2, __pyx_kp_u_M_and_Y_units_are_deprecated_and, __pyx_builtin_FutureWarning); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 1254, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1391
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1386
  * 
  *         elif other is NaT:
  *             raise TypeError('Cannot multiply Timedelta with NaT')             # <<<<<<<<<<<<<<
  * 
  *         elif not (is_integer_object(other) or is_float_object(other)):
  */
-  __pyx_tuple__24 = PyTuple_Pack(1, __pyx_kp_u_Cannot_multiply_Timedelta_with_N); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 1391, __pyx_L1_error)
+  __pyx_tuple__24 = PyTuple_Pack(1, __pyx_kp_u_Cannot_multiply_Timedelta_with_N); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 1386, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__24);
   __Pyx_GIVEREF(__pyx_tuple__24);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":272
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":272
  *             if ((flags & pybuf.PyBUF_C_CONTIGUOUS == pybuf.PyBUF_C_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_ARRAY_C_CONTIGUOUS)):
  *                 raise ValueError(u"ndarray is not C contiguous")             # <<<<<<<<<<<<<<
@@ -41867,7 +41922,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__25);
   __Pyx_GIVEREF(__pyx_tuple__25);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":276
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":276
  *             if ((flags & pybuf.PyBUF_F_CONTIGUOUS == pybuf.PyBUF_F_CONTIGUOUS)
  *                 and not PyArray_CHKFLAGS(self, NPY_ARRAY_F_CONTIGUOUS)):
  *                 raise ValueError(u"ndarray is not Fortran contiguous")             # <<<<<<<<<<<<<<
@@ -41878,7 +41933,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__26);
   __Pyx_GIVEREF(__pyx_tuple__26);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":306
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":306
  *                 if ((descr.byteorder == c'>' and little_endian) or
  *                     (descr.byteorder == c'<' and not little_endian)):
  *                     raise ValueError(u"Non-native byte order not supported")             # <<<<<<<<<<<<<<
@@ -41889,7 +41944,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__27);
   __Pyx_GIVEREF(__pyx_tuple__27);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":855
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":855
  * 
  *         if (end - f) - <int>(new_offset - offset[0]) < 15:
  *             raise RuntimeError(u"Format string allocated too short, see comment in numpy.pxd")             # <<<<<<<<<<<<<<
@@ -41900,7 +41955,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__28);
   __Pyx_GIVEREF(__pyx_tuple__28);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":879
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":879
  *             t = child.type_num
  *             if end - f < 5:
  *                 raise RuntimeError(u"Format string allocated too short.")             # <<<<<<<<<<<<<<
@@ -41911,7 +41966,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__29);
   __Pyx_GIVEREF(__pyx_tuple__29);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1037
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1037
  *         _import_array()
  *     except Exception:
  *         raise ImportError("numpy.core.multiarray failed to import")             # <<<<<<<<<<<<<<
@@ -41922,7 +41977,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__30);
   __Pyx_GIVEREF(__pyx_tuple__30);
 
-  /* "../../../../../../opt/conda/envs/cf249b496aae59f2a35047c28676df47/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1043
+  /* "../../../../../../opt/conda/envs/263f0927547b8cdc364eff80672e928c/lib/python3.8/site-packages/Cython/Includes/numpy/__init__.pxd":1043
  *         _import_umath()
  *     except Exception:
  *         raise ImportError("numpy.core.umath failed to import")             # <<<<<<<<<<<<<<
@@ -42149,221 +42204,221 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__52);
   __pyx_codeobj__53 = (PyObject*)__Pyx_PyCode_New(3, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__52, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_array_to_timedelta64, 208, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__53)) __PYX_ERR(0, 208, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":552
+  /* "pandas/_libs/tslibs/timedeltas.pyx":547
  * 
  * 
  * def _op_unary_method(func, name):             # <<<<<<<<<<<<<<
  *     def f(self):
  *         return Timedelta(func(self.value), unit='ns')
  */
-  __pyx_tuple__54 = PyTuple_Pack(4, __pyx_n_s_func, __pyx_n_s_name, __pyx_n_s_f, __pyx_n_s_f); if (unlikely(!__pyx_tuple__54)) __PYX_ERR(0, 552, __pyx_L1_error)
+  __pyx_tuple__54 = PyTuple_Pack(4, __pyx_n_s_func, __pyx_n_s_name, __pyx_n_s_f, __pyx_n_s_f); if (unlikely(!__pyx_tuple__54)) __PYX_ERR(0, 547, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__54);
   __Pyx_GIVEREF(__pyx_tuple__54);
-  __pyx_codeobj__55 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__54, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_op_unary_method, 552, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__55)) __PYX_ERR(0, 552, __pyx_L1_error)
+  __pyx_codeobj__55 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__54, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_op_unary_method, 547, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__55)) __PYX_ERR(0, 547, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":559
+  /* "pandas/_libs/tslibs/timedeltas.pyx":554
  * 
  * 
  * def _binary_op_method_timedeltalike(op, name):             # <<<<<<<<<<<<<<
  *     # define a binary operation that only works if the other argument is
  *     # timedelta like or an array of timedeltalike
  */
-  __pyx_tuple__56 = PyTuple_Pack(4, __pyx_n_s_op, __pyx_n_s_name, __pyx_n_s_f, __pyx_n_s_f); if (unlikely(!__pyx_tuple__56)) __PYX_ERR(0, 559, __pyx_L1_error)
+  __pyx_tuple__56 = PyTuple_Pack(4, __pyx_n_s_op, __pyx_n_s_name, __pyx_n_s_f, __pyx_n_s_f); if (unlikely(!__pyx_tuple__56)) __PYX_ERR(0, 554, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__56);
   __Pyx_GIVEREF(__pyx_tuple__56);
-  __pyx_codeobj__57 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__56, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_binary_op_method_timedeltalike_2, 559, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__57)) __PYX_ERR(0, 559, __pyx_L1_error)
+  __pyx_codeobj__57 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__56, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_binary_op_method_timedeltalike_2, 554, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__57)) __PYX_ERR(0, 554, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1237
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1232
  *     """
  * 
  *     def __new__(cls, object value=_no_input, unit=None, **kwargs):             # <<<<<<<<<<<<<<
  *         cdef _Timedelta td_base
  * 
  */
-  __pyx_tuple__58 = PyTuple_Pack(8, __pyx_n_s_cls, __pyx_n_s_value, __pyx_n_s_unit, __pyx_n_s_kwargs, __pyx_n_s_td_base, __pyx_n_s_nano, __pyx_n_s_e, __pyx_n_s_key); if (unlikely(!__pyx_tuple__58)) __PYX_ERR(0, 1237, __pyx_L1_error)
+  __pyx_tuple__58 = PyTuple_Pack(8, __pyx_n_s_cls, __pyx_n_s_value, __pyx_n_s_unit, __pyx_n_s_kwargs, __pyx_n_s_td_base, __pyx_n_s_nano, __pyx_n_s_e, __pyx_n_s_key); if (unlikely(!__pyx_tuple__58)) __PYX_ERR(0, 1232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__58);
   __Pyx_GIVEREF(__pyx_tuple__58);
-  __pyx_codeobj__59 = (PyObject*)__Pyx_PyCode_New(3, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__58, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_new, 1237, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__59)) __PYX_ERR(0, 1237, __pyx_L1_error)
+  __pyx_codeobj__59 = (PyObject*)__Pyx_PyCode_New(3, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__58, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_new, 1232, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__59)) __PYX_ERR(0, 1232, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1304
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1299
  *         return td_base
  * 
  *     def __setstate__(self, state):             # <<<<<<<<<<<<<<
  *         (value) = state
  *         self.value = value
  */
-  __pyx_tuple__60 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_state, __pyx_n_s_value); if (unlikely(!__pyx_tuple__60)) __PYX_ERR(0, 1304, __pyx_L1_error)
+  __pyx_tuple__60 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_state, __pyx_n_s_value); if (unlikely(!__pyx_tuple__60)) __PYX_ERR(0, 1299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__60);
   __Pyx_GIVEREF(__pyx_tuple__60);
-  __pyx_codeobj__61 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__60, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_setstate, 1304, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__61)) __PYX_ERR(0, 1304, __pyx_L1_error)
+  __pyx_codeobj__61 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__60, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_setstate, 1299, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__61)) __PYX_ERR(0, 1299, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1308
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1303
  *         self.value = value
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
  *         object_state = self.value,
  *         return (Timedelta, object_state)
  */
-  __pyx_tuple__62 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_object_state); if (unlikely(!__pyx_tuple__62)) __PYX_ERR(0, 1308, __pyx_L1_error)
+  __pyx_tuple__62 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_object_state); if (unlikely(!__pyx_tuple__62)) __PYX_ERR(0, 1303, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__62);
   __Pyx_GIVEREF(__pyx_tuple__62);
-  __pyx_codeobj__63 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__62, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_reduce, 1308, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__63)) __PYX_ERR(0, 1308, __pyx_L1_error)
+  __pyx_codeobj__63 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__62, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_reduce, 1303, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__63)) __PYX_ERR(0, 1303, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1312
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1307
  *         return (Timedelta, object_state)
  * 
  *     def _round(self, freq, rounder):             # <<<<<<<<<<<<<<
  *         cdef:
  *             int64_t result, unit
  */
-  __pyx_tuple__64 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_freq, __pyx_n_s_rounder, __pyx_n_s_result, __pyx_n_s_unit); if (unlikely(!__pyx_tuple__64)) __PYX_ERR(0, 1312, __pyx_L1_error)
+  __pyx_tuple__64 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_freq, __pyx_n_s_rounder, __pyx_n_s_result, __pyx_n_s_unit); if (unlikely(!__pyx_tuple__64)) __PYX_ERR(0, 1307, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__64);
   __Pyx_GIVEREF(__pyx_tuple__64);
-  __pyx_codeobj__65 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__64, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_round_2, 1312, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__65)) __PYX_ERR(0, 1312, __pyx_L1_error)
+  __pyx_codeobj__65 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__64, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_round_2, 1307, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__65)) __PYX_ERR(0, 1307, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1320
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1315
  *         return Timedelta(result, unit='ns')
  * 
  *     def round(self, freq):             # <<<<<<<<<<<<<<
  *         """
- *         Round the Timedelta to the specified resolution.
+ *         Round the Timedelta to the specified resolution
  */
-  __pyx_tuple__66 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_freq); if (unlikely(!__pyx_tuple__66)) __PYX_ERR(0, 1320, __pyx_L1_error)
+  __pyx_tuple__66 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_freq); if (unlikely(!__pyx_tuple__66)) __PYX_ERR(0, 1315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__66);
   __Pyx_GIVEREF(__pyx_tuple__66);
-  __pyx_codeobj__67 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__66, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_round, 1320, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__67)) __PYX_ERR(0, 1320, __pyx_L1_error)
+  __pyx_codeobj__67 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__66, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_round, 1315, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__67)) __PYX_ERR(0, 1315, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1338
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1333
  *         return self._round(freq, np.round)
  * 
  *     def floor(self, freq):             # <<<<<<<<<<<<<<
  *         """
- *         return a new Timedelta floored to this resolution.
+ *         return a new Timedelta floored to this resolution
  */
-  __pyx_tuple__68 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_freq); if (unlikely(!__pyx_tuple__68)) __PYX_ERR(0, 1338, __pyx_L1_error)
+  __pyx_tuple__68 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_freq); if (unlikely(!__pyx_tuple__68)) __PYX_ERR(0, 1333, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__68);
   __Pyx_GIVEREF(__pyx_tuple__68);
-  __pyx_codeobj__69 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__68, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_floor, 1338, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__69)) __PYX_ERR(0, 1338, __pyx_L1_error)
+  __pyx_codeobj__69 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__68, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_floor, 1333, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__69)) __PYX_ERR(0, 1333, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1348
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1343
  *         return self._round(freq, np.floor)
  * 
  *     def ceil(self, freq):             # <<<<<<<<<<<<<<
  *         """
- *         return a new Timedelta ceiled to this resolution.
+ *         return a new Timedelta ceiled to this resolution
  */
-  __pyx_tuple__70 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_freq); if (unlikely(!__pyx_tuple__70)) __PYX_ERR(0, 1348, __pyx_L1_error)
+  __pyx_tuple__70 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_freq); if (unlikely(!__pyx_tuple__70)) __PYX_ERR(0, 1343, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__70);
   __Pyx_GIVEREF(__pyx_tuple__70);
-  __pyx_codeobj__71 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__70, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_ceil, 1348, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__71)) __PYX_ERR(0, 1348, __pyx_L1_error)
+  __pyx_codeobj__71 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__70, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_ceil, 1343, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__71)) __PYX_ERR(0, 1343, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1372
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1367
  *     __rsub__ = _binary_op_method_timedeltalike(lambda x, y: y - x, '__rsub__')
  * 
  *     def __mul__(self, other):             # <<<<<<<<<<<<<<
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  */
-  __pyx_tuple__72 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_other); if (unlikely(!__pyx_tuple__72)) __PYX_ERR(0, 1372, __pyx_L1_error)
+  __pyx_tuple__72 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_other); if (unlikely(!__pyx_tuple__72)) __PYX_ERR(0, 1367, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__72);
   __Pyx_GIVEREF(__pyx_tuple__72);
-  __pyx_codeobj__73 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__72, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_mul, 1372, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__73)) __PYX_ERR(0, 1372, __pyx_L1_error)
+  __pyx_codeobj__73 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__72, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_mul, 1367, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__73)) __PYX_ERR(0, 1367, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1401
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1396
  *     __rmul__ = __mul__
  * 
  *     def __truediv__(self, other):             # <<<<<<<<<<<<<<
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  */
-  __pyx_tuple__74 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_other); if (unlikely(!__pyx_tuple__74)) __PYX_ERR(0, 1401, __pyx_L1_error)
+  __pyx_tuple__74 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_other); if (unlikely(!__pyx_tuple__74)) __PYX_ERR(0, 1396, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__74);
   __Pyx_GIVEREF(__pyx_tuple__74);
-  __pyx_codeobj__75 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__74, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_truediv, 1401, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__75)) __PYX_ERR(0, 1401, __pyx_L1_error)
+  __pyx_codeobj__75 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__74, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_truediv, 1396, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__75)) __PYX_ERR(0, 1396, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1434
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1429
  *         return self.value / float(other.value)
  * 
  *     def __rtruediv__(self, other):             # <<<<<<<<<<<<<<
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  */
-  __pyx_tuple__76 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_other); if (unlikely(!__pyx_tuple__76)) __PYX_ERR(0, 1434, __pyx_L1_error)
+  __pyx_tuple__76 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_other); if (unlikely(!__pyx_tuple__76)) __PYX_ERR(0, 1429, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__76);
   __Pyx_GIVEREF(__pyx_tuple__76);
-  __pyx_codeobj__77 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__76, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_rtruediv, 1434, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__77)) __PYX_ERR(0, 1434, __pyx_L1_error)
+  __pyx_codeobj__77 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__76, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_rtruediv, 1429, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__77)) __PYX_ERR(0, 1429, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1457
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1452
  *         return float(other.value) / self.value
  * 
  *     def __floordiv__(self, other):             # <<<<<<<<<<<<<<
  *         # numpy does not implement floordiv for timedelta64 dtype, so we cannot
  *         # just defer
  */
-  __pyx_tuple__78 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_other); if (unlikely(!__pyx_tuple__78)) __PYX_ERR(0, 1457, __pyx_L1_error)
+  __pyx_tuple__78 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_other); if (unlikely(!__pyx_tuple__78)) __PYX_ERR(0, 1452, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__78);
   __Pyx_GIVEREF(__pyx_tuple__78);
-  __pyx_codeobj__79 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__78, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_floordiv, 1457, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__79)) __PYX_ERR(0, 1457, __pyx_L1_error)
+  __pyx_codeobj__79 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__78, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_floordiv, 1452, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__79)) __PYX_ERR(0, 1452, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1496
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1491
  *         return self.value // other.value
  * 
  *     def __rfloordiv__(self, other):             # <<<<<<<<<<<<<<
  *         # numpy does not implement floordiv for timedelta64 dtype, so we cannot
  *         # just defer
  */
-  __pyx_tuple__80 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_other, __pyx_n_s_msg); if (unlikely(!__pyx_tuple__80)) __PYX_ERR(0, 1496, __pyx_L1_error)
+  __pyx_tuple__80 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_other, __pyx_n_s_msg); if (unlikely(!__pyx_tuple__80)) __PYX_ERR(0, 1491, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__80);
   __Pyx_GIVEREF(__pyx_tuple__80);
-  __pyx_codeobj__81 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__80, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_rfloordiv, 1496, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__81)) __PYX_ERR(0, 1496, __pyx_L1_error)
+  __pyx_codeobj__81 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__80, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_rfloordiv, 1491, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__81)) __PYX_ERR(0, 1491, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1542
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1537
  *         return other.value // self.value
  * 
  *     def __mod__(self, other):             # <<<<<<<<<<<<<<
  *         # Naive implementation, room for optimization
  *         return self.__divmod__(other)[1]
  */
-  __pyx_tuple__82 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_other); if (unlikely(!__pyx_tuple__82)) __PYX_ERR(0, 1542, __pyx_L1_error)
+  __pyx_tuple__82 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_other); if (unlikely(!__pyx_tuple__82)) __PYX_ERR(0, 1537, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__82);
   __Pyx_GIVEREF(__pyx_tuple__82);
-  __pyx_codeobj__83 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__82, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_mod, 1542, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__83)) __PYX_ERR(0, 1542, __pyx_L1_error)
+  __pyx_codeobj__83 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__82, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_mod, 1537, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__83)) __PYX_ERR(0, 1537, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1546
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1541
  *         return self.__divmod__(other)[1]
  * 
  *     def __rmod__(self, other):             # <<<<<<<<<<<<<<
  *         # Naive implementation, room for optimization
  *         if hasattr(other, 'dtype') and other.dtype.kind == 'i':
  */
-  __pyx_tuple__84 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_other); if (unlikely(!__pyx_tuple__84)) __PYX_ERR(0, 1546, __pyx_L1_error)
+  __pyx_tuple__84 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_other); if (unlikely(!__pyx_tuple__84)) __PYX_ERR(0, 1541, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__84);
   __Pyx_GIVEREF(__pyx_tuple__84);
-  __pyx_codeobj__85 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__84, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_rmod, 1546, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__85)) __PYX_ERR(0, 1546, __pyx_L1_error)
+  __pyx_codeobj__85 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__84, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_rmod, 1541, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__85)) __PYX_ERR(0, 1541, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1555
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1550
  *         return self.__rdivmod__(other)[1]
  * 
  *     def __divmod__(self, other):             # <<<<<<<<<<<<<<
  *         # Naive implementation, room for optimization
  *         div = self // other
  */
-  __pyx_tuple__86 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_other, __pyx_n_s_div); if (unlikely(!__pyx_tuple__86)) __PYX_ERR(0, 1555, __pyx_L1_error)
+  __pyx_tuple__86 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_other, __pyx_n_s_div); if (unlikely(!__pyx_tuple__86)) __PYX_ERR(0, 1550, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__86);
   __Pyx_GIVEREF(__pyx_tuple__86);
-  __pyx_codeobj__87 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__86, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_divmod, 1555, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__87)) __PYX_ERR(0, 1555, __pyx_L1_error)
+  __pyx_codeobj__87 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__86, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_divmod, 1550, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__87)) __PYX_ERR(0, 1550, __pyx_L1_error)
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1560
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1555
  *         return div, self - div * other
  * 
  *     def __rdivmod__(self, other):             # <<<<<<<<<<<<<<
  *         # Naive implementation, room for optimization
  *         if hasattr(other, 'dtype') and other.dtype.kind == 'i':
  */
-  __pyx_tuple__88 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_other, __pyx_n_s_div); if (unlikely(!__pyx_tuple__88)) __PYX_ERR(0, 1560, __pyx_L1_error)
+  __pyx_tuple__88 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_other, __pyx_n_s_div); if (unlikely(!__pyx_tuple__88)) __PYX_ERR(0, 1555, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__88);
   __Pyx_GIVEREF(__pyx_tuple__88);
-  __pyx_codeobj__89 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__88, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_rdivmod, 1560, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__89)) __PYX_ERR(0, 1560, __pyx_L1_error)
+  __pyx_codeobj__89 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__88, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_pandas__libs_tslibs_timedeltas_p, __pyx_n_s_rdivmod, 1555, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__89)) __PYX_ERR(0, 1555, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __pyx_unpickle__Timedelta(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
@@ -42530,18 +42585,18 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_vtable_6pandas_5_libs_6tslibs_10timedeltas__Timedelta._has_ns = (int (*)(struct __pyx_obj_6pandas_5_libs_6tslibs_10timedeltas__Timedelta *, int __pyx_skip_dispatch))__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta__has_ns;
   __pyx_vtable_6pandas_5_libs_6tslibs_10timedeltas__Timedelta.to_pytimedelta = (PyDateTime_Delta *(*)(struct __pyx_obj_6pandas_5_libs_6tslibs_10timedeltas__Timedelta *, int __pyx_skip_dispatch))__pyx_f_6pandas_5_libs_6tslibs_10timedeltas_10_Timedelta_to_pytimedelta;
   __pyx_type_6pandas_5_libs_6tslibs_10timedeltas__Timedelta.tp_base = __pyx_ptype_7cpython_8datetime_timedelta;
-  if (PyType_Ready(&__pyx_type_6pandas_5_libs_6tslibs_10timedeltas__Timedelta) < 0) __PYX_ERR(0, 738, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_6pandas_5_libs_6tslibs_10timedeltas__Timedelta) < 0) __PYX_ERR(0, 733, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_6pandas_5_libs_6tslibs_10timedeltas__Timedelta.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_6pandas_5_libs_6tslibs_10timedeltas__Timedelta.tp_dictoffset && __pyx_type_6pandas_5_libs_6tslibs_10timedeltas__Timedelta.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_6pandas_5_libs_6tslibs_10timedeltas__Timedelta.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (__Pyx_SetVtable(__pyx_type_6pandas_5_libs_6tslibs_10timedeltas__Timedelta.tp_dict, __pyx_vtabptr_6pandas_5_libs_6tslibs_10timedeltas__Timedelta) < 0) __PYX_ERR(0, 738, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Timedelta_2, (PyObject *)&__pyx_type_6pandas_5_libs_6tslibs_10timedeltas__Timedelta) < 0) __PYX_ERR(0, 738, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_6pandas_5_libs_6tslibs_10timedeltas__Timedelta) < 0) __PYX_ERR(0, 738, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_6pandas_5_libs_6tslibs_10timedeltas__Timedelta.tp_dict, __pyx_vtabptr_6pandas_5_libs_6tslibs_10timedeltas__Timedelta) < 0) __PYX_ERR(0, 733, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Timedelta_2, (PyObject *)&__pyx_type_6pandas_5_libs_6tslibs_10timedeltas__Timedelta) < 0) __PYX_ERR(0, 733, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_6pandas_5_libs_6tslibs_10timedeltas__Timedelta) < 0) __PYX_ERR(0, 733, __pyx_L1_error)
   __pyx_ptype_6pandas_5_libs_6tslibs_10timedeltas__Timedelta = &__pyx_type_6pandas_5_libs_6tslibs_10timedeltas__Timedelta;
-  if (PyType_Ready(&__pyx_type_6pandas_5_libs_6tslibs_10timedeltas___pyx_scope_struct___op_unary_method) < 0) __PYX_ERR(0, 552, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_6pandas_5_libs_6tslibs_10timedeltas___pyx_scope_struct___op_unary_method) < 0) __PYX_ERR(0, 547, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_6pandas_5_libs_6tslibs_10timedeltas___pyx_scope_struct___op_unary_method.tp_print = 0;
   #endif
@@ -42549,7 +42604,7 @@ static int __Pyx_modinit_type_init_code(void) {
     __pyx_type_6pandas_5_libs_6tslibs_10timedeltas___pyx_scope_struct___op_unary_method.tp_getattro = __Pyx_PyObject_GenericGetAttrNoDict;
   }
   __pyx_ptype_6pandas_5_libs_6tslibs_10timedeltas___pyx_scope_struct___op_unary_method = &__pyx_type_6pandas_5_libs_6tslibs_10timedeltas___pyx_scope_struct___op_unary_method;
-  if (PyType_Ready(&__pyx_type_6pandas_5_libs_6tslibs_10timedeltas___pyx_scope_struct_1__binary_op_method_timedeltalike) < 0) __PYX_ERR(0, 559, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_6pandas_5_libs_6tslibs_10timedeltas___pyx_scope_struct_1__binary_op_method_timedeltalike) < 0) __PYX_ERR(0, 554, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_6pandas_5_libs_6tslibs_10timedeltas___pyx_scope_struct_1__binary_op_method_timedeltalike.tp_print = 0;
   #endif
@@ -42636,6 +42691,16 @@ static int __Pyx_modinit_type_import_code(void) {
   __Pyx_ImportType_CheckSize_Warn);
    if (!__pyx_ptype_7cpython_4type_type) __PYX_ERR(5, 9, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyImport_ImportModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_t_1)) __PYX_ERR(6, 8, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_ptype_7cpython_4bool_bool = __Pyx_ImportType(__pyx_t_1, __Pyx_BUILTIN_MODULE_NAME, "bool", sizeof(PyBoolObject), __Pyx_ImportType_CheckSize_Warn);
+   if (!__pyx_ptype_7cpython_4bool_bool) __PYX_ERR(6, 8, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyImport_ImportModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_t_1)) __PYX_ERR(7, 15, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_ptype_7cpython_7complex_complex = __Pyx_ImportType(__pyx_t_1, __Pyx_BUILTIN_MODULE_NAME, "complex", sizeof(PyComplexObject), __Pyx_ImportType_CheckSize_Warn);
+   if (!__pyx_ptype_7cpython_7complex_complex) __PYX_ERR(7, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = PyImport_ImportModule("numpy"); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 206, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_ptype_5numpy_dtype = __Pyx_ImportType(__pyx_t_1, "numpy", "dtype", sizeof(PyArray_Descr), __Pyx_ImportType_CheckSize_Ignore);
@@ -42660,16 +42725,16 @@ static int __Pyx_modinit_type_import_code(void) {
   __pyx_ptype_7cpython_8datetime_tzinfo = __Pyx_ImportType(__pyx_t_1, "datetime", "tzinfo", sizeof(PyDateTime_TZInfo), __Pyx_ImportType_CheckSize_Warn);
    if (!__pyx_ptype_7cpython_8datetime_tzinfo) __PYX_ERR(3, 21, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyImport_ImportModule("pandas._libs.tslibs.c_timestamp"); if (unlikely(!__pyx_t_1)) __PYX_ERR(6, 7, __pyx_L1_error)
+  __pyx_t_1 = PyImport_ImportModule("pandas._libs.tslibs.c_timestamp"); if (unlikely(!__pyx_t_1)) __PYX_ERR(8, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_ptype_6pandas_5_libs_6tslibs_11c_timestamp__Timestamp = __Pyx_ImportType(__pyx_t_1, "pandas._libs.tslibs.c_timestamp", "_Timestamp", sizeof(struct __pyx_obj_6pandas_5_libs_6tslibs_11c_timestamp__Timestamp), __Pyx_ImportType_CheckSize_Warn);
-   if (!__pyx_ptype_6pandas_5_libs_6tslibs_11c_timestamp__Timestamp) __PYX_ERR(6, 7, __pyx_L1_error)
-  __pyx_vtabptr_6pandas_5_libs_6tslibs_11c_timestamp__Timestamp = (struct __pyx_vtabstruct_6pandas_5_libs_6tslibs_11c_timestamp__Timestamp*)__Pyx_GetVtable(__pyx_ptype_6pandas_5_libs_6tslibs_11c_timestamp__Timestamp->tp_dict); if (unlikely(!__pyx_vtabptr_6pandas_5_libs_6tslibs_11c_timestamp__Timestamp)) __PYX_ERR(6, 7, __pyx_L1_error)
+   if (!__pyx_ptype_6pandas_5_libs_6tslibs_11c_timestamp__Timestamp) __PYX_ERR(8, 7, __pyx_L1_error)
+  __pyx_vtabptr_6pandas_5_libs_6tslibs_11c_timestamp__Timestamp = (struct __pyx_vtabstruct_6pandas_5_libs_6tslibs_11c_timestamp__Timestamp*)__Pyx_GetVtable(__pyx_ptype_6pandas_5_libs_6tslibs_11c_timestamp__Timestamp->tp_dict); if (unlikely(!__pyx_vtabptr_6pandas_5_libs_6tslibs_11c_timestamp__Timestamp)) __PYX_ERR(8, 7, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyImport_ImportModule("pandas._libs.tslibs.nattype"); if (unlikely(!__pyx_t_1)) __PYX_ERR(7, 11, __pyx_L1_error)
+  __pyx_t_1 = PyImport_ImportModule("pandas._libs.tslibs.nattype"); if (unlikely(!__pyx_t_1)) __PYX_ERR(9, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_ptype_6pandas_5_libs_6tslibs_7nattype__NaT = __Pyx_ImportType(__pyx_t_1, "pandas._libs.tslibs.nattype", "_NaT", sizeof(struct __pyx_obj_6pandas_5_libs_6tslibs_7nattype__NaT), __Pyx_ImportType_CheckSize_Warn);
-   if (!__pyx_ptype_6pandas_5_libs_6tslibs_7nattype__NaT) __PYX_ERR(7, 11, __pyx_L1_error)
+   if (!__pyx_ptype_6pandas_5_libs_6tslibs_7nattype__NaT) __PYX_ERR(9, 11, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -42980,7 +43045,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "pandas/_libs/tslibs/timedeltas.pyx":9
- * from cpython.object cimport Py_NE, Py_EQ, PyObject_RichCompare
+ * from cpython cimport Py_NE, Py_EQ, PyObject_RichCompare
  * 
  * import numpy as np             # <<<<<<<<<<<<<<
  * cimport numpy as cnp
@@ -43212,158 +43277,158 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_array_to_timedelta64, __pyx_t_3) < 0) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":552
+  /* "pandas/_libs/tslibs/timedeltas.pyx":547
  * 
  * 
  * def _op_unary_method(func, name):             # <<<<<<<<<<<<<<
  *     def f(self):
  *         return Timedelta(func(self.value), unit='ns')
  */
-  __pyx_t_3 = PyCFunction_NewEx(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_11_op_unary_method, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 552, __pyx_L1_error)
+  __pyx_t_3 = PyCFunction_NewEx(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_11_op_unary_method, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 547, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_op_unary_method, __pyx_t_3) < 0) __PYX_ERR(0, 552, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_op_unary_method, __pyx_t_3) < 0) __PYX_ERR(0, 547, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":559
+  /* "pandas/_libs/tslibs/timedeltas.pyx":554
  * 
  * 
  * def _binary_op_method_timedeltalike(op, name):             # <<<<<<<<<<<<<<
  *     # define a binary operation that only works if the other argument is
  *     # timedelta like or an array of timedeltalike
  */
-  __pyx_t_3 = PyCFunction_NewEx(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_13_binary_op_method_timedeltalike, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 559, __pyx_L1_error)
+  __pyx_t_3 = PyCFunction_NewEx(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_13_binary_op_method_timedeltalike, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 554, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_binary_op_method_timedeltalike_2, __pyx_t_3) < 0) __PYX_ERR(0, 559, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_binary_op_method_timedeltalike_2, __pyx_t_3) < 0) __PYX_ERR(0, 554, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":746
+  /* "pandas/_libs/tslibs/timedeltas.pyx":741
  * 
  *     # higher than np.ndarray and np.matrix
  *     __array_priority__ = 100             # <<<<<<<<<<<<<<
  * 
  *     def __hash__(_Timedelta self):
  */
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_6pandas_5_libs_6tslibs_10timedeltas__Timedelta->tp_dict, __pyx_n_s_array_priority, __pyx_int_100) < 0) __PYX_ERR(0, 746, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_6pandas_5_libs_6tslibs_10timedeltas__Timedelta->tp_dict, __pyx_n_s_array_priority, __pyx_int_100) < 0) __PYX_ERR(0, 741, __pyx_L1_error)
   PyType_Modified(__pyx_ptype_6pandas_5_libs_6tslibs_10timedeltas__Timedelta);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1208
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1203
  * # This serves as the box for timedelta64
  * 
  * class Timedelta(_Timedelta):             # <<<<<<<<<<<<<<
  *     """
  *     Represents a duration, the difference between two dates or times.
  */
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1208, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(((PyObject *)__pyx_ptype_6pandas_5_libs_6tslibs_10timedeltas__Timedelta));
   __Pyx_GIVEREF(((PyObject *)__pyx_ptype_6pandas_5_libs_6tslibs_10timedeltas__Timedelta));
   PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)__pyx_ptype_6pandas_5_libs_6tslibs_10timedeltas__Timedelta));
-  __pyx_t_4 = __Pyx_CalculateMetaclass(NULL, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1208, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CalculateMetaclass(NULL, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_Py3MetaclassPrepare(__pyx_t_4, __pyx_t_3, __pyx_n_s_Timedelta, __pyx_n_s_Timedelta, (PyObject *) NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_kp_s_Represents_a_duration_the_diffe); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1208, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Py3MetaclassPrepare(__pyx_t_4, __pyx_t_3, __pyx_n_s_Timedelta, __pyx_n_s_Timedelta, (PyObject *) NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_kp_s_Represents_a_duration_the_diffe); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1237
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1232
  *     """
  * 
  *     def __new__(cls, object value=_no_input, unit=None, **kwargs):             # <<<<<<<<<<<<<<
  *         cdef _Timedelta td_base
  * 
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_1__new__, __Pyx_CYFUNCTION_STATICMETHOD, __pyx_n_s_Timedelta___new, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__59)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1237, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_1__new__, __Pyx_CYFUNCTION_STATICMETHOD, __pyx_n_s_Timedelta___new, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__59)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_5, sizeof(__pyx_defaults), 1)) __PYX_ERR(0, 1237, __pyx_L1_error)
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_no_input); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1237, __pyx_L1_error)
+  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_5, sizeof(__pyx_defaults), 1)) __PYX_ERR(0, 1232, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_no_input); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_CyFunction_Defaults(__pyx_defaults, __pyx_t_5)->__pyx_arg_value = __pyx_t_6;
   __Pyx_GIVEREF(__pyx_t_6);
   __pyx_t_6 = 0;
   __Pyx_CyFunction_SetDefaultsGetter(__pyx_t_5, __pyx_pf_6pandas_5_libs_6tslibs_10timedeltas_16__defaults__);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_new, __pyx_t_5) < 0) __PYX_ERR(0, 1237, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_new, __pyx_t_5) < 0) __PYX_ERR(0, 1232, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1304
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1299
  *         return td_base
  * 
  *     def __setstate__(self, state):             # <<<<<<<<<<<<<<
  *         (value) = state
  *         self.value = value
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_3__setstate__, 0, __pyx_n_s_Timedelta___setstate, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__61)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1304, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_3__setstate__, 0, __pyx_n_s_Timedelta___setstate, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__61)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_setstate, __pyx_t_5) < 0) __PYX_ERR(0, 1304, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_setstate, __pyx_t_5) < 0) __PYX_ERR(0, 1299, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1308
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1303
  *         self.value = value
  * 
  *     def __reduce__(self):             # <<<<<<<<<<<<<<
  *         object_state = self.value,
  *         return (Timedelta, object_state)
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_5__reduce__, 0, __pyx_n_s_Timedelta___reduce, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__63)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1308, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_5__reduce__, 0, __pyx_n_s_Timedelta___reduce, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__63)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1303, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_reduce, __pyx_t_5) < 0) __PYX_ERR(0, 1308, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_reduce, __pyx_t_5) < 0) __PYX_ERR(0, 1303, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1312
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1307
  *         return (Timedelta, object_state)
  * 
  *     def _round(self, freq, rounder):             # <<<<<<<<<<<<<<
  *         cdef:
  *             int64_t result, unit
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_7_round, 0, __pyx_n_s_Timedelta__round, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__65)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1312, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_7_round, 0, __pyx_n_s_Timedelta__round, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__65)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1307, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_round_2, __pyx_t_5) < 0) __PYX_ERR(0, 1312, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_round_2, __pyx_t_5) < 0) __PYX_ERR(0, 1307, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1320
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1315
  *         return Timedelta(result, unit='ns')
  * 
  *     def round(self, freq):             # <<<<<<<<<<<<<<
  *         """
- *         Round the Timedelta to the specified resolution.
+ *         Round the Timedelta to the specified resolution
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_9round, 0, __pyx_n_s_Timedelta_round, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__67)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1320, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_9round, 0, __pyx_n_s_Timedelta_round, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__67)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_round, __pyx_t_5) < 0) __PYX_ERR(0, 1320, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_round, __pyx_t_5) < 0) __PYX_ERR(0, 1315, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1338
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1333
  *         return self._round(freq, np.round)
  * 
  *     def floor(self, freq):             # <<<<<<<<<<<<<<
  *         """
- *         return a new Timedelta floored to this resolution.
+ *         return a new Timedelta floored to this resolution
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_11floor, 0, __pyx_n_s_Timedelta_floor, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__69)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1338, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_11floor, 0, __pyx_n_s_Timedelta_floor, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__69)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1333, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_floor, __pyx_t_5) < 0) __PYX_ERR(0, 1338, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_floor, __pyx_t_5) < 0) __PYX_ERR(0, 1333, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1348
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1343
  *         return self._round(freq, np.floor)
  * 
  *     def ceil(self, freq):             # <<<<<<<<<<<<<<
  *         """
- *         return a new Timedelta ceiled to this resolution.
+ *         return a new Timedelta ceiled to this resolution
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_13ceil, 0, __pyx_n_s_Timedelta_ceil, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__71)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1348, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_13ceil, 0, __pyx_n_s_Timedelta_ceil, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__71)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1343, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_ceil, __pyx_t_5) < 0) __PYX_ERR(0, 1348, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_ceil, __pyx_t_5) < 0) __PYX_ERR(0, 1343, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1362
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1357
  *     # TODO: Can some of these be defined in the cython class?
  * 
  *     __inv__ = _op_unary_method(lambda x: -x, '__inv__')             # <<<<<<<<<<<<<<
  *     __neg__ = _op_unary_method(lambda x: -x, '__neg__')
  *     __pos__ = _op_unary_method(lambda x: x, '__pos__')
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_op_unary_method); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1362, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_op_unary_method); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1357, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_32lambda, 0, __pyx_n_s_Timedelta_lambda, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1362, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_32lambda, 0, __pyx_n_s_Timedelta_lambda, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1357, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_t_8 = NULL;
   __pyx_t_2 = 0;
@@ -43380,7 +43445,7 @@ if (!__Pyx_RefNanny) {
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_t_7, __pyx_n_u_inv};
-    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1362, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1357, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -43389,14 +43454,14 @@ if (!__Pyx_RefNanny) {
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_t_7, __pyx_n_u_inv};
-    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1362, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1357, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   } else
   #endif
   {
-    __pyx_t_9 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1362, __pyx_L1_error)
+    __pyx_t_9 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1357, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     if (__pyx_t_8) {
       __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_8); __pyx_t_8 = NULL;
@@ -43407,24 +43472,24 @@ if (!__Pyx_RefNanny) {
     __Pyx_GIVEREF(__pyx_n_u_inv);
     PyTuple_SET_ITEM(__pyx_t_9, 1+__pyx_t_2, __pyx_n_u_inv);
     __pyx_t_7 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1362, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1357, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_inv, __pyx_t_5) < 0) __PYX_ERR(0, 1362, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_inv, __pyx_t_5) < 0) __PYX_ERR(0, 1357, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1363
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1358
  * 
  *     __inv__ = _op_unary_method(lambda x: -x, '__inv__')
  *     __neg__ = _op_unary_method(lambda x: -x, '__neg__')             # <<<<<<<<<<<<<<
  *     __pos__ = _op_unary_method(lambda x: x, '__pos__')
  *     __abs__ = _op_unary_method(lambda x: abs(x), '__abs__')
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_op_unary_method); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1363, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_op_unary_method); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1358, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_9 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_33lambda1, 0, __pyx_n_s_Timedelta_lambda, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1363, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_33lambda1, 0, __pyx_n_s_Timedelta_lambda, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1358, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __pyx_t_7 = NULL;
   __pyx_t_2 = 0;
@@ -43441,7 +43506,7 @@ if (!__Pyx_RefNanny) {
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_t_9, __pyx_n_u_neg};
-    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1363, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1358, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -43450,14 +43515,14 @@ if (!__Pyx_RefNanny) {
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_t_9, __pyx_n_u_neg};
-    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1363, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1358, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   } else
   #endif
   {
-    __pyx_t_8 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1363, __pyx_L1_error)
+    __pyx_t_8 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1358, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -43468,24 +43533,24 @@ if (!__Pyx_RefNanny) {
     __Pyx_GIVEREF(__pyx_n_u_neg);
     PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_2, __pyx_n_u_neg);
     __pyx_t_9 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_8, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1363, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_8, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1358, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_neg, __pyx_t_5) < 0) __PYX_ERR(0, 1363, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_neg, __pyx_t_5) < 0) __PYX_ERR(0, 1358, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1364
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1359
  *     __inv__ = _op_unary_method(lambda x: -x, '__inv__')
  *     __neg__ = _op_unary_method(lambda x: -x, '__neg__')
  *     __pos__ = _op_unary_method(lambda x: x, '__pos__')             # <<<<<<<<<<<<<<
  *     __abs__ = _op_unary_method(lambda x: abs(x), '__abs__')
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_op_unary_method); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1364, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_op_unary_method); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1359, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_34lambda2, 0, __pyx_n_s_Timedelta_lambda, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1364, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_34lambda2, 0, __pyx_n_s_Timedelta_lambda, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1359, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __pyx_t_9 = NULL;
   __pyx_t_2 = 0;
@@ -43502,7 +43567,7 @@ if (!__Pyx_RefNanny) {
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_9, __pyx_t_8, __pyx_n_u_pos};
-    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1364, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1359, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -43511,14 +43576,14 @@ if (!__Pyx_RefNanny) {
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_9, __pyx_t_8, __pyx_n_u_pos};
-    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1364, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1359, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   } else
   #endif
   {
-    __pyx_t_7 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1364, __pyx_L1_error)
+    __pyx_t_7 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1359, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     if (__pyx_t_9) {
       __Pyx_GIVEREF(__pyx_t_9); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_9); __pyx_t_9 = NULL;
@@ -43529,24 +43594,24 @@ if (!__Pyx_RefNanny) {
     __Pyx_GIVEREF(__pyx_n_u_pos);
     PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_2, __pyx_n_u_pos);
     __pyx_t_8 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_7, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1364, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_7, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1359, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_pos, __pyx_t_5) < 0) __PYX_ERR(0, 1364, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_pos, __pyx_t_5) < 0) __PYX_ERR(0, 1359, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1365
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1360
  *     __neg__ = _op_unary_method(lambda x: -x, '__neg__')
  *     __pos__ = _op_unary_method(lambda x: x, '__pos__')
  *     __abs__ = _op_unary_method(lambda x: abs(x), '__abs__')             # <<<<<<<<<<<<<<
  * 
  *     __add__ = _binary_op_method_timedeltalike(lambda x, y: x + y, '__add__')
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_op_unary_method); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1365, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_op_unary_method); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1360, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_35lambda3, 0, __pyx_n_s_Timedelta_lambda, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1365, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_35lambda3, 0, __pyx_n_s_Timedelta_lambda, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1360, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_t_8 = NULL;
   __pyx_t_2 = 0;
@@ -43563,7 +43628,7 @@ if (!__Pyx_RefNanny) {
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_t_7, __pyx_n_u_abs};
-    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1365, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1360, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -43572,14 +43637,14 @@ if (!__Pyx_RefNanny) {
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_t_7, __pyx_n_u_abs};
-    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1365, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1360, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   } else
   #endif
   {
-    __pyx_t_9 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1365, __pyx_L1_error)
+    __pyx_t_9 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1360, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     if (__pyx_t_8) {
       __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_8); __pyx_t_8 = NULL;
@@ -43590,24 +43655,24 @@ if (!__Pyx_RefNanny) {
     __Pyx_GIVEREF(__pyx_n_u_abs);
     PyTuple_SET_ITEM(__pyx_t_9, 1+__pyx_t_2, __pyx_n_u_abs);
     __pyx_t_7 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1365, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1360, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_abs, __pyx_t_5) < 0) __PYX_ERR(0, 1365, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_abs, __pyx_t_5) < 0) __PYX_ERR(0, 1360, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1367
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1362
  *     __abs__ = _op_unary_method(lambda x: abs(x), '__abs__')
  * 
  *     __add__ = _binary_op_method_timedeltalike(lambda x, y: x + y, '__add__')             # <<<<<<<<<<<<<<
  *     __radd__ = _binary_op_method_timedeltalike(lambda x, y: x + y, '__radd__')
  *     __sub__ = _binary_op_method_timedeltalike(lambda x, y: x - y, '__sub__')
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_binary_op_method_timedeltalike_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1367, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_binary_op_method_timedeltalike_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1362, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_9 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_36lambda4, 0, __pyx_n_s_Timedelta_lambda, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1367, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_36lambda4, 0, __pyx_n_s_Timedelta_lambda, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1362, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __pyx_t_7 = NULL;
   __pyx_t_2 = 0;
@@ -43624,7 +43689,7 @@ if (!__Pyx_RefNanny) {
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_t_9, __pyx_n_u_add};
-    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1367, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1362, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -43633,14 +43698,14 @@ if (!__Pyx_RefNanny) {
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_t_9, __pyx_n_u_add};
-    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1367, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1362, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   } else
   #endif
   {
-    __pyx_t_8 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1367, __pyx_L1_error)
+    __pyx_t_8 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1362, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -43651,24 +43716,24 @@ if (!__Pyx_RefNanny) {
     __Pyx_GIVEREF(__pyx_n_u_add);
     PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_2, __pyx_n_u_add);
     __pyx_t_9 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_8, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1367, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_8, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1362, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_add, __pyx_t_5) < 0) __PYX_ERR(0, 1367, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_add, __pyx_t_5) < 0) __PYX_ERR(0, 1362, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1368
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1363
  * 
  *     __add__ = _binary_op_method_timedeltalike(lambda x, y: x + y, '__add__')
  *     __radd__ = _binary_op_method_timedeltalike(lambda x, y: x + y, '__radd__')             # <<<<<<<<<<<<<<
  *     __sub__ = _binary_op_method_timedeltalike(lambda x, y: x - y, '__sub__')
  *     __rsub__ = _binary_op_method_timedeltalike(lambda x, y: y - x, '__rsub__')
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_binary_op_method_timedeltalike_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1368, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_binary_op_method_timedeltalike_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1363, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_37lambda5, 0, __pyx_n_s_Timedelta_lambda, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1368, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_37lambda5, 0, __pyx_n_s_Timedelta_lambda, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1363, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __pyx_t_9 = NULL;
   __pyx_t_2 = 0;
@@ -43685,7 +43750,7 @@ if (!__Pyx_RefNanny) {
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_9, __pyx_t_8, __pyx_n_u_radd};
-    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1368, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1363, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -43694,14 +43759,14 @@ if (!__Pyx_RefNanny) {
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_9, __pyx_t_8, __pyx_n_u_radd};
-    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1368, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1363, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   } else
   #endif
   {
-    __pyx_t_7 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1368, __pyx_L1_error)
+    __pyx_t_7 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1363, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     if (__pyx_t_9) {
       __Pyx_GIVEREF(__pyx_t_9); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_9); __pyx_t_9 = NULL;
@@ -43712,24 +43777,24 @@ if (!__Pyx_RefNanny) {
     __Pyx_GIVEREF(__pyx_n_u_radd);
     PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_2, __pyx_n_u_radd);
     __pyx_t_8 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_7, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1368, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_7, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1363, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_radd, __pyx_t_5) < 0) __PYX_ERR(0, 1368, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_radd, __pyx_t_5) < 0) __PYX_ERR(0, 1363, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1369
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1364
  *     __add__ = _binary_op_method_timedeltalike(lambda x, y: x + y, '__add__')
  *     __radd__ = _binary_op_method_timedeltalike(lambda x, y: x + y, '__radd__')
  *     __sub__ = _binary_op_method_timedeltalike(lambda x, y: x - y, '__sub__')             # <<<<<<<<<<<<<<
  *     __rsub__ = _binary_op_method_timedeltalike(lambda x, y: y - x, '__rsub__')
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_binary_op_method_timedeltalike_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1369, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_binary_op_method_timedeltalike_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1364, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_38lambda6, 0, __pyx_n_s_Timedelta_lambda, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1369, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_38lambda6, 0, __pyx_n_s_Timedelta_lambda, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1364, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_t_8 = NULL;
   __pyx_t_2 = 0;
@@ -43746,7 +43811,7 @@ if (!__Pyx_RefNanny) {
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_t_7, __pyx_n_u_sub};
-    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1369, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1364, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -43755,14 +43820,14 @@ if (!__Pyx_RefNanny) {
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_t_7, __pyx_n_u_sub};
-    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1369, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1364, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   } else
   #endif
   {
-    __pyx_t_9 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1369, __pyx_L1_error)
+    __pyx_t_9 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1364, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     if (__pyx_t_8) {
       __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_8); __pyx_t_8 = NULL;
@@ -43773,24 +43838,24 @@ if (!__Pyx_RefNanny) {
     __Pyx_GIVEREF(__pyx_n_u_sub);
     PyTuple_SET_ITEM(__pyx_t_9, 1+__pyx_t_2, __pyx_n_u_sub);
     __pyx_t_7 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1369, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1364, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_sub, __pyx_t_5) < 0) __PYX_ERR(0, 1369, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_sub, __pyx_t_5) < 0) __PYX_ERR(0, 1364, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1370
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1365
  *     __radd__ = _binary_op_method_timedeltalike(lambda x, y: x + y, '__radd__')
  *     __sub__ = _binary_op_method_timedeltalike(lambda x, y: x - y, '__sub__')
  *     __rsub__ = _binary_op_method_timedeltalike(lambda x, y: y - x, '__rsub__')             # <<<<<<<<<<<<<<
  * 
  *     def __mul__(self, other):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_binary_op_method_timedeltalike_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1370, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_binary_op_method_timedeltalike_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 1365, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_9 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_39lambda7, 0, __pyx_n_s_Timedelta_lambda, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1370, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_39lambda7, 0, __pyx_n_s_Timedelta_lambda, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, NULL); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 1365, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __pyx_t_7 = NULL;
   __pyx_t_2 = 0;
@@ -43807,7 +43872,7 @@ if (!__Pyx_RefNanny) {
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_t_9, __pyx_n_u_rsub};
-    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1370, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1365, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -43816,14 +43881,14 @@ if (!__Pyx_RefNanny) {
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
     PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_t_9, __pyx_n_u_rsub};
-    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1370, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_2, 2+__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1365, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   } else
   #endif
   {
-    __pyx_t_8 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1370, __pyx_L1_error)
+    __pyx_t_8 = PyTuple_New(2+__pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 1365, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -43834,27 +43899,27 @@ if (!__Pyx_RefNanny) {
     __Pyx_GIVEREF(__pyx_n_u_rsub);
     PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_2, __pyx_n_u_rsub);
     __pyx_t_9 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_8, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1370, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_8, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1365, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_rsub, __pyx_t_5) < 0) __PYX_ERR(0, 1370, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_rsub, __pyx_t_5) < 0) __PYX_ERR(0, 1365, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1372
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1367
  *     __rsub__ = _binary_op_method_timedeltalike(lambda x, y: y - x, '__rsub__')
  * 
  *     def __mul__(self, other):             # <<<<<<<<<<<<<<
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_15__mul__, 0, __pyx_n_s_Timedelta___mul, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__73)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1372, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_15__mul__, 0, __pyx_n_s_Timedelta___mul, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__73)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1367, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_mul, __pyx_t_5) < 0) __PYX_ERR(0, 1372, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_mul, __pyx_t_5) < 0) __PYX_ERR(0, 1367, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1399
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1394
  *         return Timedelta(other * self.value, unit='ns')
  * 
  *     __rmul__ = __mul__             # <<<<<<<<<<<<<<
@@ -43866,191 +43931,191 @@ if (!__Pyx_RefNanny) {
     PyErr_Clear();
     __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_mul);
   }
-  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1399, __pyx_L1_error)
+  if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_rmul, __pyx_t_5) < 0) __PYX_ERR(0, 1399, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_rmul, __pyx_t_5) < 0) __PYX_ERR(0, 1394, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1401
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1396
  *     __rmul__ = __mul__
  * 
  *     def __truediv__(self, other):             # <<<<<<<<<<<<<<
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_17__truediv__, 0, __pyx_n_s_Timedelta___truediv, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__75)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1401, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_17__truediv__, 0, __pyx_n_s_Timedelta___truediv, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__75)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1396, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_truediv, __pyx_t_5) < 0) __PYX_ERR(0, 1401, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_truediv, __pyx_t_5) < 0) __PYX_ERR(0, 1396, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1434
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1429
  *         return self.value / float(other.value)
  * 
  *     def __rtruediv__(self, other):             # <<<<<<<<<<<<<<
  *         if hasattr(other, '_typ'):
  *             # Series, DataFrame, ...
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_19__rtruediv__, 0, __pyx_n_s_Timedelta___rtruediv, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__77)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1434, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_19__rtruediv__, 0, __pyx_n_s_Timedelta___rtruediv, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__77)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1429, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_rtruediv, __pyx_t_5) < 0) __PYX_ERR(0, 1434, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_rtruediv, __pyx_t_5) < 0) __PYX_ERR(0, 1429, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1457
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1452
  *         return float(other.value) / self.value
  * 
  *     def __floordiv__(self, other):             # <<<<<<<<<<<<<<
  *         # numpy does not implement floordiv for timedelta64 dtype, so we cannot
  *         # just defer
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_21__floordiv__, 0, __pyx_n_s_Timedelta___floordiv, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__79)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1457, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_21__floordiv__, 0, __pyx_n_s_Timedelta___floordiv, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__79)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1452, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_floordiv, __pyx_t_5) < 0) __PYX_ERR(0, 1457, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_floordiv, __pyx_t_5) < 0) __PYX_ERR(0, 1452, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1496
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1491
  *         return self.value // other.value
  * 
  *     def __rfloordiv__(self, other):             # <<<<<<<<<<<<<<
  *         # numpy does not implement floordiv for timedelta64 dtype, so we cannot
  *         # just defer
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_23__rfloordiv__, 0, __pyx_n_s_Timedelta___rfloordiv, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__81)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1496, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_23__rfloordiv__, 0, __pyx_n_s_Timedelta___rfloordiv, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__81)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1491, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_rfloordiv, __pyx_t_5) < 0) __PYX_ERR(0, 1496, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_rfloordiv, __pyx_t_5) < 0) __PYX_ERR(0, 1491, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1542
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1537
  *         return other.value // self.value
  * 
  *     def __mod__(self, other):             # <<<<<<<<<<<<<<
  *         # Naive implementation, room for optimization
  *         return self.__divmod__(other)[1]
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_25__mod__, 0, __pyx_n_s_Timedelta___mod, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__83)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1542, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_25__mod__, 0, __pyx_n_s_Timedelta___mod, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__83)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1537, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_mod, __pyx_t_5) < 0) __PYX_ERR(0, 1542, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_mod, __pyx_t_5) < 0) __PYX_ERR(0, 1537, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1546
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1541
  *         return self.__divmod__(other)[1]
  * 
  *     def __rmod__(self, other):             # <<<<<<<<<<<<<<
  *         # Naive implementation, room for optimization
  *         if hasattr(other, 'dtype') and other.dtype.kind == 'i':
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_27__rmod__, 0, __pyx_n_s_Timedelta___rmod, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__85)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1546, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_27__rmod__, 0, __pyx_n_s_Timedelta___rmod, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__85)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1541, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_rmod, __pyx_t_5) < 0) __PYX_ERR(0, 1546, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_rmod, __pyx_t_5) < 0) __PYX_ERR(0, 1541, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1555
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1550
  *         return self.__rdivmod__(other)[1]
  * 
  *     def __divmod__(self, other):             # <<<<<<<<<<<<<<
  *         # Naive implementation, room for optimization
  *         div = self // other
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_29__divmod__, 0, __pyx_n_s_Timedelta___divmod, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__87)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1555, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_29__divmod__, 0, __pyx_n_s_Timedelta___divmod, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__87)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1550, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_divmod, __pyx_t_5) < 0) __PYX_ERR(0, 1555, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_divmod, __pyx_t_5) < 0) __PYX_ERR(0, 1550, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1560
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1555
  *         return div, self - div * other
  * 
  *     def __rdivmod__(self, other):             # <<<<<<<<<<<<<<
  *         # Naive implementation, room for optimization
  *         if hasattr(other, 'dtype') and other.dtype.kind == 'i':
  */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_31__rdivmod__, 0, __pyx_n_s_Timedelta___rdivmod, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__89)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1560, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6pandas_5_libs_6tslibs_10timedeltas_9Timedelta_31__rdivmod__, 0, __pyx_n_s_Timedelta___rdivmod, NULL, __pyx_n_s_pandas__libs_tslibs_timedeltas, __pyx_d, ((PyObject *)__pyx_codeobj__89)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1555, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_rdivmod, __pyx_t_5) < 0) __PYX_ERR(0, 1560, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_rdivmod, __pyx_t_5) < 0) __PYX_ERR(0, 1555, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1208
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1203
  * # This serves as the box for timedelta64
  * 
  * class Timedelta(_Timedelta):             # <<<<<<<<<<<<<<
  *     """
  *     Represents a duration, the difference between two dates or times.
  */
-  __pyx_t_5 = __Pyx_Py3ClassCreate(__pyx_t_4, __pyx_n_s_Timedelta, __pyx_t_3, __pyx_t_1, NULL, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1208, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_Py3ClassCreate(__pyx_t_4, __pyx_n_s_Timedelta, __pyx_t_3, __pyx_t_1, NULL, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Timedelta, __pyx_t_5) < 0) __PYX_ERR(0, 1208, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Timedelta, __pyx_t_5) < 0) __PYX_ERR(0, 1203, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1619
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1614
  * 
  * # resolution in ns
  * Timedelta.min = Timedelta(np.iinfo(np.int64).min + 1)             # <<<<<<<<<<<<<<
  * Timedelta.max = Timedelta(np.iinfo(np.int64).max)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1619, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1614, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1619, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1614, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_iinfo); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1619, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_iinfo); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1614, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1619, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1614, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_int64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1619, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_int64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1614, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1619, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1614, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_min); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1619, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_min); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1614, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_5, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1619, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_5, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1614, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1619, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1614, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1619, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1614, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_t_4, __pyx_n_s_min, __pyx_t_5) < 0) __PYX_ERR(0, 1619, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_t_4, __pyx_n_s_min, __pyx_t_5) < 0) __PYX_ERR(0, 1614, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pandas/_libs/tslibs/timedeltas.pyx":1620
+  /* "pandas/_libs/tslibs/timedeltas.pyx":1615
  * # resolution in ns
  * Timedelta.min = Timedelta(np.iinfo(np.int64).min + 1)
  * Timedelta.max = Timedelta(np.iinfo(np.int64).max)             # <<<<<<<<<<<<<<
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1620, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1615, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1620, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1615, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_iinfo); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1620, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_iinfo); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1615, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1620, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1615, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_int64); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1620, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_int64); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1615, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1620, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1615, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_max); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1620, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_max); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1615, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1620, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 1615, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1620, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1615, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_t_1, __pyx_n_s_max, __pyx_t_5) < 0) __PYX_ERR(0, 1620, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_t_1, __pyx_n_s_max, __pyx_t_5) < 0) __PYX_ERR(0, 1615, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
@@ -44071,12 +44136,12 @@ if (!__Pyx_RefNanny) {
  */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_kp_u_Timedelta_delta___get___line_89, __pyx_kp_u_Return_the_timedelta_in_nanosec) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_kp_u_Timedelta_asm8___get___line_923, __pyx_kp_u_Return_a_numpy_timedelta64_arra) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_kp_u_Timedelta_delta___get___line_88, __pyx_kp_u_Return_the_timedelta_in_nanosec) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_kp_u_Timedelta_asm8___get___line_918, __pyx_kp_u_Return_a_numpy_timedelta64_arra) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_1, __pyx_kp_u_Timedelta_resolution_string___g, __pyx_kp_u_Return_a_string_representing_th) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_1, __pyx_kp_u_Timedelta_resolution___get___li, __pyx_kp_u_Return_a_string_representing_th) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_1, __pyx_kp_u_Timedelta_nanoseconds___get___l, __pyx_kp_u_Return_the_number_of_nanosecond) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_kp_u_Timedelta_isoformat_line_1154, __pyx_kp_u_Format_Timedelta_as_ISO_8601_Du) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_kp_u_Timedelta_isoformat_line_1149, __pyx_kp_u_Format_Timedelta_as_ISO_8601_Du) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_1) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
@@ -45573,31 +45638,6 @@ static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject 
 }
 #endif
 
-/* PyErrExceptionMatches */
-#if CYTHON_FAST_THREAD_STATE
-static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
-    Py_ssize_t i, n;
-    n = PyTuple_GET_SIZE(tuple);
-#if PY_MAJOR_VERSION >= 3
-    for (i=0; i<n; i++) {
-        if (exc_type == PyTuple_GET_ITEM(tuple, i)) return 1;
-    }
-#endif
-    for (i=0; i<n; i++) {
-        if (__Pyx_PyErr_GivenExceptionMatches(exc_type, PyTuple_GET_ITEM(tuple, i))) return 1;
-    }
-    return 0;
-}
-static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
-    PyObject *exc_type = tstate->curexc_type;
-    if (exc_type == err) return 1;
-    if (unlikely(!exc_type)) return 0;
-    if (unlikely(PyTuple_Check(err)))
-        return __Pyx_PyErr_ExceptionMatchesTuple(exc_type, err);
-    return __Pyx_PyErr_GivenExceptionMatches(exc_type, err);
-}
-#endif
-
 /* GetException */
 #if CYTHON_FAST_THREAD_STATE
 static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb)
@@ -45672,6 +45712,31 @@ bad:
     return -1;
 }
 
+/* PyErrExceptionMatches */
+#if CYTHON_FAST_THREAD_STATE
+static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
+    Py_ssize_t i, n;
+    n = PyTuple_GET_SIZE(tuple);
+#if PY_MAJOR_VERSION >= 3
+    for (i=0; i<n; i++) {
+        if (exc_type == PyTuple_GET_ITEM(tuple, i)) return 1;
+    }
+#endif
+    for (i=0; i<n; i++) {
+        if (__Pyx_PyErr_GivenExceptionMatches(exc_type, PyTuple_GET_ITEM(tuple, i))) return 1;
+    }
+    return 0;
+}
+static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
+    PyObject *exc_type = tstate->curexc_type;
+    if (exc_type == err) return 1;
+    if (unlikely(!exc_type)) return 0;
+    if (unlikely(PyTuple_Check(err)))
+        return __Pyx_PyErr_ExceptionMatchesTuple(exc_type, err);
+    return __Pyx_PyErr_GivenExceptionMatches(exc_type, err);
+}
+#endif
+
 /* RaiseTooManyValuesToUnpack */
 static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected) {
     PyErr_Format(PyExc_ValueError,
@@ -45729,22 +45794,6 @@ static int __Pyx_IternextUnpackEndCheck(PyObject *retval, Py_ssize_t expected) {
     } else {
         return __Pyx_IterFinish();
     }
-    return 0;
-}
-
-/* unicode_iter */
-static CYTHON_INLINE int __Pyx_init_unicode_iteration(
-    PyObject* ustring, Py_ssize_t *length, void** data, int *kind) {
-#if CYTHON_PEP393_ENABLED
-    if (unlikely(__Pyx_PyUnicode_READY(ustring) < 0)) return -1;
-    *kind   = PyUnicode_KIND(ustring);
-    *length = PyUnicode_GET_LENGTH(ustring);
-    *data   = PyUnicode_DATA(ustring);
-#else
-    *kind   = 0;
-    *length = PyUnicode_GET_SIZE(ustring);
-    *data   = (void*)PyUnicode_AS_UNICODE(ustring);
-#endif
     return 0;
 }
 

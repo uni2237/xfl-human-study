@@ -1,10 +1,9 @@
 import sqlite3
 
 import numpy as np
-from sqlalchemy import create_engine
-
-from pandas import DataFrame, date_range, read_sql_query, read_sql_table
 import pandas.util.testing as tm
+from pandas import DataFrame, date_range, read_sql_query, read_sql_table
+from sqlalchemy import create_engine
 
 
 class SQL:
@@ -142,4 +141,4 @@ class ReadSQLTableDtypes:
         read_sql_table(self.table_name, self.con, columns=[dtype])
 
 
-from ..pandas_vb_common import setup  # noqa: F401 isort:skip
+from ..pandas_vb_common import setup  # noqa: F401

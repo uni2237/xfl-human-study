@@ -271,6 +271,7 @@ def nargsort(items, kind="quicksort", ascending=True, na_position="last"):
 
 
 class _KeyMapper:
+
     """
     Ease my suffering. Map compressed group id -> key tuple
     """

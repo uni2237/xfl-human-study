@@ -478,6 +478,7 @@ def _validate_where(w):
 
 
 class Expr(expr.Expr):
+
     """ hold a pytables like expression, comprised of possibly multiple 'terms'
 
     Parameters
@@ -572,6 +573,7 @@ class Expr(expr.Expr):
 
 
 class TermValue:
+
     """ hold a term value the we use to construct a condition/filter """
 
     def __init__(self, value, converted, kind):

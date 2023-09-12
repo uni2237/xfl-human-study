@@ -3,7 +3,6 @@ import contextlib
 from datetime import datetime, time
 from functools import partial
 import os
-from urllib.error import URLError
 import warnings
 
 import numpy as np
@@ -14,6 +13,8 @@ import pandas.util._test_decorators as td
 import pandas as pd
 from pandas import DataFrame, Index, MultiIndex, Series
 import pandas.util.testing as tm
+
+from pandas.io.common import URLError
 
 
 @contextlib.contextmanager

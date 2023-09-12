@@ -8,16 +8,14 @@ import pandas as pd
 import pandas.util.testing as tm
 from pandas.util.testing import assert_frame_equal, ensure_clean
 
-from pandas.io.feather_format import read_feather, to_feather  # noqa: E402 isort:skip
+from pandas.io.feather_format import read_feather, to_feather  # noqa:E402
 
 pyarrow = pytest.importorskip("pyarrow")
 
 
 pyarrow_version = LooseVersion(pyarrow.__version__)
-filter_sparse = pytest.mark.filterwarnings("ignore:The Sparse")
 
 
-@filter_sparse
 @pytest.mark.single
 class TestFeather:
     def check_error_on_write(self, df, exc):

@@ -1,5 +1,4 @@
-"""
-:mod:`pandas.io.html` is a module containing functionality for dealing with
+""":mod:`pandas.io.html` is a module containing functionality for dealing with
 HTML IO.
 
 """
@@ -59,8 +58,7 @@ _RE_WHITESPACE = re.compile(r"[\r\n]+|\s{2,}")
 
 
 def _remove_whitespace(s, regex=_RE_WHITESPACE):
-    """
-    Replace extra whitespace inside of a string with a single space.
+    """Replace extra whitespace inside of a string with a single space.
 
     Parameters
     ----------
@@ -79,8 +77,7 @@ def _remove_whitespace(s, regex=_RE_WHITESPACE):
 
 
 def _get_skiprows(skiprows):
-    """
-    Get an iterator given an integer, slice or container.
+    """Get an iterator given an integer, slice or container.
 
     Parameters
     ----------
@@ -110,8 +107,7 @@ def _get_skiprows(skiprows):
 
 
 def _read(obj):
-    """
-    Try to read from a url, file or string.
+    """Try to read from a url, file or string.
 
     Parameters
     ----------
@@ -140,8 +136,7 @@ def _read(obj):
 
 
 class _HtmlFrameParser:
-    """
-    Base class for parsers that parse HTML into DataFrames.
+    """Base class for parsers that parse HTML into DataFrames.
 
     Parameters
     ----------
@@ -520,8 +515,7 @@ class _HtmlFrameParser:
 
 
 class _BeautifulSoupHtml5LibFrameParser(_HtmlFrameParser):
-    """
-    HTML to DataFrame parser that uses BeautifulSoup under the hood.
+    """HTML to DataFrame parser that uses BeautifulSoup under the hood.
 
     See Also
     --------
@@ -628,8 +622,7 @@ _valid_schemes = "http", "file", "ftp"
 
 
 class _LxmlFrameParser(_HtmlFrameParser):
-    """
-    HTML to DataFrame parser that uses lxml under the hood.
+    """HTML to DataFrame parser that uses lxml under the hood.
 
     Warning
     -------
@@ -944,8 +937,7 @@ def read_html(
     keep_default_na=True,
     displayed_only=True,
 ):
-    r"""
-    Read HTML tables into a ``list`` of ``DataFrame`` objects.
+    r"""Read HTML tables into a ``list`` of ``DataFrame`` objects.
 
     Parameters
     ----------

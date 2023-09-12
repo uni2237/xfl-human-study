@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta, date
-import warnings
 
 import cython
 

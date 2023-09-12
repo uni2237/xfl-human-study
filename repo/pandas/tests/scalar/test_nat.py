@@ -252,7 +252,6 @@ def _get_overlap_public_nat_methods(klass, as_tuple=False):
                 "day_name",
                 "dst",
                 "floor",
-                "fromisocalendar",
                 "fromisoformat",
                 "fromordinal",
                 "fromtimestamp",
@@ -297,8 +296,6 @@ def test_overlap_public_nat_methods(klass, expected):
     # "fromisoformat" was introduced in 3.7
     if klass is Timestamp and not compat.PY37:
         expected.remove("fromisoformat")
-    if klass is Timestamp and not compat.PY38:
-        expected.remove("fromisocalendar")
 
     assert _get_overlap_public_nat_methods(klass) == expected
 

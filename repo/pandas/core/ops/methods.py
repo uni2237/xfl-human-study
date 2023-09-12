@@ -3,7 +3,12 @@ Functions to generate methods and pin them to the appropriate classes.
 """
 import operator
 
-from pandas.core.dtypes.generic import ABCDataFrame, ABCSeries, ABCSparseArray
+from pandas.core.dtypes.generic import (
+    ABCDataFrame,
+    ABCSeries,
+    ABCSparseArray,
+    ABCSparseSeries,
+)
 
 from pandas.core.ops.roperator import (
     radd,
@@ -46,6 +51,7 @@ def _get_method_wrappers(cls):
     from pandas.core.ops import (
         _arith_method_FRAME,
         _arith_method_SERIES,
+        _arith_method_SPARSE_SERIES,
         _bool_method_SERIES,
         _comp_method_FRAME,
         _comp_method_SERIES,
@@ -53,14 +59,24 @@ def _get_method_wrappers(cls):
         _flex_method_SERIES,
     )
 
-    if issubclass(cls, ABCSeries):
-        # Just Series
+    if issubclass(cls, ABCSparseSeries):
+        # Be sure to catch this before ABCSeries and ABCSparseArray,
+        # as they will both come see SparseSeries as a subclass
+        arith_flex = _flex_method_SERIES
+        comp_flex = _flex_method_SERIES
+        arith_special = _arith_method_SPARSE_SERIES
+        comp_special = _arith_method_SPARSE_SERIES
+        bool_special = _bool_method_SERIES
+        # TODO: I don't think the functions defined by bool_method are tested
+    elif issubclass(cls, ABCSeries):
+        # Just Series; SparseSeries is caught above
         arith_flex = _flex_method_SERIES
         comp_flex = _flex_method_SERIES
         arith_special = _arith_method_SERIES
         comp_special = _comp_method_SERIES
         bool_special = _bool_method_SERIES
     elif issubclass(cls, ABCDataFrame):
+        # Same for DataFrame and SparseDataFrame
         arith_flex = _arith_method_FRAME
         comp_flex = _flex_comp_method_FRAME
         arith_special = _arith_method_FRAME
@@ -160,7 +176,7 @@ def _create_methods(cls, arith_method, comp_method, bool_method, special):
     # constructors.
 
     have_divmod = issubclass(cls, ABCSeries)
-    # divmod is available for Series
+    # divmod is available for Series and SparseSeries
 
     # yapf: disable
     new_methods = dict(

@@ -192,11 +192,7 @@ class DatetimeIndexOpsMixin(ExtensionOpsMixin):
         elif not isinstance(other, type(self)):
             try:
                 other = type(self)(other)
-            except (ValueError, TypeError, OverflowError):
-                # e.g.
-                #  ValueError -> cannot parse str entry, or OutOfBoundsDatetime
-                #  TypeError  -> trying to convert IntervalIndex to DatetimeIndex
-                #  OverflowError -> Index([very_large_timedeltas])
+            except Exception:
                 return False
 
         if not is_dtype_equal(self.dtype, other.dtype):

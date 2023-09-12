@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from cpython.object cimport (
+from cpython cimport (
     PyObject_RichCompareBool,
     Py_EQ, Py_NE)
 

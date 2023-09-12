@@ -50,6 +50,7 @@ def sort_with_none(request):
 
 
 class TestConcatAppendCommon:
+
     """
     Test common dtype coercion rules between concat and append.
     """

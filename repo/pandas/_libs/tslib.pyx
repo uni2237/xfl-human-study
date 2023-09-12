@@ -344,13 +344,14 @@ def array_with_unit_to_datetime(ndarray values, object unit,
         # try a quick conversion to i8
         # if we have nulls that are not type-compat
         # then need to iterate
-        if values.dtype.kind == "i":
-            # Note: this condition makes the casting="same_kind" redundant
+        try:
             iresult = values.astype('i8', casting='same_kind', copy=False)
             mask = iresult == NPY_NAT
             iresult[mask] = 0
             fvalues = iresult.astype('f8') * m
             need_to_iterate = False
+        except:
+            pass
 
         # check the bounds
         if not need_to_iterate:
@@ -405,7 +406,7 @@ def array_with_unit_to_datetime(ndarray values, object unit,
                         elif is_ignore:
                             raise AssertionError
                         iresult[i] = NPY_NAT
-                    except OverflowError:
+                    except:
                         if is_raise:
                             raise OutOfBoundsDatetime(
                                 "cannot convert input {val} with the unit "
@@ -446,7 +447,7 @@ def array_with_unit_to_datetime(ndarray values, object unit,
             else:
                 try:
                     oresult[i] = Timestamp(cast_from_unit(val, unit))
-                except OverflowError:
+                except:
                     oresult[i] = val
 
         elif isinstance(val, str):
@@ -573,7 +574,7 @@ cpdef array_to_datetime(ndarray[object] values, str errors='raise',
                         # datetimes/strings, then we must coerce)
                         try:
                             iresult[i] = cast_from_unit(val, 'ns')
-                        except OverflowError:
+                        except:
                             iresult[i] = NPY_NAT
 
                 elif isinstance(val, str):
@@ -609,17 +610,16 @@ cpdef array_to_datetime(ndarray[object] values, str errors='raise',
                             py_dt = parse_datetime_string(val,
                                                           dayfirst=dayfirst,
                                                           yearfirst=yearfirst)
-                            # If the dateutil parser returned tzinfo, capture it
-                            # to check if all arguments have the same tzinfo
-                            tz = py_dt.utcoffset()
-
-                        except (ValueError, OverflowError):
+                        except Exception:
                             if is_coerce:
                                 iresult[i] = NPY_NAT
                                 continue
                             raise TypeError("invalid string coercion to "
                                             "datetime")
 
+                        # If the dateutil parser returned tzinfo, capture it
+                        # to check if all arguments have the same tzinfo
+                        tz = py_dt.utcoffset()
                         if tz is not None:
                             seen_datetime_offset = 1
                             # dateutil timezone objects cannot be hashed, so

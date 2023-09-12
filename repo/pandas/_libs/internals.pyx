@@ -1,7 +1,7 @@
 import cython
 from cython import Py_ssize_t
 
-from cpython.object cimport PyObject
+from cpython cimport PyObject
 
 cdef extern from "Python.h":
     Py_ssize_t PY_SSIZE_T_MAX

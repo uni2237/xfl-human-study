@@ -1,12 +1,11 @@
-import matplotlib
 import numpy as np
-
-from pandas import DataFrame, DatetimeIndex, Series, date_range
+from pandas import DataFrame, Series, DatetimeIndex, date_range
 
 try:
     from pandas.plotting import andrews_curves
 except ImportError:
     from pandas.tools.plotting import andrews_curves
+import matplotlib
 
 matplotlib.use("Agg")
 
@@ -94,4 +93,4 @@ class Misc:
         andrews_curves(self.df, "Name")
 
 
-from .pandas_vb_common import setup  # noqa: F401 isort:skip
+from .pandas_vb_common import setup  # noqa: F401

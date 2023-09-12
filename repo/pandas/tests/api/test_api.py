@@ -67,7 +67,9 @@ class TestPDApi(Base):
         "UInt64Index",
         "Series",
         "SparseArray",
+        "SparseDataFrame",
         "SparseDtype",
+        "SparseSeries",
         "Timedelta",
         "TimedeltaIndex",
         "Timestamp",
@@ -88,7 +90,7 @@ class TestPDApi(Base):
         "NamedAgg",
     ]
     if not compat.PY37:
-        classes.extend(["Panel", "SparseSeries", "SparseDataFrame"])
+        classes.append("Panel")
 
     # these are already deprecated; awaiting removal
     deprecated_classes = []
