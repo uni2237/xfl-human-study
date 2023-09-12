@@ -1,55 +1,34 @@
-# XFL Human Study Package
+# AutoFL 개발자 연구 명세
 
-This repository provides guidelines on how to install the necessary setup,
-checkout to bug instances, and run tests using Docker, as well as how to
-access explanations when necessary.
+본 문서는 AutoFL을 이용한 개발자 연구에서 사용할 수 있는 스크립트에 관해 다룹니다.
 
-## Installation
+## 환경 설정
 
-### Prerequisites
-
-`git` and `Docker` must be installed on your machine to proceed with this
-experiment.
-
-### Set up the Docker image
-
+실험에서 테스트를 실행하기 위해서는 실행 환경이 `Docker`로 갖춰져야 합니다. 아래 명령을 실행해주세요:
 
 ```bash
 docker pull stuatlittle/fl-human-study:latest
 ```
 
-## Performing the Task
+## 버그 코드 불러오기
 
-### Loading Buggy Code
+따로 주어진 설문 웹페이지를 통해, 어느 `branch`를 checkout하여 디버깅을 진행하면 되는지
+안내가 주어집니다. `git checkout`을 이용하여 안내된 branch로 이동해주세요. 버그마다
+5개의 파일이 주어집니다:
 
-Your study webpage will let you know what branch you should check to next.
-Use `git checkout` to change the directory content to the target branch.
-Depending on the experiment settings, it may or may not have an explanation
-available.
+ * `init.md`: 고쳐야 하는 버그를 드러내는 테스트의 테스트 코드와 에러메시지에 대한 정보를 제공합니다.
+ * `fl.md`: AutoFL 방법론에서 제시한, 유력한 결함 위치의 목록입니다.
+ * `explanation.md`: `fl.md`에서 보여준 위치가 왜 결함일 가능성이 높은지에 대한 AutoFL의 설명 정보를 제공합니다.
+ * `test.sh`/`test_file.sh`: 테스트를 실행하는 스크립트입니다.
+   * `bash test.sh` 를 실행하면 버그를 드러내는 테스트만 실행합니다.
+   * `bash test_file.sh`를 실행하면 버그를 드러내는 테스트 파일에 있는 모든 테스트를 실행합니다.
 
-(NOTE: Test using the `python_test` branch.)
+checkout을 하고 나서, `bash test.sh`를 실행하여 테스트가 에러메시지를 출력하는지 확인해주세요.
 
-### Executing tests
+## 디버깅 과정
 
-Tests may be executed via:
+각 버그당 예상되는 디버깅 시간은 약 30분입니다.
 
-```bash
-bash test.sh
-```
+디버깅을 하실 때, 제시되는 정보를 편하게 쓰시고자 한다면 `fl.md`, `explanation.md`에 있는 링크를 활용하여 빠르게 관련된 코드로 이동할 수 있습니다.
 
-This will provide the number of failing tests. Initially, there should be
-one or more failing tests.
-
-### Accessing Fault Localization Results and Explanations
-
-To access links, first run `bash localizer.sh`, which will change links
-to use your current directory.
-
-In all cases, there will be a `fl.md` file in the branch. This file provides
-links to identified fault locations, along with links that will point directly
-to the suggested fault location.
-
-If there is an `explanation.md` file in the branch, this is an instance where
-an explanation is provided. (Your website will also clarify whether an
-explanation is expected to be visible). You can read the explanation, and
-click links to go directly to the target code.
+디버깅을 하시고 나서 설문 웹페이지가 묻는 몇가지 객관식 질문에 대답해주세요. 설문 웹페이지의 끝에 있는 연구 참여자의 개발 경력 등에 대답한 뒤 연구 진행자에게 알려주시면, 디버깅 경험에 관한 간단한 인터뷰 후 실험이 마무리됩니다.
