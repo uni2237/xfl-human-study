@@ -196,7 +196,7 @@ assert array_equivalent(left, right, strict_nan=True)
 
 
 <details>
-  <summary><span style="font-size:20px;font-weight:gold;">Explanation 4 (7 lines, 2 code blocks)</span></summary>
+  <summary><span style="font-size:20px;font-weight:gold;">설명 4 (7줄, 2 코드블럭)</span></summary>
   
 테스트 `test_array_equivalent_nested는` `pandas.core.dtypes.missing` 모듈의 일부입니다. 이 모듈은 `pandas` 데이터 구조에서 누락된 값을 처리하는 함수를 제공합니다. 실패하는 테스트는 `left` 및 `right` 배열을 인수로 `array_equivalent` 함수를 호출합니다. 실패 원인을 이해하기 위해 `array_equivalent` 함수를 살펴봅시다.
 
@@ -421,7 +421,7 @@ pandas.core.dtypes.missing.array_equivalent(np.ndarray, np.ndarray, bool)
 ### GPT-4
 
 <details>
-  <summary><span style="font-size:20px;font-weight:gold;">Explanation 1 (5 lines, 1 code blocks)</span></summary>
+  <summary><span style="font-size:20px;font-weight:gold;">설명 1 (5줄, 1 코드블럭)</span></summary>
 
 제공된 정보에 따르면, 실패한 테스트 `['pandas.tests.dtypes.test_missing.test_array_equivalent_nested()']`는 369줄에서 "The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()"라는 메시지와 함께 `ValueError`로 실패했습니다.
 
