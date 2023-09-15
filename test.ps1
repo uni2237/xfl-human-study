@@ -1,0 +1,1 @@
+docker run -it -v ${PWD}/repo:/root/repo -w /root/repo stuatlittle/fl-human-study:latest /opt/conda/envs/exprenv/bin/pytest -s pandas/tests/series/test_combine_concat.py::TestSeriesCombine::test_append_tuples
