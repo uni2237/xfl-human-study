@@ -169,7 +169,7 @@ Suggested fix:
 477 :     return np.array_equal(left, right)
 ```
 
-주어진 코드를 분서갷보면, `array_equivalent` 두 개의 array (`left` 와 `right`)를 입력으로 받으며, 이 두 array가 같은 non-NaN elements와 NaN element를 같은 위치에 두고 있는지 확인합니다. 함수는 먼저 두 array가 같은 shape을 갖는지 확인합니다. 그 다음으로, array가 object type인지 (`is_string_dtype`) 혹은 string dtype인지 확인합니다. 이 조건문이 참이라면, 함수는 `lib.array_equivalent_object` 함수를 이용하여 array가 같은지 확인합니다.
+주어진 코드를 분석해보면, `array_equivalent` 두 개의 array (`left` 와 `right`)를 입력으로 받으며, 이 두 array가 같은 non-NaN elements와 NaN element를 같은 위치에 두고 있는지 확인합니다. 함수는 먼저 두 array가 같은 shape을 갖는지 확인합니다. 그 다음으로, array가 object type인지 (`is_string_dtype`) 혹은 string dtype인지 확인합니다. 이 조건문이 참이라면, 함수는 `lib.array_equivalent_object` 함수를 이용하여 array가 같은지 확인합니다.
 마지막으로 위의 조건이 모두 충족되지 않으면, 함수는 `np.array_equal` 함수를 호출하여 array가 같은지 확인합니다.
 
 에러메시지 `ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()`는 두 개 이상의 element를 가진 array의 참/거짓을 판별하려는 것은 문제가 있다고 지적하고 있습니다.
