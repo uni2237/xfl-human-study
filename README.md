@@ -21,11 +21,14 @@ docker pull stuatlittle/fl-human-study:latest
  * `fl.md`: AutoFL 방법론에서 제시한, 유력한 결함 위치의 목록입니다.
  * `explanation.md`: `fl.md`에서 보여준 위치가 왜 결함일 가능성이 높은지에 대한 AutoFL의 설명 정보입니다.
    * `explanation_kor.md`: 한국어로 번역된 설명입니다.
- * `test.sh`/`test_file.sh`: 테스트를 실행하는 스크립트입니다.
+ * `test.sh`/`test_file.sh`: 리눅스/맥 환경을 위한, 테스트를 실행하는 스크립트입니다.
    * `bash test.sh` 를 실행하면 버그를 드러내는 테스트만 실행합니다.
    * `bash test_file.sh`를 실행하면 버그를 드러내는 테스트 파일에 있는 모든 테스트를 실행합니다.
+ * `test.ps1`/`test_file.ps1`: 윈도우 환경을 위한, 테스트를 실행하는 스크립트입니다.
+   * `powershell -ExecutionPolicy Bypass -File .\test.ps1`을 실행하면 버그를 드러내는 테스트만 실행합니다.
+   * `powershell -ExecutionPolicy Bypass -File .\test_file.ps1`을 실행하면 버그를 드러내는 테스트 파일에 있는 모든 테스트를 실행합니다.
 
-checkout을 하고 나서, `bash test.sh`를 실행하여 테스트가 에러메시지를 출력하는지 확인해주세요.
+checkout을 하고 나서, 환경에 맞는 테스트 스크립트를 실행하여 테스트가 에러메시지를 출력하는지 확인해주세요.
 
 ## 디버깅 과정
 
