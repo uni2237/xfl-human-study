@@ -1,12 +1,12 @@
 # Explanation
-<details>
-  <summary>Korean (translated)</summary>
-</details>
 
 ### GPT-3.5
 
 <details>
   <summary><span style="font-size:20px;font-weight:bold;">Explanation 1 (7 lines, 0 code blocks)</span></summary>
+
+_This explanation suggested: [missing.array\_equivalent]_.
+
   <details>
     <summary>English (original)</summary>
 
@@ -46,6 +46,9 @@ Please note that the suggested fix is based on the assumption that the failure i
 
 <details>
   <summary><span style="font-size:20px;font-weight:bold;">Explanation 2 (13 lines, 1 code blocks)</span></summary>
+
+_This explanation suggested: [missing.array\_equivalent]_.
+
   <details>
     <summary>English (original)</summary>
 
@@ -189,6 +192,9 @@ Suggested fix:
 
 <details>
   <summary><span style="font-size:20px;font-weight:bold;">Explanation 3 (5 lines, 2 code blocks)</span></summary>
+
+_This explanation suggested: [missing.array\_equivalent]_.
+
   <details>
     <summary>English (original)</summary>
 
@@ -396,6 +402,9 @@ assert array_equivalent(left, right, strict_nan=True)
 
 <details>
   <summary><span style="font-size:20px;font-weight:bold;">Explanation 4 (7 lines, 2 code blocks)</span></summary>
+
+_This explanation suggested: [missing.array\_equivalent]_.
+
   <details>
     <summary>English (original)</summary>
 
@@ -623,6 +632,9 @@ pandas.compat.numpy.function.lib.array_equivalent_object(object, object)
 
 <details>
   <summary><span style="font-size:20px;font-weight:bold;">Explanation 5 (10 lines, 4 code blocks)</span></summary>
+
+_This explanation suggested: [missing.array\_equivalent]_.
+
   <details>
     <summary>English (original)</summary>
 
@@ -847,6 +859,9 @@ pandas.core.dtypes.missing.array_equivalent(np.ndarray, np.ndarray, bool)
 
 <details>
   <summary><span style="font-size:20px;font-weight:bold;">Explanation 1 (5 lines, 1 code blocks)</span></summary>
+
+_This explanation suggested: [missing.array\_equivalent]_.
+
   <details>
     <summary>English (original)</summary>
 
