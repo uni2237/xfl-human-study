@@ -18,10 +18,10 @@ docker pull stuatlittle/fl-human-study:latest
 최상위 디렉토리에 포함되어있습니다. 버그 정보에 관한 각 파일은 다음과 같습니다:
 
  * `init.md`: 고쳐야 하는 버그를 드러내는 테스트의 테스트 코드와 에러메시지에 대한 정보입니다.
- * `fl.md`: AutoFL 방법론에서 제시한, 유력한 결함 위치의 목록입니다.
- * `explanation.md`: `fl.md`에서 보여준 위치가 왜 결함일 가능성이 높은지에 대한 AutoFL의 설명 정보입니다.
+ * `fl.md`: AutoFL 방법론에서 제시한, 유력한 결함 위치의 목록입니다. 버그를 일으켰을 확률이 유력한 위치의 순서대로 표시됩니다 (1번에 언급되는 함수가 가장 유력합니다).
+ * `explanation.md`: `fl.md`에서 보여준 위치가 왜 결함일 가능성이 높은지에 대한 AutoFL의 설명 정보입니다. vscode에는 markdown visualization 기능이 있어서, visualization을 통해 보다 편하게 보실 수 있습니다.
    * `explanation_kor.md`: 한국어로 번역된 설명입니다.
- * `test.sh`/`test_file.sh`: 리눅스/맥 환경을 위한, 테스트를 실행하는 스크립트입니다.
+ * `test.sh`/`test_file.sh`: 리눅스/맥 환경을 위한, 테스트를 실행하는 스크립트입니다. 디버깅을 하실 때, 아래 명령어를 사용하여 테스트를 실행하고 버그가 고쳐졌는지 확인하실 수 있습니다. 또한 print debugging을 하실 수 있게 설정되어있으며, 만약 print가 안되는 경우 말씀해주시기 바랍니다.
    * `bash test.sh` 를 실행하면 버그를 드러내는 테스트만 실행합니다.
    * `bash test_file.sh`를 실행하면 버그를 드러내는 테스트 파일에 있는 모든 테스트를 실행합니다.
  * `test.ps1`/`test_file.ps1`: 윈도우 환경을 위한, 테스트를 실행하는 스크립트입니다.
