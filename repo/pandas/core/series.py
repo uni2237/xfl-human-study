@@ -2728,9 +2728,9 @@ class Series(base.IndexOpsMixin, generic.NDFrame):
         ValueError: Indexes have overlapping values: [0, 1, 2]
         """
         from pandas.core.reshape.concat import concat
-
+        
         if isinstance(to_append, (list, tuple)):
-            to_concat = [self] + to_append
+            to_concat = [self] + list(to_append)
         else:
             to_concat = [self, to_append]
         return concat(
