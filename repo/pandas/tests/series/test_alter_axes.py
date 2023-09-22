@@ -270,7 +270,9 @@ class TestSeriesAlterAxes:
     def test_rename_with_custom_indexer(self):
         # GH 27814
         class MyIndexer:
-            pass
+            def __iter__(self):
+            # Provide the required __iter__ method for iteration
+                yield 0
 
         ix = MyIndexer()
         s = Series([1, 2, 3]).rename(ix)
@@ -279,7 +281,9 @@ class TestSeriesAlterAxes:
     def test_rename_with_custom_indexer_inplace(self):
         # GH 27814
         class MyIndexer:
-            pass
+            def __iter__(self):
+            # Provide the required __iter__ method for iteration
+                yield 0
 
         ix = MyIndexer()
         s = Series([1, 2, 3])
